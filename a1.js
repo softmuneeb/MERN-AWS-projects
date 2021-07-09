@@ -1,7 +1,5 @@
 // coinranking12a2a703e214ecfc4610dfe717c34091b4f734f51ece1674
 
-const axios = require("axios");
-
 const getDdkPrice = async () => {
   const instance = axios.create({
     baseURL: "https://api.coinranking.com/v2/coin/kmGGzflTwc8Q/historic-price",

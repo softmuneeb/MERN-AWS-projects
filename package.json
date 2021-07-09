@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node a1.js"
+    "s": "yarn start",
+    "start": "node a3.js"
   },
   "keywords": [],
   "author": "",
