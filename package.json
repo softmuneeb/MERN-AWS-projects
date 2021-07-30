@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "s": "yarn start",
-    "start": "node a3.js"
+    "start": "node a4.js"
   },
   "keywords": [],
   "author": "",
