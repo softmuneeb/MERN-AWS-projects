@@ -1,6 +1,16 @@
+const fun = (a, b) => a + b;
+
+const funny = (a) => (b) => a + b;
+
+const moreFunny = (a) => {
+  return (b) => {
+    return a + b;
+  };
+};
+
 const init = async () => {
-  console.log(new Date() === new Date(Date.now()-3));
-  console.log("new Date(): ", new Date());
-  console.log("new Date(Date.now()): ", new Date(Date.now()));
+  console.log(fun(1, 2));
+  console.log(funny(1)(2));
+  console.log(moreFunny(1)(2));
 };
 init();
