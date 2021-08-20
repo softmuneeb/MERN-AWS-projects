@@ -35,11 +35,32 @@ const getPresaleDetails = async presaleAddresses => {
 
   const results = await multicall.call(contractCallContext);
 
-  const presales = results.results.testContract.callsReturnContext.map(obj => {
-    const [
-      [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
+  const presales = results.results.testContract.callsReturnContext.map(
+    (obj, i) => {
+      const [
+        [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
 
-      [
+        [
+          tokenXBalance,
+          lpTokenXBalance,
+          tokenXLockerBalance,
+          lpTokenXLockerBalance,
+          tokenXSold,
+          rate,
+          amountTokenXToBuyTokenX,
+          presaleClosedAt,
+          tier
+        ],
+
+        [presaleIsRejected, presaleIsApproved, presaleAppliedForClosing]
+      ] = obj.returnValues;
+
+      return {
+        presaleAddress: presaleAddresses[i],
+        tokenX,
+        lpTokenX,
+        tokenXLocker,
+        lpTokenXLocker,
         tokenXBalance,
         lpTokenXBalance,
         tokenXLockerBalance,
@@ -48,31 +69,13 @@ const getPresaleDetails = async presaleAddresses => {
         rate,
         amountTokenXToBuyTokenX,
         presaleClosedAt,
-        tier
-      ],
-
-      [presaleIsRejected, presaleIsApproved, presaleAppliedForClosing]
-    ] = obj.returnValues;
-
-    return {
-      tokenX,
-      lpTokenX,
-      tokenXLocker,
-      lpTokenXLocker,
-      tokenXBalance,
-      lpTokenXBalance,
-      tokenXLockerBalance,
-      lpTokenXLockerBalance,
-      tokenXSold,
-      rate,
-      amountTokenXToBuyTokenX,
-      presaleClosedAt,
-      tier,
-      presaleIsRejected,
-      presaleIsApproved,
-      presaleAppliedForClosing
-    };
-  });
+        tier,
+        presaleIsRejected,
+        presaleIsApproved,
+        presaleAppliedForClosing
+      };
+    }
+  );
   // console.log('presales: ', presales);
 
   return presales;
