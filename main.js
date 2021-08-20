@@ -36,21 +36,23 @@ const getPresaleDetails = async presaleAddresses => {
   const results = await multicall.call(contractCallContext);
 
   const presales = results.results.testContract.callsReturnContext.map(obj => {
-    const [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker] =
-      obj.returnValues[0];
     const [
-      tokenXBalance,
-      lpTokenXBalance,
-      tokenXLockerBalance,
-      lpTokenXLockerBalance,
-      tokenXSold,
-      rate,
-      amountTokenXToBuyTokenX,
-      presaleClosedAt,
-      tier
-    ] = obj.returnValues[1];
-    const [presaleIsRejected, presaleIsApproved, presaleAppliedForClosing] =
-      obj.returnValues[2];
+      [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
+
+      [
+        tokenXBalance,
+        lpTokenXBalance,
+        tokenXLockerBalance,
+        lpTokenXLockerBalance,
+        tokenXSold,
+        rate,
+        amountTokenXToBuyTokenX,
+        presaleClosedAt,
+        tier
+      ],
+
+      [presaleIsRejected, presaleIsApproved, presaleAppliedForClosing]
+    ] = obj.returnValues;
 
     return {
       tokenX,
