@@ -4,10 +4,7 @@
 import { Multicall } from 'ethereum-multicall';
 import Web3 from 'web3';
 import {
-  busdAddress,
   getContractPresaleFactory,
-  presaleAbi,
-  presaleAddress,
   presaleFactoryAbi,
   presaleFactoryAddress
 } from './smart-contracts.js';
