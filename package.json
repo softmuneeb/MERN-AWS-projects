@@ -12,9 +12,12 @@
   "license": "ISC",
   "dependencies": {
     "@nestjs/mongoose": "^8.0.0",
+    "@truffle/hdwallet-provider": "^1.4.3",
     "axios": "^0.21.1",
     "cron": "^1.8.2",
+    "ethereum-multicall": "^2.7.1",
     "mongoose": "^5.13.4",
     "web3": "^1.5.2"
-  }
+  },
+  "type": "module"
 }
