@@ -5,18 +5,21 @@ import { Multicall } from 'ethereum-multicall';
 import Web3 from 'web3';
 import {
   busdAddress,
+  getContractPresaleFactory,
   presaleAbi,
   presaleAddress,
   presaleFactoryAbi,
   presaleFactoryAddress
 } from './smart-contracts.js';
 
-const getPresaleDetails = async presaleAddresses => {
-  const web3 = new Web3(
-    'https://rinkeby.infura.io/v3/3da1c863472e43d989856450d4e6889d'
-  );
+const web3 = new Web3(
+  'https://rinkeby.infura.io/v3/3da1c863472e43d989856450d4e6889d'
+);
 
+const getPresaleDetails = async presaleAddresses => {
   const multicall = new Multicall({ web3Instance: web3, tryAggregate: true });
+
+  if (presaleAddresses.length === 0) return [];
 
   const calls = presaleAddresses.map(addr => ({
     reference: 'fooCall1',
@@ -73,17 +76,27 @@ const getPresaleDetails = async presaleAddresses => {
       presaleAppliedForClosing
     };
   });
-  console.log('presales: ', presales);
-  // console.log(results.results.testContract.callsReturnContext[0].returnValues);
-  // console.log(results.results.testContract.callsReturnContext[1].returnValues);
+  // console.log('presales: ', presales);
+
+  return presales;
 };
 
-const init = async () => {
+const getPresalesNotApproved = async () =>
+  await getContractPresaleFactory().methods.getPresales(0, 10, false).call();
+
+const demoMulticall = async () => {
   const presaleAddresses = [
     '0x31b694f0973E16f5db8D725AbF375663d6f3Fc30',
     '0x133cB13a3317406b059AC40CB3AD4c967559e4eD'
   ];
-
   await getPresaleDetails(presaleAddresses);
 };
+
+const init = async () => {
+  const presaleAddresses = await getPresalesNotApproved();
+  console.log('presaleAddresses: ', presaleAddresses);
+  const result = await getPresaleDetails(presaleAddresses);
+  console.log('result: ', result);
+};
+
 init();
