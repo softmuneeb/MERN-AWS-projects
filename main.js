@@ -3,7 +3,13 @@
 
 import { Multicall } from 'ethereum-multicall';
 import Web3 from 'web3';
-import { busdAbi, busdAddress } from './smart-contracts.js';
+import {
+  busdAddress,
+  presaleAbi,
+  presaleAddress,
+  presaleFactoryAbi,
+  presaleFactoryAddress
+} from './smart-contracts.js';
 
 const init = async () => {
   const web3 = new Web3(
@@ -15,18 +21,16 @@ const init = async () => {
   const contractCallContext = [
     {
       reference: 'testContract',
-      contractAddress: busdAddress,
-      abi: busdAbi,
+      contractAddress: presaleFactoryAddress,
+      abi: presaleFactoryAbi,
       calls: [
         {
           reference: 'fooCall1',
-          methodName: 'balanceOf',
-          methodParameters: [busdAddress]
-        },
-        {
-          reference: 'fooCall2',
-          methodName: 'balanceOf',
-          methodParameters: [busdAddress]
+          methodName: 'getPresaleDetails',
+          methodParameters: [
+            '0x31b694f0973E16f5db8D725AbF375663d6f3Fc30'
+            // '0x133cB13a3317406b059AC40CB3AD4c967559e4eD'
+          ]
         }
       ]
     }
@@ -34,9 +38,9 @@ const init = async () => {
 
   const results = await multicall.call(contractCallContext);
 
-  console.log(results.results.testContract.callsReturnContext);
+  console.log(results.results.testContract.callsReturnContext[0].returnValues);
+  // console.log(results.results.testContract.callsReturnContext[1].returnValues);
 };
 
-// getPresaleDetails(addresses);
-
+const getPresaleDetails = addresses => {};
 init();
