@@ -11,36 +11,77 @@ import {
   presaleFactoryAddress
 } from './smart-contracts.js';
 
-const init = async () => {
+const getPresaleDetails = async presaleAddresses => {
   const web3 = new Web3(
     'https://rinkeby.infura.io/v3/3da1c863472e43d989856450d4e6889d'
   );
 
   const multicall = new Multicall({ web3Instance: web3, tryAggregate: true });
 
+  const calls = presaleAddresses.map(addr => ({
+    reference: 'fooCall1',
+    methodName: 'getPresaleDetails',
+    methodParameters: [addr]
+  }));
+
   const contractCallContext = [
     {
       reference: 'testContract',
       contractAddress: presaleFactoryAddress,
       abi: presaleFactoryAbi,
-      calls: [
-        {
-          reference: 'fooCall1',
-          methodName: 'getPresaleDetails',
-          methodParameters: [
-            '0x31b694f0973E16f5db8D725AbF375663d6f3Fc30'
-            // '0x133cB13a3317406b059AC40CB3AD4c967559e4eD'
-          ]
-        }
-      ]
+      calls
     }
   ];
 
   const results = await multicall.call(contractCallContext);
 
-  console.log(results.results.testContract.callsReturnContext[0].returnValues);
+  const presales = results.results.testContract.callsReturnContext.map(obj => {
+    const [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker] =
+      obj.returnValues[0];
+    const [
+      tokenXBalance,
+      lpTokenXBalance,
+      tokenXLockerBalance,
+      lpTokenXLockerBalance,
+      tokenXSold,
+      rate,
+      amountTokenXToBuyTokenX,
+      presaleClosedAt,
+      tier
+    ] = obj.returnValues[1];
+    const [presaleIsRejected, presaleIsApproved, presaleAppliedForClosing] =
+      obj.returnValues[2];
+
+    return {
+      tokenX,
+      lpTokenX,
+      tokenXLocker,
+      lpTokenXLocker,
+      tokenXBalance,
+      lpTokenXBalance,
+      tokenXLockerBalance,
+      lpTokenXLockerBalance,
+      tokenXSold,
+      rate,
+      amountTokenXToBuyTokenX,
+      presaleClosedAt,
+      tier,
+      presaleIsRejected,
+      presaleIsApproved,
+      presaleAppliedForClosing
+    };
+  });
+  console.log('presales: ', presales);
+  // console.log(results.results.testContract.callsReturnContext[0].returnValues);
   // console.log(results.results.testContract.callsReturnContext[1].returnValues);
 };
 
-const getPresaleDetails = addresses => {};
+const init = async () => {
+  const presaleAddresses = [
+    '0x31b694f0973E16f5db8D725AbF375663d6f3Fc30',
+    '0x133cB13a3317406b059AC40CB3AD4c967559e4eD'
+  ];
+
+  await getPresaleDetails(presaleAddresses);
+};
 init();
