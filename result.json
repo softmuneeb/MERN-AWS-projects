@@ -1,0 +1,25 @@
+{
+  "results": {
+    "testContract": {
+      "callsReturnContext": [
+        {
+          "returnValues": [{ "type": "BigNumber", "hex": "0x00" }],
+          "decoded": true,
+          "reference": "fooCall1",
+          "methodName": "balanceOf",
+          "methodParameters": ["0x60D4f85E9C78e01c3378fc15cbd222009EC9A4Dd"],
+          "success": true
+        },
+        {
+          "returnValues": [{ "type": "BigNumber", "hex": "0x00" }],
+          "decoded": true,
+          "reference": "fooCall2",
+          "methodName": "balanceOf",
+          "methodParameters": ["0x60D4f85E9C78e01c3378fc15cbd222009EC9A4Dd"],
+          "success": true
+        }
+      ]
+    }
+  },
+  "blockNumber": 9147089
+}
