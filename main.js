@@ -1,4 +1,8 @@
-import { getPresalesApproved, getPresalesNotApproved } from './multicall.js';
+import {
+  getPresalesApproved,
+  getPresalesNotApproved,
+  getPresalesNotApprovedAddresses
+} from './multicall.js';
 
 const init = async () => {
   const presalesApproved = await getPresalesApproved();
@@ -6,6 +10,9 @@ const init = async () => {
 
   const presalesNotApproved = await getPresalesNotApproved();
   console.log('presalesNotApproved: ', presalesNotApproved);
+
+  // const res = await getPresalesNotApprovedAddresses();
+  // console.log('res: ', res);
 };
 
 init();

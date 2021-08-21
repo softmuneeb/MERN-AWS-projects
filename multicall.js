@@ -3,13 +3,15 @@
 
 import { Multicall } from 'ethereum-multicall';
 import {
+  busdAbi,
+  busdAddress,
   defaultWeb3,
   getContractPresaleFactory,
   presaleFactoryAbi,
   presaleFactoryAddress
 } from './smart-contracts.js';
 
-const getPresaleDetails = async presaleAddresses => {
+const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
   const multicall = new Multicall({
     multicallCustomContractAddress:
       '0xA8F8BECb830d963e5CA01352b2ecFbA96f04E918',
@@ -17,26 +19,54 @@ const getPresaleDetails = async presaleAddresses => {
     tryAggregate: true
   });
 
-  if (presaleAddresses.length === 0) return [];
+  const presaleAddresses = presaleAddressesAndTokenAddresses[0];
+  const tokenAddresses = presaleAddressesAndTokenAddresses[1];
 
-  const calls = presaleAddresses.map(addr => ({
-    reference: 'fooCall1',
+  if (presaleAddresses.length === 0) return [];
+  console.log(
+    'presaleAddressesAndTokenAddresses: ',
+    presaleAddressesAndTokenAddresses
+  );
+
+  const calls1 = presaleAddresses.map(addr => ({
     methodName: 'getPresaleDetails',
+    methodParameters: [addr]
+  }));
+
+  const calls2 = tokenAddresses.map(addr => ({
+    methodName: 'getTokenName',
+    methodParameters: [addr]
+  }));
+
+  const calls3 = tokenAddresses.map(addr => ({
+    methodName: 'getTokenSymbol',
     methodParameters: [addr]
   }));
 
   const contractCallContext = [
     {
-      reference: 'testContract',
+      reference: 'PresaleFactoryCall1',
       contractAddress: presaleFactoryAddress,
       abi: presaleFactoryAbi,
-      calls
+      calls: calls1
+    },
+    {
+      reference: 'PresaleFactoryCall2',
+      contractAddress: presaleFactoryAddress,
+      abi: presaleFactoryAbi,
+      calls: calls2
+    },
+    {
+      reference: 'PresaleFactoryCall3',
+      contractAddress: presaleFactoryAddress,
+      abi: presaleFactoryAbi,
+      calls: calls3
     }
   ];
 
-  const results = await multicall.call(contractCallContext);
+  const results = await multicall.call(contractCallContext); // can log it in json file to see output structure
 
-  const presales = results.results.testContract.callsReturnContext.map(
+  const presales = results.results.PresaleFactoryCall1.callsReturnContext.map(
     (obj, i) => {
       const [
         [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
@@ -68,6 +98,12 @@ const getPresaleDetails = async presaleAddresses => {
 
       return {
         presaleAddress: presaleAddresses[i],
+        tokenXName:
+          results.results.PresaleFactoryCall2.callsReturnContext[i]
+            .returnValues[0],
+        tokenXSymbol:
+          results.results.PresaleFactoryCall3.callsReturnContext[i]
+            .returnValues[0],
         tokenX,
         lpTokenX,
         tokenXLocker,
@@ -93,6 +129,7 @@ const getPresaleDetails = async presaleAddresses => {
       };
     }
   );
+
   return presales;
 };
 
