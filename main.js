@@ -7,10 +7,16 @@ const init = async () => {
   // get 5000 Coins Sum
 
   const num_someBusdCoins = Number(_someBusdCoins) / 10;
-  console.log('num_someBusdCoins: ', num_someBusdCoins);
+  console.log(
+    'num_someBusdCoins: ',
+    num_someBusdCoins + num_someBusdCoins + num_someBusdCoins,
+  );
 
   const bigNum_someBusdCoins = BigNumber(_someBusdCoins) / 10;
-  console.log('bigNum_someBusdCoins: ', bigNum_someBusdCoins);
+  console.log(
+    'bigNum_someBusdCoins: ',
+    bigNum_someBusdCoins + bigNum_someBusdCoins + bigNum_someBusdCoins,
+  );
 
   // new BigNumber();
 };
