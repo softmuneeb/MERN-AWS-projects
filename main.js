@@ -1,7 +1,6 @@
 import {
   getPresalesApproved,
-  getPresalesNotApproved,
-  getPresalesNotApprovedAddresses
+  getPresalesNotApproved
 } from './multicall.js';
 
 const init = async () => {
