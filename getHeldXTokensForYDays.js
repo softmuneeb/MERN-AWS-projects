@@ -1,9 +1,9 @@
 import EthDater from 'ethereum-block-by-date';
 import pkg from 'web3-utils';
 import {
-    busdAddress,
-    defaultWeb3,
-    getContractBusd
+  busdAddress,
+  defaultWeb3,
+  getContractBusd,
 } from './smart-contracts.js';
 const { fromWei } = pkg;
 
@@ -12,7 +12,7 @@ const _1_Day = 86400 * 1000;
 // open etherscan and test it on some token
 
 export const getAddressesThatHeldXTokensForYdays = async (
-  dateStart = new Date(Date.now() - 30 * _1_Day),
+  dateStart = new Date(Date.now() - _1_Day),
   dateEnd = new Date(Date.now()),
   erc20Address = busdAddress,
   amountToHoldDateStartToDateEnd = 50,
