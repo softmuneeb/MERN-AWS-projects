@@ -14,8 +14,10 @@
     "@nestjs/mongoose": "^8.0.0",
     "@truffle/hdwallet-provider": "^1.4.3",
     "axios": "^0.21.1",
+    "block-by-date-ethers": "^1.0.0",
     "cron": "^1.8.2",
     "eth-multicall": "^1.4.0",
+    "ethereum-block-by-date": "^1.4.2",
     "ethereum-multicall": "^2.7.1",
     "mongoose": "^5.13.4",
     "web3": "^1.5.2"
