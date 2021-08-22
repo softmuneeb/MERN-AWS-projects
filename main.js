@@ -1,4 +1,5 @@
 import {
+  busdAddress,
   defaultWeb3,
   getContractBusd,
   getContractPresaleFactory,
@@ -8,19 +9,26 @@ const { fromWei } = pkg;
 import EthDater from 'ethereum-block-by-date';
 
 const _1_Day = 86400 * 1000;
-
-const init = async () => {
+const getAddressesThatHeldXTokensForYdays = async (
+  dateStart = new Date(Date.now() - 30 * _1_Day),
+  dateEnd = new Date(Date.now()),
+  erc20Address = busdAddress,
+  amountToHoldDateStartToDateEnd = 50,
+) => {
   // get block number on specific date
   const dater = new EthDater(defaultWeb3);
-  let fromBlock = await dater.getDate(new Date(Date.now() - 60 * _1_Day), true);
-  let toBlock = await dater.getDate(new Date(Date.now()), true);
+  let fromBlock = await dater.getDate(dateStart, true);
+  let toBlock = await dater.getDate(dateEnd, true);
 
   // get events of transfer
   const config = {
     fromBlock: fromBlock.block,
     toBlock: toBlock.block,
   };
-  const allEvents = await getContractBusd().getPastEvents('Transfer', config);
+  const allEvents = await getContractBusd(
+    defaultWeb3,
+    erc20Address,
+  ).getPastEvents('Transfer', config);
 
   // addresses-that-held-100-tokens = (received - sent >= 100)
   let someData = {};
@@ -30,19 +38,17 @@ const init = async () => {
     someData[to] = someData[to] ? someData[to] + value : value;
   });
 
-  console.log('someData', someData);
+  const filteredData = Object.keys(someData).filter(
+    addr => someData[addr] > amountToHoldDateStartToDateEnd,
+  );
 
-  // let s = 'koko';
-  // let m = 'abab';
-  // let someData = {};
-  // someData[s] = 1;
-  // someData[m] = 2;
-  // console.log('someData: ', someData);
-  // events.returnValues.from
-  // events.returnValues.to
-  // events.returnValues.value
+  return filteredData;
 };
 
+const init = async () => {
+  const addresses = await getAddressesThatHeldXTokensForYdays();
+  console.log('addresses: ', addresses);
+};
 init();
 
 /*
@@ -53,6 +59,19 @@ init();
 
 
 
+  // const goodAddresses = await getDataAddressesThatHeldXTokensForYdays(dateFrom, dateTo, erc20TokenAddress, amountToHoldOfThisErc20);
+  //
+  // get
+
+  // let s = 'koko';
+  // let m = 'abab';
+  // let someData = {};
+  // someData[s] = 1;
+  // someData[m] = 2;
+  // console.log('someData: ', someData);
+  // events.returnValues.from
+  // events.returnValues.to
+  // events.returnValues.value
 
 
 
