@@ -6,7 +6,7 @@ import {
   defaultWeb3,
   getContractPresaleFactory,
   presaleFactoryAbi,
-  presaleFactoryAddress
+  presaleFactoryAddress,
 } from './smart-contracts.js';
 
 const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
@@ -14,7 +14,7 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
     multicallCustomContractAddress:
       '0xA8F8BECb830d963e5CA01352b2ecFbA96f04E918',
     web3Instance: defaultWeb3,
-    tryAggregate: true
+    tryAggregate: true,
   });
 
   const presaleAddresses = presaleAddressesAndTokenAddresses[0];
@@ -23,22 +23,27 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
   if (presaleAddresses.length === 0) return [];
   console.log(
     'presaleAddressesAndTokenAddresses: ',
-    presaleAddressesAndTokenAddresses
+    presaleAddressesAndTokenAddresses,
   );
 
   const calls1 = presaleAddresses.map(addr => ({
     methodName: 'getPresaleDetails',
-    methodParameters: [addr]
+    methodParameters: [addr],
   }));
 
   const calls2 = tokenAddresses.map(addr => ({
     methodName: 'getTokenName',
-    methodParameters: [addr]
+    methodParameters: [addr],
   }));
 
   const calls3 = tokenAddresses.map(addr => ({
     methodName: 'getTokenSymbol',
-    methodParameters: [addr]
+    methodParameters: [addr],
+  }));
+
+  const calls4 = presaleAddresses.map(addr => ({
+    methodName: 'getPresaleMediaLinks',
+    methodParameters: [addr],
   }));
 
   const contractCallContext = [
@@ -46,20 +51,26 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
       reference: 'PresaleFactoryCall1',
       contractAddress: presaleFactoryAddress,
       abi: presaleFactoryAbi,
-      calls: calls1
+      calls: calls1,
     },
     {
       reference: 'PresaleFactoryCall2',
       contractAddress: presaleFactoryAddress,
       abi: presaleFactoryAbi,
-      calls: calls2
+      calls: calls2,
     },
     {
       reference: 'PresaleFactoryCall3',
       contractAddress: presaleFactoryAddress,
       abi: presaleFactoryAbi,
-      calls: calls3
-    }
+      calls: calls3,
+    },
+    {
+      reference: 'PresaleFactoryCall4',
+      contractAddress: presaleFactoryAddress,
+      abi: presaleFactoryAbi,
+      calls: calls4,
+    },
   ];
 
   const results = await multicall.call(contractCallContext); // can log it in json file to see output structure
@@ -81,7 +92,7 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
           rate,
           amountTokenXToBuyTokenX,
           presaleClosedAt,
-          tier
+          tier,
         ],
 
         [
@@ -91,8 +102,8 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
           tokenXUnlockRequestMade,
           tokenXUnlockRequestAccepted,
           lpTokenXUnlockRequestMade,
-          lpTokenXUnlockRequestAccepted
-        ]
+          lpTokenXUnlockRequestAccepted,
+        ],
       ] = obj.returnValues;
 
       return {
@@ -103,6 +114,7 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
         tokenXSymbol:
           results.results.PresaleFactoryCall3.callsReturnContext[i]
             .returnValues[0],
+        tokenXSupply,
         tokenX,
         lpTokenX,
         tokenXLocker,
@@ -124,9 +136,11 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
         tokenXUnlockRequestMade,
         tokenXUnlockRequestAccepted,
         lpTokenXUnlockRequestMade,
-        lpTokenXUnlockRequestAccepted
+        lpTokenXUnlockRequestAccepted,
+        presaleMediaLinks: results.results.PresaleFactoryCall4.callsReturnContext[i]
+        .returnValues[0],
       };
-    }
+    },
   );
 
   return presales;
@@ -134,7 +148,7 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
 
 export const getPresalesNotApprovedAddresses = async (
   index = 0,
-  amountToFetch = 10
+  amountToFetch = 10,
 ) =>
   await getContractPresaleFactory()
     .methods.getPresales(index, amountToFetch, false)
@@ -142,7 +156,7 @@ export const getPresalesNotApprovedAddresses = async (
 
 export const getPresalesApprovedAddresses = async (
   index = 0,
-  amountToFetch = 10
+  amountToFetch = 10,
 ) =>
   await getContractPresaleFactory()
     .methods.getPresales(index, amountToFetch, true)
