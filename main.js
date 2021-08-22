@@ -10,7 +10,7 @@ import EthDater from 'ethereum-block-by-date';
 const _1_Day = 86400 * 1000;
 
 const init = async () => {
-  //get 
+  //get block 
   const dater = new EthDater(defaultWeb3);
   let fromBlock = await dater.getDate(new Date(Date.now() - 60 * _1_Day), true);
   let toBlock = await dater.getDate(new Date(Date.now()), true);
