@@ -18,15 +18,9 @@ export const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
   });
 
   const presaleAddresses = presaleAddressesAndTokenAddresses[0];
-  console.log('presaleAddresses: ', presaleAddresses);
   const tokenAddresses = presaleAddressesAndTokenAddresses[1];
-  console.log('tokenAddresses: ', tokenAddresses);
 
   if (presaleAddresses.length === 0) return [];
-  console.log(
-    'presaleAddressesAndTokenAddresses: ',
-    presaleAddressesAndTokenAddresses,
-  );
 
   const calls1 = presaleAddresses.map(addr => ({
     methodName: 'getPresaleDetails',
