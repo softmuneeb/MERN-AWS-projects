@@ -3,8 +3,6 @@
 
 import { Multicall } from 'ethereum-multicall';
 import {
-  busdAbi,
-  busdAddress,
   defaultWeb3,
   getContractPresaleFactory,
   presaleFactoryAbi,
@@ -72,6 +70,7 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
         [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
 
         [
+          tokenXSupply,
           tokenXBalance,
           tokenXLockerBalance,
           tokenXUnlockAtTime,
