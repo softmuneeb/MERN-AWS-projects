@@ -12,7 +12,7 @@ const init = async () => {
 
   // Getting block by date:
   let block = await dater.getDate(
-    '2016-07-20T13:20:40Z', // Date, required. Any valid moment.js value: string, milliseconds, Date() object, moment() object.
+    new Date(Date.now()-_1_Day), // Date, required. Any valid moment.js value: string, milliseconds, Date() object, moment() object.
     true, // Block after, optional. Search for the nearest block before or after the given date. By default true.
   );
   console.log('block: ', block);
