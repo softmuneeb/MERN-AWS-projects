@@ -1,6 +1,12 @@
-import { defaultWeb3, getContractPresaleFactory } from './smart-contracts.js';
+import {
+  defaultWeb3,
+  getContractBusd,
+  getContractPresaleFactory,
+} from './smart-contracts.js';
 
 import EthDater from 'ethereum-block-by-date';
+
+const _1_Day = 86400 * 1000;
 
 const init = async () => {
   // const res = await getPresalesNotApprovedAddresses();
@@ -11,19 +17,20 @@ const init = async () => {
   );
 
   // Getting block by date:
-  let block = await dater.getDate(
-    new Date(Date.now()-_1_Day), // Date, required. Any valid moment.js value: string, milliseconds, Date() object, moment() object.
-    true, // Block after, optional. Search for the nearest block before or after the given date. By default true.
-  );
-  console.log('block: ', block);
+  let fromBlock = await dater.getDate(new Date(Date.now() - 60 * _1_Day), true);
 
-  // const config = {
-  //   fromBlock: 0,
-  //   toBlock: 1000000000000,
-  // };
+  let toBlock = await dater.getDate(new Date(Date.now()), true);
 
-  // const allEvents = await getContractBusd().getPastEvents('Transfer', config);
-  // console.log('allEvents: ', allEvents);
+  console.log('blockFrom: ', fromBlock.block);
+  console.log('blockNow: ', toBlock.block);
+
+  const config = {
+    fromBlock: fromBlock.block,
+    toBlock: toBlock.block,
+  };
+
+  const allEvents = await getContractBusd().getPastEvents('Transfer', config);
+  console.log('allEvents: ', allEvents[0]);
 };
 
 init();
