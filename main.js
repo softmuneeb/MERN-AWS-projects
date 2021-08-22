@@ -1,14 +1,16 @@
 import BigNumber from 'bignumber.js';
+import pkg from 'web3-utils';
+const { toWei } = pkg;
 
 const init = async () => {
-  const num = Number(100000000000000000000);
-  console.log(
-    '21 Decimals is limit of Number datatype in JS:  ',
-    num.toString(),
-  );
+  const _someBusdCoins = toWei('1000');
+  // get 5000 Coins Sum
 
-  const bigNum = BigNumber(100000000000000000000);
-  console.log('bigNum: ', bigNum.toString());
+  const num_someBusdCoins = Number(_someBusdCoins) / 10;
+  console.log('num_someBusdCoins: ', num_someBusdCoins);
+
+  const bigNum_someBusdCoins = BigNumber(_someBusdCoins) / 10;
+  console.log('bigNum_someBusdCoins: ', bigNum_someBusdCoins);
 
   // new BigNumber();
 };
