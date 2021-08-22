@@ -75,54 +75,18 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
 
   const results = await multicall.call(contractCallContext); // can log it in json file to see output structure
 
-  const presales = results.results.PresaleFactoryCall1.callsReturnContext.map(
-    (obj, i) => {
-      const [
-        [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
+  const presales = results.results[
+    'PresaleFactoryCall1'
+  ].callsReturnContext.map((obj, i) => {
+    const [
+      [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
 
-        [
-          tokenXSupply,
-          tokenXBalance,
-          tokenXLockerBalance,
-          tokenXUnlockAtTime,
-          lpTokenXBalance,
-          lpTokenXLockerBalance,
-          lpTokenXUnlockAtTime,
-          tokenXSold,
-          rate,
-          amountTokenXToBuyTokenX,
-          presaleClosedAt,
-          tier,
-        ],
-
-        [
-          presaleIsRejected,
-          presaleIsApproved,
-          presaleAppliedForClosing,
-          tokenXUnlockRequestMade,
-          tokenXUnlockRequestAccepted,
-          lpTokenXUnlockRequestMade,
-          lpTokenXUnlockRequestAccepted,
-        ],
-      ] = obj.returnValues;
-
-      return {
-        presaleAddress: presaleAddresses[i],
-        tokenXName:
-          results.results.PresaleFactoryCall2.callsReturnContext[i]
-            .returnValues[0],
-        tokenXSymbol:
-          results.results.PresaleFactoryCall3.callsReturnContext[i]
-            .returnValues[0],
+      [
         tokenXSupply,
-        tokenX,
-        lpTokenX,
-        tokenXLocker,
-        lpTokenXLocker,
         tokenXBalance,
-        lpTokenXBalance,
         tokenXLockerBalance,
         tokenXUnlockAtTime,
+        lpTokenXBalance,
         lpTokenXLockerBalance,
         lpTokenXUnlockAtTime,
         tokenXSold,
@@ -130,6 +94,9 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
         amountTokenXToBuyTokenX,
         presaleClosedAt,
         tier,
+      ],
+
+      [
         presaleIsRejected,
         presaleIsApproved,
         presaleAppliedForClosing,
@@ -137,11 +104,45 @@ const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
         tokenXUnlockRequestAccepted,
         lpTokenXUnlockRequestMade,
         lpTokenXUnlockRequestAccepted,
-        presaleMediaLinks: results.results.PresaleFactoryCall4.callsReturnContext[i]
-        .returnValues[0],
-      };
-    },
-  );
+      ],
+    ] = obj.returnValues;
+
+    return {
+      presaleAddress: presaleAddresses[i],
+      tokenXName:
+        results.results['PresaleFactoryCall2'].callsReturnContext[i]
+          .returnValues[0],
+      tokenXSymbol:
+        results.results['PresaleFactoryCall3'].callsReturnContext[i]
+          .returnValues[0],
+      tokenXSupply,
+      tokenX,
+      lpTokenX,
+      tokenXLocker,
+      lpTokenXLocker,
+      tokenXBalance,
+      lpTokenXBalance,
+      tokenXLockerBalance,
+      tokenXUnlockAtTime,
+      lpTokenXLockerBalance,
+      lpTokenXUnlockAtTime,
+      tokenXSold,
+      rate,
+      amountTokenXToBuyTokenX,
+      presaleClosedAt,
+      tier,
+      presaleIsRejected,
+      presaleIsApproved,
+      presaleAppliedForClosing,
+      tokenXUnlockRequestMade,
+      tokenXUnlockRequestAccepted,
+      lpTokenXUnlockRequestMade,
+      lpTokenXUnlockRequestAccepted,
+      presaleMediaLinks:
+        results.results['PresaleFactoryCall4'].callsReturnContext[i]
+          .returnValues[0],
+    };
+  });
 
   return presales;
 };
