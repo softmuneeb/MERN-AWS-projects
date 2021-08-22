@@ -143,24 +143,15 @@ export const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
   return presales;
 };
 
-export const getPresalesNotApprovedAddresses = async (
-  index = 0,
-  amountToFetch = 10,
-) =>
-  await getContractPresaleFactory()
-    .methods.getPresales(index, amountToFetch, false)
-    .call();
-
 export const getPresalesApprovedAddresses = async (
   index = 0,
-  amountToFetch = 10,
+  amountToFetch = 100,
 ) =>
   await getContractPresaleFactory()
-    .methods.getPresales(index, amountToFetch, true)
+    .methods.getPresales(index, amountToFetch)
     .call();
 
-export const getPresalesApproved = async () =>
-  await getPresaleDetails(await getPresalesApprovedAddresses());
-
-export const getPresalesNotApproved = async () =>
-  await getPresaleDetails(await getPresalesNotApprovedAddresses());
+export const getPresales = async (index = 0, amountToFetch = 100) =>
+  await getPresaleDetails(
+    await getPresalesApprovedAddresses(index, amountToFetch),
+  );
