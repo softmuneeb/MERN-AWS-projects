@@ -9,7 +9,7 @@ import {
   presaleFactoryAddress,
 } from './smart-contracts.js';
 
-const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
+export const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
   const multicall = new Multicall({
     multicallCustomContractAddress:
       '0xA8F8BECb830d963e5CA01352b2ecFbA96f04E918',
