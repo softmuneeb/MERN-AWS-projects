@@ -10,20 +10,19 @@ import EthDater from 'ethereum-block-by-date';
 const _1_Day = 86400 * 1000;
 
 const init = async () => {
-  //get block 
+  // get block number on specific date
   const dater = new EthDater(defaultWeb3);
   let fromBlock = await dater.getDate(new Date(Date.now() - 60 * _1_Day), true);
   let toBlock = await dater.getDate(new Date(Date.now()), true);
 
+  // get events of transfer
   const config = {
     fromBlock: fromBlock.block,
     toBlock: toBlock.block,
   };
   const allEvents = await getContractBusd().getPastEvents('Transfer', config);
-  console.log('allEvents: ', allEvents[0].returnValues.to);
-  console.log('allEvents: ', Number(fromWei(allEvents[0].returnValues.value)));
 
-  console.log('allEvents: ', allEvents);
+  // addresses-that-held-100-tokens = (received - sent >= 100)
   let someData = {};
   allEvents.map(event => {
     const to = event.returnValues.to;
