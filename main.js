@@ -3,34 +3,45 @@ import {
   getContractBusd,
   getContractPresaleFactory,
 } from './smart-contracts.js';
-
+import pkg from 'web3-utils';
+const { fromWei } = pkg;
 import EthDater from 'ethereum-block-by-date';
 
 const _1_Day = 86400 * 1000;
 
 const init = async () => {
-  // const res = await getPresalesNotApprovedAddresses();
-  // console.log('res: ', res);
-
-  const dater = new EthDater(
-    defaultWeb3, // Web3 object, required.
-  );
-
-  // Getting block by date:
+  //get 
+  const dater = new EthDater(defaultWeb3);
   let fromBlock = await dater.getDate(new Date(Date.now() - 60 * _1_Day), true);
-
   let toBlock = await dater.getDate(new Date(Date.now()), true);
-
-  console.log('blockFrom: ', fromBlock.block);
-  console.log('blockNow: ', toBlock.block);
 
   const config = {
     fromBlock: fromBlock.block,
     toBlock: toBlock.block,
   };
-
   const allEvents = await getContractBusd().getPastEvents('Transfer', config);
-  console.log('allEvents: ', allEvents[0]);
+  console.log('allEvents: ', allEvents[0].returnValues.to);
+  console.log('allEvents: ', Number(fromWei(allEvents[0].returnValues.value)));
+
+  console.log('allEvents: ', allEvents);
+  let someData = {};
+  allEvents.map(event => {
+    const to = event.returnValues.to;
+    const value = Number(fromWei(event.returnValues.value));
+    someData[to] = someData[to] ? someData[to] + value : value;
+  });
+
+  console.log('someData', someData);
+
+  // let s = 'koko';
+  // let m = 'abab';
+  // let someData = {};
+  // someData[s] = 1;
+  // someData[m] = 2;
+  // console.log('someData: ', someData);
+  // events.returnValues.from
+  // events.returnValues.to
+  // events.returnValues.value
 };
 
 init();
