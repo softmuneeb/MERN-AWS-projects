@@ -4,7 +4,9 @@ const init = async () => {
   try {
     const files = await fs.promises.readdir('.');
     for (const file of files) {
-      console.log('file: ', file);
+      fs.rename(file, file.replace('.json', ''), function (err) {
+        if (err) console.log('ERROR: ' + err.message + err);
+      });
     }
   } catch (e) {
     console.error("We've thrown! Whoops!", e.message);
