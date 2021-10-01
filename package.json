@@ -5,12 +5,10 @@
   "main": "index.js",
   "scripts": {
     "s": "yarn start",
-    "start": "node a4.js"
+    "start": "node main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "axios": "^0.21.1"
-  }
+  "dependencies": {}
 }
