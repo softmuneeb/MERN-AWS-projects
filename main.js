@@ -6,19 +6,23 @@ const handleCode = async func => {
   try {
     await func();
   } catch (e) {
-    console.log('e: ', e);
+    console.log('e: ', e.message.substring(0, 100));
   }
 };
 
 (async () => {
-  const ipfs = await IPFS.create();
-  const { cid } = await ipfs.add('Hello world');
-  console.log('\n\n\n');
-  console.log(cid);
+  handleCode(async () => {
+    const ipfs = await IPFS.create();
+    let { cid } = await ipfs.add('Alhamdulliah');
+    const hash = cid + '';
 
-  // handleCode(async () => {
-  //   const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
-  //   await pinata.testAuthentication();
-  //   await pinata.pinByHash('QmNRCQWfgze6AbBCaT1rkrkV5tJ2aP4oTNPb5JZcXYywve');
-  // });
+    const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
+    await pinata.testAuthentication();
+    await pinata.pinByHash(hash);
+
+    // save hash to a file
+    console.log('hash: ', hash);
+
+    console.log('Done. Alhamdulliah. Thanks Allah.');
+  });
 })();
