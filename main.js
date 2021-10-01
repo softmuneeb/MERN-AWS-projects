@@ -1,23 +1,14 @@
-const fs = require('fs');
-const find = 'trait-type';
-const replace = 'trait_type';
-const searchInFolder = './someFolder/';
+const axios = require('axios');
 
 const init = async () => {
-  try {
-    const files = await fs.promises.readdir(searchInFolder);
-    for (const file of files) {
-      console.log('file: ', file);
-      try {
-        const content = fs.readFileSync(searchInFolder + file, 'utf8');
-        const fixedContent = content.split(find).join(replace);
-        fs.writeFile(searchInFolder + file, fixedContent, () => {});
-      } catch (e) {
-        console.error('whoops ', e.message);
-      }
-    }
-  } catch (e) {
-    console.error("We've thrown! Whoops!", e.message);
+  for (let i = 0; i < 10000; ++i) {
+    const res = await axios.get(
+      'https://api.opensea.io/api/v1/asset/0x350b4cdd07cc5836e30086b993d27983465ec014/1/?force_update=true',
+    );
+
+    console.log('res.data.image_url.length: ', res.data.image_url.length);
+    if (res.data.image_url.length < 5) console.log('not ', i);
+    else if (i % 1000 === 0) console.log('ok ', i);
   }
 };
 
