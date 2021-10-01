@@ -4,18 +4,21 @@ import { PINATA_API_KEY, PINATA_API_SECRET } from './secret.js';
 
 const handleCode = async func => {
   try {
-    const res = await func();
-    console.log('res: ', res);
+    await func();
   } catch (e) {
-    console.log('e: ', e.message);
+    console.log('e: ', e);
   }
 };
 
 (async () => {
-  const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
-  //   const ipfs = await IPFS.create();
-  //   const { cid } = await ipfs.add('Hello world');
-  //   console.info(cid);
+  const ipfs = await IPFS.create();
+  const { cid } = await ipfs.add('Hello world');
+  console.log('\n\n\n');
+  console.log(cid);
 
-  handleCode(async () => await pinata.testAuthentication());
+  // handleCode(async () => {
+  //   const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
+  //   await pinata.testAuthentication();
+  //   await pinata.pinByHash('QmNRCQWfgze6AbBCaT1rkrkV5tJ2aP4oTNPb5JZcXYywve');
+  // });
 })();
