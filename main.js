@@ -13,7 +13,6 @@ const handleCode = async func => {
     console.log('e: ', e.message.substring(0, 100));
   }
 };
-// https://gist.github.com/MarkoCen/0ee9437439e00e313926
 (async () => {
   handleCode(async () => {
     const path = searchInFolder + file;
@@ -38,3 +37,5 @@ const handleCode = async func => {
 // let { cid } = await ipfs.add({ path, content });
 // https://gateway.pinata.cloud/ipfs/QmSgbhyTcKBt3VawRTV2cUZRAkCNeoRXNoPUfTHcqRvkwj
 // https://gateway.pinata.cloud/ipfs/QmSqJAHsYCe188u8YF16528sR5dso2aYmRp6FL2ug8VarJ/someFolder/bg1.png
+//
+// https://gist.github.com/MarkoCen/0ee9437439e00e313926
