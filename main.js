@@ -16,10 +16,11 @@ const handleCode = async func => {
 // https://gist.github.com/MarkoCen/0ee9437439e00e313926
 (async () => {
   handleCode(async () => {
-    const content = fs.readFile(searchInFolder + file, 'base64');
+    const path = searchInFolder + file;
+    const content = fs.readFileSync(path);
 
     const ipfs = await IPFS.create();
-    let { cid } = await ipfs.add(content);
+    let { cid } = await ipfs.add({ file, content });
     const hash = cid + '';
 
     const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
@@ -32,3 +33,8 @@ const handleCode = async func => {
     console.log('Done. Alhamdulliah. Thanks Allah.');
   });
 })();
+
+// works with both, file and path
+// let { cid } = await ipfs.add({ path, content });
+// https://gateway.pinata.cloud/ipfs/QmSgbhyTcKBt3VawRTV2cUZRAkCNeoRXNoPUfTHcqRvkwj
+// https://gateway.pinata.cloud/ipfs/QmSqJAHsYCe188u8YF16528sR5dso2aYmRp6FL2ug8VarJ/someFolder/bg1.png
