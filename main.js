@@ -15,15 +15,22 @@ const handleCode = async func => {
 };
 (async () => {
   handleCode(async () => {
+    // read file
     const path = folderPath + fileName;
     const content = fs.readFileSync(path);
 
+    // ipfs get connection
     const ipfs = await IPFS.create();
-    let { cid } = await ipfs.add({ file: fileName, content });
+
+    // ipfs upload file
+    const { cid } = await ipfs.add({ file: fileName, content });
     const hash = cid + '';
 
+    // pinata login
     const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
     await pinata.testAuthentication();
+
+    // pinata pin file
     await pinata.pinByHash(hash);
 
     // save hash to a file
