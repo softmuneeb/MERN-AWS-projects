@@ -13,8 +13,8 @@ import { handleCode } from './helper.js';
 (async () => {
   handleCode(async () => {
     // the hash which we get after upload file to ipfs
-    let hash;
-    let hashes;
+    let hash = '';
+    let hashes = '';
 
     // ipfs get connection
     const ipfs = await IPFS.create();
@@ -37,13 +37,13 @@ import { handleCode } from './helper.js';
 
       // pin to pinata
       await pinata.pinByHash(hash);
+      console.log('pinned hash: ', hash);
 
       // add hash to hashes to save in a file
       hashes += hash + '\n';
     }
 
     // save hash to a file
-    console.log('hash saved to file\n: ', hashes);
     fs.writeFile('outputHash' + Date.now() + '.txt', hashes, () => {});
 
     console.log('Done. Alhamdulliah. Thanks Allah.');
