@@ -15,6 +15,7 @@ import { handleCode } from './helper.js';
     // the hash which we get after upload file to ipfs
     let hash = '';
     let hashes = '';
+    let filesToUpload = [];
 
     // ipfs get connection
     const ipfs = await IPFS.create();
@@ -29,19 +30,23 @@ import { handleCode } from './helper.js';
     // for each file
     for (const fileName of files) {
       console.log('fileName: ', fileName);
-      const fileContent = fs.readFileSync(inputFolderPath + fileName);
 
-      // upload to ipfs
-      const { cid } = await ipfs.add({ file: fileName, content: fileContent });
-      hash = cid + '';
+      const filePath = inputFolderPath + fileName;
+      const fileContent = fs.readFileSync();
 
-      // pin to pinata
-      await pinata.pinByHash(hash);
-      console.log('pinned hash: ', hash);
-
-      // add hash to hashes to save in a file
-      hashes += hash + '\n';
+      filesToUpload.push({ path: filePath, content: fileContent });
     }
+
+    // upload to ipfs
+    const { cid } = await ipfs.addAll(filesToUpload, );
+    hash = cid + '';
+
+    // pin to pinata
+    await pinata.pinByHash(hash);
+    console.log('pinned hash: ', hash);
+
+    // add hash to hashes to save in a file
+    hashes += hash + '\n';
 
     // save hash to a file
     fs.writeFile('outputHash' + Date.now() + '.txt', hashes, () => {});
