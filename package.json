@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@pinata/sdk": "^1.1.23",
+    "ipfs": "^0.59.1",
     "ipfs-core": "^0.11.1"
   },
   "type": "module"
