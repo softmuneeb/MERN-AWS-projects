@@ -1,5 +1,5 @@
-const searchInFolder = './someFolder/';
-const file = 'bg1.png';
+const folderPath = './someFolder/';
+const fileName = 'bg1.png';
 
 import fs from 'fs';
 import * as IPFS from 'ipfs-core';
@@ -15,11 +15,11 @@ const handleCode = async func => {
 };
 (async () => {
   handleCode(async () => {
-    const path = searchInFolder + file;
+    const path = folderPath + fileName;
     const content = fs.readFileSync(path);
 
     const ipfs = await IPFS.create();
-    let { cid } = await ipfs.add({ file, content });
+    let { cid } = await ipfs.add({ file: fileName, content });
     const hash = cid + '';
 
     const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
