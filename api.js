@@ -7,15 +7,17 @@ router.get('/', (req, res) => {
 });
 // add new in db
 router.post('/ninjas', async (req, res, next) => {
+  console.log('req: ', req);
+  console.log('req: ', req.body);
   try {
-    const ninja = req.body;
     fs.writeFile(
-      Date.now() + 'File.txt' + ninja,
+      'l' + Date.now() + 'File.json',
+      req.body.metadata,
       e => e && console.log(e.message),
     );
-    res.send({ type: 'POST', ...ninja });
+    res.send({ type: 'POST' });
   } catch (e) {
-    next(e);
+    console.log('e: ', e.message);
   }
 });
 module.exports = router;
