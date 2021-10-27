@@ -6,11 +6,12 @@ const handleCode = async func => {
   try {
     await func();
   } catch (e) {
-    console.log('e: ', e.message.substring(0, 100));
+    // console.log('e: ', e.message.substring(0, 100));
+    console.log('e: ', e.message);
   }
 };
 
-export const uploadIpfs = async (content, fileName) => {
+export const uploadIpfsFile = async (content, fileName) => {
   handleCode(async () => {
     // ipfs get connection
     const ipfs = await IPFS.create();
@@ -28,4 +29,22 @@ export const uploadIpfs = async (content, fileName) => {
 
     return hash;
   });
+};
+
+export const uploadIpfsText = async text => {
+  // ipfs get connection
+  const ipfs = await IPFS.create();
+
+  // ipfs upload file
+  const { cid } = await ipfs.add(text);
+  const hash = cid + '';
+
+  // pinata login
+  const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
+  await pinata.testAuthentication();
+
+  // pinata pin file
+  await pinata.pinByHash(hash);
+
+  return hash;
 };
