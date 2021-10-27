@@ -11,24 +11,24 @@ const handleCode = async func => {
   }
 };
 
-export const uploadIpfsFile = async (content, fileName) => {
-  handleCode(async () => {
-    // ipfs get connection
-    const ipfs = await IPFS.create();
+export const uploadIpfsFile = async content => {
+  // handleCode(async () => {
+  // ipfs get connection
+  const ipfs = await IPFS.create();
 
-    // ipfs upload file
-    const { cid } = await ipfs.add({ file: fileName, content });
-    const hash = cid + '';
+  // ipfs upload file
+  const { cid } = await ipfs.add({ content });
+  const hash = cid + '';
 
-    // pinata login
-    const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
-    await pinata.testAuthentication();
+  // pinata login
+  const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
+  await pinata.testAuthentication();
 
-    // pinata pin file
-    await pinata.pinByHash(hash);
+  // pinata pin file
+  await pinata.pinByHash(hash);
 
-    return hash;
-  });
+  return hash;
+  // });
 };
 
 export const uploadIpfsText = async text => {

@@ -13,7 +13,7 @@ const init = async () => {
   const content = fs.readFileSync(path);
 
   // upload
-  const hash = await uploadIpfsFile(content, fileName);
+  const hash = await uploadIpfsFile(content);
   // const hash = await uploadIpfsText('Done. Alhamdulliah. Thanks Allah.');
   console.log('hash: ', hash);
   console.log('Done. Alhamdulliah. Thanks Allah.');
