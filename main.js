@@ -17,7 +17,7 @@ const uploadIpfs = async (content, fileName) => {
     const ipfs = await IPFS.create();
 
     // ipfs upload file
-    const { cid } = await ipfs.add({ file: fileName, content });
+    const { cid } = await ipfs.add({ content });
     const hash = cid + '';
 
     // pinata login
