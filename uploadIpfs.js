@@ -26,11 +26,6 @@ export const uploadIpfs = async (content, fileName) => {
     // pinata pin file
     await pinata.pinByHash(hash);
 
-    // save hash to a file
-    console.log('hash: ', hash);
-
-    console.log('Done. Alhamdulliah. Thanks Allah.');
-
     return hash;
   });
 };

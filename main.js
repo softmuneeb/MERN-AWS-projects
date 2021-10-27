@@ -13,7 +13,9 @@ const init = async () => {
   const content = fs.readFileSync(path);
 
   // upload
-  await uploadIpfs(content, fileName);
+  const hash = await uploadIpfs(content, fileName);
+  console.log('hash: ', hash);
+  console.log('Done. Alhamdulliah. Thanks Allah.');
 };
 
 init();
