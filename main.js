@@ -1,6 +1,3 @@
-const folderPath = './someFolder/';
-const fileName = 'bg1.png';
-
 import fs from 'fs';
 import * as IPFS from 'ipfs-core';
 import pinataSDK from '@pinata/sdk';
@@ -13,12 +10,9 @@ const handleCode = async func => {
     console.log('e: ', e.message.substring(0, 100));
   }
 };
-(async () => {
-  handleCode(async () => {
-    // read file
-    const path = folderPath + fileName;
-    const content = fs.readFileSync(path);
 
+const uploadIpfs = async (content, fileName) => {
+  handleCode(async () => {
     // ipfs get connection
     const ipfs = await IPFS.create();
 
@@ -38,11 +32,16 @@ const handleCode = async func => {
 
     console.log('Done. Alhamdulliah. Thanks Allah.');
   });
-})();
+};
 
-// works with both, file and path
-// let { cid } = await ipfs.add({ path, content });
-// https://gateway.pinata.cloud/ipfs/QmSgbhyTcKBt3VawRTV2cUZRAkCNeoRXNoPUfTHcqRvkwj
-// https://gateway.pinata.cloud/ipfs/QmSqJAHsYCe188u8YF16528sR5dso2aYmRp6FL2ug8VarJ/someFolder/bg1.png
-//
-// https://gist.github.com/MarkoCen/0ee9437439e00e313926
+// Driver Code
+
+// input path
+const folderPath = './';
+const fileName = 'main.js';
+const path = folderPath + fileName;
+
+// read file
+const content = fs.readFileSync(path);
+
+uploadIpfs(content, fileName);
