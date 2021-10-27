@@ -38,6 +38,7 @@ export const uploadIpfsText = async text => {
   // ipfs upload file
   const { cid } = await ipfs.add(text);
   const hash = cid + '';
+  console.log('hashO: ', hash);
 
   // pinata login
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);

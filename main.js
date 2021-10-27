@@ -5,8 +5,8 @@ import fs from 'fs';
 
 const init = async () => {
   // input path
-  const folderPath = './';
-  const fileName = 'main.js';
+  const folderPath = './someFolder/';
+  const fileName = 'bg2.png';
   const path = folderPath + fileName;
 
   // read file content
