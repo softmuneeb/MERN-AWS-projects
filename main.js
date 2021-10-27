@@ -16,7 +16,7 @@ const uploadIpfs = async (content, fileName) => {
     // ipfs get connection
     const ipfs = await IPFS.create();
 
-    // ipfs upload file
+    // ipfs upload file working
     const { cid } = await ipfs.add({ content });
     const hash = cid + '';
 
