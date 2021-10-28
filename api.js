@@ -12,7 +12,11 @@ router.post('/ninjas', async (req, res, next) => {
   console.log('req: ', req.body);
   try {
     fs.writeFile(
-      './metadata/' + Date.now() + 'File.json',
+      './metadata/' +
+        JSON.parse(req.body.metadata).tokenId +
+        '__' +
+        Date.now() +
+        '.json',
       req.body.metadata,
       e => e && console.log(e.message),
     );
