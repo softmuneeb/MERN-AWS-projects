@@ -1,1 +1,11 @@
-{"image":"ipfs://abc","tokenId":"1","attributes":[{"trait_type":"Skin","value":"Lemon"},{"trait_type":"Outfit","value":"Purple Tee"},{"trait_type":"Mouth","value":"Angry"},{"trait_type":"Hat","value":"BP"},{"trait_type":"Eyes","value":"Angry"}]}
+{
+  "image": "ipfs://abc",
+  "tokenId": "1",
+  "attributes": [
+    { "trait_type": "Skin", "value": "Lemon" },
+    { "trait_type": "Outfit", "value": "Purple Tee" },
+    { "trait_type": "Mouth", "value": "Angry" },
+    { "trait_type": "Hat", "value": "BP" },
+    { "trait_type": "Eyes", "value": "Angry" }
+  ]
+}
