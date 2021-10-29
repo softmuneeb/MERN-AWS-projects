@@ -1,3 +1,7 @@
 // do not work here, its only template
 
-(async () => {})();
+import { someFunctionality } from './someFunctionality.js';
+
+(async () => {
+  await someFunctionality();
+})();
