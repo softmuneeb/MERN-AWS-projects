@@ -1,7 +1,7 @@
 // do not work here, its only template
 
-import { someFunctionality } from './someFunctionality.js';
+import { arrangeImagesWrtRarity } from './arrangeImagesWrtRarity.js';
 
 (async () => {
-  await someFunctionality();
+  await arrangeImagesWrtRarity();
 })();
