@@ -1,157 +1,63 @@
-// nodeUrl: 'https://rinkeby.infura.io/v3/3da1c863472e43d989856450d4e6889d',
-// multicallCustomContractAddress: '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696'
-
-import { Multicall } from 'ethereum-multicall';
 import {
+  bastardPenguinsAbi,
+  bastardPenguinsAddress,
   defaultWeb3,
-  getContractPresaleFactory,
-  presaleFactoryAbi,
-  presaleFactoryAddress,
-} from './smart-contracts.js';
+  getContractBastardPenguins,
+} from './smart-contract.js';
+import { Multicall } from 'ethereum-multicall';
+import fs from 'fs';
+import { someCalls } from './calls.js';
 
-export const getPresaleDetails = async presaleAddressesAndTokenAddresses => {
+export const getPenguinTokensForAddress = async someAddress => {
   const multicall = new Multicall({
     multicallCustomContractAddress:
-      '0xA8F8BECb830d963e5CA01352b2ecFbA96f04E918',
+      '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
     web3Instance: defaultWeb3,
     tryAggregate: true,
   });
 
-  const presaleAddresses = presaleAddressesAndTokenAddresses[0];
-  const tokenAddresses = presaleAddressesAndTokenAddresses[1];
+  // let calls1 = JSON.parse(calls);
+  let calls1 = someCalls;
 
-  if (presaleAddresses.length === 0) return [];
+  // let calls1 = [];
 
-  const calls1 = presaleAddresses.map(addr => ({
-    methodName: 'getPresaleDetails',
-    methodParameters: [addr],
-  }));
+  // for (let i = 0; i <= 10000; i++) {
+  //   calls1.push({
+  //     methodName: 'isApprovedOrOwner',
+  //     methodParameters: [someAddress, i],
+  //   });
+  // }
 
-  const calls2 = tokenAddresses.map(addr => ({
-    methodName: 'getTokenName',
-    methodParameters: [addr],
-  }));
+  // fs.writeFile(
+  //   'calls.json',
+  //   JSON.stringify(calls1),
+  //   e => e && console.log(e.message),
+  // );
 
-  const calls3 = tokenAddresses.map(addr => ({
-    methodName: 'getTokenSymbol',
-    methodParameters: [addr],
-  }));
-
-  const calls4 = presaleAddresses.map(addr => ({
-    methodName: 'getPresaleMediaLinks',
-    methodParameters: [addr],
-  }));
-
+  // return;
   const contractCallContext = [
     {
-      reference: 'PresaleFactoryCall1',
-      contractAddress: presaleFactoryAddress,
-      abi: presaleFactoryAbi,
+      reference: 'SmartContractCall1',
+      contractAddress: bastardPenguinsAddress,
+      abi: bastardPenguinsAbi,
       calls: calls1,
-    },
-    {
-      reference: 'PresaleFactoryCall2',
-      contractAddress: presaleFactoryAddress,
-      abi: presaleFactoryAbi,
-      calls: calls2,
-    },
-    {
-      reference: 'PresaleFactoryCall3',
-      contractAddress: presaleFactoryAddress,
-      abi: presaleFactoryAbi,
-      calls: calls3,
-    },
-    {
-      reference: 'PresaleFactoryCall4',
-      contractAddress: presaleFactoryAddress,
-      abi: presaleFactoryAbi,
-      calls: calls4,
     },
   ];
 
-  const results = await multicall.call(contractCallContext); // can log it in json file to see output structure
+  const results = await multicall.call(contractCallContext);
 
-  const presales = results.results[
-    'PresaleFactoryCall1'
-  ].callsReturnContext.map((obj, i) => {
-    const [
-      [tokenX, lpTokenX, tokenXLocker, lpTokenXLocker],
+  let tokenIds = [];
+  results.results['SmartContractCall1'].callsReturnContext.map(
+    (obj, i) => obj.success && tokenIds.push(i),
+  );
 
-      [
-        tokenXSupply,
-        tokenXBalance,
-        tokenXLockerBalance,
-        tokenXUnlockAtTime,
-        lpTokenXBalance,
-        lpTokenXLockerBalance,
-        lpTokenXUnlockAtTime,
-        tokenXSold,
-        rate,
-        amountTokenXToBuyTokenX,
-        presaleClosedAt,
-        tier,
-      ],
-
-      [
-        presaleIsRejected,
-        presaleIsApproved,
-        presaleAppliedForClosing,
-        tokenXUnlockRequestMade,
-        tokenXUnlockRequestAccepted,
-        lpTokenXUnlockRequestMade,
-        lpTokenXUnlockRequestAccepted,
-      ],
-    ] = obj.returnValues;
-
-    return {
-      presaleAddress: presaleAddresses[i],
-      tokenXName:
-        results.results['PresaleFactoryCall2'].callsReturnContext[i]
-          .returnValues[0],
-      tokenXSymbol:
-        results.results['PresaleFactoryCall3'].callsReturnContext[i]
-          .returnValues[0],
-      tokenXSupply,
-      tokenX,
-      lpTokenX,
-      tokenXLocker,
-      lpTokenXLocker,
-      tokenXBalance,
-      lpTokenXBalance,
-      tokenXLockerBalance,
-      tokenXUnlockAtTime,
-      lpTokenXLockerBalance,
-      lpTokenXUnlockAtTime,
-      tokenXSold,
-      rate,
-      amountTokenXToBuyTokenX,
-      presaleClosedAt,
-      tier,
-      presaleIsRejected,
-      presaleIsApproved,
-      presaleAppliedForClosing,
-      tokenXUnlockRequestMade,
-      tokenXUnlockRequestAccepted,
-      lpTokenXUnlockRequestMade,
-      lpTokenXUnlockRequestAccepted,
-      presaleMediaLinks:
-        results.results['PresaleFactoryCall4'].callsReturnContext[i]
-          .returnValues[0],
-    };
-  });
-
-  return presales;
+  console.log('tokenIds: ', tokenIds);
 };
 
-export const getPresalesApprovedAddresses = async (
-  index = 0,
-  amountToFetch = 100,
-) =>
-  await getContractPresaleFactory()
-    .methods.getPresales(index, amountToFetch)
-    .call();
+getPenguinTokensForAddress('0xc18e78c0f67a09ee43007579018b2db091116b4c');
 
-export const getPresales = async (index = 0, amountToFetch = 100) =>
-  await getPresaleDetails(
-    await getPresalesApprovedAddresses(index, amountToFetch),
-  );
+// const bastardPenguins = getContractBastardPenguins();
+// const res = await bastardPenguins
+//   .isApprovedOrOwner('0xc18e78c0f67a09ee43007579018b2db091116b4c', 1)
+//   .call();
+// console.log('res: ', res);
