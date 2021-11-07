@@ -3,8 +3,8 @@ const axios = require('axios');
 
 // config
 const nft = '0x18f87c05325ae47bfe75c039198b3dc1cb2ed23d';
-const tokenIdFrom = 1;
-const tokenIdTo = 1;
+const tokenIdFrom = 1070;
+const tokenIdTo = 3000;
 
 // run code
 const init = async () => {
@@ -13,7 +13,7 @@ const init = async () => {
     const res = await axios.get(url);
 
     if (res.data.image_url.length < 5) console.log('not ', i);
-    else if (i % 1 === 0) console.log('ok ', i);
+    else if (i % 100 === 0) console.log('token refresh ok ', i);
   }
 };
 
