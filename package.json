@@ -9,6 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "link-preview-generator": "^1.0.7"
+  },
   "type": "module"
 }
