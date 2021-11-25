@@ -3,8 +3,8 @@ const axios = require('axios');
 
 // config
 const nft = '0x1d4f5FBC869fDefd2b6D0e20C9c679E03E4CFF2F';
-const tokenIdFrom = 1;
-const tokenIdTo = 107;
+const tokenIdFrom = 108;
+const tokenIdTo = 132;
 
 // run code
 const init = async () => {
