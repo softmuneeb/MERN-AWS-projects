@@ -1,8 +1,4 @@
-import {
-  getContractMarketplace,
-  getContractNft,
-  ipfsExplorer,
-} from './smart-contracts.js';
+import { getContractMarketplace, getContractNft } from './smart-contracts.js';
 import { parseIpfs, _doThis } from './utils.js';
 import pkg from 'web3-utils';
 import axios from 'axios';
@@ -87,6 +83,7 @@ export const getNftImageUrl = async (nftContract, tokenId) => {
   const metadata = (await axios.get(url)).data;
   return parseIpfs(metadata.image);
 };
+
 export const getNftCollectionName = async nftContract => {
   const nft = getContractNft({ address: nftContract });
   const name = await nft.methods.name().call();
