@@ -87,11 +87,12 @@ export const getNftImageUrl = async (nftContract, tokenId) => {
   const metadata = (await axios.get(url)).data;
   return parseIpfs(metadata.image);
 };
-export const getNftName = async (nftContract, tokenId) => {
+export const getNftCollectionName = async nftContract => {
   const nft = getContractNft({ address: nftContract });
-  const name = await nft.methods.name();
+  const name = await nft.methods.name().call();
   return name;
 };
+
 console.log(
-  await getNftImageUrl('0x16951a59f9d62a2ff70fbe7fccfc0dfb1d61acc4', 9),
+  await getNftCollectionName('0x16951a59f9d62a2ff70fbe7fccfc0dfb1d61acc4'),
 );
