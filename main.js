@@ -1,7 +1,14 @@
-import { getContractMarketplace } from './smart-contracts.js';
-import { _doThis } from './utils.jsx';
-import { isAddress } from 'web3-utils';
-export const sellNft = (setLoading, nftContract, tokenId, price) => {
+import {
+  getContractMarketplace,
+  getContractNft,
+  ipfsExplorer,
+} from './smart-contracts.js';
+import { parseIpfs, _doThis } from './utils.js';
+import pkg from 'web3-utils';
+import axios from 'axios';
+const { isAddress } = pkg;
+
+export const sellNft = async (setLoading, nftContract, tokenId, price) => {
   _doThis(async (account, web3) => {
     if (isAddress(nftContract)) {
       alert('Invalid NFT Address');
@@ -72,3 +79,19 @@ export const sellNft = (setLoading, nftContract, tokenId, price) => {
     }
   });
 };
+
+export const getNftImageUrl = async (nftContract, tokenId) => {
+  const nft = getContractNft({ address: nftContract });
+  const tokenURI = await nft.methods.tokenURI(tokenId).call();
+  const url = parseIpfs(tokenURI);
+  const metadata = (await axios.get(url)).data;
+  return parseIpfs(metadata.image);
+};
+export const getNftName = async (nftContract, tokenId) => {
+  const nft = getContractNft({ address: nftContract });
+  const name = await nft.methods.name();
+  return name;
+};
+console.log(
+  await getNftImageUrl('0x16951a59f9d62a2ff70fbe7fccfc0dfb1d61acc4', 9),
+);

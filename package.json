@@ -12,6 +12,7 @@
   "dependencies": {
     "@metamask/detect-provider": "^1.2.0",
     "@metamask/onboarding": "^1.0.1",
+    "axios": "^0.24.0",
     "web3": "^1.6.1",
     "web3-utils": "^1.6.1"
   },
