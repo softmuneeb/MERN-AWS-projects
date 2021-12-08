@@ -14,9 +14,7 @@ const addrLen = addresses.length;
 // remove duplicates
 if (removeDuplicates) {
   let betterRes = {};
-  addresses.map(address => {
-    betterRes[toChecksumAddress(address)] = true;
-  });
+  addresses.map(a => (betterRes[toChecksumAddress(a)] = true));
   addresses = Object.keys(betterRes);
 }
 
