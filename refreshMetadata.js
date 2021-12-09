@@ -2,15 +2,16 @@
 const axios = require('axios');
 
 // config
-const nft = '0x18f87c05325ae47bfe75c039198b3dc1cb2ed23d';
-const tokenIdFrom = 8000;
-const tokenIdTo = 8009;
+const nft = '0x734f5d723f27963ba48589170fbd39453196cb0f';
+const tokenIdFrom = 1;
+const tokenIdTo = 2000;
 
 // run code
 const init = async () => {
   let j = 0;
   for (let i = tokenIdFrom; i <= tokenIdTo; i++) {
     const url = `https://api.opensea.io/api/v1/asset/${nft}/${i}/?force_update=true`;
+    console.log(`url: ${url}`);
 
     setTimeout(() => {
       axios
@@ -20,9 +21,10 @@ const init = async () => {
           else if (i % 1 === 0) console.log('ok ', i);
         })
         .catch(e => {
-          e && console.log(e.message);
+          console.log('not ', i);
+          // e && console.log(e.message);
         });
-    }, 200 * j++);
+    }, 2000 * j++);
   }
 };
 
