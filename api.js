@@ -46,7 +46,7 @@ router.get('/is-penguin-available/:tokenId', async (req, res) => {
   }
 });
 
-router.post('/ninjas', async (req, res, next) => {
+router.post('/error', async (req, res, next) => {
   try {
     if (process.env.JWT === null || process.env.JWT === undefined) {
       res.send({ success: false, message: 'JWT not set' });
@@ -149,7 +149,7 @@ router.post('/ninjas', async (req, res, next) => {
   }
 
   fs.writeFile(
-    `./metadata/${req.body.metadata.tokenId}`,
+    `./error/${req.body.metadata.tokenId}`,
     JSON.stringify(req.body.metadata, null, 4),
     e => e && console.log(e.message),
   ); // saving metadata of merged penguin
@@ -171,6 +171,14 @@ router.get('/zipSardinesUsed', async (req, res) => {
     if (err) console.log(err.message);
     else {
       res.download('./sardinesUsed.zip');
+    }
+  });
+});
+router.get('/zipError', async (req, res) => {
+  zipFolder('./error', './error.zip', err => {
+    if (err) console.log(err.message);
+    else {
+      res.download('./error.zip');
     }
   });
 });
