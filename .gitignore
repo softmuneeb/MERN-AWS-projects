@@ -2,3 +2,5 @@
 package-lock.json
 /.env
 /secret.js
+/metadata
+/10
