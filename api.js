@@ -1,4 +1,4 @@
-const { Console, log } = require('console');
+const { log } = require('console');
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
@@ -46,7 +46,6 @@ router.get('/is-penguin-available/:tokenId', async (req, res) => {
   }
 });
 
-// add new in db
 router.post('/ninjas', async (req, res, next) => {
   try {
     if (process.env.JWT === null || process.env.JWT === undefined) {
@@ -139,7 +138,6 @@ router.post('/ninjas', async (req, res, next) => {
   }
 });
 
-// add new in db
 router.post('/ninjas', async (req, res, next) => {
   if (process.env.JWT === null || process.env.JWT === undefined) {
     res.send({ success: false, message: 'JWT not set' });
@@ -176,6 +174,7 @@ router.get('/zipSardinesUsed', async (req, res) => {
     }
   });
 });
+
 module.exports = router;
 
 /*
