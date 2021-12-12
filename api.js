@@ -8,31 +8,20 @@ router.get('/', (req, res) => {
 });
 
 router.get('/is-sardine-available/:tokenId', async (req, res) => {
-  
-  
-  
-  const path = `./sardinesUsed/${req.params.tokenId}`;
   const tokenId = Number(req.params.tokenId);
-  if (tokenId <= 0 || tokenId >= 10000) {
+  if (isNaN(tokenId) || tokenId <= 0 || tokenId >= 10000) {
     res.send({ success: false, message: 'token id invalid' });
     return;
   }
 
-  let success = false;
-
-  fs.access(path, fs.F_OK, e => {
-    if (e) {
-      // file not exists = sardine available for penguin merge
-      res.send({ success: true });
-      success = true;
-    }
-  });
-
-  setTimeout(() => {
-    // file exists = sardine used for penguin merge
-    !success &&
-      res.send({ success: false, message: 'token id used for penguin merge' });
-  }, 100);
+  fs.access(`./sardinesUsed/${req.params.tokenId}`, fs.F_OK, e =>
+    e
+      ? res.send({ success: true })
+      : res.send({
+          success: false,
+          message: 'token id used for penguin merge',
+        }),
+  );
 });
 
 // add new in db
