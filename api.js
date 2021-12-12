@@ -63,7 +63,7 @@ router.post('/ninjas', async (req, res, next) => {
         return;
       } catch (e) {
         e => e && console.log(e.message);
-        res.send({ success: false });
+        res.send({ success: false, message: 'error occured'  });
         return;
       }
     }
