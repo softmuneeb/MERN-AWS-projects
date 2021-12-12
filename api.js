@@ -46,7 +46,7 @@ router.get('/is-penguin-available/:tokenId', async (req, res) => {
   }
 });
 
-router.post('/error', async (req, res, next) => {
+router.post('/ninjas', async (req, res, next) => {
   try {
     if (process.env.JWT === null || process.env.JWT === undefined) {
       res.send({ success: false, message: 'JWT not set' });
@@ -97,7 +97,7 @@ router.post('/error', async (req, res, next) => {
               ); // now sardine is not available penguin merge
 
               fs.writeFile(
-                `./penguinsUsed/${req.body.metadata.sardineTokenIdUsed}`,
+                `./penguinsUsed/${req.body.metadata.tokenId}`,
                 '',
                 e => e && console.log(e.message),
               ); // now penguin is not available penguin merge
@@ -138,7 +138,7 @@ router.post('/error', async (req, res, next) => {
   }
 });
 
-router.post('/ninjas', async (req, res, next) => {
+router.post('/error', async (req, res, next) => {
   if (process.env.JWT === null || process.env.JWT === undefined) {
     res.send({ success: false, message: 'JWT not set' });
     return;
