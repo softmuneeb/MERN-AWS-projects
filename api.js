@@ -46,6 +46,7 @@ router.get('/is-penguin-available/:tokenId', async (req, res) => {
   }
 });
 
+
 router.post('/ninjas', async (req, res, next) => {
   try {
     if (process.env.JWT === null || process.env.JWT === undefined) {
