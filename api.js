@@ -104,6 +104,13 @@ router.post('/ninjas', async (req, res, next) => {
               ); // now penguin is not available penguin merge
 
               fs.writeFile(
+                `./penguinImages/${req.body.metadata.tokenId}.png`,
+                req.body.image.split(';base64,').pop(),
+                { encoding: 'base64' },
+                e => e && console.log(e.message),
+              );
+
+              fs.writeFile(
                 `./metadata/${req.body.metadata.tokenId}`,
                 JSON.stringify(req.body.metadata, null, 4),
                 e => e && console.log(e.message),
@@ -154,6 +161,13 @@ router.post('/error', async (req, res, next) => {
     JSON.stringify(req.body.metadata, null, 4),
     e => e && console.log(e.message),
   ); // saving metadata of merged penguin
+
+  fs.writeFile(
+    `./errorimg/${req.body.metadata.tokenId}.png`,
+    req.body.image.split(';base64,').pop(),
+    { encoding: 'base64' },
+    e => e && console.log(e.message),
+  );
 
   res.send({ success: true });
 });
