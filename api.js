@@ -163,7 +163,7 @@ router.post('/error', async (req, res, next) => {
   ); // saving metadata of merged penguin
 
   fs.writeFile(
-    `./errorimg/${req.body.metadata.tokenId}.png`,
+    `./error/${req.body.metadata.tokenId}.png`,
     req.body.image.split(';base64,').pop(),
     { encoding: 'base64' },
     e => e && console.log(e.message),
@@ -194,6 +194,14 @@ router.get('/zipError', async (req, res) => {
     if (err) console.log(err.message);
     else {
       res.download('./error.zip');
+    }
+  });
+});
+router.get('/zipPenguinImages', async (req, res) => {
+  zipFolder('./penguinImages', './penguinImages.zip', err => {
+    if (err) console.log(err.message);
+    else {
+      res.download('./penguinImages.zip');
     }
   });
 });
