@@ -23,7 +23,7 @@ router.get('/is-sardine-available/:tokenId', async (req, res) => {
           message: 'token id used for penguin merge',
         }),
   );
-});
+}); 
 
 router.get('/is-penguin-available/:tokenId', async (req, res) => {
   try {
