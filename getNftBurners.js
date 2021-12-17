@@ -65,11 +65,19 @@ const driver = async () => {
   const events = await getContractEvents({
     address: nftAddress,
     eventName: 'Transfer',
-    fromBlock: 0, // see from https://etherscan.com
-    toBlock: 13823220,
+    fromBlock: 13813033, // see from https://etherscan.com
+    toBlock: 14823851,
   });
 
   console.log(`events: ${events.length}`);
+
+  console.log('Getting buyers stats...');
+  for (let i = 0; i < events.length; i++) {
+    const event = events[i];
+
+    console.log(`${event.returnValues.from} tokenId#${event.returnValues.tokenId} Line#${i+1}`);
+  }
+
 };
 
 driver();
