@@ -8,9 +8,14 @@
 
 */
 
+import { getContractBastardPenguins } from './smart-contracts.js';
+
 const init = async () => {
- 
-  console.log("a: ", 1);
+  const contract = getContractBastardPenguins({});
+  const price = await contract.methods.itemPrice().call();
+  console.log('price ', price);
+
+  console.log('Assalamo Alaikum');
 };
 
 init();
