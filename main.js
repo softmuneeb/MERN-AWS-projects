@@ -8,14 +8,20 @@
 
 */
 
-import { getContractBastardPenguins } from './smart-contracts.js';
+import { buyNft } from './utils.js';
+import dotenv from 'dotenv';
+import { ethNodeLink } from './smart-contracts.js';
+dotenv.config();
+const MNEMONIC = process.env.MNEMONIC;
 
 const init = async () => {
-  const contract = getContractBastardPenguins({});
-  const price = await contract.methods.itemPrice().call();
-  console.log('price ', price);
-
   console.log('Assalamo Alaikum');
+  if (!MNEMONIC) {
+    console.log('Please provide MNEMONIC & INFURA_TOKEN in .env');
+    return;
+  }
+
+  await buyNft(MNEMONIC, ethNodeLink);
 };
 
 init();
