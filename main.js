@@ -8,8 +8,8 @@
 
 */
 
-import { buyNft } from './utils.js';
 import dotenv from 'dotenv';
+import { buyNft } from './apis.js';
 import { ethNodeLink } from './smart-contracts.js';
 dotenv.config();
 const MNEMONIC = process.env.MNEMONIC;
