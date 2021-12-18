@@ -15,5 +15,6 @@
     "axios": "^0.21.1",
     "html-to-docx": "^1.2.2",
     "mongoose": "^5.13.4"
-  }
+  },
+  "type": "module"
 }

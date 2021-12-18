@@ -1,12 +1,16 @@
-const HTMLtoDOCX = require("html-to-docx");
+// import HTMLtoDOCX from "html-to-docx";
+/*
+1. simple program run and sale done. get gas price.
+2. 5 transactions with different accounts. each transaction 5 sec diff. each accounts transfers remain eth, to next account.
+3. random differnce in time. 1 sec to 20 sec. log sec wait. random between 5 min to 60 min.
+4. maintain data in files. tokenId bought by which account.
+5. send the code to chris. startServer(delay="10min",startFromAccNumber="0",)
+
+*/
 
 const init = async () => {
-  const a = await HTMLtoDOCX(
-    '<html><body><divclass="container"><h1>404</h1></div></body></html>'
-  );
-  const fs = require("fs");
-  await fs.writeFile("filename1.docx", a);
-  console.log("a: ", a);
+ 
+  console.log("a: ", 1);
 };
 
 init();
