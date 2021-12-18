@@ -1,0 +1,5 @@
+code structure:
+1. smart-contracts.js, if you want to change networks, you can only change this file, file to get smart contracts and config for all networks like mainnet & rinkeby.
+2. apis.js, all the business logic is here. like calling functions from any smart-contract
+3. utils.js, any utility functions are defined here that are needed in apis.js
+4. main.js, uses apis.js to do the business
