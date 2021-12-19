@@ -3,17 +3,15 @@ import { getWeb3 } from './utils.js';
 
 export const buyNft = async (mnemonic, ethNodeLink) => {
   const web3 = getWeb3(mnemonic, ethNodeLink);
-  console.log('web3 ', await web3.eth.getAccounts());
 
   const contract = getContractNft({ web3 });
   const price = await contract.methods.itemPrice().call();
-  console.log('price ', price);
-  return
 
-  const method = contract.methods.createMarketSale(nftContract, itemId);
+  const method = contract.methods.purchaseTokens(1);
+  const from = (await web3.eth.getAccounts())[0];
 
   let options = {
-    from: account,
+    from,
     gas: '0',
     value: price
   };
@@ -36,7 +34,8 @@ export const buyNft = async (mnemonic, ethNodeLink) => {
   try {
     await method
       .send(options)
-      .on('confirmation', i => i === 0 && console.log('done'));
+      .once('transactionHash', tx => console.log('from:', from, 'tx:', tx))
+      .on('confirmation', i => i === 0 && console.log('done from',from));
   } catch (e) {
     console.log(e.message);
   }
