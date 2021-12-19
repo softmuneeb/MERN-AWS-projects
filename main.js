@@ -10,18 +10,14 @@
 
 import dotenv from 'dotenv';
 import { buyNft } from './apis.js';
+import { keys as PV_KEYS } from './secret.js';
 import { ethNodeLink } from './smart-contracts.js';
 dotenv.config();
-const MNEMONIC = process.env.MNEMONIC;
 
 const init = async () => {
   console.log('Assalamo Alaikum');
-  if (!MNEMONIC) {
-    console.log('Please provide MNEMONIC & INFURA_TOKEN in .env');
-    return;
-  }
 
-  await buyNft(MNEMONIC, ethNodeLink);
+  await buyNft(PV_KEYS[0], ethNodeLink);
 };
 
 init();

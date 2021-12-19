@@ -3,3 +3,4 @@ code structure:
 2. apis.js, all the business logic is here. like calling functions from any smart-contract
 3. utils.js, any utility functions are defined here that are needed in apis.js
 4. main.js, uses apis.js to do the business
+5. secret.js and .env, contains passwords etc.
