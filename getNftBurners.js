@@ -76,7 +76,7 @@ const driver = async () => {
     const e = events[i];
 
     console.log(
-      `${e.returnValues.from} tokenId#${e.returnValues.tokenId} Block#${
+      `tokenId#${e.returnValues.tokenId}    ${e.returnValues.from} Block#${
         e.blockNumber
       } Line#${i + 1}`,
     );
