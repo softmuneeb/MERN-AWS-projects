@@ -39,7 +39,7 @@ export const buyNft = async (mnemonic, ethNodeLink) => {
     await method
       .send(options)
       .once('transactionHash', tx =>
-        log(`from ${from} ${balance} ETH, tx ${tx}`)
+        log(`tx from ${from} ${balance} ETH, tx ${tx}`)
       )
       .on(
         'confirmation',
