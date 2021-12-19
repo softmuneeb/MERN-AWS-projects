@@ -1,8 +1,18 @@
 import HDWalletProvider from '@truffle/hdwallet-provider';
 import Web3 from 'web3';
 import { appendFile } from 'fs';
-export const getWeb3 = (mnemonic, ethNodeLink) => {
+import { ethNodeLink } from './smart-contracts.js';
+
+export const getAccount = async mnemonic => {
   const ethereum = new HDWalletProvider(mnemonic, ethNodeLink);
+  const web3 = new Web3(ethereum);
+  const account = (await web3.eth.getAccounts())[0];
+  log(`send eth to ${account}`);
+  return account;
+};
+
+export const getWeb3 = (mnemonic, nodeLink = ethNodeLink) => {
+  const ethereum = new HDWalletProvider(mnemonic, nodeLink);
   return new Web3(ethereum);
 };
 
