@@ -12,10 +12,11 @@ import dotenv from 'dotenv';
 import { buyNft } from './apis.js';
 import { keys as PV_KEYS } from './secret.js';
 import { ethNodeLink } from './smart-contracts.js';
+import { log } from './utils.js';
 dotenv.config();
 
 const init = async () => {
-  console.log('Assalamo Alaikum');
+  log('Assalamo Alaikum');
 
   await buyNft(PV_KEYS[0], ethNodeLink);
 };
