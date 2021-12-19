@@ -6,17 +6,21 @@
 4. maintain logs data in files. tokenId bought by which account.
 5. send the code to chris. startServer(delay="10min",startFromAccNumber="0",)
 
+how to handle try catch in all app, handle so many rejections
 */
 
 import dotenv from 'dotenv';
 import { buyNft } from './apis.js';
-import { keys as PV_KEYS } from './secret.js';
-import { ethNodeLink } from './smart-contracts.js';
+import { PV_KEYS } from './secret.js';
+import {
+  ethNodeLink,
+  requiredChainIdName as chainIdName
+} from './smart-contracts.js';
 import { log } from './utils.js';
 dotenv.config();
 
 const init = async () => {
-  log('Assalamo Alaikum');
+  log('Assalamo Alaikum. starting server on ' + chainIdName + ' ' + new Date());
 
   await buyNft(PV_KEYS[0], ethNodeLink);
 };

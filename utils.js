@@ -13,9 +13,9 @@ export const getWeb3 = (mnemonic, ethNodeLink) => {
 
 // option 2
 export const log = text => {
-  // later improve: Sun Dec 19 2021 08:03:30 GMT+0500 (Pakistan Standard Time) done tx from: 0xc18E78C0F67A09ee43007579018b2Db091116B4C
-  let date = ('' + new Date() + '').split('GMT')[0];
-  text = date + text;
+  text = time() + text;
   console.log(text);
   appendFile('out.txt', text + '\n', e => e && console.log(e.message));
 };
+
+export const time = () => ('' + new Date() + '').split('GMT')[0];
