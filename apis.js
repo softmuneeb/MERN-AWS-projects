@@ -4,10 +4,11 @@ import { getWeb3 } from './utils.js';
 export const buyNft = async (mnemonic, ethNodeLink) => {
   const web3 = getWeb3(mnemonic, ethNodeLink);
   console.log('web3 ', await web3.eth.getAccounts());
-  return;
 
   const contract = getContractNft({ web3 });
   const price = await contract.methods.itemPrice().call();
+  console.log('price ', price);
+  return
 
   const method = contract.methods.createMarketSale(nftContract, itemId);
 
