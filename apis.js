@@ -34,8 +34,13 @@ export const buyNft = async (mnemonic, ethNodeLink) => {
   try {
     await method
       .send(options)
-      .once('transactionHash', tx => console.log('from:', from, 'tx:', tx))
-      .on('confirmation', i => i === 0 && console.log('done from',from));
+      .once('transactionHash', tx =>
+        console.log(new Date(), 'from:', from, 'tx:', tx)
+      )
+      .on(
+        'confirmation',
+        i => i === 0 && console.log(new Date(), 'done from', from)
+      );
   } catch (e) {
     console.log(e.message);
   }
