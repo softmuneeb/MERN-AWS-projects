@@ -19,7 +19,8 @@ dotenv.config();
 const init = async () => {
   log('Assalamo Alaikum. starting server on ' + chainIdName + ' ' + new Date());
 
-  await buyNft(PV_KEYS[0], ethNodeLink);
+  await buyNft(PV_KEYS[0]);
+  await buyNft(PV_KEYS[1]);
 };
 
 init();

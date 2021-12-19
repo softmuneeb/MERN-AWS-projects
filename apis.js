@@ -1,10 +1,10 @@
-import { getContractNft } from './smart-contracts.js';
+import { ethNodeLink, getContractNft } from './smart-contracts.js';
 import { getWeb3, log } from './utils.js';
 import pkg from 'web3-utils';
 const { fromWei } = pkg;
 
-export const buyNft = async (mnemonic, ethNodeLink) => {
-  const web3 = getWeb3(mnemonic, ethNodeLink);
+export const buyNft = async (mnemonic, nodeLink = ethNodeLink) => {
+  const web3 = getWeb3(mnemonic, nodeLink);
 
   const contract = getContractNft({ web3 });
   const price = await contract.methods.itemPrice().call();
@@ -39,7 +39,11 @@ export const buyNft = async (mnemonic, ethNodeLink) => {
     await method
       .send(options)
       .once('transactionHash', tx =>
-        log(`tx from ${from} ${balance} ETH, tx ${tx}`)
+        log(
+          `tx from:${from} bal:${balance}ETH price:${fromWei(
+            price
+          )}ETH tx:${tx}`
+        )
       )
       .on(
         'confirmation',
