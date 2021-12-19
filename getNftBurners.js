@@ -73,11 +73,14 @@ const driver = async () => {
 
   console.log('Getting buyers stats...');
   for (let i = 0; i < events.length; i++) {
-    const event = events[i];
+    const e = events[i];
 
-    console.log(`${event.returnValues.from} tokenId#${event.returnValues.tokenId} Line#${i+1}`);
+    console.log(
+      `${e.returnValues.from} tokenId#${e.returnValues.tokenId} Block#${
+        e.blockNumber
+      } Line#${i + 1}`,
+    );
   }
-
 };
 
 driver();
