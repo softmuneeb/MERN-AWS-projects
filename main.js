@@ -12,10 +12,7 @@ how to handle try catch in all app, handle so many rejections
 import dotenv from 'dotenv';
 import { buyNft } from './apis.js';
 import { PV_KEYS } from './secret.js';
-import {
-  ethNodeLink,
-  requiredChainIdName as chainIdName
-} from './smart-contracts.js';
+import { ethNodeLink, chainIdName } from './smart-contracts.js';
 import { log } from './utils.js';
 dotenv.config();
 
