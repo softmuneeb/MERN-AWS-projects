@@ -7,10 +7,14 @@ const init = async () => {
     for (let file of files) {
       console.log('file: ', file);
       try {
-        const content = fs.readFileSync(searchInFolder + file, 'utf8');
-        // const fixedContent = fixedContent;//content.split(find).join(replace);
-        file = Number(file) + 479;
-        fs.writeFile(searchInFolder + file, content, () => {});
+        try {
+          let filen = (Number(file.replace('.png', '')) + 479) % 9999;
+          fs.copyFile(
+            searchInFolder + file,
+            searchInFolder + 'new/' + filen + '.png',
+            e => e && console.log(e.message)
+          );
+        } catch (error) {}
       } catch (e) {
         console.error('whoops ', e.message);
       }
