@@ -17,9 +17,16 @@ import { log } from './utils.js';
 dotenv.config();
 
 const init = async () => {
-  log('Assalamo Alaikum. starting server on ' + chainIdName + ' ' + new Date());
+  // log('Assalamo Alaikum. starting server on ' + chainIdName + ' ' + new Date());
 
-  await buyNft(PV_KEYS[2], PV_KEYS[3]);
+  const start = 0;
+  const end = 9;
+  let i = start;
+  for (i = start; i < end; i++) {
+    log(i, i + 1);
+    await buyNft(PV_KEYS[i], PV_KEYS[i + 1]);
+  }
+  await buyNft(PV_KEYS[i], PV_KEYS[0]);
 };
 
 init();
