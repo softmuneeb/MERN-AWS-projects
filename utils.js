@@ -23,9 +23,8 @@ export const getWeb3 = (mnemonic, nodeLink = ethNodeLink) => {
 
 // option 2
 export const log = (text, newLinesBefore = 0) => {
-  for (let i = 0; i < newLinesBefore; i++) text += '\n';
-
   text = time() + text;
+  for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
   console.log(text);
   appendFile('out.txt', text + '\n', e => e && console.log(e.message));
 };

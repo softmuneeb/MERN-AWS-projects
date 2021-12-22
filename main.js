@@ -15,24 +15,13 @@ import { chainIdName } from './smart-contracts.js';
 import { log, seconds } from './utils.js';
 
 const init = async () => {
-  log('\n\n\n\nAssalamo Alaikum. server on ' + chainIdName + ' ' + new Date());
+  log('Assalamo Alaikum. server on ' + chainIdName + ' ' + new Date(), 4);
 
   for (let accId = 0; accId < 20; accId++) {
     setTimeout(() => {
       buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
     }, accId * 120 * seconds);
   }
-  // setTimeout(() => {
-  //   buyNft(PV_KEYS[0], PV_KEYS[0 + 1], 0);
-  // }, 0 * 10 * 1000);
-
-  // setTimeout(() => {
-  //   buyNft(PV_KEYS[1], PV_KEYS[1 + 1], 1);
-  // }, 1 * 10 * 1000);
-
-  // setTimeout(() => {
-  //   buyNft(PV_KEYS[2], PV_KEYS[2 + 1], 2);
-  // }, 2 * 10 * 1000);
 };
 
 init();

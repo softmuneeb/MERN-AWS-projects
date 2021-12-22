@@ -1,6 +1,6 @@
-import { ethNodeLink, getContractNft } from './smart-contracts.js';
-import { getAccount, getWeb3, log, waitTransaction } from './utils.js';
 import pkg from 'web3-utils';
+import { ethNodeLink, getContractNft } from './smart-contracts.js';
+import { getAccount, getWeb3, log, seconds } from './utils.js';
 const { fromWei } = pkg;
 
 export const buyNft = async (
@@ -77,10 +77,10 @@ export const buyNft = async (
           // todo gasPrice for mainnet
           try {
             const gasValue = 21000 * gas; // regular account gas is 21K always
-            const valueToSend = bal - gasValue - 1000000;
-            log(
-              'gas * price + value = ' + fromWei('' + (valueToSend + gasValue))
-            );
+            const valueToSend = bal - gasValue - 1000000; // can be improved later
+            // log(
+            //   'gas * price + value = ' + fromWei('' + (valueToSend + gasValue))
+            // );
 
             const tx = await web3.eth
               .sendTransaction({
@@ -97,15 +97,22 @@ export const buyNft = async (
                     );
 
                   log(
-                    `done tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
+                    `done send eth tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
                   );
                 }
               });
 
             await waitTransaction(web3, tx.transactionHash);
+            // let transactionReceipt = null;
+            // while (transactionReceipt == null) {
+            //   transactionReceipt = await web3.eth.getTransactionReceipt(
+            //     tx.transactionHash
+            //   );
+            //   await sleep(1 * seconds);
+            // }
             const balAfter = await web3.eth.getBalance(from);
             log(
-              `send eth tx done from acc[${accountId}]:${from} bal:${fromWei(
+              `after wait send eth tx done from acc[${accountId}]:${from} bal:${fromWei(
                 balAfter
               )}`
             );
