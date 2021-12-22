@@ -2,3 +2,4 @@
 package-lock.json
 secret.js
 .env
+.DS_Store
