@@ -24,7 +24,7 @@ export const getWeb3 = (mnemonic, nodeLink = ethNodeLink) => {
 // option 2
 export const log = text => {
   text = time() + text;
-  console.log(text);
+  // console.log(text);
   appendFile('out.txt', text + '\n', e => e && console.log(e.message));
 };
 

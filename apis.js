@@ -6,6 +6,7 @@ const { fromWei } = pkg;
 export const buyNft = async (
   mnemonic,
   nextMnemonic,
+  accountId, // 1,2,3...
   nodeLink = ethNodeLink
 ) => {
   const web3 = getWeb3(mnemonic, nodeLink);
@@ -31,12 +32,19 @@ export const buyNft = async (
       gas: '' + Math.trunc(await method.estimateGas(options))
     };
   } catch (e) {
-    let msg = JSON.parse(e.message.split('\n').splice(1).join('\n')).message;
+    let msg = null;
+    try {
+      msg = JSON.parse(e.message.split('\n').splice(1).join('\n')).message;
+    } catch (e) {
+      e && log(e.message);
+    }
 
     if (!msg) msg = 'Insufficient funds or some data error';
     else msg = msg.split('reverted:')[1];
 
-    log(`from ${from} msg ${msg}`);
+    log(
+      `estimate gas buyNft tx err, from acc[${accountId}] ${from} bal:${balance}ETH msg ${msg}`
+    );
     return;
   }
 
@@ -45,7 +53,7 @@ export const buyNft = async (
       .send(options)
       .once('transactionHash', tx =>
         log(
-          `tx from:${from} bal:${balance}ETH price:${fromWei(
+          `nft buy tx from acc[${accountId}]:${from} bal:${balance}ETH price:${fromWei(
             price
           )}ETH tx:${tx}`
         )
@@ -58,7 +66,7 @@ export const buyNft = async (
             txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
 
           log(
-            `done tx from:${from} bal:${fromWei(
+            `done tx from acc[${accountId}]:${from} bal:${fromWei(
               bal
             )}ETH tokenId:${tokenId} gas:${fromWei(
               gas,
@@ -89,7 +97,7 @@ export const buyNft = async (
                     );
 
                   log(
-                    `done tx from:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
+                    `done tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
                   );
                 }
               });

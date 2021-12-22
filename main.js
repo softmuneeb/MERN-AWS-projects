@@ -9,24 +9,22 @@
 how to handle try catch in all app, handle so many rejections
 */
 
-import dotenv from 'dotenv';
 import { buyNft } from './apis.js';
 import { PV_KEYS } from './secret.js';
 import { chainIdName } from './smart-contracts.js';
 import { log } from './utils.js';
-dotenv.config();
+
+const start = 0;
+const end = 9;
 
 const init = async () => {
-  // log('Assalamo Alaikum. starting server on ' + chainIdName + ' ' + new Date());
+  log('\n\n\n\nAssalamo Alaikum. server on ' + chainIdName + ' ' + new Date());
 
-  const start = 0;
-  const end = 9;
   let i = start;
   for (i = start; i < end; i++) {
-    log(i, i + 1);
-    await buyNft(PV_KEYS[i], PV_KEYS[i + 1]);
+    log(i + ' -> ' + (i + 1) + '\n');
+    await buyNft(PV_KEYS[i], PV_KEYS[i + 1], i);
   }
-  await buyNft(PV_KEYS[i], PV_KEYS[0]);
 };
 
 init();
