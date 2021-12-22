@@ -1,6 +1,6 @@
-import * as IPFS from 'ipfs-core';
+// import * as IPFS from 'ipfs-core';
 import pinataSDK from '@pinata/sdk';
-import { PINATA_API_KEY, PINATA_API_SECRET } from './secret.js';
+import { PINATA_API_KEY, PINATA_API_SECRET } from './secret2.js';
 
 const handleCode = async func => {
   try {
@@ -11,41 +11,27 @@ const handleCode = async func => {
   }
 };
 
-export const uploadIpfsFile = async content => {
-  // handleCode(async () => {
-  // ipfs get connection
-  const ipfs = await IPFS.create();
-
-  // ipfs upload file
-  const { cid } = await ipfs.add({ content });
-  const hash = cid + '';
-
-  // pinata login
-  const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
-  await pinata.testAuthentication();
-
-  // pinata pin file
-  await pinata.pinByHash(hash);
-
-  return hash;
-  // });
-};
-
 export const uploadIpfsText = async text => {
   // ipfs get connection
-  const ipfs = await IPFS.create();
+  // const ipfs = await IPFS.create();
 
-  // ipfs upload file
-  const { cid } = await ipfs.add(text);
-  const hash = cid + '';
-  console.log('hashO: ', hash);
+  // // ipfs upload file
+  // const { cid } = await ipfs.add(text);
+  // const hash = cid + '';
+  // console.log('hashO: ', hash);
 
   // pinata login
   const pinata = pinataSDK(PINATA_API_KEY, PINATA_API_SECRET);
   await pinata.testAuthentication();
+  const a = await pinata.pinList({ pageLimit: 400 });
+
+  a.rows.map((r, i) => {
+    // console.log(r.date_pinned, r.size, r.ipfs_pin_hash, i);
+    console.log(r.ipfs_pin_hash);
+  });
 
   // pinata pin file
-  await pinata.pinByHash(hash);
+  // await pinata.pinByHash(hash);
 
-  return hash;
+  // return hash;
 };
