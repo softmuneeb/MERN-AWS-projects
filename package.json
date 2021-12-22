@@ -11,9 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@nestjs/mongoose": "^8.0.0",
-    "axios": "^0.21.1",
-    "html-to-docx": "^1.2.2",
-    "mongoose": "^5.13.4"
+   
   }
 }
