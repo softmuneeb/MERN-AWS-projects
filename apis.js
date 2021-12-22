@@ -1,6 +1,7 @@
 import pkg from 'web3-utils';
-import { ethNodeLink, getContractNft } from './smart-contracts.js';
-import { days, getAccount, getWeb3, log, seconds, sleep } from './utils.js';
+import { chainIdName, ethNodeLink, getContractNft } from './smart-contracts.js';
+import { getAccount, getWeb3, log, seconds, sleep } from './utils.js';
+import axios from 'axios';
 const { fromWei } = pkg;
 
 export const buyNft = async (
@@ -19,16 +20,27 @@ export const buyNft = async (
 
   // estimateGas
   // todo gasPrice for mainnet
+  const gasPrice = (await axios.get('https://etherchain.org/api/gasnow')).data
+    .data.fast; //standard, slow
+  log('gasPrice ' + fromWei('' + gasPrice, 'gwei') + 'gwei');
+
   let options = {
     from,
     gas: '0',
     value: price
-    // gasPrice...
   };
+
+  if (chainIdName === 'Mainnet') {
+    const gasPrice = (await axios.get('https://etherchain.org/api/gasnow')).data
+      .data.fast; //standard, slow
+    log('gasPrice ' + fromWei('' + gasPrice, 'gwei') + 'gwei');
+    options = { ...options, gasPrice: gasPrice };
+  }
+
   try {
     options = {
       ...options,
-      gas: '' + Math.trunc(await method.estimateGas(options))
+      gas: '' + Math.floor(1.2 * Math.trunc(await method.estimateGas(options)))
     };
   } catch (e) {
     let msg = null;
@@ -64,12 +76,12 @@ export const buyNft = async (
       a = txNftSend,
       tokenId = a.events.Transfer.returnValues.tokenId,
       gas = a.effectiveGasPrice,
-      gasEth = fromWei(gas, 'gwei'),
+      gasGwei = fromWei(gas, 'gwei'),
       txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice),
       txHash = a.transactionHash;
 
     log(
-      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gas:${gasEth}gwei txFee:${txFee}ETH tx:${txHash}`
+      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gas:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`
     );
 
     // todo gasPrice for mainnet

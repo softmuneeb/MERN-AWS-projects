@@ -31,6 +31,7 @@ export const log = (text, newLinesBefore = 0) => {
 
 export const time = () => ('' + new Date() + '').split('GMT')[0];
 export const seconds = 1000;
+export const minutes = 60 * seconds;
 export const days = 86400 * seconds;
 
 export function isSuccessfulTransaction(receipt) {
@@ -46,5 +47,5 @@ export const sleep = milliseconds => {
 };
 
 export const random = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) ) + min;
-}
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
