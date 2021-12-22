@@ -3,3 +3,4 @@ package-lock.json
 .env
 secret.js
 out.txt
+.DS_Store
