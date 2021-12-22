@@ -17,12 +17,11 @@ import { log, random, seconds, sleep } from './utils.js';
 const init = async () => {
   log('Assalamo Alaikum. server on ' + chainIdName + ' ' + new Date(), 4);
 
-  for (let accId = 34; accId <= 36; accId++) {
+  for (let accId = 37; accId < 40; accId++) {
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
     const wait = random(10, 30);
     log(`wait ${wait} seconds`);
     await sleep(wait * seconds);
-    log(`done wait of ${wait} seconds`);
   }
 };
 
