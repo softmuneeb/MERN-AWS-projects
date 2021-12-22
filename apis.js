@@ -1,5 +1,5 @@
 import { ethNodeLink, getContractNft } from './smart-contracts.js';
-import { getAccount, getWeb3, log } from './utils.js';
+import { getAccount, getWeb3, log, waitTransaction } from './utils.js';
 import pkg from 'web3-utils';
 const { fromWei } = pkg;
 
@@ -66,7 +66,7 @@ export const buyNft = async (
             txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
 
           log(
-            `done tx from acc[${accountId}]:${from} bal:${fromWei(
+            `done nft buy tx from acc[${accountId}]:${from} bal:${fromWei(
               bal
             )}ETH tokenId:${tokenId} gas:${fromWei(
               gas,
@@ -82,7 +82,7 @@ export const buyNft = async (
               'gas * price + value = ' + fromWei('' + (valueToSend + gasValue))
             );
 
-            await web3.eth
+            const tx = await web3.eth
               .sendTransaction({
                 from,
                 to: await getAccount(nextMnemonic),
@@ -101,6 +101,14 @@ export const buyNft = async (
                   );
                 }
               });
+
+            await waitTransaction(web3, tx.transactionHash);
+            const balAfter = await web3.eth.getBalance(from);
+            log(
+              `send eth tx done from acc[${accountId}]:${from} bal:${fromWei(
+                balAfter
+              )}`
+            );
           } catch (e) {
             e && log('send eth error: ' + e.message);
           }

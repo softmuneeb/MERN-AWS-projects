@@ -12,19 +12,27 @@ how to handle try catch in all app, handle so many rejections
 import { buyNft } from './apis.js';
 import { PV_KEYS } from './secret.js';
 import { chainIdName } from './smart-contracts.js';
-import { log } from './utils.js';
-
-const start = 0;
-const end = 9;
+import { log, seconds } from './utils.js';
 
 const init = async () => {
   log('\n\n\n\nAssalamo Alaikum. server on ' + chainIdName + ' ' + new Date());
 
-  let i = start;
-  for (i = start; i < end; i++) {
-    log(i + ' -> ' + (i + 1) + '\n');
-    await buyNft(PV_KEYS[i], PV_KEYS[i + 1], i);
+  for (let accId = 0; accId < 20; accId++) {
+    setTimeout(() => {
+      buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
+    }, accId * 120 * seconds);
   }
+  // setTimeout(() => {
+  //   buyNft(PV_KEYS[0], PV_KEYS[0 + 1], 0);
+  // }, 0 * 10 * 1000);
+
+  // setTimeout(() => {
+  //   buyNft(PV_KEYS[1], PV_KEYS[1 + 1], 1);
+  // }, 1 * 10 * 1000);
+
+  // setTimeout(() => {
+  //   buyNft(PV_KEYS[2], PV_KEYS[2 + 1], 2);
+  // }, 2 * 10 * 1000);
 };
 
 init();
