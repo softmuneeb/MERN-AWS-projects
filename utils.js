@@ -3,6 +3,9 @@ import Web3 from 'web3';
 import { appendFile } from 'fs';
 import { ethNodeLink } from './smart-contracts.js';
 
+
+// npx ganache-cli -a 1000 -m "the mnemonic is here" > secret.txt
+
 export const getAccount = async mnemonic => {
   const ethereum = new HDWalletProvider(mnemonic, ethNodeLink);
   const web3 = new Web3(ethereum);
