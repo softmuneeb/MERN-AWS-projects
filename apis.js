@@ -1,6 +1,6 @@
 import pkg from 'web3-utils';
 import { ethNodeLink, getContractNft } from './smart-contracts.js';
-import { getAccount, getWeb3, log, seconds } from './utils.js';
+import { days, getAccount, getWeb3, log, seconds, sleep } from './utils.js';
 const { fromWei } = pkg;
 
 export const buyNft = async (
@@ -9,15 +9,15 @@ export const buyNft = async (
   accountId, // 1,2,3...
   nodeLink = ethNodeLink
 ) => {
-  const web3 = getWeb3(mnemonic, nodeLink);
+  const web3 = getWeb3(mnemonic, nodeLink),
+    contract = getContractNft({ web3 }),
+    price = await contract.methods.itemPrice().call(),
+    priceEth = fromWei(price),
+    method = contract.methods.purchaseTokens(1),
+    from = (await web3.eth.getAccounts())[0],
+    balance = fromWei(await web3.eth.getBalance(from));
 
-  const contract = getContractNft({ web3 });
-  const price = await contract.methods.itemPrice().call();
-
-  const method = contract.methods.purchaseTokens(1);
-  const from = (await web3.eth.getAccounts())[0];
-  const balance = fromWei(await web3.eth.getBalance(from));
-
+  // estimateGas
   // todo gasPrice for mainnet
   let options = {
     from,
@@ -25,7 +25,6 @@ export const buyNft = async (
     value: price
     // gasPrice...
   };
-
   try {
     options = {
       ...options,
@@ -35,93 +34,73 @@ export const buyNft = async (
     let msg = null;
     try {
       msg = JSON.parse(e.message.split('\n').splice(1).join('\n')).message;
-    } catch (e) {
-      e && log(e.message);
-    }
+    } catch (e) {}
 
     if (!msg) msg = 'Insufficient funds or some data error';
     else msg = msg.split('reverted:')[1];
 
     log(
-      `estimate gas buyNft tx err, from acc[${accountId}] ${from} bal:${balance}ETH msg ${msg}`
+      `nft buy tx err from acc[${accountId}] ${from} bal:${balance}ETH msg ${msg}`
     );
     return;
   }
 
-  try {
-    await method
-      .send(options)
-      .once('transactionHash', tx =>
-        log(
-          `nft buy tx from acc[${accountId}]:${from} bal:${balance}ETH price:${fromWei(
-            price
-          )}ETH tx:${tx}`
-        )
-      )
-      .on('confirmation', async (i, a) => {
-        if (i === 0) {
-          const bal = await web3.eth.getBalance(from),
-            tokenId = a.events.Transfer.returnValues.tokenId,
-            gas = a.effectiveGasPrice,
-            txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
+  const txNftSend = await method.send(options);
 
-          log(
-            `done nft buy tx from acc[${accountId}]:${from} bal:${fromWei(
-              bal
-            )}ETH tokenId:${tokenId} gas:${fromWei(
-              gas,
-              'gwei'
-            )}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
-          );
+  log(
+    `nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH price:${priceEth}ETH tx:${txNftSend.transactionHash}`
+  );
 
-          // todo gasPrice for mainnet
-          try {
-            const gasValue = 21000 * gas; // regular account gas is 21K always
-            const valueToSend = bal - gasValue - 1000000; // can be improved later
-            // log(
-            //   'gas * price + value = ' + fromWei('' + (valueToSend + gasValue))
-            // );
+  let txReceipt = null;
+  while (txReceipt === null) {
+    txReceipt = await web3.eth.getTransactionReceipt(txNftSend.transactionHash);
+    log('nft buy tx wait ' + txReceipt.status);
+    await sleep(1 * seconds);
+  }
 
-            const tx = await web3.eth
-              .sendTransaction({
-                from,
-                to: await getAccount(nextMnemonic),
-                value: valueToSend
-              })
-              .on('confirmation', async (i, a) => {
-                if (i === 0) {
-                  const bal = fromWei(await web3.eth.getBalance(from)),
-                    gas = fromWei(a.effectiveGasPrice, 'gwei'),
-                    txFee = fromWei(
-                      '' + a.cumulativeGasUsed * a.effectiveGasPrice
-                    );
+  {
+    const bal = await web3.eth.getBalance(from),
+      balEth = fromWei(bal),
+      a = txNftSend,
+      tokenId = a.events.Transfer.returnValues.tokenId,
+      gas = a.effectiveGasPrice,
+      gasEth = fromWei(gas, 'gwei'),
+      txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice),
+      txHash = a.transactionHash;
 
-                  log(
-                    `done send eth tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
-                  );
-                }
-              });
+    log(
+      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gas:${gasEth}gwei txFee:${txFee}ETH tx:${txHash}`
+    );
 
-            await waitTransaction(web3, tx.transactionHash);
-            // let transactionReceipt = null;
-            // while (transactionReceipt == null) {
-            //   transactionReceipt = await web3.eth.getTransactionReceipt(
-            //     tx.transactionHash
-            //   );
-            //   await sleep(1 * seconds);
-            // }
-            const balAfter = await web3.eth.getBalance(from);
-            log(
-              `after wait send eth tx done from acc[${accountId}]:${from} bal:${fromWei(
-                balAfter
-              )}`
-            );
-          } catch (e) {
-            e && log('send eth error: ' + e.message);
-          }
-        }
-      });
-  } catch (e) {
-    log(e.message);
+    // todo gasPrice for mainnet
+    const gasValue = 21000 * gas; // regular account gas is 21K always
+    const valueToSend = bal - gasValue - 1000000; // can be improved later
+
+    const tx = await web3.eth.sendTransaction({
+      from,
+      to: await getAccount(nextMnemonic),
+      value: valueToSend
+    });
+
+    log(
+      `eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${tx.transactionHash}`
+    );
+
+    txReceipt = null;
+    while (txReceipt === null) {
+      txReceipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+      log('send eth tx wait ' + txReceipt.status);
+      await sleep(1 * seconds);
+    }
+
+    {
+      const bal = fromWei(await web3.eth.getBalance(from)),
+        gas = fromWei(a.effectiveGasPrice, 'gwei'),
+        txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
+
+      log(
+        `done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
+      );
+    }
   }
 };
