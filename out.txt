@@ -1,0 +1,259 @@
+
+
+
+
+Fri Dec 24 2021 15:57:51 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 15:57:51 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 15:57:51 wait 2 seconds
+Fri Dec 24 2021 15:57:56 gasPrice 47gwei
+Fri Dec 24 2021 15:57:57 nft buy tx err from acc[52] 0x70bB967A04f82F6Be186780B240EDB3AfdC33e4f bal:0.000000000000997568ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 15:57:57 wait 3 seconds
+Fri Dec 24 2021 15:58:03 gasPrice 46gwei
+Fri Dec 24 2021 15:58:04 nft buy tx err from acc[53] 0x1C6D354085A98Dfba321449753eB46606a194cf4 bal:0.000000000001002792ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 15:58:04 wait 3 seconds
+Fri Dec 24 2021 15:58:10 gasPrice 46gwei
+Fri Dec 24 2021 15:58:10 nft buy tx err from acc[54] 0x6cA7937b1AEA0c950f95167a78154b2ac55c3FB5 bal:0.00000000000099768ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 15:58:10 loop end
+
+
+
+
+Fri Dec 24 2021 15:58:56 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 15:58:56 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 15:58:56 wait 3 seconds
+Fri Dec 24 2021 15:59:01 gasPrice 43.796gwei
+Fri Dec 24 2021 15:59:12 nft buy tx sent from acc[55]:0x325dbE05156a9e783E899A19cc017C87AFe0E71E bal:20.49469632692341ETH price:0.01ETH tx:0x7b54f3f4ed46cd1cd14b0a0b14f4c18cbad3708ed5b9bc33f4ca63b722b61f25
+Fri Dec 24 2021 15:59:12 nft buy tx wait true
+Fri Dec 24 2021 15:59:14 done nft buy tx from acc[55]:0x325dbE05156a9e783E899A19cc017C87AFe0E71E bal:20.48449910692262112ETH tokenId:124 gas:2.50000001gwei txFee:0.00386400751545603ETH tx:0x7b54f3f4ed46cd1cd14b0a0b14f4c18cbad3708ed5b9bc33f4ca63b722b61f25
+Fri Dec 24 2021 15:59:15 send eth to 0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC
+Fri Dec 24 2021 15:59:26 eth send tx sent from acc[55]:0x325dbE05156a9e783E899A19cc017C87AFe0E71E bal:20.49469632692341ETH tx:0xe8acdac511cb49375b031e2ded321fe093b253da0aa390705cf255790c7a717c
+Fri Dec 24 2021 15:59:27 send eth tx wait true
+Fri Dec 24 2021 15:59:29 done eth send tx from acc[55]:0x325dbE05156a9e783E899A19cc017C87AFe0E71E bal:0.00000000000099812ETH gas:2.50000001gwei txFee:0.00386400751545603ETH tx:0x7b54f3f4ed46cd1cd14b0a0b14f4c18cbad3708ed5b9bc33f4ca63b722b61f25
+Fri Dec 24 2021 15:59:29 wait 2 seconds
+Fri Dec 24 2021 15:59:33 gasPrice 33.620735993gwei
+Fri Dec 24 2021 15:59:41 nft buy tx sent from acc[56]:0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC bal:20.484446606921413ETH price:0.01ETH tx:0x1621463235e205fc88355c0e3afda47f28fea0d25c45994595b2aee7de7a7440
+Fri Dec 24 2021 15:59:42 nft buy tx wait true
+Fri Dec 24 2021 15:59:44 done nft buy tx from acc[56]:0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC bal:20.47424938692062412ETH tokenId:125 gas:2.50000001gwei txFee:0.01160263254641053ETH tx:0x1621463235e205fc88355c0e3afda47f28fea0d25c45994595b2aee7de7a7440
+Fri Dec 24 2021 15:59:44 send eth to 0xC4aFb061468DB324Dd85b3885b35BcdE050Fda23
+Fri Dec 24 2021 15:59:56 eth send tx sent from acc[56]:0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC bal:20.484446606921413ETH tx:0x698527968cfada9aa7c4b67dc2ae19bec8e505ac826e6798a3db42ea817ae0d5
+Fri Dec 24 2021 15:59:57 send eth tx wait true
+Fri Dec 24 2021 15:59:58 done eth send tx from acc[56]:0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC bal:0.00000000000097912ETH gas:2.50000001gwei txFee:0.01160263254641053ETH tx:0x1621463235e205fc88355c0e3afda47f28fea0d25c45994595b2aee7de7a7440
+Fri Dec 24 2021 15:59:58 loop end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fri Dec 24 2021 22:43:02 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 22:43:02 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 22:43:02 wait 1101 seconds
+
+
+
+
+Fri Dec 24 2021 22:44:07 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 22:44:07 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 22:44:07 wait 60 seconds
+Fri Dec 24 2021 22:45:10 gasPrice 111.230297468gwei
+Fri Dec 24 2021 22:45:11 nft buy tx err from acc[1] 0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 22:45:11 wait 60 seconds
+Fri Dec 24 2021 22:46:14 gasPrice 76.982598454gwei
+Fri Dec 24 2021 22:46:14 nft buy tx err from acc[2] 0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 22:46:14 loop end
+
+
+
+
+Fri Dec 24 2021 23:00:42 Assalamo Alaikum. server on Mainnet Fri Dec 24 2021 23:00:42 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:00:42 wait 60 seconds
+Fri Dec 24 2021 23:01:45 gasPrice 197gwei
+Fri Dec 24 2021 23:01:45 gasPrice 197gwei
+Fri Dec 24 2021 23:01:46 nft buy tx err from acc[1] 0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:01:46 wait 60 seconds
+
+
+
+
+Fri Dec 24 2021 23:03:22 Assalamo Alaikum. server on Mainnet Fri Dec 24 2021 23:03:22 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:03:25 gasPrice 159gwei
+Fri Dec 24 2021 23:03:25 gasPrice 159gwei
+Fri Dec 24 2021 23:03:26 nft buy tx err from acc[1] 0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.5ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:03:26 wait 114 seconds
+
+
+
+
+Fri Dec 24 2021 23:15:42 Assalamo Alaikum. server on Mainnet Fri Dec 24 2021 23:15:42 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:15:46 gasPrice 117gwei
+Fri Dec 24 2021 23:15:46 gasPrice 117gwei
+Fri Dec 24 2021 23:15:47 nft buy tx err from acc[1] 0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.5ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:15:47 wait 95 seconds
+
+
+
+
+Fri Dec 24 2021 23:22:08 Assalamo Alaikum. server on Mainnet Fri Dec 24 2021 23:22:08 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:22:12 gasPrice 80gwei
+Fri Dec 24 2021 23:22:12 gasPrice 80gwei
+Fri Dec 24 2021 23:23:50 nft buy tx sent from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.5ETH price:0.08ETH tx:0x4f3b6de5289865a49cb509f22337026e693cb0322499a4fd45834a75994ccf58
+Fri Dec 24 2021 23:23:51 nft buy tx wait true
+Fri Dec 24 2021 23:23:52 done nft buy tx from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.41368896ETH tokenId:3541 gas:80gwei txFee:0.78392656ETH tx:0x4f3b6de5289865a49cb509f22337026e693cb0322499a4fd45834a75994ccf58
+Fri Dec 24 2021 23:23:53 send eth to 0xf8B8d025c58E661697003a41b1Bab710813abC45
+
+
+
+
+
+
+Fri Dec 24 2021 23:33:43 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:33:43 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:33:46 gasPrice 95.387797709gwei
+Fri Dec 24 2021 23:33:46 err: insufficient funds for gas * price + value: address 0x3e0145CAF4b98fb41C660E33a280f32b6ae502FA have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:33:46 nft buy tx err from acc[53] 0x3e0145CAF4b98fb41C660E33a280f32b6ae502FA bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:33:46 wait 2 seconds
+Fri Dec 24 2021 23:33:51 gasPrice 93.686112094gwei
+Fri Dec 24 2021 23:33:52 err: insufficient funds for gas * price + value: address 0x9c4AB943AE3c8Dd0A774aD5510C51AF1d3ac639e have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:33:52 wait 1 seconds
+Fri Dec 24 2021 23:33:52 nft buy tx err from acc[54] 0x9c4AB943AE3c8Dd0A774aD5510C51AF1d3ac639e bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:33:55 gasPrice 93.686112094gwei
+Fri Dec 24 2021 23:33:56 err: insufficient funds for gas * price + value: address 0x3f8FD70666b4881DebB1f8A1eaD32e993d1e06dA have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:33:56 nft buy tx err from acc[55] 0x3f8FD70666b4881DebB1f8A1eaD32e993d1e06dA bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:33:56 wait 2 seconds
+Fri Dec 24 2021 23:33:58 loop end
+
+
+
+
+Fri Dec 24 2021 23:34:55 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:34:55 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:34:59 gasPrice 94gwei
+Fri Dec 24 2021 23:34:59 err: insufficient funds for gas * price + value: address 0x3f8FD70666b4881DebB1f8A1eaD32e993d1e06dA have 0 want 10000000000000000 (supplied gas 14981218)
+Fri Dec 24 2021 23:34:59 nft buy tx err from acc[55] 0x3f8FD70666b4881DebB1f8A1eaD32e993d1e06dA bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:34:59 wait 1 seconds
+Fri Dec 24 2021 23:35:03 gasPrice 94gwei
+Fri Dec 24 2021 23:35:04 err: insufficient funds for gas * price + value: address 0x52c391D5885EF338c0fD6aadC2D8e41dDdb6558A have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:35:04 wait 1 seconds
+Fri Dec 24 2021 23:35:04 nft buy tx err from acc[56] 0x52c391D5885EF338c0fD6aadC2D8e41dDdb6558A bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:35:07 gasPrice 94gwei
+Fri Dec 24 2021 23:35:08 err: insufficient funds for gas * price + value: address 0xF0071aA0307C15C84446d9d9F173840913fe55b9 have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:35:08 nft buy tx err from acc[57] 0xF0071aA0307C15C84446d9d9F173840913fe55b9 bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:35:08 wait 2 seconds
+Fri Dec 24 2021 23:35:13 gasPrice 81.6gwei
+Fri Dec 24 2021 23:35:14 nft buy tx err from acc[58] 0x16Fe3bBC67abA120e911635a2538A3C9d8433C9d bal:0ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:35:14 err: insufficient funds for gas * price + value: address 0x16Fe3bBC67abA120e911635a2538A3C9d8433C9d have 0 want 10000000000000000 (supplied gas 14995837)
+Fri Dec 24 2021 23:35:14 wait 2 seconds
+Fri Dec 24 2021 23:35:16 loop end
+
+
+
+
+Fri Dec 24 2021 23:37:22 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:37:22 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:37:25 gasPrice 75gwei
+Fri Dec 24 2021 23:37:26 err: insufficient funds for gas * price + value: address 0x325dbE05156a9e783E899A19cc017C87AFe0E71E have 998120 want 10000000000000000 (supplied gas 15010414)
+Fri Dec 24 2021 23:37:26 nft buy tx err from acc[55] 0x325dbE05156a9e783E899A19cc017C87AFe0E71E bal:0.00000000000099812ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:37:26 wait 2 seconds
+Fri Dec 24 2021 23:37:31 gasPrice 75gwei
+Fri Dec 24 2021 23:37:32 err: insufficient funds for gas * price + value: address 0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC have 979120 want 10000000000000000 (supplied gas 15010499)
+Fri Dec 24 2021 23:37:32 wait 2 seconds
+Fri Dec 24 2021 23:37:32 nft buy tx err from acc[56] 0x4CE4C83424b48F517069CE48A1E7bABf9baD24AC bal:0.00000000000097912ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:37:36 gasPrice 83.6gwei
+Fri Dec 24 2021 23:37:45 nft buy tx sent from acc[57]:0xC4aFb061468DB324Dd85b3885b35BcdE050Fda23 bal:20.474196886919414ETH price:0.01ETH tx:0x97dfa44823def14a084393e68a9cf31133ca6a73eed0e0ce5c1209ac21876590
+Fri Dec 24 2021 23:37:46 nft buy tx wait true
+Fri Dec 24 2021 23:37:48 done nft buy tx from acc[57]:0xC4aFb061468DB324Dd85b3885b35BcdE050Fda23 bal:20.463999666918782896ETH tokenId:126 gas:2.500000008gwei txFee:0.015802535050568112ETH tx:0x97dfa44823def14a084393e68a9cf31133ca6a73eed0e0ce5c1209ac21876590
+Fri Dec 24 2021 23:37:48 send eth to 0xa4C49B3254578f154fD50010f4362CDbfD6E8072
+Fri Dec 24 2021 23:38:01 eth send tx sent from acc[57]:0xC4aFb061468DB324Dd85b3885b35BcdE050Fda23 bal:20.474196886919414ETH tx:0x430ecd5dbff44f788b1dc0ec042e556580c6480d8773998734b1e4122c1b5b89
+Fri Dec 24 2021 23:38:01 send eth tx wait true
+Fri Dec 24 2021 23:38:03 done eth send tx from acc[57]:0xC4aFb061468DB324Dd85b3885b35BcdE050Fda23 bal:0.000000000001004896ETH gas:2.500000008gwei txFee:0.015802535050568112ETH tx:0x97dfa44823def14a084393e68a9cf31133ca6a73eed0e0ce5c1209ac21876590
+Fri Dec 24 2021 23:38:03 wait 1 seconds
+Fri Dec 24 2021 23:38:06 gasPrice 79.744968303gwei
+Fri Dec 24 2021 23:38:16 nft buy tx sent from acc[58]:0xa4C49B3254578f154fD50010f4362CDbfD6E8072 bal:20.46394716691761ETH price:0.01ETH tx:0x35a067f11544456e83e367cfffd80e41ae6bbbe4f3828af7c26fc183b9b7c621
+Fri Dec 24 2021 23:38:16 nft buy tx wait true
+Fri Dec 24 2021 23:38:18 done nft buy tx from acc[58]:0xa4C49B3254578f154fD50010f4362CDbfD6E8072 bal:20.453749946916978896ETH tokenId:127 gas:2.500000008gwei txFee:0.02197165257030929ETH tx:0x35a067f11544456e83e367cfffd80e41ae6bbbe4f3828af7c26fc183b9b7c621
+Fri Dec 24 2021 23:38:19 send eth to 0xbfcb9CB4EFE4491C40d2Be147d1168BC723eF4b1
+Fri Dec 24 2021 23:38:30 eth send tx sent from acc[58]:0xa4C49B3254578f154fD50010f4362CDbfD6E8072 bal:20.46394716691761ETH tx:0xd7a61623678933df4b2c88df173514f30bdc827298849638c7b9d9e5f63559d0
+Fri Dec 24 2021 23:38:31 send eth tx wait true
+Fri Dec 24 2021 23:38:32 done eth send tx from acc[58]:0xa4C49B3254578f154fD50010f4362CDbfD6E8072 bal:0.000000000001000896ETH gas:2.500000008gwei txFee:0.02197165257030929ETH tx:0x35a067f11544456e83e367cfffd80e41ae6bbbe4f3828af7c26fc183b9b7c621
+Fri Dec 24 2021 23:38:32 wait 2 seconds
+Fri Dec 24 2021 23:38:34 loop end
+
+
+
+
+Fri Dec 24 2021 23:42:10 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:42:10 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:42:13 gasPrice 97.748171149gwei
+Fri Dec 24 2021 23:42:30 nft buy tx sent from acc[59]:0xbfcb9CB4EFE4491C40d2Be147d1168BC723eF4b1 bal:20.45369744691581ETH price:0.01ETH tx:0x8bc5125b5e483a6361b8116302a242ee7f700569cac581cde35eabd6b9f8e2cf
+Fri Dec 24 2021 23:42:31 nft buy tx wait true
+Fri Dec 24 2021 23:42:33 done nft buy tx from acc[59]:0xbfcb9CB4EFE4491C40d2Be147d1168BC723eF4b1 bal:20.443500226915178896ETH tokenId:128 gas:2.500000008gwei txFee:0.009200255029440816ETH tx:0x8bc5125b5e483a6361b8116302a242ee7f700569cac581cde35eabd6b9f8e2cf
+Fri Dec 24 2021 23:42:34 send eth to 0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F
+Fri Dec 24 2021 23:42:46 eth send tx sent from acc[59]:0xbfcb9CB4EFE4491C40d2Be147d1168BC723eF4b1 bal:20.45369744691581ETH tx:0x2ddd17305d780dd596b53c3d8cbf956d06f939e00d56d704ec99fa4612974576
+Fri Dec 24 2021 23:42:47 send eth tx wait true
+Fri Dec 24 2021 23:42:49 done eth send tx from acc[59]:0xbfcb9CB4EFE4491C40d2Be147d1168BC723eF4b1 bal:0.002309861369372896ETH gas:2.500000008gwei txFee:0.009200255029440816ETH tx:0x8bc5125b5e483a6361b8116302a242ee7f700569cac581cde35eabd6b9f8e2cf
+Fri Dec 24 2021 23:42:49 wait 1 seconds
+Fri Dec 24 2021 23:42:50 loop end
+
+
+
+
+Fri Dec 24 2021 23:52:20 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:52:20 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:52:23 gasPrice 78gwei
+Fri Dec 24 2021 23:52:31 nft buy tx sent from acc[60]:0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F bal:20.441137865545638ETH price:0.01ETH tx:0x2e6497c155ce6fd50a75b0fe8178ce111340eed164d02ce114dd3abed108926e
+Fri Dec 24 2021 23:52:32 nft buy tx wait true
+Fri Dec 24 2021 23:52:34 done nft buy tx from acc[60]:0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F bal:20.430940645545006896ETH tokenId:129 gas:2.500000008gwei txFee:0.015576995049846384ETH tx:0x2e6497c155ce6fd50a75b0fe8178ce111340eed164d02ce114dd3abed108926e
+Fri Dec 24 2021 23:52:35 send eth to 0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334
+Fri Dec 24 2021 23:52:45 eth send tx sent from acc[60]:0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F bal:20.441137865545638ETH tx:0xffad2f29a41d80e63d62dfa48b486f3fe9c0c0b0ebec72d2de99d36e024c4cc5
+Fri Dec 24 2021 23:52:45 send eth tx wait true
+Fri Dec 24 2021 23:52:47 done eth send tx from acc[60]:0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F bal:0.000000000001002896ETH gas:2.500000008gwei txFee:0.015576995049846384ETH tx:0x2e6497c155ce6fd50a75b0fe8178ce111340eed164d02ce114dd3abed108926e
+Fri Dec 24 2021 23:52:47 wait 2 seconds
+Fri Dec 24 2021 23:52:52 gasPrice 98.616921824gwei
+Fri Dec 24 2021 23:53:00 nft buy tx sent from acc[61]:0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 bal:20.430888145543836ETH price:0.01ETH tx:0x76887f084ef63719eaf19668038e61cadc0c12d5ceef35721279900b6b3d7fff
+Fri Dec 24 2021 23:53:01 nft buy tx wait true
+Fri Dec 24 2021 23:53:03 done nft buy tx from acc[61]:0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 bal:20.420690925543204896ETH tokenId:130 gas:2.500000008gwei txFee:0.002362392507559656ETH tx:0x76887f084ef63719eaf19668038e61cadc0c12d5ceef35721279900b6b3d7fff
+Fri Dec 24 2021 23:53:04 send eth to 0xB493c4Cc67285956C83c38f5BCA532fceA8E7775
+Fri Dec 24 2021 23:53:15 eth send tx sent from acc[61]:0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 bal:20.430888145543836ETH tx:0xefbb12aa560a848387f8a5612445310f83cbd4ce183851a09053e1301538c61f
+Fri Dec 24 2021 23:53:16 send eth tx wait true
+Fri Dec 24 2021 23:53:18 done eth send tx from acc[61]:0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 bal:0.000000000000998896ETH gas:2.500000008gwei txFee:0.002362392507559656ETH tx:0x76887f084ef63719eaf19668038e61cadc0c12d5ceef35721279900b6b3d7fff
+Fri Dec 24 2021 23:53:18 wait 2 seconds
+Fri Dec 24 2021 23:53:20 loop end
+
+
+
+
+Fri Dec 24 2021 23:54:26 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:54:26 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:54:29 gasPrice 65.37988362gwei
+Fri Dec 24 2021 23:54:29 err: insufficient funds for gas * price + value: address 0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F have 1002896 want 10000000000000000 (supplied gas 14995852)
+Fri Dec 24 2021 23:54:29 nft buy tx err from acc[60] 0x4290bbbc7a92a7B0843F3B987A20fC2BAc351C6F bal:0.000000000001002896ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:54:29 wait 1 seconds
+Fri Dec 24 2021 23:54:33 gasPrice 65.37988362gwei
+Fri Dec 24 2021 23:54:34 err: insufficient funds for gas * price + value: address 0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 have 998896 want 10000000000000000 (supplied gas 14981218)
+Fri Dec 24 2021 23:54:34 nft buy tx err from acc[61] 0xa64b30dc11324632CE10eA0fB76A1f24cb7cd334 bal:0.000000000000998896ETH msg Insufficient funds or some data error
+Fri Dec 24 2021 23:54:34 wait 1 seconds
+Fri Dec 24 2021 23:54:35 loop end
+
+
+
+
+Fri Dec 24 2021 23:56:04 Assalamo Alaikum. server on Rinkeby Fri Dec 24 2021 23:56:04 GMT+0500 (Pakistan Standard Time)
+Fri Dec 24 2021 23:56:07 gasPrice 84.891207926gwei
+Fri Dec 24 2021 23:56:17 nft buy tx sent from acc[62]:0xB493c4Cc67285956C83c38f5BCA532fceA8E7775 bal:20.420638425542038ETH price:0.01ETH tx:0xb9ce44dfeb6998e1b74822b99fa32b1da04cfd6d4de4c795625fa81fa7a1449d
+Fri Dec 24 2021 23:56:17 nft buy tx wait true
+Fri Dec 24 2021 23:56:19 done nft buy tx from acc[62]:0xB493c4Cc67285956C83c38f5BCA532fceA8E7775 bal:20.410441205541406896ETH tokenId:131 gas:2.500000008gwei txFee:0.012279497539294392ETH tx:0xb9ce44dfeb6998e1b74822b99fa32b1da04cfd6d4de4c795625fa81fa7a1449d
+Fri Dec 24 2021 23:56:20 send eth to 0x724C5E6CE865717eD97D64b7Ee31B7b12C8fF2Bd
+Fri Dec 24 2021 23:56:31 eth send tx sent from acc[62]:0xB493c4Cc67285956C83c38f5BCA532fceA8E7775 bal:20.420638425542038ETH tx:0x7212e953e14d0dfaa16423098ea3bbee4edd06e10aa24ea453d27a249ae055c1
+Fri Dec 24 2021 23:56:32 send eth tx wait true
+Fri Dec 24 2021 23:56:33 done eth send tx from acc[62]:0xB493c4Cc67285956C83c38f5BCA532fceA8E7775 bal:0.000000000000998896ETH gas:2.500000008gwei txFee:0.012279497539294392ETH tx:0xb9ce44dfeb6998e1b74822b99fa32b1da04cfd6d4de4c795625fa81fa7a1449d
+Fri Dec 24 2021 23:56:33 wait 2 seconds
+Fri Dec 24 2021 23:56:38 gasPrice 98.22996843gwei
+Fri Dec 24 2021 23:56:45 nft buy tx sent from acc[63]:0x724C5E6CE865717eD97D64b7Ee31B7b12C8fF2Bd bal:20.41038870554024ETH price:0.01ETH tx:0x8983eef4046444084fd9af555b52011c5bbd129bcfecd9e1569e556ef00c5d7f
+Fri Dec 24 2021 23:56:46 nft buy tx wait true
+Fri Dec 24 2021 23:56:47 done nft buy tx from acc[63]:0x724C5E6CE865717eD97D64b7Ee31B7b12C8fF2Bd bal:20.400191485539608896ETH tokenId:132 gas:2.500000008gwei txFee:0.003793582512139464ETH tx:0x8983eef4046444084fd9af555b52011c5bbd129bcfecd9e1569e556ef00c5d7f
+Fri Dec 24 2021 23:56:48 send eth to 0x8975bd2517B68af5A585c1b0B51ecA83A94fd8BC
+Fri Dec 24 2021 23:57:00 eth send tx sent from acc[63]:0x724C5E6CE865717eD97D64b7Ee31B7b12C8fF2Bd bal:20.41038870554024ETH tx:0x315d9d3a7e1abbbbf89de80c80615c4af3dd27749d69cf1164921fcdecc54583
+Fri Dec 24 2021 23:57:01 send eth tx wait true
+Fri Dec 24 2021 23:57:03 done eth send tx from acc[63]:0x724C5E6CE865717eD97D64b7Ee31B7b12C8fF2Bd bal:0.000000000001000896ETH gas:2.500000008gwei txFee:0.003793582512139464ETH tx:0x8983eef4046444084fd9af555b52011c5bbd129bcfecd9e1569e556ef00c5d7f
+Fri Dec 24 2021 23:57:03 wait 1 seconds
+Fri Dec 24 2021 23:57:04 loop end

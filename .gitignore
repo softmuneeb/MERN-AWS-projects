@@ -2,7 +2,7 @@
 package-lock.json
 .env
 secret.js
-out.txt
+# out.txt
 .DS_Store
 secret.txt
 secret2.js
