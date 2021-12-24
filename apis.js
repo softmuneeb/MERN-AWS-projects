@@ -18,8 +18,6 @@ export const buyNft = async (
     from = (await web3.eth.getAccounts())[0],
     balance = fromWei(await web3.eth.getBalance(from));
 
-  // estimateGas
-  // todo gasPrice for mainnet
   const gasPrice = (await axios.get('https://etherchain.org/api/gasnow')).data
     .data.fast; //standard, slow
   log('gasPrice ' + fromWei('' + gasPrice, 'gwei') + 'gwei');
@@ -30,12 +28,7 @@ export const buyNft = async (
     value: price
   };
 
-  if (chainIdName === 'Mainnet') {
-    const gasPrice = (await axios.get('https://etherchain.org/api/gasnow')).data
-      .data.fast; //standard, slow
-    log('gasPrice ' + fromWei('' + gasPrice, 'gwei') + 'gwei');
-    options = { ...options, gasPrice: gasPrice };
-  }
+  if (chainIdName === 'Mainnet') options = { ...options, gasPrice };
 
   try {
     options = {

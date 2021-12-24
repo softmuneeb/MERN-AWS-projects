@@ -62,3 +62,68 @@ Sat Dec 25 2021 00:26:36 loop end
 
 
 
+
+
+
+
+Sat Dec 25 2021 04:42:53 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 04:42:53 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 04:42:56 gasPrice 64.535558531gwei
+Sat Dec 25 2021 04:42:56 gasPrice 64.535558531gwei
+Sat Dec 25 2021 04:42:57 insufficient funds for transfer
+Sat Dec 25 2021 04:42:57 nft buy tx err from acc[1] 0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.000000000001ETH msg Insufficient funds or some data error
+
+Sat Dec 25 2021 04:42:57 wait 76 seconds
+
+
+
+
+Sat Dec 25 2021 04:43:13 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 04:43:13 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 04:43:17 gasPrice 64.476328949gwei
+Sat Dec 25 2021 04:43:17 gasPrice 64.476328949gwei
+Sat Dec 25 2021 04:43:18 insufficient funds for transfer
+
+Sat Dec 25 2021 04:43:18 wait 77 seconds
+Sat Dec 25 2021 04:43:18 nft buy tx err from acc[2] 0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0.000000000001ETH msg Insufficient funds or some data error
+
+
+
+
+Sat Dec 25 2021 04:43:35 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 04:43:35 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 04:43:38 gasPrice 71.156536578gwei
+Sat Dec 25 2021 04:43:38 gasPrice 71.156536578gwei
+Sat Dec 25 2021 04:44:09 nft buy tx sent from acc[3]:0x9147dA47d33eA654Da9A47ca43cA87Bb5FC861eD bal:0.238660939998ETH price:0.08ETH tx:0x37ad2a81822b72f3541357f64e81b711626b18cab606557b45b5322278bf335a
+Sat Dec 25 2021 04:44:09 nft buy tx wait true
+Sat Dec 25 2021 04:44:11 done nft buy tx from acc[3]:0x9147dA47d33eA654Da9A47ca43cA87Bb5FC861eD bal:0.153047543140434736ETH tokenId:3546 gasPrice:71.156536578gwei txFee:0.005613396857565264ETH tx:0x37ad2a81822b72f3541357f64e81b711626b18cab606557b45b5322278bf335a
+Sat Dec 25 2021 04:44:12 send eth to 0xe59da268F0a4D130C975b8b5D275f330C2C02A82
+Sat Dec 25 2021 04:44:18 eth send tx sent from acc[3]:0x9147dA47d33eA654Da9A47ca43cA87Bb5FC861eD bal:0.238660939998ETH tx:0xa8fea270a10b9ba8e740b1d47ec3910c00193835eb0e5da3f8cee27f9d73a5be
+Sat Dec 25 2021 04:44:19 send eth tx wait true
+Sat Dec 25 2021 04:44:21 done eth send tx from acc[3]:0x9147dA47d33eA654Da9A47ca43cA87Bb5FC861eD bal:0.153047543140434736ETH gasPrice:71.156536578gwei txFee:0.005613396857565264ETH tx:0xa8fea270a10b9ba8e740b1d47ec3910c00193835eb0e5da3f8cee27f9d73a5be
+
+Sat Dec 25 2021 04:44:21 wait 74 seconds
+Sat Dec 25 2021 04:45:35 loop end
+
+
+
+
+Sat Dec 25 2021 04:46:07 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 04:46:07 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 04:46:10 gasPrice 52gwei
+Sat Dec 25 2021 04:46:11 gasPrice 60gwei
+Sat Dec 25 2021 04:46:43 nft buy tx sent from acc[4]:0xe59da268F0a4D130C975b8b5D275f330C2C02A82 bal:0.15155325587129677ETH price:0.08ETH tx:0x78065322a542014b3310abdb561dd3c95fab79a872377cd1c2dc5f7b794952f0
+Sat Dec 25 2021 04:46:44 nft buy tx wait true
+Sat Dec 25 2021 04:46:46 done nft buy tx from acc[4]:0xe59da268F0a4D130C975b8b5D275f330C2C02A82 bal:0.06681997587129677ETH tokenId:3547 gasPrice:60gwei txFee:0.00473328ETH tx:0x78065322a542014b3310abdb561dd3c95fab79a872377cd1c2dc5f7b794952f0
+Sat Dec 25 2021 04:46:46 send eth to 0x15b8ec38B655C7276A7a7D3AdBbd6f5c9B20D828
+Sat Dec 25 2021 04:47:30 eth send tx sent from acc[4]:0xe59da268F0a4D130C975b8b5D275f330C2C02A82 bal:0.15155325587129677ETH tx:0x953f269cecbfc5b572c927b6c16f090f8460fc9aee8f2206d554b71317bd608c
+Sat Dec 25 2021 04:47:31 send eth tx wait true
+Sat Dec 25 2021 04:47:33 done eth send tx from acc[4]:0xe59da268F0a4D130C975b8b5D275f330C2C02A82 bal:0.000000000001ETH gasPrice:60gwei txFee:0.00473328ETH tx:0x953f269cecbfc5b572c927b6c16f090f8460fc9aee8f2206d554b71317bd608c
+
+Sat Dec 25 2021 04:47:33 wait 81 seconds
+
+
+
+
+Sat Dec 25 2021 04:48:03 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 04:48:03 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 04:48:06 gasPrice 57.285385501gwei
+Sat Dec 25 2021 04:48:06 insufficient funds for transfer
+Sat Dec 25 2021 04:48:06 nft buy tx err from acc[5] 0x15b8ec38B655C7276A7a7D3AdBbd6f5c9B20D828 bal:0.06555997587029677ETH msg Insufficient funds or some data error
+
+Sat Dec 25 2021 04:48:06 wait 67 seconds
