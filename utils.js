@@ -34,8 +34,8 @@ export const log = (text, newLinesBefore = 0) => {
 
 export const time = () => ('' + new Date() + '').split('GMT')[0];
 export const seconds = 1000;
-export const minutes = 60 * seconds;
-export const days = 86400 * seconds;
+export const minutes = 60;
+export const days = 86400;
 
 export function isSuccessfulTransaction(receipt) {
   if (receipt.status == '0x1' || receipt.status == 1) {
