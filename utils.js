@@ -34,6 +34,16 @@ export const log = (text, newLinesBefore = 0) => {
     e => e && console.log(e.message)
   );
 };
+export const log2 = (text, newLinesBefore = 0) => {
+  text = time() + text;
+  for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
+  console.log(text);
+  appendFile(
+    chainIdName === 'Mainnet' ? 'outMainBought.txt' : 'outBought.txt',
+    text + '\n',
+    e => e && console.log(e.message)
+  );
+};
 
 export const time = () => ('' + new Date() + '').split('GMT')[0];
 export const seconds = 1000;

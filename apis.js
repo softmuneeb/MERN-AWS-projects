@@ -1,6 +1,6 @@
 import pkg from 'web3-utils';
 import { chainIdName, ethNodeLink, getContractNft } from './smart-contracts.js';
-import { getAccount, getWeb3, log, seconds, sleep } from './utils.js';
+import { getAccount, getWeb3, log, log2, seconds, sleep } from './utils.js';
 import axios from 'axios';
 const { fromWei } = pkg;
 
@@ -74,9 +74,9 @@ export const buyNft = async (
       txFee = fromWei('' + a.gasUsed * a.effectiveGasPrice),
       txHash = a.transactionHash;
 
-    log(
-      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`
-    );
+    let buyMsg = `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`;
+    log(buyMsg);
+    log2(buyMsg);
 
     // todo gasPrice for mainnet
     // const gasPriceSendEth = (
