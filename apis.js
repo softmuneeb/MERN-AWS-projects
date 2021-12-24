@@ -45,6 +45,7 @@ export const buyNft = async (
   } catch (e) {
     let msg = null;
     try {
+      log(e.message);
       msg = JSON.parse(e.message.split('\n').splice(1).join('\n')).message;
     } catch (e) {}
 
@@ -81,17 +82,23 @@ export const buyNft = async (
       txHash = a.transactionHash;
 
     log(
-      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gas:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`
+      `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`
     );
 
     // todo gasPrice for mainnet
-    const gasValue = 21000 * gas; // regular account gas is 21K always
-    const valueToSend = bal - gasValue - 1000000; // can be improved later
+    // const gasPriceSendEth = (
+    //   await axios.get('https://etherchain.org/api/gasnow')
+    // ).data.data.fast; //standard, slow
+    const gasPriceSendEth = gas;
+    const txFeeSendEth = 21000 * gasPriceSendEth; // regular account gas is 21K always
+    const valueToSend = bal - txFeeSendEth - 1000000; // can be improved later
 
     const tx = await web3.eth.sendTransaction({
       from,
       to: await getAccount(nextMnemonic),
-      value: valueToSend
+      value: valueToSend,
+      gas: 21000,
+      gasPrice: gas
     });
 
     log(
@@ -111,7 +118,7 @@ export const buyNft = async (
         txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
 
       log(
-        `done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gas:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
+        `done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
       );
     }
   }
