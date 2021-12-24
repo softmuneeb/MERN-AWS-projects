@@ -8,8 +8,8 @@
 
 import { nftBuyBot } from './nftBot.js';
 import { PV_KEYS } from './secret2.js';
-const startAccId = 68,
-  endAccId = 70,
+const startAccId = 72,
+  endAccId = 74,
   waitInSecondsFrom = 1,
   waitInSecondsTo = 2;
 

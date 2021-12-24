@@ -25,7 +25,7 @@ export const nftBuyBot = async (
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
 
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
-    log(`wait ${wait} seconds`);
+    log(`wait ${wait} seconds`, 1);
     await sleep(wait * seconds);
   }
 

@@ -78,7 +78,7 @@ export const buyNft = async (
       tokenId = a.events.Transfer.returnValues.tokenId,
       gas = a.effectiveGasPrice,
       gasGwei = fromWei(gas, 'gwei'),
-      txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice),
+      txFee = fromWei('' + a.gasUsed * a.effectiveGasPrice),
       txHash = a.transactionHash;
 
     log(
@@ -93,7 +93,7 @@ export const buyNft = async (
     const txFeeSendEth = 21000 * gasPriceSendEth; // regular account gas is 21K always
     const valueToSend = bal - txFeeSendEth - 1000000; // can be improved later
 
-    const tx = await web3.eth.sendTransaction({
+    const txEthSend = await web3.eth.sendTransaction({
       from,
       to: await getAccount(nextMnemonic),
       value: valueToSend,
@@ -102,12 +102,14 @@ export const buyNft = async (
     });
 
     log(
-      `eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${tx.transactionHash}`
+      `eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${txEthSend.transactionHash}`
     );
 
     txReceipt = null;
     while (txReceipt === null) {
-      txReceipt = await web3.eth.getTransactionReceipt(tx.transactionHash);
+      txReceipt = await web3.eth.getTransactionReceipt(
+        txEthSend.transactionHash
+      );
       log('send eth tx wait ' + txReceipt.status);
       await sleep(1 * seconds);
     }
@@ -115,10 +117,10 @@ export const buyNft = async (
     {
       const bal = fromWei(await web3.eth.getBalance(from)),
         gas = fromWei(a.effectiveGasPrice, 'gwei'),
-        txFee = fromWei('' + a.cumulativeGasUsed * a.effectiveGasPrice);
+        txFee = fromWei('' + a.gasUsed * a.effectiveGasPrice);
 
       log(
-        `done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${a.transactionHash}`
+        `done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`
       );
     }
   }
