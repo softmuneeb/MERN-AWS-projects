@@ -34,3 +34,31 @@ Fri Dec 24 2021 23:23:50 nft buy tx sent from acc[1]:0xd07bcfCC25cb023Fd3e91042A
 Fri Dec 24 2021 23:23:51 nft buy tx wait true
 Fri Dec 24 2021 23:23:52 done nft buy tx from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.41368896ETH tokenId:3541 gas:80gwei txFee:0.78392656ETH tx:0x4f3b6de5289865a49cb509f22337026e693cb0322499a4fd45834a75994ccf58
 Fri Dec 24 2021 23:23:53 send eth to 0xf8B8d025c58E661697003a41b1Bab710813abC45
+
+
+
+Sat Dec 25 2021 00:01:20 Assalamo Alaikum. server on Mainnet Sat Dec 25 2021 00:01:20 GMT+0500 (Pakistan Standard Time)
+Sat Dec 25 2021 00:01:23 gasPrice 85gwei
+Sat Dec 25 2021 00:01:23 gasPrice 85gwei
+Sat Dec 25 2021 00:02:11 nft buy tx sent from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.41368896ETH price:0.08ETH tx:0xabcbb6044d23abdcbcd3b0158d7813d7d91f702e1737b141b53faef2763573dc
+Sat Dec 25 2021 00:02:12 nft buy tx wait true
+Sat Dec 25 2021 00:02:13 done nft buy tx from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.32843698ETH tokenId:3542 gasPrice:85gwei txFee:1.04736201ETH tx:0xabcbb6044d23abdcbcd3b0158d7813d7d91f702e1737b141b53faef2763573dc
+Sat Dec 25 2021 00:02:14 send eth to 0xf8B8d025c58E661697003a41b1Bab710813abC45
+Sat Dec 25 2021 00:07:58 eth send tx sent from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.41368896ETH tx:0x418fe9618efc7d66ddf026d307cfbd43de14b6666d22b6d9169e210b2e2a7b32
+Sat Dec 25 2021 00:07:59 send eth tx wait true
+Sat Dec 25 2021 00:08:01 done eth send tx from acc[1]:0xd07bcfCC25cb023Fd3e91042A49288DD340D8099 bal:0.000000000001ETH gasPrice:85gwei txFee:1.04736201ETH tx:0xabcbb6044d23abdcbcd3b0158d7813d7d91f702e1737b141b53faef2763573dc
+Sat Dec 25 2021 00:08:01 wait 93 seconds
+Sat Dec 25 2021 00:09:36 gasPrice 80gwei
+Sat Dec 25 2021 00:09:37 gasPrice 80gwei
+Sat Dec 25 2021 00:11:14 nft buy tx sent from acc[2]:0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0.326651979999ETH price:0.08ETH tx:0x4b7d218343411fcac53fc1854c00b3fa6c76ca050e3815e711d4267906174d73
+Sat Dec 25 2021 00:11:15 nft buy tx wait true
+Sat Dec 25 2021 00:11:17 done nft buy tx from acc[2]:0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0.240340939999ETH tokenId:3543 gasPrice:80gwei txFee:0.22141384ETH tx:0x4b7d218343411fcac53fc1854c00b3fa6c76ca050e3815e711d4267906174d73
+Sat Dec 25 2021 00:11:18 send eth to 0x9147dA47d33eA654Da9A47ca43cA87Bb5FC861eD
+Sat Dec 25 2021 00:11:52 eth send tx sent from acc[2]:0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0.326651979999ETH tx:0x96604ce73fdd61a53122a82818361eea2fdd5d79b7365413ce9f4c5013dc1daa
+Sat Dec 25 2021 00:11:53 send eth tx wait true
+Sat Dec 25 2021 00:11:54 wait 64 seconds
+Sat Dec 25 2021 00:11:54 done eth send tx from acc[2]:0xf8B8d025c58E661697003a41b1Bab710813abC45 bal:0.000000000001ETH gasPrice:80gwei txFee:0.22141384ETH tx:0x4b7d218343411fcac53fc1854c00b3fa6c76ca050e3815e711d4267906174d73
+Sat Dec 25 2021 00:26:36 loop end
+
+
+

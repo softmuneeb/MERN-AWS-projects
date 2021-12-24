@@ -1,8 +1,7 @@
 import HDWalletProvider from '@truffle/hdwallet-provider';
 import Web3 from 'web3';
 import { appendFile } from 'fs';
-import { ethNodeLink } from './smart-contracts.js';
-
+import { chainIdName, ethNodeLink } from './smart-contracts.js';
 
 // npx ganache-cli -a 1000 -m "the mnemonic is here" > secret.txt
 
@@ -29,7 +28,11 @@ export const log = (text, newLinesBefore = 0) => {
   text = time() + text;
   for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
   console.log(text);
-  appendFile('out.txt', text + '\n', e => e && console.log(e.message));
+  appendFile(
+    chainIdName === 'Mainnet' ? 'outMain.txt' : 'out.txt',
+    text + '\n',
+    e => e && console.log(e.message)
+  );
 };
 
 export const time = () => ('' + new Date() + '').split('GMT')[0];
