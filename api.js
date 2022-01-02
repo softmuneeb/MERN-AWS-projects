@@ -178,7 +178,7 @@ router.post("/error", async (req, res, next) => {
 });
 
 router.get("/zip", async (req, res) => {
-  zipFolder("./metadata", "./metadata.zip", (err) => {
+  zipFolder("../", "./metadata.zip", (err) => {
     if (err) console.log(err.message);
     else {
       res.download("./metadata.zip");
