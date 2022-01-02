@@ -178,10 +178,16 @@ router.post("/error", async (req, res, next) => {
 });
 
 router.get("/zip", async (req, res) => {
-  zipFolder("../", "./metadata.zip", (err) => {
+  zipFolder("./metadata", "./metadata.zip", (err) => {
     if (err) console.log(err.message);
     else {
       res.download("./metadata.zip");
+    }
+  });
+  zipFolder("./penguinImages", "./penguinImages.zip", (err) => {
+    if (err) console.log(err.message);
+    else {
+      res.download("./penguinImages.zip");
     }
   });
 });
