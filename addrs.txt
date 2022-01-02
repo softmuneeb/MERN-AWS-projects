@@ -1,0 +1,67 @@
+Token list:
+
+acc:0x5c3440ce139da8717e0a11362248ac7a3d8b90c0 tokenIds:3340 LanKabelGezogen
+
+
+acc:0x5b715cdc7cae117e1b01a755fa583b39b37882cc tokenIds: 1027,9301,9859 DASHI
+
+acc:0x1d0dc9f7ea3d19d5abffbed3bc804e4ff5cad79a tokenIds: 5282 ValT
+
+acc:0xa5062ef9f20bb54b279e840e518e172ebc3e8459 tokenIds: 3497,6727,7476,7632,8938,9125,9453,9601 IRONSPIKES
+
+acc:0x3b488cb68028baeb4add395d78e63e5e11de9949 tokenIds: 9173 my dad has pyr
+
+acc:0xe284ad9c85426677f9bf4d2cbe9c8e2f595de2ac tokenIds: 1053 lord of etc
+
+acc:0xea5111e25905fd6a12dc93f9d3cec2b24618b929 tokenIds: 3276
+
+acc:0x4d16d1de800f30afbd5f42488cb9440c19c450f2 tokenIds: 3372,3377 SARISE (one of 2 is merged, but the owner doesn’t remember which one was).
+
+
+acc:0x5e838232b5c18407cefe9aefcaa7f14dd2994297 tokenIds: 4866,8161 MR FOUND
+
+acc:0x9814810f6c30dd8ebbc8fb0717113650fed38460 tokenIds: 8536 tamiruo
+
+acc:0xd1aef66300b7b0a35c1eb6c08d0d038ef1de6267 tokenIds: 994,2810,5730,5807,6140,6141,8415
+
+acc:0x319a0085286b225d591f4107b8c0b737c410aa56 tokenIds: 3965 berkek
+
+acc:0xc63b0b64741b46fa6d87da8e54530fb18e803207 tokenIds: 7062
+
+acc:0x601e450918aa542aa5ce7ab97a7a0270a4f2e5bc tokenIds: 4139 Mr Crow
+
+acc:0x7e2a67ecfce3ac2f55ebdd181b937350c9e1c78c tokenIds: 7096 ETHhodler
+
+acc:0xe4cf7060600ba456783c23e35fcc7ee8a2d2eeac tokenIds: 4887
+
+acc:0x5e838232b5c18407cefe9aefcaa7f14dd2994297 tokenIds: 4866,8161 MR FOUND
+
+acc:0x4d502f04e9a61b9800a0a066b178be74f0f1c9a1 tokenIds: 194,2716,3389,4861,4943,5246,5355,7704,8059,8195,8429,8676,9112,9293
+
+acc:0x706bfce0624dbf503d8c15d550c75ca8572f0370 tokenIds: 269,1208,2446,2519,3305,4563,5696,6145,9276
+
+acc:0x3dfc8afcc5c319ad5e1008d34f9b49fe8073687c tokenIds: 2046,5278
+acc:0xbb739ee04f0cc2db984cd47ead003f4c183cf19a tokenIds: 1945 CryptoEncrypto
+
+
+acc: 0x3002c59E381d996AAbe3dAc9521d4d266a135e2e tokenIds: 5869 khazampc
+
+acc:0x79cd4cfc1469d0deb2d32e8bb39da5db0d5e9118 tokenIds: 8222 DERAN
+
+acc:0x224f0f63ddcb29e9b53277d9000315d04cc7cb8f tokenIds: 6,2285,2856,4705,6351,7841
+
+acc:0xc5d0f5e6e4f91b35065eb2da9e270943b95ae745 tokenIds: 6902
+
+acc:0xaab5300471f1ff91b9dcbb8d09966667381c0759 tokenIds: 357,806,809,829,1337,3224,5468,5614,6056,7458 ???
+
+acc:0x29b2004896c3bfa0a3bd64e6173466bbbc9d664c tokenIds: 5569,8600
+
+acc:0xabead749d237736d1e9cc212347a8976f9401ae4 tokenIds: 5070 ceej
+
+acc:0x224f0f63ddcb29e9b53277d9000315d04cc7cb8f tokenIds: 6,2285,2856,4705,6351,7841
+
+9412,9255 (id burnt, he dosn’t remember which one is the merged)  breakstuff.eth looking for the merge fix channel lost my original pengs and didnt recieve the merged either token id is #9412 or #9255 done 2 and cant remeber which one
+
+acc:0x923158A2da51d154172d34C1165C8f1AcAf7CaaF tokenIds:5315 (aggiunto da me) Hef | HAPE
+
+7673: Santa Suite it’s not visible in the traits BOzr#2005
