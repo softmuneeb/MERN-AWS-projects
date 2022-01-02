@@ -21,7 +21,7 @@ router.get("/is-sardine-available/:tokenId", async (req, res) => {
       : res.send({
           success: false,
           message: "token id used for penguin merge",
-        })
+        }),
   );
 });
 
@@ -39,7 +39,7 @@ router.get("/is-penguin-available/:tokenId", async (req, res) => {
         : res.send({
             success: false,
             message: "token id used for penguin merge",
-          })
+          }),
     );
   } catch (e) {
     e && log("server sould not go down\n", e.message);
@@ -93,32 +93,32 @@ router.post("/ninjas", async (req, res, next) => {
               fs.writeFile(
                 `./sardinesUsed/${req.body.metadata.sardineTokenIdUsed}`,
                 "",
-                (e) => e && console.log(e.message)
+                (e) => e && console.log(e.message),
               ); // now sardine is not available penguin merge
 
               fs.writeFile(
                 `./penguinsUsed/${req.body.metadata.tokenId}`,
                 "",
-                (e) => e && console.log(e.message)
+                (e) => e && console.log(e.message),
               ); // now penguin is not available penguin merge
 
               fs.writeFile(
                 `./penguinsUsed/${req.body.metadata.tokenIdBurned}`,
                 "",
-                (e) => e && console.log(e.message)
+                (e) => e && console.log(e.message),
               ); // now penguin burned is not available penguin merge
 
               fs.writeFile(
                 `./penguinImages/${req.body.metadata.tokenId}.png`,
                 req.body.image.split(";base64,").pop(),
                 { encoding: "base64" },
-                (e) => e && console.log(e.message)
+                (e) => e && console.log(e.message),
               );
 
               fs.writeFile(
                 `./metadata/${req.body.metadata.tokenId}`,
                 JSON.stringify(req.body.metadata, null, 4),
-                (e) => e && console.log(e.message)
+                (e) => e && console.log(e.message),
               ); // saving metadata of merged penguin
 
               res.send({ success: true });
@@ -164,30 +164,24 @@ router.post("/error", async (req, res, next) => {
   fs.writeFile(
     `./error/${req.body.metadata.tokenId}`,
     JSON.stringify(req.body.metadata, null, 4),
-    (e) => e && console.log(e.message)
+    (e) => e && console.log(e.message),
   ); // saving metadata of merged penguin
 
   fs.writeFile(
     `./error/${req.body.metadata.tokenId}.png`,
     req.body.image.split(";base64,").pop(),
     { encoding: "base64" },
-    (e) => e && console.log(e.message)
+    (e) => e && console.log(e.message),
   );
 
   res.send({ success: true });
 });
 
 router.get("/zip", async (req, res) => {
-  zipFolder("./metadata", "./metadata.zip", (err) => {
+  zipFolder("./", "./metadata.zip", (err) => {
     if (err) console.log(err.message);
     else {
       res.download("./metadata.zip");
-    }
-  });
-  zipFolder("./penguinImages", "./penguinImages.zip", (err) => {
-    if (err) console.log(err.message);
-    else {
-      res.download("./penguinImages.zip");
     }
   });
 });
