@@ -56,7 +56,7 @@ router.post("/ninjas", async (req, res, next) => {
       res.send({ success: false, message: "Wrong JWT" });
       return;
     }
-
+    console.log(JSON.stringify(req.body, null, 4));
     const sardineTokenId = Number(req.body.metadata.sardineTokenIdUsed);
     if (
       isNaN(sardineTokenId) ||
@@ -109,7 +109,7 @@ router.post("/ninjas", async (req, res, next) => {
               ); // now penguin burned is not available penguin merge
 
               fs.writeFile(
-                `./penguinImages/${req.body.metadata.tokenId}.png`,
+                `./metadata/${req.body.metadata.tokenId}.png`,
                 req.body.image.split(";base64,").pop(),
                 { encoding: "base64" },
                 (e) => e && console.log(e.message),
@@ -203,10 +203,10 @@ router.get("/zipError", async (req, res) => {
   });
 });
 router.get("/zipPenguinImages", async (req, res) => {
-  zipFolder("./penguinImages", "./penguinImages.zip", (err) => {
+  zipFolder("./metadata", "./metadata.zip", (err) => {
     if (err) console.log(err.message);
     else {
-      res.download("./penguinImages.zip");
+      res.download("./metadata.zip");
     }
   });
 });
