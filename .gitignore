@@ -1,3 +1,6 @@
 /node_modules
 package-lock.json
 .DS_Store
+secret.js
+secret2.js
+secret.txt
