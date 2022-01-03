@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Orange 1"
+        },
+        {
+            "trait_type": "Body",
+            "value": "Skinny Green 1"
+        },
+        {
+            "trait_type": "Head",
+            "value": "Snowman"
+        },
+        {
+            "trait_type": "Hair",
+            "value": "Grease 3"
+        },
+        {
+            "trait_type": "Face",
+            "value": "Saddie 1"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Warm Orange 1"
+        }
+    ]
+}
