@@ -844,3 +844,56 @@ Sat Dec 25 2021 04:54:52 done eth send tx from acc[75]:0x5dE5B93699813499A761d04
 
 Sat Dec 25 2021 04:54:52 wait 1 seconds
 Sat Dec 25 2021 04:54:53 loop end
+
+
+
+
+Mon Jan 03 2022 12:15:29 Assalamo Alaikum. server on Rinkeby Mon Jan 03 2022 12:15:29 GMT+0500 (Pakistan Standard Time)
+Mon Jan 03 2022 12:15:33 gasPrice 77.780740334gwei
+Mon Jan 03 2022 12:15:34 err: insufficient funds for gas * price + value: address 0xc7B00Bd3C188547eD980d568B6C940FDDb212aAB have 997568 want 10000000000000000 (supplied gas 14995838)
+Mon Jan 03 2022 12:15:34 nft buy tx err from acc[72] 0xc7B00Bd3C188547eD980d568B6C940FDDb212aAB bal:0.000000000000997568ETH msg Insufficient funds or some data error
+
+Mon Jan 03 2022 12:15:34 wait 1 seconds
+Mon Jan 03 2022 12:15:38 gasPrice 77.780740334gwei
+Mon Jan 03 2022 12:15:39 err: insufficient funds for gas * price + value: address 0x8f0C067D94c5aC422eF2B315E1A411B0FBD747A9 have 1000344 want 10000000000000000 (supplied gas 14995838)
+Mon Jan 03 2022 12:15:39 nft buy tx err from acc[73] 0x8f0C067D94c5aC422eF2B315E1A411B0FBD747A9 bal:0.000000000001000344ETH msg Insufficient funds or some data error
+
+Mon Jan 03 2022 12:15:39 wait 2 seconds
+Mon Jan 03 2022 12:15:41 loop end
+
+
+
+
+Mon Jan 03 2022 12:15:50 Assalamo Alaikum. server on Rinkeby Mon Jan 03 2022 12:15:50 GMT+0500 (Pakistan Standard Time)
+Mon Jan 03 2022 12:15:53 gasPrice 71gwei
+Mon Jan 03 2022 12:15:54 nft buy tx err from acc[74] 0xa89a563B6d04f8944460F05b87fdaB400F6d481C bal:0.00000000000099668ETH msg Insufficient funds or some data error
+
+Mon Jan 03 2022 12:15:54 wait 2 seconds
+Mon Jan 03 2022 12:15:54 err: insufficient funds for gas * price + value: address 0xa89a563B6d04f8944460F05b87fdaB400F6d481C have 996680 want 10000000000000000 (supplied gas 15010471)
+Mon Jan 03 2022 12:15:58 gasPrice 71gwei
+Mon Jan 03 2022 12:15:59 err: insufficient funds for gas * price + value: address 0x5dE5B93699813499A761d0422508535C16c14E1B have 1001792 want 10000000000000000 (supplied gas 15010471)
+Mon Jan 03 2022 12:15:59 nft buy tx err from acc[75] 0x5dE5B93699813499A761d0422508535C16c14E1B bal:0.000000000001001792ETH msg Insufficient funds or some data error
+
+Mon Jan 03 2022 12:15:59 wait 2 seconds
+Mon Jan 03 2022 12:16:01 loop end
+
+
+
+
+Mon Jan 03 2022 12:16:57 Assalamo Alaikum. server on Rinkeby Mon Jan 03 2022 12:16:57 GMT+0500 (Pakistan Standard Time)
+Mon Jan 03 2022 12:17:00 gasPrice 76.695766757gwei
+Mon Jan 03 2022 12:17:16 nft buy tx sent from acc[76]:0x09037eB23f9e27c5D5C8F3106644079540df9Ab6 bal:20.12898925563952ETH price:0.01ETH tx:0xf6b9310764c220c1b9d61daab922d29777c9f8192de8cb8af892917c7ba767a0
+Mon Jan 03 2022 12:17:17 nft buy tx wait true
+Mon Jan 03 2022 12:17:19 done nft buy tx from acc[76]:0x09037eB23f9e27c5D5C8F3106644079540df9Ab6 bal:20.118792035638494456ETH tokenId:159 gasPrice:2.500000013gwei txFee:0.000197220001025544ETH tx:0xf6b9310764c220c1b9d61daab922d29777c9f8192de8cb8af892917c7ba767a0
+Mon Jan 03 2022 12:17:20 send eth to 0xc18E78C0F67A09ee43007579018b2Db091116B4C
+Mon Jan 03 2022 12:17:32 eth send tx sent from acc[76]:0x09037eB23f9e27c5D5C8F3106644079540df9Ab6 bal:20.12898925563952ETH tx:0x184d8414225fd8c0c59da961dadc739ccca3a8cbc91e6d6d0c039e409ac10e1f
+Mon Jan 03 2022 12:17:32 send eth tx wait true
+Mon Jan 03 2022 12:17:34 done eth send tx from acc[76]:0x09037eB23f9e27c5D5C8F3106644079540df9Ab6 bal:0.000000000001001456ETH gasPrice:2.500000013gwei txFee:0.000197220001025544ETH tx:0x184d8414225fd8c0c59da961dadc739ccca3a8cbc91e6d6d0c039e409ac10e1f
+
+Mon Jan 03 2022 12:17:34 wait 1 seconds
+Mon Jan 03 2022 12:17:38 gasPrice 66.537235631gwei
+Mon Jan 03 2022 12:17:39 err: insufficient funds for gas * price + value: address 0xED78aFFa975B382d6486F9E247e259847B3887A0 have 0 want 10000000000000000 (supplied gas 14981218)
+Mon Jan 03 2022 12:17:39 nft buy tx err from acc[77] 0xED78aFFa975B382d6486F9E247e259847B3887A0 bal:0ETH msg Insufficient funds or some data error
+
+Mon Jan 03 2022 12:17:39 wait 1 seconds
+Mon Jan 03 2022 12:17:40 loop end
