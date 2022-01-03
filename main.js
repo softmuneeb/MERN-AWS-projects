@@ -39,18 +39,15 @@ const see = (f) => f.replace("Snow Doodle #", "").replace(".png", "");
 
 const init = async () => {
   let rows = await csvtojson().fromFile("SnowiesMetadata.csv");
-
-  let row = rows[0];
-  let { Background, Body, Head, Hair, Face, Neck } = row;
-  let obj = { Background, Body, Head, Hair, Face, Neck };
-  let metadata = getMetadataFromObj(obj);
-  fs.writeFile(
-    `output/${see(row["File Name"])}`,
-    metadata,
-    (e) => e && console.log(e),
-  );
-
-  console.log(metadata);
+  for (let i = 0; i < rows.length; i++) {
+    const row = rows[i];
+    let { Background, Body, Head, Hair, Face, Neck } = row;
+    let obj = { Background, Body, Head, Hair, Face, Neck };
+    let metadata = getMetadataFromObj(obj);
+    let fileNum = see(row["File Name"]);
+    if (isNaN(fileNum)) console.log("error");
+    fs.writeFile(`output/${fileNum}`, metadata, (e) => e && console.log(e));
+  }
 };
 
 init();
