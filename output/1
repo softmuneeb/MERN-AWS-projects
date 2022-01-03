@@ -24,5 +24,9 @@
             "trait_type": "Neck",
             "value": "Warm Orange 1"
         }
-    ]
+    ],
+    "name": "Snow Doodle #1",
+    "image": "ipfs://QmQULsDNgMK4E3ybstEk93JwshrAfPS22N5s1Rd7eWsBfb/Snow%20Doodle%20%231.png",
+    "description": "Snow Doodle",
+    "external_url": "https://snowdoodle.com"
 }
