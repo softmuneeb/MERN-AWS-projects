@@ -3,3 +3,9 @@ package-lock.json
 /.env
 /secret.js
 /yarn.lock
+metadataEmpty
+output
+.DS_Store
+secret.txt
+.gitignore
+secret2.js
