@@ -9,6 +9,7 @@ const init = async () => {
       try {
         try {
           let filen = (Number(file.replace('.png', '')) + 479) % 9999;
+          
           fs.copyFile(
             searchInFolder + file,
             searchInFolder + 'new/' + filen + '.png',
