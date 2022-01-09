@@ -1,4 +1,9 @@
 /*
+
+this code inputs csv metadata
+outputs metadata in json in files
+
+plan:
 get rows of csv as objs
 for each obj make a new file
 
@@ -6,6 +11,7 @@ open all files, use script in img-gen, img-gen new, bird branch
 add image
 add name
 add description
+
 */
 import csvtojson from "csvtojson";
 import fs from "fs";
@@ -23,10 +29,11 @@ const getMetadataFromObj = (obj) => {
       obj[trait] !== null
     ) {
       attributes.push({ trait_type: trait, value: obj[trait] });
+    } else {
+      console.log({ trait });
     }
   });
 
-  // remove spaces and comma at end of attributes
   const metadata = {
     attributes,
   };
@@ -38,7 +45,9 @@ const getMetadataFromObj = (obj) => {
 const see = (f) => f.replace("Snow Doodle #", "").replace(".png", "");
 
 const init = async () => {
-  let rows = await csvtojson().fromFile("SnowiesMetadata.csv");
+  fs.mkdirSync("metadata");
+
+  let rows = await csvtojson().fromFile("Snow Doodle Metadata.csv");
   for (let i = 0; i < rows.length; i++) {
     const row = rows[i];
     let { Background, Body, Head, Hair, Face, Neck } = row;
@@ -46,7 +55,7 @@ const init = async () => {
     let metadata = getMetadataFromObj(obj);
     let fileNum = see(row["File Name"]);
     if (isNaN(fileNum)) console.log("error");
-    fs.writeFile(`output/${fileNum}`, metadata, (e) => e && console.log(e));
+    fs.writeFile(`metadata/${fileNum}`, metadata, (e) => e && console.log(e));
   }
 };
 
