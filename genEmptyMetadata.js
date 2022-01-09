@@ -16,17 +16,17 @@ const tokenIdFrom = 1;
 const tokenIdTo = 11000;
 
 const emptyImageHash = "QmUs1R1somGh3gTSqeeSGV9bWAWJZTX57j7eDZdDRVzENv";
-const external_url = "https://snowies.club/";
+const external_url = "https://snowiesclub.com/";
 const outputFolder = "./metadataEmpty/";
 const tokenName = "Snow Doodle";
-
+const description = "Unique doodle collectibles on Avax";
 let metadata = {
   image: `ipfs://${emptyImageHash}`,
   external_url,
 };
 
 for (let tokenId = tokenIdFrom; tokenId <= tokenIdTo; tokenId++) {
-  metadata = { ...metadata, name: `${tokenName} #` + tokenId };
+  metadata = { ...metadata, name: `${tokenName} #` + tokenId, description };
   writeFile(
     outputFolder + tokenId,
     JSON.stringify(metadata, null, 4),
