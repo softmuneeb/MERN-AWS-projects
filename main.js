@@ -1,15 +1,13 @@
 const fs = require('fs');
+const dir = "./snowies 10,000/";
+const err = (e) => e && console.log(e.message);
 
 const init = async () => {
-  try {
-    const files = await fs.promises.readdir('.');
-    for (const file of files) {
-      fs.rename(file, file.replace('.json', ''), function (err) {
-        if (err) console.log('ERROR: ' + err.message + err);
-      });
-    }
-  } catch (e) {
-    console.error("We've thrown! Whoops!", e.message);
+  const files = await fs.promises.readdir(dir);
+  console.log("files ", files[0]);
+  for (const file of files) {
+    fs.rename(dir + file, dir + file.replace("Snow Doodle #", ""), err);
+    // break;
   }
 };
 
