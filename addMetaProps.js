@@ -1,27 +1,28 @@
 import { promises, readFileSync, writeFile } from "fs";
-const searchInFolder = "./scriptsOutputs/metadatasRearranged/";
-const tokenName = "Snow Doodle";
+const searchInFolder = "./snowies metadata 10,030/";
 const imagesFolderHash = "QmazfNQJ6Cnx6SvWgKEN4ZwgQKncGCmsHRBY1uzJfSZEFH";
+const tokenName = "Snow Doodle";
+const description = "Unique doodle collectibles on Avax";
+const external_url = "https://snowiesclub.com/";
 
 const init = async () => {
-  try {
-    const files = await promises.readdir(searchInFolder);
+  const files = await promises.readdir(searchInFolder);
 
-    for (const file of files) {
-      const filePath = searchInFolder + file;
-      console.log("file: ", file);
-      try {
-        const content = readFileSync(filePath);
-        let metadata = JSON.parse(content);
-        metadata.name = `${tokenName} #${file}`;
-        metadata.image = `ipfs://${imagesFolderHash}/${file}.png`;
-        writeFile(filePath, JSON.stringify(metadata, null, 4), () => {});
-      } catch (e) {
-        console.error("whoops ", e.message);
-      }
-    }
-  } catch (e) {
-    console.error("We've thrown! Whoops!", e.message);
+  for (const file of files) {
+    const filePath = searchInFolder + file;
+    const content = readFileSync(filePath);
+    let metadata = JSON.parse(content);
+
+    metadata.name = `${tokenName} #${file}`;
+    metadata.image = `ipfs://${imagesFolderHash}/${file}.png`;
+    metadata.description = description;
+    metadata.external_url = external_url;
+
+    writeFile(
+      filePath,
+      JSON.stringify(metadata, null, 4),
+      (e) => e && console.log(e.message),
+    );
   }
 };
 
