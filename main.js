@@ -2,7 +2,7 @@
 
 import fs from "fs";
 
-const N = 8214;
+const N = 8200;
 
 const init = async () => {
   let tokens = JSON.parse(fs.readFileSync("traits.json", "utf8"));
@@ -13,6 +13,7 @@ const init = async () => {
     tokenId: Number(token.tokenId) + N,
   }));
   console.log(JSON.stringify(tokens, null, 4));
+  // node main.js > traits-v1.json
 };
 
 init();
