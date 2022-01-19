@@ -2,7 +2,7 @@
 
 import fs from "fs";
 
-const N = 0;
+const N = 8214;
 
 const init = async () => {
   let tokens = JSON.parse(fs.readFileSync("traits.json", "utf8"));

@@ -10,7 +10,7 @@
         "Ear": "Smoke",
         "Eyes": "VR Headset",
         "Head Gear": "Bandana",
-        "tokenId": 0
+        "tokenId": 8214
     },
     {
         "Background": "Blue",
@@ -23,7 +23,7 @@
         "Ear": "Nothing",
         "Eyes": "Brown Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 1
+        "tokenId": 8215
     },
     {
         "Background": "Peach",
@@ -36,7 +36,7 @@
         "Ear": "Nothing",
         "Eyes": "Sleeping Mask",
         "Head Gear": "Gold Halo",
-        "tokenId": 2
+        "tokenId": 8216
     },
     {
         "Background": "Peach",
@@ -49,7 +49,7 @@
         "Ear": "Nothing",
         "Eyes": "Laser Eyes",
         "Head Gear": "Opera",
-        "tokenId": 3
+        "tokenId": 8217
     },
     {
         "Background": "Bright Orange",
@@ -62,7 +62,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold Mask",
         "Head Gear": "Nothing",
-        "tokenId": 4
+        "tokenId": 8218
     },
     {
         "Background": "Blue Lagoon",
@@ -75,7 +75,7 @@
         "Ear": "Nothing",
         "Eyes": "Heart Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 5
+        "tokenId": 8219
     },
     {
         "Background": "Blue",
@@ -88,7 +88,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Gold VR Headset",
         "Head Gear": "Nothing",
-        "tokenId": 6
+        "tokenId": 8220
     },
     {
         "Background": "Blue Lagoon",
@@ -101,7 +101,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Wink",
         "Head Gear": "White Halo",
-        "tokenId": 7
+        "tokenId": 8221
     },
     {
         "Background": "Light Purple",
@@ -114,7 +114,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Monocle",
         "Head Gear": "Bunny Ears",
-        "tokenId": 8
+        "tokenId": 8222
     },
     {
         "Background": "Peach",
@@ -127,7 +127,7 @@
         "Ear": "Smoke",
         "Eyes": "Monocle",
         "Head Gear": "Blue Halo",
-        "tokenId": 9
+        "tokenId": 8223
     },
     {
         "Background": "Light Purple",
@@ -140,7 +140,7 @@
         "Ear": "Nothing",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Blue Halo",
-        "tokenId": 10
+        "tokenId": 8224
     },
     {
         "Background": "Purple Bubbles",
@@ -153,7 +153,7 @@
         "Ear": "Nothing",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Nothing",
-        "tokenId": 11
+        "tokenId": 8225
     },
     {
         "Background": "Dark purple",
@@ -166,7 +166,7 @@
         "Ear": "Smoke",
         "Eyes": "Wink",
         "Head Gear": "Blue Halo",
-        "tokenId": 12
+        "tokenId": 8226
     },
     {
         "Background": "Peach",
@@ -179,7 +179,7 @@
         "Ear": "Nothing",
         "Eyes": "Sapphire",
         "Head Gear": "Nothing",
-        "tokenId": 13
+        "tokenId": 8227
     },
     {
         "Background": "Purple Bubbles",
@@ -192,7 +192,7 @@
         "Ear": "Ethereum",
         "Eyes": "Sleeping Mask",
         "Head Gear": "Nothing",
-        "tokenId": 14
+        "tokenId": 8228
     },
     {
         "Background": "Vibrant Green",
@@ -205,7 +205,7 @@
         "Ear": "Hoops",
         "Eyes": "Wink",
         "Head Gear": "Nothing",
-        "tokenId": 15
+        "tokenId": 8229
     },
     {
         "Background": "Blue Lagoon",
@@ -218,7 +218,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Laser Eyes",
         "Head Gear": "Flower Crown",
-        "tokenId": 16
+        "tokenId": 8230
     },
     {
         "Background": "Blue Lagoon",
@@ -231,7 +231,7 @@
         "Ear": "Ethereum",
         "Eyes": "Sapphire",
         "Head Gear": "Nothing",
-        "tokenId": 17
+        "tokenId": 8231
     },
     {
         "Background": "Red Ruby",
@@ -244,7 +244,7 @@
         "Ear": "Diamonds",
         "Eyes": "VR Headset",
         "Head Gear": "Nothing",
-        "tokenId": 18
+        "tokenId": 8232
     },
     {
         "Background": "Peach",
@@ -257,7 +257,7 @@
         "Ear": "Ethereum",
         "Eyes": "Laser Eyes",
         "Head Gear": "Nothing",
-        "tokenId": 19
+        "tokenId": 8233
     },
     {
         "Background": "Bright Orange",
@@ -270,7 +270,7 @@
         "Ear": "Nothing",
         "Eyes": "Wink",
         "Head Gear": "Party Hat",
-        "tokenId": 20
+        "tokenId": 8234
     },
     {
         "Background": "Royal Lilac",
@@ -283,7 +283,7 @@
         "Ear": "Smoke",
         "Eyes": "Sapphire",
         "Head Gear": "Party Hat",
-        "tokenId": 21
+        "tokenId": 8235
     },
     {
         "Background": "Royal Lilac",
@@ -296,7 +296,7 @@
         "Ear": "Nothing",
         "Eyes": "Green",
         "Head Gear": "Bandana",
-        "tokenId": 22
+        "tokenId": 8236
     },
     {
         "Background": "Pink Bubbles",
@@ -309,7 +309,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Brown Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 23
+        "tokenId": 8237
     },
     {
         "Background": "Pink Bubbles",
@@ -322,7 +322,7 @@
         "Ear": "Ethereum",
         "Eyes": "Maroon",
         "Head Gear": "Bandana",
-        "tokenId": 24
+        "tokenId": 8238
     },
     {
         "Background": "Blue Lagoon",
@@ -335,7 +335,7 @@
         "Ear": "Nothing",
         "Eyes": "Heart Glasses",
         "Head Gear": "Flower Crown",
-        "tokenId": 25
+        "tokenId": 8239
     },
     {
         "Background": "Dark purple",
@@ -348,7 +348,7 @@
         "Ear": "Nothing",
         "Eyes": "Laser Eyes",
         "Head Gear": "Nothing",
-        "tokenId": 26
+        "tokenId": 8240
     },
     {
         "Background": "Purple Glow",
@@ -361,7 +361,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Monocle",
         "Head Gear": "Opera",
-        "tokenId": 27
+        "tokenId": 8241
     },
     {
         "Background": "Purple Bubbles",
@@ -374,7 +374,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold",
         "Head Gear": "Golden Crown",
-        "tokenId": 28
+        "tokenId": 8242
     },
     {
         "Background": "Peach",
@@ -387,7 +387,7 @@
         "Ear": "Nothing",
         "Eyes": "VR Headset",
         "Head Gear": "Gold Halo",
-        "tokenId": 29
+        "tokenId": 8243
     },
     {
         "Background": "Pink Bubbles",
@@ -400,7 +400,7 @@
         "Ear": "Diamonds",
         "Eyes": "Cat Woman",
         "Head Gear": "Nothing",
-        "tokenId": 30
+        "tokenId": 8244
     },
     {
         "Background": "Pink Bubbles",
@@ -413,7 +413,7 @@
         "Ear": "Ethereum",
         "Eyes": "Monocle",
         "Head Gear": "Nothing",
-        "tokenId": 31
+        "tokenId": 8245
     },
     {
         "Background": "Dark purple",
@@ -426,7 +426,7 @@
         "Ear": "Nothing",
         "Eyes": "Monocle",
         "Head Gear": "Flower Crown",
-        "tokenId": 32
+        "tokenId": 8246
     },
     {
         "Background": "Peach",
@@ -439,7 +439,7 @@
         "Ear": "Smoke",
         "Eyes": "VR Headset",
         "Head Gear": "Nothing",
-        "tokenId": 33
+        "tokenId": 8247
     },
     {
         "Background": "Vibrant Green",
@@ -452,7 +452,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold Intrigue",
         "Head Gear": "Nothing",
-        "tokenId": 34
+        "tokenId": 8248
     },
     {
         "Background": "Peach",
@@ -465,7 +465,7 @@
         "Ear": "Nothing",
         "Eyes": "Purple",
         "Head Gear": "Party Hat",
-        "tokenId": 35
+        "tokenId": 8249
     },
     {
         "Background": "Purple Glow",
@@ -478,7 +478,7 @@
         "Ear": "Hoops",
         "Eyes": "Gold",
         "Head Gear": "Nothing",
-        "tokenId": 36
+        "tokenId": 8250
     },
     {
         "Background": "Vibrant Green",
@@ -491,7 +491,7 @@
         "Ear": "Starfish",
         "Eyes": "Gold VR Headset",
         "Head Gear": "Nothing",
-        "tokenId": 37
+        "tokenId": 8251
     },
     {
         "Background": "Pink Bubbles",
@@ -504,7 +504,7 @@
         "Ear": "Hoops",
         "Eyes": "Maroon",
         "Head Gear": "Nothing",
-        "tokenId": 38
+        "tokenId": 8252
     },
     {
         "Background": "Dark purple",
@@ -517,7 +517,7 @@
         "Ear": "Nothing",
         "Eyes": "Diamond",
         "Head Gear": "Blue Halo",
-        "tokenId": 39
+        "tokenId": 8253
     },
     {
         "Background": "Bright Orange",
@@ -530,7 +530,7 @@
         "Ear": "Nothing",
         "Eyes": "Brown Glasses",
         "Head Gear": "White Halo",
-        "tokenId": 40
+        "tokenId": 8254
     },
     {
         "Background": "Vibrant Green",
@@ -543,7 +543,7 @@
         "Ear": "Nothing",
         "Eyes": "Speed Dealers",
         "Head Gear": "White Halo",
-        "tokenId": 41
+        "tokenId": 8255
     },
     {
         "Background": "Purple Glow",
@@ -556,7 +556,7 @@
         "Ear": "Starfish",
         "Eyes": "3D Glasses",
         "Head Gear": "Gold Halo",
-        "tokenId": 42
+        "tokenId": 8256
     },
     {
         "Background": "Purple Glow",
@@ -569,7 +569,7 @@
         "Ear": "Starfish",
         "Eyes": "VR Headset",
         "Head Gear": "Gold Halo",
-        "tokenId": 43
+        "tokenId": 8257
     },
     {
         "Background": "Bright Orange",
@@ -582,7 +582,7 @@
         "Ear": "Nothing",
         "Eyes": "Green",
         "Head Gear": "Nothing",
-        "tokenId": 44
+        "tokenId": 8258
     },
     {
         "Background": "Blue Lagoon",
@@ -595,7 +595,7 @@
         "Ear": "Ethereum",
         "Eyes": "Gold VR Headset",
         "Head Gear": "Golden Crown",
-        "tokenId": 45
+        "tokenId": 8259
     },
     {
         "Background": "Dark purple",
@@ -608,7 +608,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold",
         "Head Gear": "Blue Halo",
-        "tokenId": 46
+        "tokenId": 8260
     },
     {
         "Background": "Peach",
@@ -621,7 +621,7 @@
         "Ear": "Nothing",
         "Eyes": "Sapphire",
         "Head Gear": "Opera",
-        "tokenId": 47
+        "tokenId": 8261
     },
     {
         "Background": "Blue Lagoon",
@@ -634,7 +634,7 @@
         "Ear": "Hoops",
         "Eyes": "Sleeping Mask",
         "Head Gear": "Nothing",
-        "tokenId": 48
+        "tokenId": 8262
     },
     {
         "Background": "Red Ruby",
@@ -647,7 +647,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Maroon",
         "Head Gear": "Nothing",
-        "tokenId": 49
+        "tokenId": 8263
     },
     {
         "Background": "Purple Bubbles",
@@ -660,7 +660,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold VR Headset",
         "Head Gear": "Nothing",
-        "tokenId": 50
+        "tokenId": 8264
     },
     {
         "Background": "Blue Lagoon",
@@ -673,7 +673,7 @@
         "Ear": "Starfish",
         "Eyes": "Gold",
         "Head Gear": "Opera",
-        "tokenId": 51
+        "tokenId": 8265
     },
     {
         "Background": "Royal Lilac",
@@ -686,7 +686,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold",
         "Head Gear": "Nothing",
-        "tokenId": 52
+        "tokenId": 8266
     },
     {
         "Background": "Dark purple",
@@ -699,7 +699,7 @@
         "Ear": "Smoke",
         "Eyes": "Olive",
         "Head Gear": "Nothing",
-        "tokenId": 53
+        "tokenId": 8267
     },
     {
         "Background": "Purple Glow",
@@ -712,7 +712,7 @@
         "Ear": "Nothing",
         "Eyes": "Speed Dealers",
         "Head Gear": "Nothing",
-        "tokenId": 54
+        "tokenId": 8268
     },
     {
         "Background": "Red Ruby",
@@ -725,7 +725,7 @@
         "Ear": "Nothing",
         "Eyes": "VR Headset",
         "Head Gear": "Opera",
-        "tokenId": 55
+        "tokenId": 8269
     },
     {
         "Background": "Peach",
@@ -738,7 +738,7 @@
         "Ear": "Nothing",
         "Eyes": "Brown Glasses",
         "Head Gear": "Opera",
-        "tokenId": 56
+        "tokenId": 8270
     },
     {
         "Background": "Peach",
@@ -751,7 +751,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Cat Woman",
         "Head Gear": "Nothing",
-        "tokenId": 57
+        "tokenId": 8271
     },
     {
         "Background": "Pink Bubbles",
@@ -764,7 +764,7 @@
         "Ear": "Nothing",
         "Eyes": "Monocle",
         "Head Gear": "Nothing",
-        "tokenId": 58
+        "tokenId": 8272
     },
     {
         "Background": "Blue",
@@ -777,7 +777,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold Mask",
         "Head Gear": "Opera",
-        "tokenId": 59
+        "tokenId": 8273
     },
     {
         "Background": "Royal Lilac",
@@ -790,7 +790,7 @@
         "Ear": "Nothing",
         "Eyes": "Heart Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 60
+        "tokenId": 8274
     },
     {
         "Background": "Blue Lagoon",
@@ -803,7 +803,7 @@
         "Ear": "Hoops",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Party Hat",
-        "tokenId": 61
+        "tokenId": 8275
     },
     {
         "Background": "Red Ruby",
@@ -816,7 +816,7 @@
         "Ear": "Hoops",
         "Eyes": "Cat Woman",
         "Head Gear": "White Halo",
-        "tokenId": 62
+        "tokenId": 8276
     },
     {
         "Background": "Light Purple",
@@ -829,7 +829,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Gold Mask",
         "Head Gear": "Gold Halo",
-        "tokenId": 63
+        "tokenId": 8277
     },
     {
         "Background": "Bright Orange",
@@ -842,7 +842,7 @@
         "Ear": "Starfish",
         "Eyes": "Gold Mask",
         "Head Gear": "Blue Halo",
-        "tokenId": 64
+        "tokenId": 8278
     },
     {
         "Background": "Vibrant Green",
@@ -855,7 +855,7 @@
         "Ear": "Nothing",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Opera",
-        "tokenId": 65
+        "tokenId": 8279
     },
     {
         "Background": "Purple Glow",
@@ -868,7 +868,7 @@
         "Ear": "Nothing",
         "Eyes": "Green",
         "Head Gear": "Nothing",
-        "tokenId": 66
+        "tokenId": 8280
     },
     {
         "Background": "Dark purple",
@@ -881,7 +881,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Cat Woman",
         "Head Gear": "Nothing",
-        "tokenId": 67
+        "tokenId": 8281
     },
     {
         "Background": "Bright Orange",
@@ -894,7 +894,7 @@
         "Ear": "Smoke",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Golden Crown",
-        "tokenId": 68
+        "tokenId": 8282
     },
     {
         "Background": "Purple Glow",
@@ -907,7 +907,7 @@
         "Ear": "Ethereum",
         "Eyes": "Brown Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 69
+        "tokenId": 8283
     },
     {
         "Background": "Bright Orange",
@@ -920,7 +920,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Party Hat",
-        "tokenId": 70
+        "tokenId": 8284
     },
     {
         "Background": "Blue",
@@ -933,7 +933,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Monocle",
         "Head Gear": "Bandana",
-        "tokenId": 71
+        "tokenId": 8285
     },
     {
         "Background": "Vibrant Green",
@@ -946,7 +946,7 @@
         "Ear": "Hoops",
         "Eyes": "Gold",
         "Head Gear": "Bandana",
-        "tokenId": 72
+        "tokenId": 8286
     },
     {
         "Background": "Dark purple",
@@ -959,7 +959,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Purple",
         "Head Gear": "Nothing",
-        "tokenId": 73
+        "tokenId": 8287
     },
     {
         "Background": "Peach",
@@ -972,7 +972,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold",
         "Head Gear": "Nothing",
-        "tokenId": 74
+        "tokenId": 8288
     },
     {
         "Background": "Blue Lagoon",
@@ -985,7 +985,7 @@
         "Ear": "Ethereum",
         "Eyes": "Monocle",
         "Head Gear": "Flower Crown",
-        "tokenId": 75
+        "tokenId": 8289
     },
     {
         "Background": "Peach",
@@ -998,7 +998,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Speed Dealers",
         "Head Gear": "Golden Crown",
-        "tokenId": 76
+        "tokenId": 8290
     },
     {
         "Background": "Light Purple",
@@ -1011,7 +1011,7 @@
         "Ear": "Starfish",
         "Eyes": "Emerald",
         "Head Gear": "Nothing",
-        "tokenId": 77
+        "tokenId": 8291
     },
     {
         "Background": "Blue",
@@ -1024,7 +1024,7 @@
         "Ear": "Diamonds",
         "Eyes": "Olive",
         "Head Gear": "Gold Halo",
-        "tokenId": 78
+        "tokenId": 8292
     },
     {
         "Background": "Dark purple",
@@ -1037,7 +1037,7 @@
         "Ear": "Hoops",
         "Eyes": "Gold",
         "Head Gear": "Nothing",
-        "tokenId": 79
+        "tokenId": 8293
     },
     {
         "Background": "Purple Glow",
@@ -1050,7 +1050,7 @@
         "Ear": "Nothing",
         "Eyes": "Sleeping Mask",
         "Head Gear": "Bunny Ears",
-        "tokenId": 80
+        "tokenId": 8294
     },
     {
         "Background": "Dark purple",
@@ -1063,7 +1063,7 @@
         "Ear": "Ethereum",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Nothing",
-        "tokenId": 81
+        "tokenId": 8295
     },
     {
         "Background": "Peach",
@@ -1076,7 +1076,7 @@
         "Ear": "Nothing",
         "Eyes": "Sapphire",
         "Head Gear": "Nothing",
-        "tokenId": 82
+        "tokenId": 8296
     },
     {
         "Background": "Blue Lagoon",
@@ -1089,7 +1089,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Sleeping Mask",
         "Head Gear": "Nothing",
-        "tokenId": 83
+        "tokenId": 8297
     },
     {
         "Background": "Dark purple",
@@ -1102,7 +1102,7 @@
         "Ear": "Ethereum",
         "Eyes": "Monocle",
         "Head Gear": "Nothing",
-        "tokenId": 84
+        "tokenId": 8298
     },
     {
         "Background": "Light Purple",
@@ -1115,7 +1115,7 @@
         "Ear": "Smoke",
         "Eyes": "Diamond",
         "Head Gear": "Bunny Ears",
-        "tokenId": 85
+        "tokenId": 8299
     },
     {
         "Background": "Purple Bubbles",
@@ -1128,7 +1128,7 @@
         "Ear": "Hoops",
         "Eyes": "Purple",
         "Head Gear": "Bunny Ears",
-        "tokenId": 86
+        "tokenId": 8300
     },
     {
         "Background": "Light Purple",
@@ -1141,7 +1141,7 @@
         "Ear": "Wrapped Ethereum",
         "Eyes": "Purple",
         "Head Gear": "Nothing",
-        "tokenId": 87
+        "tokenId": 8301
     },
     {
         "Background": "Dark purple",
@@ -1154,7 +1154,7 @@
         "Ear": "Nothing",
         "Eyes": "Wink",
         "Head Gear": "Golden Crown",
-        "tokenId": 88
+        "tokenId": 8302
     },
     {
         "Background": "Light Purple",
@@ -1167,7 +1167,7 @@
         "Ear": "Hoops",
         "Eyes": "Gold VR Headset",
         "Head Gear": "Opera",
-        "tokenId": 89
+        "tokenId": 8303
     },
     {
         "Background": "Vibrant Green",
@@ -1180,7 +1180,7 @@
         "Ear": "Nothing",
         "Eyes": "Wink",
         "Head Gear": "Golden Crown",
-        "tokenId": 90
+        "tokenId": 8304
     },
     {
         "Background": "Dark purple",
@@ -1193,7 +1193,7 @@
         "Ear": "Nothing",
         "Eyes": "Brown Glasses",
         "Head Gear": "Golden Crown",
-        "tokenId": 91
+        "tokenId": 8305
     },
     {
         "Background": "Bright Orange",
@@ -1206,7 +1206,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold Mask",
         "Head Gear": "Blue Halo",
-        "tokenId": 92
+        "tokenId": 8306
     },
     {
         "Background": "Blue Lagoon",
@@ -1219,7 +1219,7 @@
         "Ear": "Nothing",
         "Eyes": "Purple",
         "Head Gear": "Opera",
-        "tokenId": 93
+        "tokenId": 8307
     },
     {
         "Background": "Red Ruby",
@@ -1232,7 +1232,7 @@
         "Ear": "Nothing",
         "Eyes": "3D Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 94
+        "tokenId": 8308
     },
     {
         "Background": "Royal Lilac",
@@ -1245,7 +1245,7 @@
         "Ear": "Nothing",
         "Eyes": "3D Glasses",
         "Head Gear": "Bandana",
-        "tokenId": 95
+        "tokenId": 8309
     },
     {
         "Background": "Blue Lagoon",
@@ -1258,7 +1258,7 @@
         "Ear": "Smoke",
         "Eyes": "Gold Mask",
         "Head Gear": "Nothing",
-        "tokenId": 96
+        "tokenId": 8310
     },
     {
         "Background": "Bright Orange",
@@ -1271,7 +1271,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold Mask",
         "Head Gear": "Golden Crown",
-        "tokenId": 97
+        "tokenId": 8311
     },
     {
         "Background": "Purple Bubbles",
@@ -1284,7 +1284,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Heart Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 98
+        "tokenId": 8312
     },
     {
         "Background": "Purple Bubbles",
@@ -1297,7 +1297,7 @@
         "Ear": "Nothing",
         "Eyes": "Gold",
         "Head Gear": "Gold Halo",
-        "tokenId": 99
+        "tokenId": 8313
     },
     {
         "Background": "Purple Glow",
@@ -1310,7 +1310,7 @@
         "Ear": "Nothing",
         "Eyes": "Heart Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 100
+        "tokenId": 8314
     },
     {
         "Background": "Purple Bubbles",
@@ -1323,7 +1323,7 @@
         "Ear": "Hoops",
         "Eyes": "Sapphire",
         "Head Gear": "Nothing",
-        "tokenId": 101
+        "tokenId": 8315
     },
     {
         "Background": "Bright Orange",
@@ -1336,7 +1336,7 @@
         "Ear": "Smoke",
         "Eyes": "Maroon",
         "Head Gear": "Bunny Ears",
-        "tokenId": 102
+        "tokenId": 8316
     },
     {
         "Background": "Bright Orange",
@@ -1349,7 +1349,7 @@
         "Ear": "Flower Earrings",
         "Eyes": "Monocle",
         "Head Gear": "Golden Crown",
-        "tokenId": 103
+        "tokenId": 8317
     },
     {
         "Background": "Dark purple",
@@ -1362,7 +1362,7 @@
         "Ear": "Ethereum",
         "Eyes": "Purple",
         "Head Gear": "Nothing",
-        "tokenId": 104
+        "tokenId": 8318
     },
     {
         "Background": "Light Purple",
@@ -1375,7 +1375,7 @@
         "Ear": "Nothing",
         "Eyes": "Monocle",
         "Head Gear": "Opera",
-        "tokenId": 105
+        "tokenId": 8319
     },
     {
         "Background": "Bright Orange",
@@ -1388,7 +1388,7 @@
         "Ear": "Nothing",
         "Eyes": "Purple",
         "Head Gear": "Bandana",
-        "tokenId": 106
+        "tokenId": 8320
     },
     {
         "Background": "Vibrant Green",
@@ -1401,7 +1401,7 @@
         "Ear": "Nothing",
         "Eyes": "Green",
         "Head Gear": "Nothing",
-        "tokenId": 107
+        "tokenId": 8321
     },
     {
         "Background": "Purple Glow",
@@ -1414,7 +1414,7 @@
         "Ear": "Starfish",
         "Eyes": "Brown Glasses",
         "Head Gear": "Nothing",
-        "tokenId": 108
+        "tokenId": 8322
     },
     {
         "Background": "Vibrant Green",
@@ -1427,6 +1427,6 @@
         "Ear": "Flower Earrings",
         "Eyes": "Puppy Eyes",
         "Head Gear": "Flower Crown",
-        "tokenId": 109
+        "tokenId": 8323
     }
 ]
