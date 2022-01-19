@@ -1,7 +1,8 @@
-// const HTMLtoDOCX = require("html-to-docx");
+import fs from "fs";
 
 const init = async () => {
-  fs.readFileSync()
+  let json = fs.readFileSync("traits.json");
+  console.log({ json });
 };
 
 init();
