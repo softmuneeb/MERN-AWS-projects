@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Dark purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Leather Jacket"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Tab"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sleeping Mask"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

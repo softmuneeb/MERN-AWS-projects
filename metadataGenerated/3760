@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Dress"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Royal Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Bronze"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Lolipop"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Hoops"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold Mask"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

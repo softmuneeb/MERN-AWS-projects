@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Bright Orange"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Bazooka"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Dress"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Dummy"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Speed Dealers"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Gold Halo"
+        }
+    ]
+}

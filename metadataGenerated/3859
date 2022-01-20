@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Light Purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Astronaut"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Money Chain"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Acid Tab"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Green"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cleopatra"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Bronze"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smirk"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Olive"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

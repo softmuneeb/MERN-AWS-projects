@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Peach"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Samurai Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Army"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Cream"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Black Card"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold Intrigue"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bandana"
+        }
+    ]
+}

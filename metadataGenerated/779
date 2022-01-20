@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Red Ruby"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Red Bikini"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Emerald"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Rose"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "3D Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Party Hat"
+        }
+    ]
+}

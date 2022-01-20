@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Opera Dress"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Rose"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Wrapped Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sleeping Mask"
+        }
+    ]
+}

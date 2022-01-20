@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Opera Dress"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sapphire"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bunny Ears"
+        }
+    ]
+}

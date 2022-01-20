@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Red Ruby"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "TRON"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Pipe"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Puppy Eyes"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bandana"
+        }
+    ]
+}

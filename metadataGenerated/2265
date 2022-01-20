@@ -1,0 +1,44 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Peach"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Shanghai Umbrella"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Leather Jacket"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Flower Earrings"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Heart Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

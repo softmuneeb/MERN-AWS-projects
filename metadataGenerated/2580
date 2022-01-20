@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Dark purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Prison Uniform"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smile"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sapphire"
+        }
+    ]
+}

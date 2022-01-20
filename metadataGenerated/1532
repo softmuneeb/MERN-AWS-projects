@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Dark purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cheerleader"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Cream"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Grin"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Gold Halo"
+        }
+    ]
+}

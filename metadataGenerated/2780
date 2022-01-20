@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Bright Orange"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Denim Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Starfish"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Denim Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Diamond"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bunny Ears"
+        }
+    ]
+}

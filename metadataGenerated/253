@@ -1,0 +1,44 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Peach"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Golden Bazooka"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Kill Bill"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Maroon Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Joint"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Hoops"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Designer Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Party Hat"
+        }
+    ]
+}

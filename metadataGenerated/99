@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Peach"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Hawaiian Shirt"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smile"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Laser Eyes"
+        }
+    ]
+}

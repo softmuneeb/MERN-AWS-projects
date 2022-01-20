@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue Lagoon"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Fur Jacket"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Puppy Eyes"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bunny Ears"
+        }
+    ]
+}

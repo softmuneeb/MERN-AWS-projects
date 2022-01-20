@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Peach"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Night Gown"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Maroon"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Starfish"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "3D Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

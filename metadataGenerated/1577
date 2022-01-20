@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Superhero"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Stunned"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Flower Earrings"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Blue Halo"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cleopatra"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Purple"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Hoops"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold Mask"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bandana"
+        }
+    ]
+}

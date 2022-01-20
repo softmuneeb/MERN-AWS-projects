@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Light Purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Red Bikini"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Emerald"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Heart Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

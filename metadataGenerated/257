@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Night Gown"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "String Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Diamonds"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Olive"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Party Hat"
+        }
+    ]
+}

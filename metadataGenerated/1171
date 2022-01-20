@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Red Ruby"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Harley"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Bronze"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Pipe"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Starfish"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bandana"
+        }
+    ]
+}

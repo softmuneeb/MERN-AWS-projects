@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Rain Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Maroon Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Wrapped Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Speed Dealers"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Night Gown"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Cream"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Joint"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Heart Glasses"
+        }
+    ]
+}

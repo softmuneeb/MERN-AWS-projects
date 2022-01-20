@@ -1,0 +1,44 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Bubbles"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Samurai Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cheerleader"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Money Chain"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Bronze"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Hoops"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold VR Headset"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

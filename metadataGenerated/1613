@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "High Fashion"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Black"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Joint"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Diamonds"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold Mask"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Party Hat"
+        }
+    ]
+}

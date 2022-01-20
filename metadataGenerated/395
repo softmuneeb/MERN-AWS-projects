@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Bubbles"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Denim Jacket"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Heart Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bunny Ears"
+        }
+    ]
+}

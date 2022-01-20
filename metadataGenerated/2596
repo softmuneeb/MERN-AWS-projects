@@ -1,0 +1,44 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue Lagoon"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Golden Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Red Bikini"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Black"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smile"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Diamonds"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Laser Eyes"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Party Hat"
+        }
+    ]
+}

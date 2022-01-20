@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cheerleader"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Pipe"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Wink"
+        }
+    ]
+}

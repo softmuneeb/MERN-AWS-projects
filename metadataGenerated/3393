@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Shanghai Umbrella"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Opera Dress"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Maroon"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Green"
+        }
+    ]
+}

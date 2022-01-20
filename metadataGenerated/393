@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue Lagoon"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Fur Jacket"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "String Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Silver Card"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Designer Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bunny Ears"
+        }
+    ]
+}

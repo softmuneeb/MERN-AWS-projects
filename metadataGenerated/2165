@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Dark purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Superhero"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Maroon"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Laser Eyes"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Glow"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Dress"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Maroon"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Rose"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Brown Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

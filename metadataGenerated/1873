@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Glow"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Kimono"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Tab"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold VR Headset"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}

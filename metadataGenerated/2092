@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Bubbles"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Turtle Neck"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Cream"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Pipe"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Speed Dealers"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

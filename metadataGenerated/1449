@@ -1,0 +1,44 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Dark purple"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Golden Bazooka"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Cheerleader"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Hawaiian"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Bronze"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Dummy"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Diamonds"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Wink"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

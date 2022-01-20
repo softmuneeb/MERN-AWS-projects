@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Pink Bubbles"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Rain Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sapphire"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Golden Crown"
+        }
+    ]
+}

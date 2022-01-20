@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Night Gown"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Money Chain"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Sapphire"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Lolipop"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Monocle"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}

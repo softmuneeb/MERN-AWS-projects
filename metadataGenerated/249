@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Royal Lilac"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Turtle Neck"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "String Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Card"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold Intrigue"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Blue Halo"
+        }
+    ]
+}

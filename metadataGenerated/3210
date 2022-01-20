@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue Lagoon"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Hawaiian Shirt"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Orange & Yellow"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Cigarette"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Starfish"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Monocle"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Blue Halo"
+        }
+    ]
+}

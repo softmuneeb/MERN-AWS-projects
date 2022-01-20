@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Harley"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Zip"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Hoops"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sleeping Mask"
+        }
+    ]
+}

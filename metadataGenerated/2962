@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Pink Bubbles"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Prison Uniform"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Maroon Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Lolipop"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Smoke"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Laser Eyes"
+        }
+    ]
+}

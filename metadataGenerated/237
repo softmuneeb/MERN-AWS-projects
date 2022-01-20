@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Bazooka"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Prison Uniform"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Rose"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

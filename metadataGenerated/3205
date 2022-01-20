@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Glow"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Shanghai Umbrella"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Leather Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Happy"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Brown Glasses"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Blue Halo"
+        }
+    ]
+}

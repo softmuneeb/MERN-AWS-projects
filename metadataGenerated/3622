@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Hawaiian Shirt"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Silver Card"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Speed Dealers"
+        }
+    ]
+}

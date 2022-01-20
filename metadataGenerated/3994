@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue Lagoon"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Golden Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Opera Dress"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Spiral Choker"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Green"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Joint"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Monocle"
+        }
+    ]
+}

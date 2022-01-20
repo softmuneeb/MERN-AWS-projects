@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Bright Orange"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Red Bikini"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Maroon Gray"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Lolipop"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Speed Dealers"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Bandana"
+        }
+    ]
+}

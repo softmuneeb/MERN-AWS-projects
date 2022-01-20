@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Opera Dress"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Brown"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Acid Tab"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Cat Woman"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Flower Crown"
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Red Ruby"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Dark Chocolate"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Army"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Silver Card"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Diamonds"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sleeping Mask"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

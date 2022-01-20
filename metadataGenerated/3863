@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Purple Glow"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Samurai Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Giraffe"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Night Gown"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "String Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Light Maroon"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Lolipop"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Monocle"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Opera"
+        }
+    ]
+}

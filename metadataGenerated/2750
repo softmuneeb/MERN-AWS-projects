@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Pink Bubbles"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Leather Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Rose"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Sleeping Mask"
+        }
+    ]
+}

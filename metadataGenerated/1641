@@ -1,0 +1,28 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Leopard"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Turtle Neck"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Golden Lolipop"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Purple"
+        }
+    ]
+}

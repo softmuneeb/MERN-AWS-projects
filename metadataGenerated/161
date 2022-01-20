@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Light Purple"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Brown"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Superhero"
+        },
+        {
+            "trait_type": "Neck",
+            "value": "Royal Necklace"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Acid Tab"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Flower Earrings"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold VR Headset"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "Flower Crown"
+        }
+    ]
+}

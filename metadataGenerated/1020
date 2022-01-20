@@ -1,0 +1,36 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Pink Bubbles"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Bazooka"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Wonder Woman"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Red"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smirk"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Olive"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}

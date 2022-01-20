@@ -1,0 +1,40 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Background",
+            "value": "Vibrant Green"
+        },
+        {
+            "trait_type": "Back",
+            "value": "Golden Swords"
+        },
+        {
+            "trait_type": "Skin",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Body Gear",
+            "value": "Rain Jacket"
+        },
+        {
+            "trait_type": "Mane",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Mouth",
+            "value": "Smirk"
+        },
+        {
+            "trait_type": "Ear",
+            "value": "Ethereum"
+        },
+        {
+            "trait_type": "Eyes",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Head Gear",
+            "value": "White Halo"
+        }
+    ]
+}
