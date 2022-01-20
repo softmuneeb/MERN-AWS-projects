@@ -1,6 +1,6 @@
 import { promises, readFileSync, writeFile } from "fs";
 const searchInFolder = "./metadataGenerated/";
-const imagesFolderHash = "QmX5rF55nRfzs8nEXA7wC2eREieHq5Xynh6kghyR6NfTau";
+const imagesFolderHash = "QmNdEdcdZWrT6Ltg2yMHsKiHAR3PF1H3ze9bxqUCVvUGW7";
 const tokenName = "Cheeky Cougar";
 // const description = "Unique doodle collectibles on Avax";
 const external_url = "https://www.cheekycougarclub.com/";
