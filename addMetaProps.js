@@ -37,7 +37,7 @@ const init = async () => {
     // ];
 
     writeFile(
-      "./metadataGenerated1/" + file,
+      "metadataGenerated1/" + file,
       JSON.stringify(metadata, null, 4),
       (e) => e && console.log(e.message),
     );
