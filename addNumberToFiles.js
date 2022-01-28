@@ -1,12 +1,14 @@
 import { rename, promises } from "fs";
+import { copyFile } from "fs/promises";
 
 const someThing = (searchInFolder, file) => {
-  let fileNumber = Number(file.replace(".png", "")) + 0;
+  let fileNumber = Number(file.replace(".png", "")) + 3647;
   if (isNaN(fileNumber)) console.log({ file });
-  rename(
+  copyFile(
     searchInFolder + file,
-    searchInFolder + fileNumber + ".png",
-    (e) => e && console.log(e.message),
+    "./new/" + fileNumber + ".png",
+    0,
+    (e) => e && console.log(e.message)
   );
 };
 

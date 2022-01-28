@@ -1,5 +1,5 @@
 import { addNumberToFiles } from "./addNumberToFiles.js";
 
-const searchInFolder = "./snowies 30/";
+const searchInFolder = "./someFolder/";
 
 addNumberToFiles(searchInFolder);
