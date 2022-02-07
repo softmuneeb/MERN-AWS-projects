@@ -97,27 +97,27 @@ const driver = async () => {
   }));
 
   // usersArr.sort((a, b) => b.count - a.count);
-  let usersArr4 = usersArr.filter((minter) => minter.minted === 4);
-  let usersArr3 = usersArr.filter((minter) => minter.minted === 3);
-  let usersArr2 = usersArr.filter((minter) => minter.minted === 2);
-  let usersArr1 = usersArr.filter((minter) => minter.minted === 1);
+  let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a)=> a.addr);
+  let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a)=> a.addr);
+  let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a)=> a.addr);
+  let usersArr1 = usersArr.filter((minter) => minter.minted === 1).map((a)=> a.addr);
 
-  console.log({ holders: usersArr4.length });
+  console.log({ _4_item_holders: usersArr4.length });
   console.log(JSON.stringify(usersArr4, null, 2));
   console.log();
   console.log();
 
-  console.log({ holders: usersArr3.length });
+  console.log({ _2_item_holders: usersArr3.length });
   console.log(JSON.stringify(usersArr3, null, 2));
   console.log();
   console.log();
 
-  console.log({ holders: usersArr2.length });
+  console.log({ _2_item_holders: usersArr2.length });
   console.log(JSON.stringify(usersArr2, null, 2));
   console.log();
   console.log();
 
-  console.log({ holders: usersArr1.length });
+  console.log({ _1_item_holders: usersArr1.length });
   console.log(JSON.stringify(usersArr1, null, 2));
   console.log();
   console.log();
