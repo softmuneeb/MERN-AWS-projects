@@ -1,7 +1,17 @@
 /node_modules
-/.vscode
 package-lock.json
-.DS_Store
+main.js
+yarn.lock
 secret.js
-secret2.js
+.env
+metadataGenerated1
+metadataEmpty
+images
+backup
+snowies img 10,030
+snowies metadata 10,030
+metadata/
+metadataGenerated/.DS_Store
+.DS_Store
 secret.txt
+secret2.js
