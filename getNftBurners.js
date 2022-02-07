@@ -1,7 +1,7 @@
 // get the minters of Avian Avatars Nft and get their Details from Api and save in CSV file
 
 // config
-const nftAddress = '0xB94b38fCb227350989f95F54F54f43b5Fcc3ccff'; // uac nft
+const nftAddress = "0x350b4cdd07cc5836e30086b993d27983465ec014"; // uac nft
 
 const infuraLink =
   'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
@@ -64,8 +64,8 @@ const driver = async () => {
   console.log('Getting events...');
   const events = await getContractEvents({
     address: nftAddress,
-    eventName: 'Transfer',
-    fromBlock: 14110750, // see from https://etherscan.com
+    eventName: "Transfer",
+    fromBlock: 13294663, // see from https://etherscan.com
     toBlock: 14152471,
   });
 
