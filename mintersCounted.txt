@@ -18,6 +18,9 @@ Getting buyers stats...
   "0x34927ffa161349531de3dc25410ccdefebbffd54"
 ]
 
+// 4 gas 930006, again 690606
+// 3 gas 2243144, again 1644644
+// 2 gas 
 
 { _3_item_holders: 35 }
 [
