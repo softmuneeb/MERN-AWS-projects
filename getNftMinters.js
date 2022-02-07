@@ -107,7 +107,7 @@ const driver = async () => {
   console.log();
   console.log();
 
-  console.log({ _2_item_holders: usersArr3.length });
+  console.log({ _3_item_holders: usersArr3.length });
   console.log(JSON.stringify(usersArr3, null, 2));
   console.log();
   console.log();

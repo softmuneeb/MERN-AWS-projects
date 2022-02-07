@@ -19,7 +19,7 @@ Getting buyers stats...
 ]
 
 
-{ _2_item_holders: 35 }
+{ _3_item_holders: 35 }
 [
   "0x4ff28cb6b019316161a8a96015c16ae2edce5791",
   "0xf9f0c14dd6b16d3adba029e0d871a6b1011063f6",
