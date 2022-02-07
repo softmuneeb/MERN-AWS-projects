@@ -93,14 +93,34 @@ const driver = async () => {
 
   let usersArr = Object.keys(users).map((addr) => ({
     addr,
-    count: users[addr],
+    minted: users[addr],
   }));
-  
-  usersArr.sort((a, b) => b.count - a.count);
 
-  console.log({ holders: usersArr.length });
+  // usersArr.sort((a, b) => b.count - a.count);
+  let usersArr4 = usersArr.filter((minter) => minter.minted === 4);
+  let usersArr3 = usersArr.filter((minter) => minter.minted === 3);
+  let usersArr2 = usersArr.filter((minter) => minter.minted === 2);
+  let usersArr1 = usersArr.filter((minter) => minter.minted === 1);
 
-  console.log(JSON.stringify(usersArr, null, 2));
+  console.log({ holders: usersArr4.length });
+  console.log(JSON.stringify(usersArr4, null, 2));
+  console.log();
+  console.log();
+
+  console.log({ holders: usersArr3.length });
+  console.log(JSON.stringify(usersArr3, null, 2));
+  console.log();
+  console.log();
+
+  console.log({ holders: usersArr2.length });
+  console.log(JSON.stringify(usersArr2, null, 2));
+  console.log();
+  console.log();
+
+  console.log({ holders: usersArr1.length });
+  console.log(JSON.stringify(usersArr1, null, 2));
+  console.log();
+  console.log();
 };
 
 driver();
