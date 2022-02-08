@@ -1025,6 +1025,7 @@ const root = merkleTree.getHexRoot();
 console.log({ root });
 
 // Work for UI now
+// check this address available or not in whitelist
 const leaf = keccak256("0x5B38Da6a701c568545dCfcB03FcB875f56beddC4");
 const proof = merkleTree.getHexProof(leaf);
 
