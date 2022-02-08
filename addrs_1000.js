@@ -1,4 +1,6 @@
-[
+const { toChecksumAddress } = require("web3-utils");
+
+let addresses = [
   "0xbcb03471e33c68bcdd2ba1d846e4737fedb768fa",
   "0x590ad8e5fd87f05b064fcae86703039d1f0e4350",
   "0x989b691745f7b0139a429d2b36364668a01a39cf",
@@ -1181,3 +1183,9 @@
   "0x5ae87b8900199e62e5de62e517d3671e66209381",
   "0xb9a44c09a9d995f59b7dd56aafb70e2a2231a8df",
 ];
+
+let betterRes = {};
+addresses.map((a) => (betterRes[toChecksumAddress(a)] = true));
+addresses = Object.keys(betterRes);
+
+console.log(JSON.stringify(addresses, null, 2));
