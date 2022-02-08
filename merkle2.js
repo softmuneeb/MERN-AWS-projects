@@ -12,6 +12,7 @@ const leaves = [
 const tree = new MerkleTree(leaves, hash);
 
 const root = tree.getRoot(); // requirement 1
+console.log({ root });
 const leaf = hash("0x70c2264d3672ec8efa89457317e51bad5e6b86fa"); // requirement 2
 const proof = tree.getProof(leaf); // requirement 3
 
