@@ -1040,12 +1040,23 @@ console.log(JSON.stringify(proof, null, 4));
 const verified = merkleTree.verify(proof, leaf, root);
 console.log({ verified });
 
+// contract deploy 2999942 * 0.000000050 = 0.1499971 * 3000 = 449$
+
+// old openzeppelin 1 mints 106032
+
 // Simple add to allowlist
 // 1000 addrs to allowlist 23189724 * 0.000000050 = 1.1594862ETH = 3500$
+// 1st mint 1 nft, 125569 * 0.000000100 = 0.0125569 ETH
+// 2nd mint 5 nft, 93133
 
 // Merkle root add to allowlist
 // 1000 addrs Merkle root 43973 * 0.000000050 = 0.00219865 ETH = 6$
+// 1st mint 1 nft, 135296 * 0.000000100 = 0.0135296 ETH 8% more fee for people,0.0135296 * 3000 = 40
+// 2nd mint 5 nft, 102860 10% more fee for people
 
+// public 1st mint 1 nft 81663
+// public 2nd mint 5 nfts 83427 * 0.000000100 = 0.0083427 * 3000 = 25.0281 
+// 
 // {
 //   root: "0xb4248f8da606ed6d02f2173400844212d9065533eb7b471c6b0d1298b8d1d57b";
 // }
