@@ -24,5 +24,5 @@ const proof = merkleTree.getHexProof(leaf);
 //   "0xa206b020fa6e2ef9e35d21d831cc00a586b9d210a4aa57dd334303654bb0a3d8",
 //   "0xf30c17f6c257181e11b9ea19fc7d498b2880fcad645a66e130edeab084271f16",
 // ];
-const verified = merkleTree.verify(proof, root, leaf);
+const verified = merkleTree.verify(proof, leaf, root);
 console.log({ verified });
