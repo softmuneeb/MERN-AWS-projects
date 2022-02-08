@@ -1030,5 +1030,6 @@ const proof = merkleTree.getHexProof(leaf);
 
 console.log({ proof: proof.length }, JSON.stringify(proof, null, 4));
 
+// Smart contract call here for mint
 const verified = merkleTree.verify(proof, leaf, root);
 console.log({ verified });
