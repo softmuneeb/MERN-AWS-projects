@@ -1028,8 +1028,7 @@ console.log({ root });
 const leaf = keccak256("0x5B38Da6a701c568545dCfcB03FcB875f56beddC4");
 const proof = merkleTree.getHexProof(leaf);
 
-console.log({ proof: proof.length });
-console.log(JSON.stringify(proof, null, 4));
+console.log({ proof: proof.length }, JSON.stringify(proof, null, 4));
 
 const verified = merkleTree.verify(proof, leaf, root);
 console.log({ verified });
