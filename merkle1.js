@@ -1,8 +1,11 @@
 const { MerkleTree } = require("merkletreejs");
 const keccak256 = require("keccak256");
 
-const elements =
-  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".split("");
+const elements = [
+  "0xd9af96861de6992b299e9ac004aa4c68771d0815",
+  "0x70c2264d3672ec8efa89457317e51bad5e6b86fa",
+  "0x2a30aaa70ac67ae355708a5c77fbe62c9394b65b",
+];
 // console.log({ elements }); // ['A', 'B', 'C', 'D', ....]
 const merkleTree = new MerkleTree(elements, keccak256, {
   hashLeaves: true,
@@ -10,8 +13,8 @@ const merkleTree = new MerkleTree(elements, keccak256, {
 });
 
 const root = merkleTree.getHexRoot();
-// console.log({ root }); // 0xec0dffcb601ee38fa372bbf1d89ed16761db0a0b215480032b783f8c33230783;
-const leaf = keccak256(elements[0]);
+console.log({ root }); // 0x4ead2a9bca1c784460fca2314d4a05298e50a65a1eff8ed5f3a048d74d17c1f7;
+const leaf = keccak256("0xd9af96861de6992b299e9ac004aa4c68771d0815");
 // console.log({ leaf }); // <Buffer 03 78 3f ac 2e fe d8 fb...>
 const proof = merkleTree.getHexProof(leaf);
 // console.log({ proof });
