@@ -20,7 +20,7 @@ const merkleTree = new MerkleTree(elements, keccak256, {
 
 const root = merkleTree.getHexRoot();
 console.log({ root }); // 0xb0717f36e23963e162cb790edf4388d08bb3fba22a1efa4d2ea6286f8ce4fa79;
-const leaf = keccak256("0x5B38Da6a701c568545dCfcB03FcB875f56beddC4");
+const leaf = keccak256("0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db");
 // console.log({ leaf }); // <Buffer 03 78 3f ac 2e fe d8 fb...>
 const proof = merkleTree.getHexProof(leaf);
 console.log(JSON.stringify(proof, null, 4));
