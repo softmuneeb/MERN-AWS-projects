@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node main.js",
-    "startNodemon": "nodemon main.js"
+    "startNodemon": "nodemon main.js",
+    "yarn": "yarn"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "nodemon": "^2.0.15",
     "prettier": "^2.4.1",
     "zip-folder": "^1.0.0"
   }
