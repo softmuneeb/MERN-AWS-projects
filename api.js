@@ -5,7 +5,7 @@ const fs = require("fs");
 const zipFolder = require("zip-folder");
 
 router.get("/", (req, res) => {
-  res.send({ type: "GET.." });
+  res.send({ type: "GET..1" });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
