@@ -8,7 +8,7 @@ const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
 
 router.get("/", async (req, res) => {
   const data = await axios.get(api);
-  res.send({ type: data.data.type });
+  res.send({ type: "hi " + data.data.type });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
