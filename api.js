@@ -1,214 +1,35 @@
+const { default: axios } = require("axios");
 const { log } = require("console");
 const express = require("express");
 const router = express.Router();
 const fs = require("fs");
 const zipFolder = require("zip-folder");
 
-router.get("/", (req, res) => {
-  res.send({ type: "GET.." });
+const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
+
+router.get("/", async (req, res) => {
+  const data = await axios.get(api);
+  res.send({ type: data.data.type });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
-  const tokenId = Number(req.params.tokenId);
-  if (isNaN(tokenId) || tokenId <= 0 || tokenId >= 10000) {
-    res.send({ success: false, message: "token id invalid" });
-    return;
-  }
-
-  fs.access(`./sardinesUsed/${req.params.tokenId}`, fs.F_OK, (e) =>
-    e
-      ? res.send({ success: true })
-      : res.send({
-          success: false,
-          message: "token id used for penguin merge",
-        }),
-  );
+  const data = await axios.get(api + "/is-sardine-available/" + req.params.tokenId);
+  res.send({ success: data.data.success, message: data.data.message });
 });
 
 router.get("/is-penguin-available/:tokenId", async (req, res) => {
-  try {
-    const tokenId = Number(req.params.tokenId);
-    if (isNaN(tokenId) || tokenId <= 0 || tokenId >= 10000) {
-      res.send({ success: false, message: "token id invalid" });
-      return;
-    }
-
-    fs.access(`./penguinsUsed/${req.params.tokenId}`, fs.F_OK, (e) =>
-      e
-        ? res.send({ success: true })
-        : res.send({
-            success: false,
-            message: "token id used for penguin merge",
-          }),
-    );
-  } catch (e) {
-    e && log("server sould not go down\n", e.message);
-  }
+  const data = await axios.get(api + "/is-penguin-available/" + req.params.tokenId);
+  res.send({ success: data.data.success, message: data.data.message });
 });
 
 router.post("/ninjas", async (req, res, next) => {
-  try {
-    if (process.env.JWT === null || process.env.JWT === undefined) {
-      res.send({ success: false, message: "JWT not set" });
-      return;
-    }
-    if (req.body.JWT !== process.env.JWT) {
-      res.send({ success: false, message: "Wrong JWT" });
-      return;
-    }
-    console.log(JSON.stringify(req.body, null, 4));
-    const sardineTokenId = Number(req.body.metadata.sardineTokenIdUsed);
-    if (
-      isNaN(sardineTokenId) ||
-      sardineTokenId <= 0 ||
-      sardineTokenId >= 10000
-    ) {
-      res.send({ success: false, message: "sardine token id invalid" });
-      return;
-    }
-
-    const penguinTokenId = Number(req.body.metadata.tokenId);
-    if (
-      isNaN(penguinTokenId) ||
-      penguinTokenId <= 0 ||
-      penguinTokenId >= 10000
-    ) {
-      res.send({ success: false, message: "penguin token id invalid" });
-      return;
-    }
-
-    console.log(`sardineTokenIdUsed: ${sardineTokenId}`);
-    console.log(`penguinTokenId: ${penguinTokenId}\n`);
-
-    const path = `./penguinsUsed/${sardineTokenId}`;
-    const sardinePath = `./sardinesUsed/${sardineTokenId}`;
-
-    fs.access(path, fs.F_OK, (e) => {
-      // file not exists = penguin available for penguin merge
-      if (e) {
-        fs.access(sardinePath, fs.F_OK, (e) => {
-          if (e) {
-            // file not exists = sardine available for penguin merge
-            try {
-              fs.writeFile(
-                `./sardinesUsed/${req.body.metadata.sardineTokenIdUsed}`,
-                "",
-                (e) => e && console.log(e.message),
-              ); // now sardine is not available penguin merge
-
-              fs.writeFile(
-                `./penguinsUsed/${req.body.metadata.tokenId}`,
-                "",
-                (e) => e && console.log(e.message),
-              ); // now penguin is not available penguin merge
-
-              fs.writeFile(
-                `./penguinsUsed/${req.body.metadata.tokenIdBurned}`,
-                "",
-                (e) => e && console.log(e.message),
-              ); // now penguin burned is not available penguin merge
-
-              fs.writeFile(
-                `./metadata/${req.body.metadata.tokenId}.png`,
-                req.body.image.split(";base64,").pop(),
-                { encoding: "base64" },
-                (e) => e && console.log(e.message),
-              );
-
-              fs.writeFile(
-                `./metadata/${req.body.metadata.tokenId}`,
-                JSON.stringify(req.body.metadata, null, 4),
-                (e) => e && console.log(e.message),
-              ); // saving metadata of merged penguin
-
-              res.send({ success: true });
-              return;
-            } catch (e) {
-              (e) => e && console.log(e.message);
-              res.send({ success: false, message: "error occured" });
-              return;
-            }
-          } else {
-            // file exists = sardine used for penguin merge
-            res.send({
-              success: false,
-              message: "token id used for penguin merge",
-            });
-            return;
-          }
-        });
-      } else {
-        // file exists = sardine used for penguin merge
-        res.send({
-          success: false,
-          message: "penguin token id already used for penguin merge",
-        });
-        return;
-      }
-    });
-  } catch (e) {
-    e && log("server sould not go down\n", e.message);
-  }
+  const data = await axios.post(api + "/ninjas", { metadata: req.params.metadata, JWT: req.params.JWT });
+  res.send({ success: data.data.success, message: data.data.message });
 });
 
 router.post("/error", async (req, res, next) => {
-  if (process.env.JWT === null || process.env.JWT === undefined) {
-    res.send({ success: false, message: "JWT not set" });
-    return;
-  }
-  if (req.body.JWT !== process.env.JWT) {
-    res.send({ success: false, message: "Wrong JWT" });
-    return;
-  }
-
-  fs.writeFile(
-    `./error/${req.body.metadata.tokenId}`,
-    JSON.stringify(req.body.metadata, null, 4),
-    (e) => e && console.log(e.message),
-  ); // saving metadata of merged penguin
-
-  fs.writeFile(
-    `./error/${req.body.metadata.tokenId}.png`,
-    req.body.image.split(";base64,").pop(),
-    { encoding: "base64" },
-    (e) => e && console.log(e.message),
-  );
-
-  res.send({ success: true });
-});
-
-router.get("/zip", async (req, res) => {
-  zipFolder("./metadata", "./metadata.zip", (err) => {
-    if (err) console.log(err.message);
-    else {
-      res.download("./metadata.zip");
-    }
-  });
-});
-
-router.get("/zipSardinesUsed", async (req, res) => {
-  zipFolder("./sardinesUsed", "./sardinesUsed.zip", (err) => {
-    if (err) console.log(err.message);
-    else {
-      res.download("./sardinesUsed.zip");
-    }
-  });
-});
-router.get("/zipError", async (req, res) => {
-  zipFolder("./error", "./error.zip", (err) => {
-    if (err) console.log(err.message);
-    else {
-      res.download("./error.zip");
-    }
-  });
-});
-router.get("/zipPenguinImages", async (req, res) => {
-  zipFolder("./metadata", "./metadata.zip", (err) => {
-    if (err) console.log(err.message);
-    else {
-      res.download("./metadata.zip");
-    }
-  });
+  const data = await axios.post(api + "/ninjas", { metadata: req.body.metadata, image: req.body.image });
+  res.send({ success: data.data.success, message: data.data.message });
 });
 
 module.exports = router;
