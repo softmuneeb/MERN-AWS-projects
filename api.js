@@ -1,10 +1,8 @@
 const { default: axios } = require("axios");
-const { log } = require("console");
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
-const zipFolder = require("zip-folder");
 
+// const api = "http://vps-4056936b.vps.ovh.net/api";
 const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
 // const api = "http://localhost:4000/api";
 
@@ -35,13 +33,3 @@ router.post("/error", async (req, res, next) => {
 });
 
 module.exports = router;
-
-/*
-
-*/
-
-// const run = async () => {
-//   const res = await readFileAsync('./data.json')
-//   console.log(res)
-// }
-// run()
