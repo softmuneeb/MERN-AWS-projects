@@ -20,5 +20,5 @@ app.use('/api', router);
 
 app.listen(port, () => {
   console.log('port', port);
-  console.log('Muneeb bro');
+  console.log('Assalamo Alaikum, Muneeb bro');
 });
