@@ -6,6 +6,7 @@ const fs = require("fs");
 const zipFolder = require("zip-folder");
 
 const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
+// const api = "http://localhost:4000/api";
 
 router.get("/", async (req, res) => {
   const data = await axios.get(api);
@@ -23,7 +24,8 @@ router.get("/is-penguin-available/:tokenId", async (req, res) => {
 });
 
 router.post("/ninjas", async (req, res, next) => {
-  const data = await axios.post(api + "/ninjas", { metadata: req.params.metadata, JWT: req.params.JWT });
+  // console.log({ req: req.body.metadata.tokenId,  });
+  const data = await axios.post(api + "/ninjas", { metadata: req.body.metadata, image: req.body.image, JWT: req.body.JWT });
   res.send({ success: data.data.success, message: data.data.message });
 });
 
