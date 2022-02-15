@@ -2,13 +2,13 @@ const { default: axios } = require("axios");
 const express = require("express");
 const router = express.Router();
 
-// const api = "http://vps-4056936b.vps.ovh.net/api";
-const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
+const api = "http://vps-4056936b.vps.ovh.net:4000/api";
+// const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
 // const api = "http://localhost:4000/api";
 
 router.get("/", async (req, res) => {
   const data = await axios.get(api);
-  res.send({ type: "hi " + data.data.type });
+  res.send({ type: "hi 11 " + data.data.type });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
