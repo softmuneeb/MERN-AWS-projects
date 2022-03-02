@@ -2,7 +2,7 @@
   "name": "js-code-lab",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "s": "yarn start",
     "start": "node main.js"

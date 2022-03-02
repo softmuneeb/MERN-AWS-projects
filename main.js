@@ -1,12 +1,13 @@
-const HTMLtoDOCX = require("html-to-docx");
+// code converts metadata i.e { clothes: 2 } -> { shirt: blue, pant: green}, i.e id to actual clothes
+
+// plan
+// traits file variable with all clothes info merged
+// get all 11111 img traits file
+// for every 11111 img traits replace clothes number with ...obj of all cothes info
+// log this > traitsV1.json
 
 const init = async () => {
-  const a = await HTMLtoDOCX(
-    '<html><body><divclass="container"><h1>404</h1></div></body></html>'
-  );
-  const fs = require("fs");
-  await fs.writeFile("filename1.docx", a);
-  console.log("a: ", a);
+  
 };
 
 init();
