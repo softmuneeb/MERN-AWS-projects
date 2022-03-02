@@ -2,10 +2,10 @@
 
 import fs from "fs";
 
-const N = 8200;
+const N = 315;
 
 const init = async () => {
-  let tokens = JSON.parse(fs.readFileSync("traits.json", "utf8"));
+  let tokens = JSON.parse(fs.readFileSync("_2_bikniTopPant.txt", "utf8"));
   // console.log({ json: json[0].Background });
 
   tokens = tokens.map((token) => ({
