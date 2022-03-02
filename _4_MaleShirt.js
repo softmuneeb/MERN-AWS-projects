@@ -1,4 +1,4 @@
-[
+export const tokens_ =[
     {
         "Male Shirts": "Formula1",
         "Pants": "Joro4",
