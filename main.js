@@ -1,19 +1,12 @@
-// read traits.json file and add some N to all token ids
+// Code work: read traits.json file and add some N to all token ids
+// Run like: node main.js > traits-v1.json
 
-import fs from "fs";
-
+import { tokens_ } from "./_2_bikniTopPant.js";
 const N = 315;
 
-const init = async () => {
-  let tokens = JSON.parse(fs.readFileSync("_2_bikniTopPant.txt", "utf8"));
-  // console.log({ json: json[0].Background });
+let tokens = tokens_.map((token) => ({
+  ...token,
+  tokenId: Number(token.tokenId) + N,
+}));
 
-  tokens = tokens.map((token) => ({
-    ...token,
-    tokenId: Number(token.tokenId) + N,
-  }));
-  console.log(JSON.stringify(tokens, null, 4));
-  // node main.js > traits-v1.json
-};
-
-init();
+console.log(JSON.stringify(tokens, null, 4));
