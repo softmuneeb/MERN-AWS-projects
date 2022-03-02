@@ -1,8 +1,9 @@
 // Code work: read traits.json file and add some N to all token ids
 // Run like: node main.js > traits-v1.json
 
-import { tokens_ } from "./_2_bikniTopPant.js";
-const N = 315;
+import { tokens_ } from "./_3_FemaleShirtPant.js";
+
+const N = 871;
 
 let tokens = tokens_.map((token) => ({
   ...token,
