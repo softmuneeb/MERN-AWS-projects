@@ -1,9 +1,9 @@
 // Code work: read traits.json file and add some N to all token ids
 // Run like: node main.js > traits-v1.json
 
-import { _tokens_ } from "./1traits.js";
+import { _tokens_ } from "./6traits.js";
 
-const N = 0;
+const N = 5895;
 
 let tokens = _tokens_.map((token) => ({
   ...token,
