@@ -13,8 +13,8 @@ import { clothes_traits_all } from "./clothes_traits_all_filt.js";
 // console.log(clothes_traits_all[0]);
 
 let new_all_traits = [];
-// 0
-for (let i = 1; i < all_traits.length; i++) {
+
+for (let i = 0; i < all_traits.length; i++) {
   const trait = all_traits[i];
 
   if (!isNaN(trait.Clothes)) {
@@ -22,9 +22,9 @@ for (let i = 1; i < all_traits.length; i++) {
     let newTrait = { ...trait, ...propsToAdd };
     delete newTrait.Clothes;
     new_all_traits.push(newTrait);
+  } else {
+    new_all_traits.push(trait);
   }
-
-  break;
 }
 
 log(JSON.stringify(new_all_traits, null, 4));
