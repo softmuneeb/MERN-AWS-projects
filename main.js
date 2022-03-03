@@ -28,8 +28,8 @@ for (let i = 0; i < all_traits.length; i++) {
 }
 
 log(JSON.stringify(new_all_traits, null, 4));
+
 // delete trait.Clothes;
 // const init = async () => {
 // };
-
 // init();
