@@ -15,18 +15,16 @@ import { clothes_traits_all } from "./clothes_traits_all_filt.js";
 let new_all_traits = [];
 // 0
 for (let i = 1; i < all_traits.length; i++) {
+  const trait = all_traits[i];
 
-    const trait = all_traits[i];
+  if (!isNaN(trait.Clothes)) {
+    let propsToAdd = clothes_traits_all[trait.Clothes - 1]; // -1 adjust index
+    let newTrait = { ...trait, ...propsToAdd };
+    delete newTrait.Clothes;
+    new_all_traits.push(newTrait);
+  }
 
-    if (!isNaN(trait.Clothes)) {
-        let propsToAdd = clothes_traits_all[trait.Clothes - 1]; // -1 adjust index
-        let newTrait = { ...trait, ...propsToAdd };
-        delete newTrait.Clothes;
-        new_all_traits.push(newTrait);
-    }
-
-    
-    break;
+  break;
 }
 
 log(JSON.stringify(new_all_traits, null, 4));
