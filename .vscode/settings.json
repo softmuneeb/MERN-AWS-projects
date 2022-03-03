@@ -1,3 +1,12 @@
 {
-    "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "debugwrapper.wrappers": {
+    "python": "print('$eSEL ', $SEL)",
+    "javascript": "console.log({ $SEL  });",
+    "javascript2": "console.log({$eSEL});",
+    "javascript3": "console.log('$eSEL ', $SEL);",
+    "typescript": "console.log('$eSEL ', $SEL);",
+    "php": "echo '<pre>$eSEL<br />'; var_dump($SEL); echo '</pre>';",
+    "default": "console.log('$eSEL ', $SEL);"
+  }
 }
