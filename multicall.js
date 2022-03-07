@@ -8,7 +8,7 @@ import { Multicall } from 'ethereum-multicall';
 import fs from 'fs';
 import { someCalls } from './calls.js';
 
-export const getPenguinTokensForAddress = async someAddress => {
+export const getNftTokensForAddress = async someAddress => {
   const multicall = new Multicall({
     multicallCustomContractAddress:
       '0x5BA1e12693Dc8F9c48aAD8770482f4739bEeD696',
@@ -53,11 +53,3 @@ export const getPenguinTokensForAddress = async someAddress => {
 
   return tokenIds;
 };
-
-
-
-// const bastardPenguins = getContractBastardPenguins();
-// const res = await bastardPenguins
-//   .isApprovedOrOwner('0xc18e78c0f67a09ee43007579018b2db091116b4c', 1)
-//   .call();
-// console.log('res: ', res);
