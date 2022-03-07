@@ -16,16 +16,15 @@ export const getPenguinTokensForAddress = async someAddress => {
     tryAggregate: true,
   });
 
-  let calls1 = someCalls;
+  // let calls1 = someCalls;
 
-  // let calls1 = [];
-
-  // for (let i = 0; i <= 10000; i++) {
-  //   calls1.push({
-  //     methodName: 'isApprovedOrOwner',
-  //     methodParameters: [someAddress, i],
-  //   });
-  // }
+  let calls1 = [];
+  for (let i = 0; i <= 50; i++) {
+    calls1.push({
+      methodName: 'isApprovedOrOwner',
+      methodParameters: [someAddress, i],
+    });
+  }
 
   // fs.writeFile(
   //   'calls.json',
