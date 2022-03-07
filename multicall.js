@@ -1,8 +1,8 @@
 import {
-  bastardPenguinsAbi,
-  bastardPenguinsAddress,
+  nftAbi,
+  nftAddress,
   defaultWeb3,
-  getContractBastardPenguins,
+  getContractNft,
 } from './smart-contract.js';
 import { Multicall } from 'ethereum-multicall';
 import fs from 'fs';
@@ -36,8 +36,8 @@ export const getPenguinTokensForAddress = async someAddress => {
   const contractCallContext = [
     {
       reference: 'SmartContractCall1',
-      contractAddress: bastardPenguinsAddress,
-      abi: bastardPenguinsAbi,
+      contractAddress: nftAddress,
+      abi: nftAbi,
       calls: calls1,
     },
   ];
