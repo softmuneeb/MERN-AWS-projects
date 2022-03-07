@@ -21,7 +21,7 @@ export const getNftTokensForAddress = async someAddress => {
   let calls1 = [];
   for (let i = 0; i <= 50; i++) {
     calls1.push({
-      methodName: 'isApprovedOrOwner',
+      methodName: "tokenOfOwnerByIndex",
       methodParameters: [someAddress, i],
     });
   }
@@ -45,9 +45,7 @@ export const getNftTokensForAddress = async someAddress => {
   const results = await multicall.call(contractCallContext);
 
   let tokenIds = [];
-  results.results['SmartContractCall1'].callsReturnContext.map(
-    (obj, i) => obj.success && tokenIds.push(i),
-  );
+  results.results["SmartContractCall1"].callsReturnContext.map((obj, i) => obj.success && tokenIds.push(Number(obj.returnValues[0].hex)));
 
   console.log('tokenIds: ', tokenIds);
 
