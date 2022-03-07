@@ -1,7 +1,7 @@
 // get the minters of Avian Avatars Nft and get their Details from Api and save in CSV file
 
 // config
-const nftAddress = "0xB94b38fCb227350989f95F54F54f43b5Fcc3ccff"; // uac nft
+const nftAddress = "0x4fedd564f5567d8a7f60c1f6ad2bf80ea3bfc6be"; // uac nft
 
 const infuraLink =
   "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
@@ -65,13 +65,16 @@ const driver = async () => {
   const events = await getContractEvents({
     address: nftAddress,
     eventName: "Transfer",
-    fromBlock: 13294663, // see from https://etherscan.com
-    toBlock: 14152471,
+    fromBlock: 0, // see from https://etherscan.com
+    toBlock: 114152471,
+    // fromBlock: 13294663, // see from https://etherscan.com
+    // toBlock: 14152471,
     // fromBlock: 13309878, // see from https://etherscan.com
     // toBlock: 13309879,
   });
 
   console.log(`events: ${events.length}`);
+  // console.log(`events: ${JSON.stringify(events, null, 4)}`);
 
   let users = {};
 
@@ -101,6 +104,7 @@ const driver = async () => {
   let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a)=> a.addr);
   let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a)=> a.addr);
   let usersArr1 = usersArr.filter((minter) => minter.minted === 1).map((a)=> a.addr);
+  console.log({ usersArr });
 
   console.log({ _4_item_holders: usersArr4.length });
   console.log(JSON.stringify(usersArr4, null, 2));
