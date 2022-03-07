@@ -16,7 +16,6 @@ export const getPenguinTokensForAddress = async someAddress => {
     tryAggregate: true,
   });
 
-  // let calls1 = JSON.parse(calls);
   let calls1 = someCalls;
 
   // let calls1 = [];
@@ -52,9 +51,11 @@ export const getPenguinTokensForAddress = async someAddress => {
   );
 
   console.log('tokenIds: ', tokenIds);
+
+  return tokenIds;
 };
 
-getPenguinTokensForAddress('0xc18e78c0f67a09ee43007579018b2db091116b4c');
+
 
 // const bastardPenguins = getContractBastardPenguins();
 // const res = await bastardPenguins
