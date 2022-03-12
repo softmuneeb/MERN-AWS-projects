@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Basic",
+            "value": "1"
+        },
+        {
+            "trait_type": "Color 1",
+            "value": "Caribbean Green"
+        },
+        {
+            "trait_type": "Color 2",
+            "value": "Copper"
+        },
+        {
+            "trait_type": "Color 3",
+            "value": "Deep Sea"
+        },
+        {
+            "trait_type": "Color 4",
+            "value": "Honey Flower"
+        },
+        {
+            "trait_type": "Color 5",
+            "value": "Endeavour"
+        },
+        {
+            "trait_type": "Color 6",
+            "value": "Husk"
+        }
+    ]
+}

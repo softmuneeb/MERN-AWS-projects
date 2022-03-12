@@ -1,0 +1,32 @@
+{
+    "attributes": [
+        {
+            "trait_type": "Basic",
+            "value": "3"
+        },
+        {
+            "trait_type": "Color 1",
+            "value": "Java"
+        },
+        {
+            "trait_type": "Color 2",
+            "value": "Sea Green"
+        },
+        {
+            "trait_type": "Color 3",
+            "value": "Hopbush"
+        },
+        {
+            "trait_type": "Color 4",
+            "value": "Genoa"
+        },
+        {
+            "trait_type": "Color 5",
+            "value": "Brick Red"
+        },
+        {
+            "trait_type": "Color 6",
+            "value": "Turquoise Blue"
+        }
+    ]
+}
