@@ -34,7 +34,7 @@ const genMetadata = (file, i) => {
   attributes.push({ trait_type: "Color 4", value: f[5] });
   attributes.push({ trait_type: "Color 5", value: f[6] });
   attributes.push({ trait_type: "Color 6", value: f[7] });
-  writeFile("metadataFromImgFileNames/" + i, JSON.stringify({ image: ipfsImagesFolder + i, attributes }, null, 4), (e) => e && console.log(e));
+  writeFile("metadataFromImgFileNames/" + i, JSON.stringify({ image: ipfsImagesFolder + i + imgExtension, attributes }, null, 4), (e) => e && console.log(e));
   copyFile(imagesFolder + file, imgNumberedFolder + i + imgExtension, (e) => e && console.log(e));
 };
 
