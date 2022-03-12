@@ -1,16 +1,17 @@
 {
+    "image": "ipfs://QmSLjHCZVF6fHT8PiEFW96X7nV8MMfMbMLJU5wFZt3P3QY/2",
     "attributes": [
         {
             "trait_type": "Basic",
-            "value": "3"
+            "value": "2"
         },
         {
             "trait_type": "Color 1",
-            "value": "Java"
+            "value": "Wewak"
         },
         {
             "trait_type": "Color 2",
-            "value": "Sea Green"
+            "value": "Granny Smith Apple"
         },
         {
             "trait_type": "Color 3",
@@ -18,15 +19,15 @@
         },
         {
             "trait_type": "Color 4",
-            "value": "Genoa"
+            "value": "Viking"
         },
         {
             "trait_type": "Color 5",
-            "value": "Brick Red"
+            "value": "Sulu"
         },
         {
             "trait_type": "Color 6",
-            "value": "Turquoise Blue"
+            "value": "Green"
         }
     ]
 }
