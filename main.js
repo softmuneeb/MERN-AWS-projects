@@ -8,6 +8,9 @@
 
 import { promises, writeFile } from "fs";
 
+const startTokenId = 1;
+const imgFolder = "./imagesForMetadata";
+
 const genMetadata = (file, i) => {
   file = file.split("_");
 
@@ -19,9 +22,9 @@ const genMetadata = (file, i) => {
   attributes.push({ trait_type: "Color 4", value: file[5] });
   attributes.push({ trait_type: "Color 5", value: file[6] });
   attributes.push({ trait_type: "Color 6", value: file[7] });
-  writeFile("metadataFromImgFileNames/" + i, JSON.stringify({ attributes }, null, 4), (e) => e && console.log(e));
+  writeFile("metadataFromImgFileNames/" + (i + startTokenId), JSON.stringify({ attributes }, null, 4), (e) => e && console.log(e));
 };
 
-const files = await promises.readdir("./imagesForMetadata");
+const files = await promises.readdir(imgFolder);
 
 files.map((file, i) => genMetadata(file, i));

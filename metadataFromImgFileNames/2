@@ -2,31 +2,31 @@
     "attributes": [
         {
             "trait_type": "Basic",
-            "value": "1"
+            "value": "3"
         },
         {
             "trait_type": "Color 1",
-            "value": "Caribbean Green"
+            "value": "Java"
         },
         {
             "trait_type": "Color 2",
-            "value": "Copper"
+            "value": "Sea Green"
         },
         {
             "trait_type": "Color 3",
-            "value": "Deep Sea"
+            "value": "Hopbush"
         },
         {
             "trait_type": "Color 4",
-            "value": "Honey Flower"
+            "value": "Genoa"
         },
         {
             "trait_type": "Color 5",
-            "value": "Endeavour"
+            "value": "Brick Red"
         },
         {
             "trait_type": "Color 6",
-            "value": "Husk"
+            "value": "Turquoise Blue"
         }
     ]
 }
