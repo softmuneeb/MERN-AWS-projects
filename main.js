@@ -25,6 +25,8 @@ jsonTraits.map((tokenMetadata) => {
   const tokenId = tokenMetadata[tokenIdStr];
   const traits = Object.keys(tokenMetadata);
   traits.map((trait) => {
+
+    // filter some data in metadata like empty attributes etc
     if (trait !== tokenIdStr && trait !== "ok" && trait !== "rarity" && tokenMetadata[trait] !== "empty") {
       attributes.push({ trait_type: trait, value: tokenMetadata[trait] });
     }
