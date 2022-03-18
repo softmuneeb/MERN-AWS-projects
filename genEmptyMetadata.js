@@ -13,25 +13,24 @@ import { writeFile } from "fs/promises";
 // const tokenIdTo = 9000;
 
 const tokenIdFrom = 1;
-const tokenIdTo = 11000;
+const tokenIdTo = 5304;
 
-const emptyImageHash = "QmUs1R1somGh3gTSqeeSGV9bWAWJZTX57j7eDZdDRVzENv";
-const external_url = "https://snowiesclub.com/";
+const emptyImageHash = "QmQTCYRHHGdyj3wtGeRsMo9uNA3tWF1ShL4fXGqmLG5dVy";
+const external_url = "https://dsopnft.com/";
 const outputFolder = "./metadataEmpty/";
-const tokenName = "Snow Doodle";
-const description = "Unique doodle collectibles on Avax";
+const tokenName = "DSOP";
+const description =
+  "Decentraland $eries Of Poker is a private collection of 5,304 NFTs-digital collectibles. D$oP owners have access to an amazing list of utility and benefits.";
+
 let metadata = {
   image: `ipfs://${emptyImageHash}`,
   external_url,
+  description,
 };
 
 for (let tokenId = tokenIdFrom; tokenId <= tokenIdTo; tokenId++) {
-  metadata = { ...metadata, name: `${tokenName} #` + tokenId, description };
-  writeFile(
-    outputFolder + tokenId,
-    JSON.stringify(metadata, null, 4),
-    (e) => e && console.log(e),
-  );
+  metadata = { ...metadata, name: `${tokenName} #` + tokenId };
+  writeFile(outputFolder + tokenId, JSON.stringify(metadata, null, 4), (e) => e && console.log(e));
 }
 
 console.log("Done, Thanks to Allah.");
