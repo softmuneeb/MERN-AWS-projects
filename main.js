@@ -9,7 +9,7 @@
 const imagesFolderHash = "QmaCdeGScsSekFoNHCoWWremBtW5KCCoRXmqveNsfJmWri";
 const tokenName = "Avian Avatar";
 const external_url = "https://eth.bird.money/";
-const imgExt = "png";
+const imgExt = ".png";
 const inputFileName = "./traits.json";
 const outputFolder = "./metadataGenerated/";
 
