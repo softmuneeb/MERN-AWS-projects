@@ -91,11 +91,15 @@ const driver = async () => {
 
   usersArr.sort((a, b) => b.minted - a.minted);
   console.log("users " + usersArr.length);
+
+  let usersArr1 = Object.keys(users).map((addr) => addr);
+  usersArr1.sort();
+  console.log({ usersArr1 });
   // let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a) => a.addr);
   // let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a) => a.addr);
   // let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a) => a.addr);
   // let usersArr1 = usersArr.filter((minter) => minter.minted === 1).map((a) => a.addr);
-  console.log({ usersArr });
+  // console.log({ usersArr });
 
 //   console.log({ _4_item_holders: usersArr4.length });
 //   console.log(JSON.stringify(usersArr4, null, 2));
