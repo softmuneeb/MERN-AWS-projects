@@ -1,10 +1,9 @@
 // get the minters of Avian Avatars Nft and get their Details from Api and save in CSV file
 
 // config
-const nftAddress = "0x4fedd564f5567d8a7f60c1f6ad2bf80ea3bfc6be"; // uac nft
+const nftAddress = "0xF97Cbb4B1f883F616fdB418E599B69E9d1a698de"; // uac nft
 
-const infuraLink =
-  "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+const infuraLink = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
 
 const nftAbi = JSON.parse(
   '[{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"baseURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"birdToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"circulatingSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address[]","name":"_sendNftsTo","type":"address[]"}],"name":"gift","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"isSaleActive","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"purchaseTokens","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"string","name":"_baseURI_","type":"string"}],"name":"setBaseURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"_startSale","type":"bool"}],"name":"setSaleActive","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdrawETH","outputs":[],"stateMutability":"nonpayable","type":"function"}]',
@@ -18,16 +17,10 @@ import Web3 from "web3";
 // utils
 const defaultWeb3 = new Web3(infuraLink);
 const days = 86400 * 1000; // 1 day
-const getContractNft = ({ web3 = defaultWeb3, address = nftAddress }) =>
-  new web3.eth.Contract(nftAbi, address);
+const getContractNft = ({ web3 = defaultWeb3, address = nftAddress }) => new web3.eth.Contract(nftAbi, address);
 const dater = new EthDater(defaultWeb3);
 // work
-const getContractEvents = async ({
-  fromBlock,
-  toBlock,
-  address = nftAddress,
-  eventName = "Transfer",
-}) => {
+const getContractEvents = async ({ fromBlock, toBlock, address = nftAddress, eventName = "Transfer" }) => {
   // if there are inputs for fromBlock and toBlock then get block of last 24 hrs
   if (fromBlock === undefined || fromBlock === null) {
     fromBlock = (await dater.getDate(new Date(Date.now() - days), true)).block;
@@ -43,10 +36,7 @@ const getContractEvents = async ({
     toBlock,
     filter: { from: "0x0000000000000000000000000000000000000000" },
   };
-  const selectedEvents = await getContractNft({ address }).getPastEvents(
-    eventName,
-    config,
-  );
+  const selectedEvents = await getContractNft({ address }).getPastEvents(eventName, config);
 
   return selectedEvents;
 };
@@ -99,32 +89,33 @@ const driver = async () => {
     minted: users[addr],
   }));
 
-  // usersArr.sort((a, b) => b.count - a.count);
-  let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a)=> a.addr);
-  let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a)=> a.addr);
-  let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a)=> a.addr);
-  let usersArr1 = usersArr.filter((minter) => minter.minted === 1).map((a)=> a.addr);
+  usersArr.sort((a, b) => b.minted - a.minted);
+  console.log("users" + usersArr.length);
+  // let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a) => a.addr);
+  // let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a) => a.addr);
+  // let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a) => a.addr);
+  // let usersArr1 = usersArr.filter((minter) => minter.minted === 1).map((a) => a.addr);
   console.log({ usersArr });
 
-  console.log({ _4_item_holders: usersArr4.length });
-  console.log(JSON.stringify(usersArr4, null, 2));
-  console.log();
-  console.log();
+//   console.log({ _4_item_holders: usersArr4.length });
+//   console.log(JSON.stringify(usersArr4, null, 2));
+//   console.log();
+//   console.log();
 
-  console.log({ _3_item_holders: usersArr3.length });
-  console.log(JSON.stringify(usersArr3, null, 2));
-  console.log();
-  console.log();
+//   console.log({ _3_item_holders: usersArr3.length });
+//   console.log(JSON.stringify(usersArr3, null, 2));
+//   console.log();
+//   console.log();
 
-  console.log({ _2_item_holders: usersArr2.length });
-  console.log(JSON.stringify(usersArr2, null, 2));
-  console.log();
-  console.log();
+//   console.log({ _2_item_holders: usersArr2.length });
+//   console.log(JSON.stringify(usersArr2, null, 2));
+//   console.log();
+//   console.log();
 
-  console.log({ _1_item_holders: usersArr1.length });
-  console.log(JSON.stringify(usersArr1, null, 2));
-  console.log();
-  console.log();
+//   console.log({ _1_item_holders: usersArr1.length });
+//   console.log(JSON.stringify(usersArr1, null, 2));
+//   console.log();
+//   console.log();
 };
 
 driver();
