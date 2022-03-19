@@ -90,7 +90,7 @@ const driver = async () => {
   }));
 
   usersArr.sort((a, b) => b.minted - a.minted);
-  console.log("users" + usersArr.length);
+  console.log("users " + usersArr.length);
   // let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a) => a.addr);
   // let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a) => a.addr);
   // let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a) => a.addr);
