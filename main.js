@@ -3,7 +3,7 @@
 // plan
 // traits file variable with all clothes info merged
 // get all 11111 img traits file
-// for every 11111 img traits replace clothes number with ...obj of all cothes info
+// for every 11111 img traits replace clothes number with ...obj of all clothes info
 // log this > traitsV1.json
 
 import web3 from "web3";
@@ -23,9 +23,21 @@ const init = async () => {
     "0x8e030c0a7BAe8122170134f27B23910Ddcd96E5c",
   );
 
-  const v = await contract.methods.visitors().call();
+    const from = (await new Web3.eth.getAccounts())[0];
+    
+    // --------WRITE CONTRACT
+    // await contract.methods.visitorCame().send({ from });
 
-  console.log(v);
+    // --------READ CONTRACT
+    // const visitor = await contract.methods.visitors().call();
+    // const events = await contract.getPastEvents("VisitorCame", { fromBlock: "25576056", toBlock: "30000000" });
+    // console.log({ events: events.length });
+    // for (let i = 0; i < events.length; i++) {
+    //     const e = events[i];
+    //     const timestamp = e.returnValues.timestamp;
+    //     console.log({ timestamp });
+    // }
+    // console.log(visitor);
 };
 
 init();
