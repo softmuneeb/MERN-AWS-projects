@@ -28,7 +28,7 @@ import { writeFile } from "fs/promises";
 
 const tokenIdFrom = 1;
 const tokenIdTo = 1000;
-// Hash of the metadataEmpthy folder = QmfKgWoKSDDU1qnLwGuRQq3wfW3fPrue4wEWGNgXfFkZHw
+// Hash of the metadataEmpthy folder = ipfs://QmfKgWoKSDDU1qnLwGuRQq3wfW3fPrue4wEWGNgXfFkZHw/
 const emptyImageHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
 const external_url = "https://metadegensociety.io/";
 const outputFolder = "./metadataEmpty/";
