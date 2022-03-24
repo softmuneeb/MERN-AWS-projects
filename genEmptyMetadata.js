@@ -11,17 +11,29 @@ import { writeFile } from "fs/promises";
 
 // const tokenIdFrom = 6001;
 // const tokenIdTo = 9000;
+// what does this code do?
+// this code generates metadata by reading traits.json
+// metadata is according to opensea standards
+
+// make folder metadataGenerated and provide file traits.json
+
+
+// // some settings for the code
+// const imagesFolderHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
+// const tokenName = "Golden Ticket";
+// const external_url = "https://metadegensociety.io/";
+// const imgExt = ".png";
+// const inputFileName = "./traits.json";
+// const outputFolder = "./output/";
 
 const tokenIdFrom = 1;
-const tokenIdTo = 5304;
-
-const emptyImageHash = "QmQTCYRHHGdyj3wtGeRsMo9uNA3tWF1ShL4fXGqmLG5dVy";
-const external_url = "https://dsopnft.com/";
+const tokenIdTo = 1000;
+// Hash of the metadataEmpthy folder = QmfKgWoKSDDU1qnLwGuRQq3wfW3fPrue4wEWGNgXfFkZHw
+const emptyImageHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
+const external_url = "https://metadegensociety.io/";
 const outputFolder = "./metadataEmpty/";
-const tokenName = "DSOP";
-const description =
-  "Decentraland $eries Of Poker is a private collection of 5,304 NFTs-digital collectibles. D$oP owners have access to an amazing list of utility and benefits.";
-
+const tokenName = "Golden Ticket";
+const description = "The golden ticket will allow you to mint a meta degen nft for free"
 let metadata = {
   image: `ipfs://${emptyImageHash}`,
   external_url,
