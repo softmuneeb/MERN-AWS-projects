@@ -11,6 +11,9 @@ import { writeFile } from "fs/promises";
 
 // const tokenIdFrom = 6001;
 // const tokenIdTo = 9000;
+// what does this code do?
+// this code generates metadata by reading traits.json
+// metadata is according to opensea standards
 
 const tokenIdFrom = 1;
 const tokenIdTo = 4999;
@@ -22,6 +25,22 @@ const tokenName = "Boredsone";
 const description =
   "A long-lost spot in the metaverse has been founded by the Boredsone Engineers and a lot of work had gone into making it a magical and incredible place.";
 
+// // some settings for the code
+// const imagesFolderHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
+// const tokenName = "Golden Ticket";
+// const external_url = "https://metadegensociety.io/";
+// const imgExt = ".png";
+// const inputFileName = "./traits.json";
+// const outputFolder = "./output/";
+
+// const tokenIdFrom = 1;
+// const tokenIdTo = 1000;
+// // Hash of the metadataEmpthy folder = ipfs://QmfKgWoKSDDU1qnLwGuRQq3wfW3fPrue4wEWGNgXfFkZHw/
+// const emptyImageHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
+// const external_url = "https://metadegensociety.io/";
+// const outputFolder = "./metadataEmpty/";
+// const tokenName = "Golden Ticket";
+// const description = "The golden ticket will allow you to mint a meta degen nft for free"
 let metadata = {
   image: `ipfs://${emptyImageHash}`,
   external_url,
