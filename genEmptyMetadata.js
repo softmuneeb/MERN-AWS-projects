@@ -13,14 +13,14 @@ import { writeFile } from "fs/promises";
 // const tokenIdTo = 9000;
 
 const tokenIdFrom = 1;
-const tokenIdTo = 5304;
+const tokenIdTo = 4999;
 
-const emptyImageHash = "QmQTCYRHHGdyj3wtGeRsMo9uNA3tWF1ShL4fXGqmLG5dVy";
-const external_url = "https://dsopnft.com/";
+const emptyImageHash = "QmdkL5BvuRUBdYWKQSCEvNVNFr78f3ZnCRLkVNdRMG7brr";
+const external_url = "http://boredsone.com/";
 const outputFolder = "./metadataEmpty/";
-const tokenName = "DSOP";
+const tokenName = "Boredsone";
 const description =
-  "Decentraland $eries Of Poker is a private collection of 5,304 NFTs-digital collectibles. D$oP owners have access to an amazing list of utility and benefits.";
+  "A long-lost spot in the metaverse has been founded by the Boredsone Engineers and a lot of work had gone into making it a magical and incredible place.";
 
 let metadata = {
   image: `ipfs://${emptyImageHash}`,
