@@ -2,7 +2,6 @@ const removeDuplicates = true;
 
 // dependencies
 const fs = require('fs');
-const { toChecksumAddress } = require('web3-utils');
 
 // input
 const data = fs.readFileSync('ethAddressesIn.txt', 'utf8');
@@ -14,16 +13,18 @@ const addrLen = addresses.length;
 // remove duplicates
 if (removeDuplicates) {
   let betterRes = {};
-  addresses.map(a => (betterRes[toChecksumAddress(a)] = true));
+  addresses.map(a => (betterRes[a.toLowerCase()] = true));
   addresses = Object.keys(betterRes);
 }
 
+
+console.log(JSON.stringify(addresses, null, 4));
 // output
-fs.writeFile(
-  'ethAddressesOut.txt',
-  `total addresses were: ${addrLen}
-  ${addresses.length} 'unique addresses were found. Thanks to Allah.'
+// fs.writeFile(
+//   'ethAddressesOut.txt',
+//   `total addresses were: ${addrLen}
+//   ${addresses.length} 'unique addresses were found. Thanks to Allah.'
   
-  ${addresses}`,
-  e => e && console.log(e.message),
-);
+//   ${addresses}`,
+//   e => e && console.log(e.message),
+// );
