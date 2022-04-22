@@ -3,3 +3,5 @@ package-lock.json
 secret.js
 .env
 yarn.lock
+metadataEmpty
+.DS_Store
