@@ -1,5 +1,5 @@
 import { Multicall } from "ethereum-multicall";
-import { defaultWeb3, multicallCustomContractAddress, nftAbi, nftAddress } from "./smart-contract.js";
+import { defaultWeb3, getContractNft, multicallCustomContractAddress, nftAbi, nftAddress } from "./smart-contract.js";
 
 export const getNftHolders = async () => {
   const multicall = new Multicall({
@@ -10,9 +10,9 @@ export const getNftHolders = async () => {
 
   let calls1 = [];
 
-  // let supply = 
+  let supply = await getContractNft().methods.totalSupply().call();
 
-  for (let i = 0; i <= 1550; i++) {
+  for (let i = 0; i <= supply; i++) {
     calls1.push({
       methodName: "ownerOf",
       methodParameters: [i],
