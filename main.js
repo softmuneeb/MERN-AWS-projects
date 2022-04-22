@@ -1,24 +1,16 @@
-// what this code do? 
+// const sumArray = (arr) => arr.reduce((p, a) => p + a, 0);
 
-// plan
-//
+// console.log(sumArray([1, 2, -1]));
 
-const init = async () => {
-  // What is the output of the following code?
+const arr = ["5", "2", "C"];
 
-  let arr = [1, "Turing", { x: 2 }, [3, 4]];
+let resArr = [];
 
-  console.log(arr.length);
-  delete arr[1];
+arr.map((a) => {
+  if (!isNaN(a)) resArr.push(a);
+  else if (a === "C") resArr.pop();
+});
 
-  console.log(arr.length);
-  console.log(arr);
+console.log(resArr);
 
-  /*
-4
-4
-[ 1, <1 empty item>, { x: 2 }, [ 3, 4 ] ]
-  */
-};
-
-init();
+// console.log(typeof Number("po5l"));
