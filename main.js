@@ -2,7 +2,9 @@ const sumArray = (arr) => arr.reduce((p, a) => p + a, 0);
 
 // console.log(sumArray([1, 2, -1]));
 
-const arr = ["5", "2", "C", "D", "+"];
+// const arr = ["5", "2", "C", "D", "+"];
+// const arr = ["5", "-2", "4", "C", "D", "9", "+", "+"];
+const arr = ["1"];
 
 let resArr = [];
 
