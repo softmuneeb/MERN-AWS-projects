@@ -1,20 +1,23 @@
-const sumArray = (arr) => arr.reduce((p, a) => p + a, 0);
+// https://javascript.plainenglish.io/how-to-find-the-town-judge-92f07c5b7570
 
-// console.log(sumArray([1, 2, -1]));
+const findJudge = (N, trust) => {
+  let trusted = {};
+  let wantedTrust = {};
+  for (let i = 1; i <= N; i++) {
+    trusted[i] = 0;
+    wantedTrust[i] = 0;
+  }
+  for (let ele of trust) {
+    trusted[ele[0]]++;
+    wantedTrust[ele[1]]++;
+  }
+  let judge = 0;
+  for (let key in trusted) {
+    if (trusted[key] === 0) judge = key;
+  }
+  if (wantedTrust[judge] === N - 1) return judge;
+  else return -1;
+};
 
-// const arr = ["5", "2", "C", "D", "+"];
-// const arr = ["5", "-2", "4", "C", "D", "9", "+", "+"];
-const arr = ["1"];
-
-let resArr = [];
-
-arr.map((a, i) => {
-  if (!isNaN(a)) resArr.push(Number(a));
-  else if (a === "C") resArr.pop();
-  else if (a === "D") resArr.push(2 * resArr[resArr.length - 1]);
-  else if (a === "+") resArr.push(resArr[resArr.length - 1] + resArr[resArr.length - 2]);
-});
-
-console.log(sumArray(resArr));
-
-// console.log(typeof Number("po5l"));
+let res = findJudge(3, [[1, 3], [2, 3]]);
+console.log(res)
