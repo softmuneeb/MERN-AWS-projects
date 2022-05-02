@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  res.send({ type: "hi 11 " });
+  res.send({ message: "Assalamo Alaikum" });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
