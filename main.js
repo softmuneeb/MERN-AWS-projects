@@ -4,8 +4,8 @@ import { PV_KEYS } from './secret.js';
 
 const startAccId = 0,
   endAccId = 4,
-  waitInSecondsFrom = 0.2 * minutes,
-  waitInSecondsTo = 0.4 * minutes;
+  waitInSecondsFrom = 0 * minutes,
+  waitInSecondsTo = 0 * minutes;
 
 nftBuyBot(startAccId, endAccId, waitInSecondsFrom, waitInSecondsTo, PV_KEYS);
 
