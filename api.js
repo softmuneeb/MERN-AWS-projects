@@ -8,9 +8,10 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/metadata/:tokenId", async (req, res) => {
-  const data = fs.readFileSync("./metadata/1", "utf8");
-  if (Number(req.params.tokenId) < 10) res.send(JSON.parse(data));
-  else res.send(fs.readFileSync("./metadata/pre_reveal", "utf8"));
+  if (Number(req.params.tokenId) < 10) {
+    const metadata = fs.readFileSync("./metadata/" + req.params.tokenId, "utf8");
+    res.send(JSON.parse(metadata));
+  } else res.send(fs.readFileSync("./metadata/pre_reveal", "utf8"));
 });
 
 router.get("/is-penguin-available/:tokenId", async (req, res) => {
