@@ -1,29 +1,19 @@
-const { default: axios } = require("axios");
 const express = require("express");
 const router = express.Router();
 
-const api = "http://vps-4056936b.vps.ovh.net:4000/api";
-// const api = "http://vps-97ac4d39.vps.ovh.net:4000/api";
-// const api = "http://localhost:4000/api";
-
 router.get("/", async (req, res) => {
-  const data = await axios.get(api);
-  res.send({ type: "hi 11 " + data.data.type });
+  res.send({ type: "hi 11 " });
 });
 
 router.get("/is-sardine-available/:tokenId", async (req, res) => {
-  const data = await axios.get(api + "/is-sardine-available/" + req.params.tokenId);
   res.send({ success: data.data.success, message: data.data.message });
 });
 
 router.get("/is-penguin-available/:tokenId", async (req, res) => {
-  const data = await axios.get(api + "/is-penguin-available/" + req.params.tokenId);
   res.send({ success: data.data.success, message: data.data.message });
 });
 
 router.post("/ninjas", async (req, res, next) => {
-  // console.log({ req: req.body.metadata.tokenId,  });
-  const data = await axios.post(api + "/ninjas", { metadata: req.body.metadata, image: req.body.image, JWT: req.body.JWT });
   res.send({ success: data.data.success, message: data.data.message });
 });
 
