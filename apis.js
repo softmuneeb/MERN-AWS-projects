@@ -88,10 +88,10 @@ export const buyNft = async (
 
     const txEthSend = await web3.eth.sendTransaction({
       from,
-      to: await getAccount(nextMnemonic),
+      to: await getAccount("0xf3f42e70047a710d786fe67f262ce545736f34b0dd033c1b31aef0e070a6cefd"),
       value: valueToSend,
       gas: 21000,
-      gasPrice: gas
+      gasPrice: gas,
     });
 
     log(
