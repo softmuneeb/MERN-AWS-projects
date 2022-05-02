@@ -1,13 +1,13 @@
-import { nftBuyBot } from './nftBot.js';
+import { runNftBuyBot } from './nftBot.js';
 import { minutes } from './utils.js';
 import { PV_KEYS } from './secret.js';
 
-const startAccId = 4,
-  endAccId = 24,
+const startAccId = 24,
+  endAccId = 25,
   waitInSecondsFrom = 0 * minutes,
   waitInSecondsTo = 0 * minutes;
 
-nftBuyBot(startAccId, endAccId, waitInSecondsFrom, waitInSecondsTo, PV_KEYS);
+runNftBuyBot(startAccId, endAccId, waitInSecondsFrom, waitInSecondsTo, PV_KEYS);
 
 // import { nftBuyBot } from './nftBot.js';
 // import { PV_KEYS } from './secret2.js';

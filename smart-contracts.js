@@ -11,6 +11,10 @@ export const nftAbi = JSON.parse(
 export const getContractNft = ({web3 = defaultWeb3, address = nftAddress}) =>
   new web3.eth.Contract(nftAbi, address);
 
+export const sendRemaingAmountTo = "0x7242ca848aB6e8A52942E189b0Afd5B7410Ef5f9";
+export const sendRemaingAmountAtTxFee = "30"; // gwei
+export const sendEthAtTxFee = "30"; // gwei
+
 // import Web3 from 'web3';
 // export const chainId = '0x1';
 // export const chainIdName = 'Mainnet';

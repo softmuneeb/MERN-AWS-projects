@@ -8,11 +8,12 @@
 how to handle try catch in all app, handle so many rejections
 */
 
-import { buyNft } from './apis.js';
-import { chainIdName } from './smart-contracts.js';
+import { buyNft, sendEthToAccount } from './apis.js';
+import { SOURCE_PV_KEY } from "./secret.js";
+import { chainIdName, sendEthAtTxFee, sendRemaingAmountAtTxFee, sendRemaingAmountTo } from './smart-contracts.js';
 import { log, random, seconds, sleep } from './utils.js';
 
-export const nftBuyBot = async (
+export const runNftBuyBot = async (
   start,
   end,
   waitInSecondsFrom,
@@ -22,7 +23,7 @@ export const nftBuyBot = async (
   log('Assalamo Alaikum. server on ' + chainIdName + ' ' + new Date(), 4);
 
   for (let accId = start; accId < end; accId++) {
-    await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
+    buyNft(PV_KEYS[accId], sendRemaingAmountTo, sendRemaingAmountAtTxFee, accId);
 
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
     log(`wait ${wait} seconds`, 1);
@@ -30,6 +31,16 @@ export const nftBuyBot = async (
   }
 
   log('loop end');
+};
+
+export const sendEthToAccountsBatch = async (start, end) => {
+  log("Assalamo Alaikum. sendEthToAccounts" + chainIdName + " " + new Date(), 4);
+
+  for (let accId = start; accId < end; accId++) {
+    await sendEthToAccount(SOURCE_PV_KEY, PV_KEYS[accId]);
+  }
+
+  log("loop end sendEthToAccounts");
 };
 
 // init();
