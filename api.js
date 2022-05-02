@@ -1,13 +1,16 @@
+// dependencies
 const express = require("express");
 const router = express.Router();
+const fs = require("fs");
 
 router.get("/", async (req, res) => {
   res.send({ message: "Assalamo Alaikum" });
 });
 
 router.get("/metadata/:tokenId", async (req, res) => {
-  if (Number(req.params.tokenId) < 10) res.send({ message: "Available" });
-  else res.send({ message: "Not Available" });
+  const data = fs.readFileSync("./metadata/1", "utf8");
+  if (Number(req.params.tokenId) < 10) res.send(JSON.parse(data));
+  else res.send(fs.readFileSync("./metadata/pre_reveal", "utf8"));
 });
 
 router.get("/is-penguin-available/:tokenId", async (req, res) => {
