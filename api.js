@@ -1,7 +1,9 @@
 // dependencies
+const fs = require("fs");
+const path = require("path");
 const express = require("express");
 const router = express.Router();
-const fs = require("fs");
+
 const { getContractNft } = require("./smart-contracts-config");
 
 router.get("/", async (req, res) => {
@@ -21,7 +23,8 @@ router.get("/metadata/:tokenId", async (req, res) => {
 });
 
 router.get("/images/:tokenId", async (req, res) => {
-  res.send(fs.readFileSync("./images/1.jpg"));
+  const imagePath = __dirname + "/images/" + req.params.tokenId + ".jpg";
+  res.sendFile(imagePath);
 });
 
 // router.post("/ninjas", async (req, res, next) => {
