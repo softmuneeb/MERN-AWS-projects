@@ -23,12 +23,15 @@ router.get("/metadata/:tokenId", async (req, res) => {
 });
 
 router.get("/images/:tokenId", async (req, res) => {
-  const imagePath = __dirname + "/images/" + req.params.tokenId + ".jpg";
-  res.sendFile(imagePath);
-});
+  const totalSupply = await getContractNft().methods.totalSupply().call();
 
-// router.post("/ninjas", async (req, res, next) => {
-//   res.send({ success: data.data.success, message: data.data.message });
-// });
+  if (Number(req.params.tokenId) < Number(totalSupply)) {
+    const imagePath = __dirname + "/images/" + req.params.tokenId + ".jpg";
+    res.sendFile(imagePath);
+  } else {
+    const imagePath = __dirname + "/images/pre_reveal.jpeg";
+    res.sendFile(imagePath);
+  }
+});
 
 module.exports = router;
