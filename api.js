@@ -5,8 +5,9 @@ router.get("/", async (req, res) => {
   res.send({ message: "Assalamo Alaikum" });
 });
 
-router.get("/is-sardine-available/:tokenId", async (req, res) => {
-  res.send({ success: data.data.success, message: data.data.message });
+router.get("/metadata/:tokenId", async (req, res) => {
+  if (Number(req.params.tokenId) < 10) res.send({ message: "Available" });
+  else res.send({ message: "Not Available" });
 });
 
 router.get("/is-penguin-available/:tokenId", async (req, res) => {
