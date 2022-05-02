@@ -943,3 +943,19 @@ Mon Apr 25 2022 22:23:36 done eth send tx from acc[3]:0xd3Aa0Cc4E9C6771a365Ac026
 
 Mon Apr 25 2022 22:23:36 wait 16 seconds
 Mon Apr 25 2022 22:23:52 loop end
+
+
+
+
+Mon May 02 2022 10:22:12 Assalamo Alaikum. server on Rinkeby Mon May 02 2022 10:22:12 GMT+0500 (Pakistan Standard Time)
+Mon May 02 2022 10:22:15 gasPrice 45.976188886gwei
+Mon May 02 2022 10:22:16 err: insufficient funds for gas * price + value: address 0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC have 0 want 1000 (supplied gas 14995852)
+Mon May 02 2022 10:22:16 nft buy tx err from acc[0] 0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC bal:0ETH msg Insufficient funds or some data error
+
+Mon May 02 2022 10:22:16 wait 19 seconds
+Mon May 02 2022 10:22:38 gasPrice 45.976188886gwei
+Mon May 02 2022 10:22:39 err: insufficient funds for gas * price + value: address 0xec088Fc358373C8d3bf7C7119676542a07D9516e have 0 want 1000 (supplied gas 15010485)
+Mon May 02 2022 10:22:39 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0ETH msg Insufficient funds or some data error
+
+Mon May 02 2022 10:22:39 wait 20 seconds
+Mon May 02 2022 10:23:01 gasPrice 48.95913518gwei
