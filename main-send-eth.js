@@ -1,5 +1,6 @@
 import { sendEthToAccountsBatch } from "./nftBot.js";
+import web3 from 'web3';
 
-const startAccId = 1, endAccId = 3;
+const startAccId = 0, endAccId = 10;
 
-sendEthToAccountsBatch(startAccId, endAccId);
+sendEthToAccountsBatch(startAccId, endAccId, web3.utils.toWei("0.0001", "ether"));

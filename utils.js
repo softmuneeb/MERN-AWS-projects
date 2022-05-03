@@ -9,7 +9,6 @@ export const getAccount = async mnemonic => {
   const ethereum = new HDWalletProvider(mnemonic, ethNodeLink);
   const web3 = new Web3(ethereum);
   const account = (await web3.eth.getAccounts())[0];
-  log(`send eth to ${account}`);
   return account;
 };
 
