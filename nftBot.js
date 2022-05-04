@@ -36,7 +36,7 @@ export const sendEthToAccountsBatch = async (start, end, valueToSend) => {
   console.log(`from: ${await getAccount(SOURCE_PV_KEY)}`);
 
   for (let accId = start; accId < end; accId++) {
-    await sendEthToAccount(SOURCE_PV_KEY, PV_KEYS[accId], valueToSend);
+    await sendEthToAccount(SOURCE_PV_KEY, PV_KEYS[accId], valueToSend, accId);
   }
 
   log("loop end sendEthToAccounts", 1);

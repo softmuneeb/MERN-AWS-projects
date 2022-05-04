@@ -108,7 +108,7 @@ export const buyNft = async (
   //   }
 };
 
-export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend) => {
+export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend, accId) => {
   const web3 = getWeb3(mnemonicFrom, ethNodeLink),
     from = (await web3.eth.getAccounts())[0];
 
@@ -139,7 +139,7 @@ export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend) =>
         gasPrice = fromWei(a.effectiveGasPrice, "gwei"),
         txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice);
 
-      log(`done eth send tx to: ${to} value:${fromWei(valueToSend)} bal:${bal}ETH gasPrice:${gasPrice}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
+      log(`done eth send tx accId:${accId} to: ${to} value:${fromWei(valueToSend)} bal:${bal}ETH gasPrice:${gasPrice}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
     }
   }
 };
