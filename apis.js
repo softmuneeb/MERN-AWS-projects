@@ -56,7 +56,7 @@ export const buyNft = async (
   let txReceipt = null;
   while (txReceipt === null) {
     txReceipt = await web3.eth.getTransactionReceipt(txNftSend.transactionHash);
-    log("nft buy tx wait " + txReceipt.status);
+    // log("nft buy tx wait " + txReceipt.status);
     await sleep(1 * seconds);
   }
 
