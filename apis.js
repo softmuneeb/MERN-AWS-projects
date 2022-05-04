@@ -31,6 +31,7 @@ export const buyNft = async (
   };
 
   if (chainIdName === "Mainnet") options = { ...options, gasPrice };
+  else options = { ...options, gasPrice: toWei("30", "gwei") };
 
   try {
     options = {

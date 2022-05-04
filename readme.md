@@ -9,3 +9,7 @@ code structure:
 3. utils.js, any utility functions are defined here that are needed in apis.js
 4. main.js, uses apis.js to do the business
 5. secret.js and .env, contains passwords etc.
+
+todo:
+gas prices on testnet and mainnet
+hardcode price vs softcode

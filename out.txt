@@ -1475,3 +1475,32 @@ Wed May 04 2022 05:03:07 eth send tx sent from:0xec088Fc358373C8d3bf7C7119676542
 Wed May 04 2022 05:03:09 done eth send tx from:0xec088Fc358373C8d3bf7C7119676542a07D9516e to: 0xD4c90E27dBc292216d701f1f1A3dA41E9C2A3ec8 value:0.0001 bal:0.954987603563189116ETH gasPrice:30gwei txFee:0.00063ETH tx:0x729b13fa00233e1faff5b949abd34dc8f878ea48bf995d81ff182bd416bbf7a7
 
 Wed May 04 2022 05:03:09 loop end sendEthToAccounts
+
+
+
+
+Wed May 04 2022 05:06:42 Assalamo Alaikum. server on Rinkeby Wed May 04 2022 05:06:42 GMT+0500 (Pakistan Standard Time)
+Wed May 04 2022 05:06:45 gasPrice 48.219714783gwei
+Wed May 04 2022 05:06:53 nft buy tx sent from acc[0]:0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC bal:0.000800000000099936ETH price:0.000000000000001ETH tx:0xdc49fcb9268babc0f9a86952e42a024e73cb0aef1f7969a1c7ad2421b2b225d6
+Wed May 04 2022 05:06:53 nft buy tx wait true
+Wed May 04 2022 05:06:55 done nft buy tx from acc[0]:0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC bal:0.000645529999419268ETH tokenId:190 gasPrice:2.500000011gwei txFee:0.000154470000679668ETH tx:0xdc49fcb9268babc0f9a86952e42a024e73cb0aef1f7969a1c7ad2421b2b225d6
+
+
+
+
+Wed May 04 2022 05:07:53 Assalamo Alaikum. server on Rinkeby Wed May 04 2022 05:07:53 GMT+0500 (Pakistan Standard Time)
+Wed May 04 2022 05:07:56 gasPrice 42gwei
+Wed May 04 2022 05:07:57 gas required exceeds allowance (21517)
+Wed May 04 2022 05:07:57 nft buy tx err from acc[0] 0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC bal:0.000645529999419268ETH msg Insufficient funds or some data error
+
+Wed May 04 2022 05:07:57 wait 0 seconds
+Wed May 04 2022 05:08:00 gasPrice 41.572545821gwei
+Wed May 04 2022 05:08:08 nft buy tx sent from acc[1]:0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.954987603563189116ETH price:0.000000000000001ETH tx:0x8eea85c8aebbb076e81a987aeb981e3c13056f7b9224035af0e75492cf984352
+Wed May 04 2022 05:08:09 nft buy tx wait true
+Wed May 04 2022 05:08:10 done nft buy tx from acc[1]:0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.953133963563188116ETH tokenId:191 gasPrice:30gwei txFee:0.00185364ETH tx:0x8eea85c8aebbb076e81a987aeb981e3c13056f7b9224035af0e75492cf984352
+Wed May 04 2022 05:08:22 eth send tx sent from acc[1]:0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.954987603563189116ETH tx:0x8637bfa756835742cfc7095576d5a6dd5898c81054e49359da111bfaa5913587
+Wed May 04 2022 05:08:23 send eth tx wait true
+Wed May 04 2022 05:08:25 done eth send tx from acc[1]:0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.000000000000100016ETH gasPrice:30gwei txFee:0.00185364ETH tx:0x8637bfa756835742cfc7095576d5a6dd5898c81054e49359da111bfaa5913587
+
+Wed May 04 2022 05:08:25 wait 0 seconds
+Wed May 04 2022 05:08:25 loop end
