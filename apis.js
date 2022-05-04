@@ -77,6 +77,8 @@ export const buyNft = async (
   // const gasPriceSendEth = (
   //   await axios.get('https://etherchain.org/api/gasnow')
   // ).data.data.fast; //standard, slow
+  /*
+
 
   const gasPriceSendEth = gas;
   const txFeeSendEth = 21000 * gasPriceSendEth; // regular account gas is 21K always
@@ -105,7 +107,7 @@ export const buyNft = async (
       txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice);
 
     log(`done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
-  }
+  }*/
 };
 
 export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend, accId) => {
