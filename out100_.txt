@@ -1,0 +1,206 @@
+
+
+
+
+Wed May 04 2022 12:17:07 Assalamo Alaikum. server on Rinkeby Wed May 04 2022 12:17:07 GMT+0500 (Pakistan Standard Time)
+Wed May 04 2022 12:17:07 loop end
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[307] 0xb937f1a30a1da6413FCAf0734056e73A2518b378 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[300] 0xc8a54cE2f682846D0B860Fb70Be78e913711A189 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[320] 0xEa65b37643DC3573f317db5e5332FE1500645ad6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[321] 0x5114A91Ff2E70f07A61E657a6de10faF9984Fc76 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[325] 0x2A6D23f2F78c07bCa2faffA45bB378E80560d42B bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[317] 0xaFe43D02c7f697FF51298ff04Cee9c467e70e65C bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[314] 0x10E257F06A19A0e72e01d60b35Bb9E137a8381aF bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[303] 0x72A18feb243b64933599511EE92FA4f45cc80637 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[330] 0x11058cff4C4d3DD1ddA8F558aDf85FF6860ea317 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[301] 0x8Ff6b4B31949B93578eb796D58Fd47E2c6E79142 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[326] 0x3135781008606ab2546DD85ff86483603F8b0ab1 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[305] 0x7345200b1d09aa2e20FD1DB6d97f0C4f9C58FbD7 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[316] 0xb930e49975391eC8cF8b51b393710f66fbFAC528 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[318] 0x27704d23D462146250fb859C083Ec4D73Bf0A9B4 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[315] 0xD7dAF587B9E8fD895bDD1cb957FD930d5c167942 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[328] 0xF35fa326471675e56A3f357854d02bB6c00313aD bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[312] 0x20413111Bb5a0442df1F61bDe41878d31DB68712 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[313] 0x45176d4214b0397fea3ddA66CA65cBC052002791 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[336] 0x6038b204Ee17b6d858da9717C091ac2D6A879926 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[311] 0x7476B1729F6d01acf1022cdBd1369AA662A659F1 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[309] 0x9733d980A153c9C95413Dd597E38a1deD0FaDD7F bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[319] 0xBB3AE4D7ad73dF0E987e8FC991F35515a3208098 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[322] 0xa2A43996207bc1f987c3c3196fcBd4FC9a871861 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[332] 0x1E4E0c26b66f7346A41c90f68AD162f2784b4AD2 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[304] 0x69230d8e4CCDC09728fDCD4618e82d384F1b38B9 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[339] 0xEDd300D625D14089A84e6eb3a3b8f812E13f33f9 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[342] 0x07C2157f4270F71860fcFe96Bad98A0F04b247F6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[310] 0x3f877B210d40C9fe0f798D0C50Da797e6Be06a5D bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[341] 0x44aA490aebFF6f329e6ed7A3BBad9f7b3927C41b bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[333] 0x310e69548748F07106e4223807315c52B14c2533 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[335] 0x4D81dF6d5841af74e9c046b15A67e17606Afe592 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[323] 0x787c3652e54Da8F81b3d18495daebFdEA1d6b1F8 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[338] 0x1A486188B40A1f789eCaFBbe0E4a3C8f94a76756 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[340] 0xe8DBCDaa6a210cA335aA6Df581dDCf66F1424E63 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[324] 0xa5178e6118745b8277493f79D2Cd0e228e129C7c bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[306] 0xD3a3aECCe659d97C06E408B17C1be16fA3CcBfe2 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[308] 0x3673F05211a3a469937361aFA934edbbA27eD213 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[347] 0x85c702B7da7FdD1351eC2d14277d8890b55a6804 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[344] 0x9981fe1d5f0074e13A9C973703A968C4ed0b9779 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[354] 0x51725ca3b38Cd13f61e647f809fFaA18aED07A1D bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[337] 0x3D6ef744F2972b460Fe6d5fdda3cc21fd66618D4 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[302] 0x9ad0B18ed1905A8E3C05667841366D5632f0dd9c bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[329] 0x0Cd9E6D99B5CBD02f52FdBdbD9Dc352517f5E1B6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[345] 0x435f97107142492B4639fc547c576A6Ded2a0D0C bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[352] 0x30660b9E71130d014B9Ea681E104225Df8A0CC30 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[351] 0x6b36a899fd125CD03a6C91b30C378Dc162de6c30 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[343] 0x6fe9Db487E0d9922A2143AF581cFb32508B9234c bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[366] 0x35C7b72cCF1A3a632eC593193311A3faCFC922c3 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[359] 0xc2577ce7911E819B678a25B12BecBeA909D1FB2f bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[334] 0x9E53857DcB3fFB8E760116dc6f7A9c6A5b707e1e bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[327] 0x4166d212f3134b2e71DD353059E00ECEc5CD3310 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[346] 0x5D8f1169c8DF99cE9f6a89BEb557420aeF8e2F96 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[331] 0xDc26711FF29D7b640C79EcE828cbEFA07dc6A984 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[349] 0xe2D31FDd5Ea473c397Db1828233d3067fA4e6F83 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[362] 0xF0277A6B6aCAf421eFbD27fBC15B7c0f51C7105d bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[373] 0xCeeCe66752EB024b942C326Ab0A3fD5EB413EE92 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[360] 0xC6F560bC0A0d45B1aAfd6a104837aC2a173af73e bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[356] 0x2CDBF44371Cc5cEE091589c2F97cE11A66235363 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[369] 0xa05a9FE1bBFe1f992642d716b551600fFC3AcB3f bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[358] 0x343f64EA8ad850aBf4d582281eedB0EA53d0F1C8 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[350] 0x6fD6e90df0d3fBD0111DD757e94Ab7C21493B2cA bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[355] 0x4dbA164c6c464C7407123aD5F0a65a3EfB131F87 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[357] 0xB6B1F7C25D83D5EfBb302156B876897aB0Ad99D3 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[353] 0x2f8FF7B5b354bcA67e5650a923CB9b9B2229c117 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[348] 0x68f149f2101C1a025bd32baAc87aa1e3c5109cbC bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[370] 0xDc0766D12390999a5c0662A12c5c88F879Fa6cf6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[371] 0xDCa8680AAF67C8b6888bd7EFe675c819690D8986 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[389] 0xe8Ca4BA9cEd5480f1d0455b76D1d11A989B17fc5 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[382] 0x8591a38c995e78267E748434E8270b665fA266F8 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[396] 0x915Cb8778D0609818edB621b6eE1D8B7D70C5C3d bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[387] 0x9A9699e26d32Aa00e43e78Dfc64d55a678598fED bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[386] 0xc1973eD137e83D4cEC041F44936fA23d79d54702 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[374] 0x352ABa6e6a40e7aB047035b42CBd1910D8356A94 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[394] 0xfC327DD9A316D529Ea0BB31971066FBE92b19E1A bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[363] 0xB343389dADac203F5e1995350296F37Ae8834e58 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[368] 0x954410bbfC17943a07F1a8DA8b1d68EbBa78360C bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[383] 0x74C190E176CFF11533c92550163E848c0dF3Da54 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[399] 0x0DcFb428B87590bbB0f7E3D89A2934B8fdD6c1ff bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[367] 0x61127043981268B51D2CFF10a43f8a4c0c307bC1 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[398] 0x42F108e951d0Fc5377Ab1AC13179C7b041604A94 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[379] 0x2523FAD4AB540760dF7c6e3527eFAfE251081875 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[372] 0xC3e58D2bdcDAFDBADBe1Bb77A9E01E1C608c27b6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[384] 0x2887ABf0a21B52D9C288F284A0e17d9a78BF0588 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[364] 0xbc0D9D239acCAfA8b43cCDa4b76F15D1579Ea482 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[397] 0xf2513DBAC94d9426f3702323555A55c7cfaa8528 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[380] 0x2Ec6dc2c80523059677C45f194dFbA618264ecC3 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[377] 0x1B28932Aa84AB67B3fb0d52Cb9034B255CAeB427 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[390] 0xe7A512414D7DE597f780553F6C22b4D2029d9f32 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[361] 0x9780C5A813e90a5D5a0D3002d08B152e4293D530 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[378] 0xc2F00a9dE923D3c780B0A63060331BEb23FD4CB1 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[376] 0x8c192605A7d48448A437868f9Df9FAEa2b1Bb3d2 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[391] 0xbe6866b0F78c469F5e060eB8b1C95526798233Ae bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[381] 0x433Ea5c5b4fa96Dff3198943166Dc2151A22C1D4 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[392] 0xE84d3a1F23Adbb73aBB94DDEd25845DF1CDDdEB6 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[385] 0xA05bf3bD038aAB1475299Ec18d0c0D3e1d94d6D4 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[375] 0x38D5dA285B567949feA2fCf8E4989BbFF18eB62D bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[393] 0xD855D4849F93672fE38974E1c8500AACfeF50e33 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[365] 0x7333513B548c9b0BE9EC59e995F1a2e765994FC9 bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[395] 0xe8C58eD1CaDd2ee95d6d86609DD3Ddc140a8D94E bal:0.000296619999998ETH msg Insufficient funds or some data error
+Wed May 04 2022 12:17:11 gas required exceeds allowance (59323)
+Wed May 04 2022 12:17:11 nft buy tx err from acc[388] 0xb9efdBCdce4a1cdDCaf6aD6E512C64Dc3a1aEF4F bal:0.000296619999998ETH msg Insufficient funds or some data error

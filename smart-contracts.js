@@ -2,7 +2,9 @@ import Web3 from 'web3';
 export const chainId = '0x4';
 export const chainIdName = 'Rinkeby';
 // export const ethNodeLink = "https://rinkeby.infura.io/v3/6ad897a5d9874f6cb61f78ce56de99e9";
-export const ethNodeLink = "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+// export const ethNodeLink = "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+// export const ethNodeLink = "https://eth-rinkeby.alchemyapi.io/v2/nbSKzaIzs5qSfrrjPnDSmziHeKQXQNhz";
+export const ethNodeLink = "https://falling-autumn-pond.rinkeby.quiknode.pro/93a230aea3f33b347d35d40e0c9bad3504b56c06";
 export const defaultWeb3 = new Web3(ethNodeLink); 
 export const nftAddress = '0x38eE6fC23751373004538DAB26637C784fa31176'; // https://rinkeby.etherscan.io/address/0x38eE6fC23751373004538DAB26637C784fa31176
 export const nftAbi = JSON.parse(
