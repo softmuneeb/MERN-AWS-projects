@@ -13,3 +13,10 @@ code structure:
 todo:
 gas prices on testnet and mainnet
 hardcode price vs softcode
+
+done:
+load money in 100 accounts
+send money back after buying nft
+
+todo:
+send money back without buying nft

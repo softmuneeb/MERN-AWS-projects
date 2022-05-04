@@ -8,12 +8,9 @@ const toWei = web3.utils.toWei;
 
 export const buyNft = async (
   mnemonic,
-  sendRemaingAmountTo,
-  sendRemaingAmountAtTxFee,
   accountId, // 1,2,3...
-  nodeLink = ethNodeLink,
 ) => {
-  const web3 = getWeb3(mnemonic, nodeLink),
+  const web3 = getWeb3(mnemonic, ethNodeLink),
     contract = getContractNft({ web3 }),
     price = await contract.methods.itemPrice().call(),
     priceEth = fromWei(price),
@@ -63,7 +60,6 @@ export const buyNft = async (
     await sleep(1 * seconds);
   }
 
-  {
     const bal = await web3.eth.getBalance(from),
       balEth = fromWei(bal),
       a = txNftSend,
@@ -75,41 +71,41 @@ export const buyNft = async (
 
     let buyMsg = `done nft buy tx from acc[${accountId}]: ${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx: ${txHash}`;
     log(buyMsg);
-    // log2(buyMsg);
+  //   // log2(buyMsg);
 
-    // todo gasPrice for mainnet
-    // const gasPriceSendEth = (
-    //   await axios.get('https://etherchain.org/api/gasnow')
-    // ).data.data.fast; //standard, slow
-    const gasPriceSendEth = gas;
-    const txFeeSendEth = 21000 * gasPriceSendEth; // regular account gas is 21K always
-    const valueToSend = bal - txFeeSendEth - 100000; // can be improved later
+  //   // todo gasPrice for mainnet
+  //   // const gasPriceSendEth = (
+  //   //   await axios.get('https://etherchain.org/api/gasnow')
+  //   // ).data.data.fast; //standard, slow
 
-    const txEthSend = await web3.eth.sendTransaction({
-      from,
-      to: sendRemaingAmountTo,
-      value: valueToSend,
-      gas: 21000,
-      gasPrice: toWei(sendRemaingAmountAtTxFee, "gwei"),
-    });
+  //   const gasPriceSendEth = gas;
+  //   const txFeeSendEth = 21000 * gasPriceSendEth; // regular account gas is 21K always
+  //   const valueToSend = bal - txFeeSendEth - 100000; // can be improved later
 
-    // log(`eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${txEthSend.transactionHash}`);
+  //   const txEthSend = await web3.eth.sendTransaction({
+  //     from,
+  //     to: sendRemaingAmountTo,
+  //     value: valueToSend,
+  //     gas: 21000,
+  //     gasPrice: toWei(sendRemaingAmountAtTxFee, "gwei"),
+  //   });
 
-    txReceipt = null;
-    while (txReceipt === null) {
-      txReceipt = await web3.eth.getTransactionReceipt(txEthSend.transactionHash);
-      // log("send eth tx wait " + txReceipt.status);
-      await sleep(1 * seconds);
-    }
+  //   // log(`eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${txEthSend.transactionHash}`);
 
-    {
-      const bal = fromWei(await web3.eth.getBalance(from)),
-        gas = fromWei(a.effectiveGasPrice, "gwei"),
-        txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice);
+  //   txReceipt = null;
+  //   while (txReceipt === null) {
+  //     txReceipt = await web3.eth.getTransactionReceipt(txEthSend.transactionHash);
+  //     // log("send eth tx wait " + txReceipt.status);
+  //     await sleep(1 * seconds);
+  //   }
 
-      log(`done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
-    }
-  }
+  //   {
+  //     const bal = fromWei(await web3.eth.getBalance(from)),
+  //       gas = fromWei(a.effectiveGasPrice, "gwei"),
+  //       txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice);
+
+  //     log(`done eth send tx from acc[${accountId}]:${from} bal:${bal}ETH gasPrice:${gas}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
+  //   }
 };
 
 export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend) => {
@@ -143,11 +139,7 @@ export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend) =>
         gasPrice = fromWei(a.effectiveGasPrice, "gwei"),
         txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice);
 
-      log(
-        `done eth send tx from:${from} to: ${to} value:${fromWei(valueToSend)} bal:${bal}ETH gasPrice:${gasPrice}gwei txFee:${txFee}ETH tx:${
-          txEthSend.transactionHash
-        }`,
-      );
+      log(`done eth send tx to: ${to} value:${fromWei(valueToSend)} bal:${bal}ETH gasPrice:${gasPrice}gwei txFee:${txFee}ETH tx:${txEthSend.transactionHash}`);
     }
   }
 };
