@@ -19,7 +19,7 @@ export const runNftBuyBot = async (start, end, waitInSecondsFrom, waitInSecondsT
   log("Assalamo Alaikum. server on " + chainIdName + " " + new Date(), 4);
 
   for (let accId = start; accId < end; accId++) {
-    await buyNft(PV_KEYS[accId], accId);
+    buyNft(PV_KEYS[accId], accId);
 
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
     if (wait !== 0) {
