@@ -12,8 +12,9 @@ export const getContractNft = ({web3 = defaultWeb3, address = nftAddress}) =>
   new web3.eth.Contract(nftAbi, address);
 
 export const sendRemaingAmountTo = "0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC";
-export const sendRemaingAmountAtTxFee = "30"; // gwei
-export const sendEthAtTxFee = "30"; // gwei
+export const sendRemaingAmountAtTxFee = "5"; // gwei
+export const sendEthAtTxFee = "5"; // gwei
+export const buyNftGasPrice = "5"; // gwei
 
 // import Web3 from 'web3';
 // export const chainId = '0x1';

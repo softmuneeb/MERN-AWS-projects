@@ -1,4 +1,4 @@
-import { chainIdName, ethNodeLink, getContractNft, sendEthAtTxFee } from "./smart-contracts.js";
+import { buyNftGasPrice, chainIdName, ethNodeLink, getContractNft, sendEthAtTxFee } from "./smart-contracts.js";
 import { getAccount, getWeb3, log, log2, seconds, sleep } from "./utils.js";
 import axios from "axios";
 import web3 from "web3";
@@ -31,7 +31,7 @@ export const buyNft = async (
   };
 
   if (chainIdName === "Mainnet") options = { ...options, gasPrice };
-  else options = { ...options, gasPrice: toWei("30", "gwei") };
+  else options = { ...options, gasPrice: toWei(buyNftGasPrice, "gwei") };
 
   try {
     options = {
