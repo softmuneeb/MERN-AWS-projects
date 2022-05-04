@@ -21,17 +21,17 @@ export const buyNft = async (
     from = (await web3.eth.getAccounts())[0],
     balance = fromWei(await web3.eth.getBalance(from));
 
-  const gasPrice = (await axios.get("https://etherchain.org/api/gasnow")).data.data.fast; //standard, slow
-  log("gasPrice " + fromWei("" + gasPrice, "gwei") + "gwei");
-
   let options = {
     from,
     gas: "0",
     value: price,
   };
 
-  if (chainIdName === "Mainnet") options = { ...options, gasPrice };
-  else options = { ...options, gasPrice: toWei(buyNftGasPrice, "gwei") };
+  if (chainIdName === "Mainnet") {
+    const gasPrice = (await axios.get("https://etherchain.org/api/gasnow")).data.data.fast; //standard, slow
+    log("gasPrice " + fromWei("" + gasPrice, "gwei") + "gwei");
+    options = { ...options, gasPrice };
+  } else options = { ...options, gasPrice: toWei(buyNftGasPrice, "gwei") };
 
   try {
     options = {
@@ -54,7 +54,7 @@ export const buyNft = async (
 
   const txNftSend = await method.send(options);
 
-  log(`nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH price:${priceEth}ETH tx:${txNftSend.transactionHash}`);
+  // log(`nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH price:${priceEth}ETH tx:${txNftSend.transactionHash}`);
 
   let txReceipt = null;
   while (txReceipt === null) {
@@ -73,9 +73,9 @@ export const buyNft = async (
       txFee = fromWei("" + a.gasUsed * a.effectiveGasPrice),
       txHash = a.transactionHash;
 
-    let buyMsg = `done nft buy tx from acc[${accountId}]:${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx:${txHash}`;
+    let buyMsg = `done nft buy tx from acc[${accountId}]: ${from} bal:${balEth}ETH tokenId:${tokenId} gasPrice:${gasGwei}gwei txFee:${txFee}ETH tx: ${txHash}`;
     log(buyMsg);
-    log2(buyMsg);
+    // log2(buyMsg);
 
     // todo gasPrice for mainnet
     // const gasPriceSendEth = (
@@ -93,12 +93,12 @@ export const buyNft = async (
       gasPrice: toWei(sendRemaingAmountAtTxFee, "gwei"),
     });
 
-    log(`eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${txEthSend.transactionHash}`);
+    // log(`eth send tx sent from acc[${accountId}]:${from} bal:${balance}ETH tx:${txEthSend.transactionHash}`);
 
     txReceipt = null;
     while (txReceipt === null) {
       txReceipt = await web3.eth.getTransactionReceipt(txEthSend.transactionHash);
-      log("send eth tx wait " + txReceipt.status);
+      // log("send eth tx wait " + txReceipt.status);
       await sleep(1 * seconds);
     }
 
@@ -128,7 +128,7 @@ export const sendEthToAccount = async (mnemonicFrom, mnemonicTo, valueToSend) =>
       gasPrice: toWei(sendEthAtTxFee, "gwei"),
     });
 
-    log(`eth send tx sent from:${from} to: ${to} value:${fromWei(valueToSend)} bal:${fromWei(bal)}ETH tx:${txEthSend.transactionHash}`, 1);
+    // log(`eth send tx sent from:${from} to: ${to} value:${fromWei(valueToSend)} bal:${fromWei(bal)}ETH tx:${txEthSend.transactionHash}`, 1);
 
     let txReceipt = null;
     while (txReceipt === null) {

@@ -3,4 +3,4 @@ import web3 from 'web3';
 
 const startAccId = 0, endAccId = 10;
 
-sendEthToAccountsBatch(startAccId, endAccId, web3.utils.toWei("0.0001", "ether"));
+sendEthToAccountsBatch(startAccId, endAccId, web3.utils.toWei("0.001", "ether"));
