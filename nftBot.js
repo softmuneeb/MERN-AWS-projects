@@ -32,4 +32,12 @@ export const nftBuyBot = async (
   log('loop end');
 };
 
-// init();
+export const seeBalances = async (start, end) => {
+  for (let accId = start; accId < end; accId++) {
+    const web3 = getWeb3(PV_KEYS[accId], ethNodeLink),
+      from = (await web3.eth.getAccounts())[0],
+      balanceEth = fromWei(await web3.eth.getBalance(from));
+
+    console.log({ from }, { balanceEth });
+  }
+};
