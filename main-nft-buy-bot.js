@@ -3,7 +3,7 @@ import { minutes } from './utils.js';
 import { PV_KEYS } from './secret.js';
 
 const startAccId = 1,
-  endAccId = 3,
+  endAccId = 2,
   waitInSecondsFrom = 0 * minutes,
   waitInSecondsTo = 0 * minutes;
 
