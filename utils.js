@@ -27,7 +27,7 @@ export const getWeb3 = (mnemonic, nodeLink = ethNodeLink) => {
 export const log = (text, newLinesBefore = 0) => {
   text = time() + text;
   for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
-  console.log(text);
+  // console.log(text);
   appendFile(
     chainIdName === 'Mainnet' ? 'outMain.txt' : 'out.txt',
     text + '\n',
