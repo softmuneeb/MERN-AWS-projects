@@ -10,7 +10,7 @@ how to handle try catch in all app, handle so many rejections
 
 
 import { buyNft, sendEthToAccount } from './apis.js';
-import { PV_KEYS, SOURCE_PV_KEY } from "./secret.js";
+// import { PV_KEYS, SOURCE_PV_KEY } from "./secret.js";
 import { chainIdName, ethNodeLink, sendRemaingAmountAtTxFee, sendRemaingAmountTo } from "./smart-contracts.js";
 import { getAccount, getWeb3, log, random, seconds, sleep } from "./utils.js";
 import pkg from "web3-utils";
@@ -31,16 +31,16 @@ export const runNftBuyBot = async (start, end, waitInSecondsFrom, waitInSecondsT
   log("loop end");
 };
 
-export const sendEthToAccountsBatch = async (start, end, valueToSend) => {
-  log("Assalamo Alaikum. sendEthToAccounts" + chainIdName + " " + new Date(), 4);
-  console.log(`from: ${await getAccount(SOURCE_PV_KEY)}`);
+// export const sendEthToAccountsBatch = async (start, end, valueToSend) => {
+//   log("Assalamo Alaikum. sendEthToAccounts" + chainIdName + " " + new Date(), 4);
+//   console.log(`from: ${await getAccount(SOURCE_PV_KEY)}`);
 
-  for (let accId = start; accId < end; accId++) {
-    await sendEthToAccount(SOURCE_PV_KEY, PV_KEYS[accId], valueToSend, accId);
-  }
+//   for (let accId = start; accId < end; accId++) {
+//     await sendEthToAccount(SOURCE_PV_KEY, PV_KEYS[accId], valueToSend, accId);
+//   }
 
-  log("loop end sendEthToAccounts", 1);
-};
+//   log("loop end sendEthToAccounts", 1);
+// };
 
 export const seeBalances = async (start, end) => {
   for (let accId = start; accId < end; accId++) {
