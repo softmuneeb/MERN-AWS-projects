@@ -139,3 +139,21 @@ Fri May 06 2022 00:49:40 insufficient funds for transfer
 Fri May 06 2022 00:49:40 nft buy tx err from acc[2] 0xEE8bd4599d5806b00F26F7432Ee19646Fcb20127 bal:0ETH msg Insufficient funds or some data error
 Fri May 06 2022 00:49:40 insufficient funds for transfer
 Fri May 06 2022 00:49:40 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0ETH msg Insufficient funds or some data error
+
+
+
+
+Fri May 06 2022 01:11:53 Assalamo Alaikum. server on Mainnet Fri May 06 2022 01:11:53 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:11:53 loop end
+Fri May 06 2022 01:11:55 gasPrice 0.000000041900554386gwei
+Fri May 06 2022 01:11:56 insufficient funds for transfer
+Fri May 06 2022 01:11:56 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0ETH msg Insufficient funds or some data error
+
+
+
+
+Fri May 06 2022 01:13:24 Assalamo Alaikum. server on Mainnet Fri May 06 2022 01:13:24 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:13:24 loop end
+Fri May 06 2022 01:13:26 gasPrice 0.000000042897090878gwei
+Fri May 06 2022 01:13:27 insufficient funds for transfer
+Fri May 06 2022 01:13:27 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0ETH msg Insufficient funds or some data error

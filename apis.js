@@ -1,7 +1,8 @@
-import { buyNftGasPrice, chainIdName, ethNodeLink, getContractNft, sendEthAtTxFee, sendRemaingAmountAtTxFee, sendRemaingAmountTo } from "./smart-contracts.js";
+import { buyNftGasPrice, chainIdName, ethNodeLink, gasAuto, getContractNft, sendEthAtTxFee, sendRemaingAmountAtTxFee, sendRemaingAmountTo } from "./smart-contracts.js";
 import { getAccount, getWeb3, log, log2, seconds, sleep } from "./utils.js";
 import axios from "axios";
 import web3 from "web3";
+import { getProof } from "./getMerkleProof.js";
 
 const fromWei = (a) => "" + web3.utils.fromWei(a);
 const toWei = (a) => "" + web3.utils.toWei(a);
@@ -12,10 +13,13 @@ export const buyNft = async (
 ) => {
   const web3 = getWeb3(mnemonic, ethNodeLink),
     contract = getContractNft({ web3 }),
-    price = await contract.methods.itemPrice().call(),
-    priceEth = fromWei(price),
-    method = contract.methods.purchaseTokens(1),
+    // price = await contract.methods.itemPrice().call(),
     from = (await web3.eth.getAccounts())[0],
+    price = toWei("0.01", "ether"),
+    method = contract.methods.purchaseTokensWhitelist(1, getProof(from), 0), // root 0
+    // price = toWei("0.025", "ether"),
+    // method = contract.methods.purchaseTokens(1),
+    priceEth = fromWei(price),
     balance = fromWei(await web3.eth.getBalance(from));
 
   let options = {
@@ -24,7 +28,7 @@ export const buyNft = async (
     value: price,
   };
 
-  if (chainIdName === "Mainnet") {
+  if (chainIdName === "Mainnet" && gasAuto) {
     const gasPrice = (await axios.get("https://etherchain.org/api/gasnow")).data.data.fast; //standard, slow
     log("gasPrice " + fromWei("" + gasPrice, "gwei") + "gwei");
     options = { ...options, gasPrice };

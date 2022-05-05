@@ -12,6 +12,8 @@
   "dependencies": {
     "@truffle/hdwallet-provider": "^2.0.0",
     "axios": "^0.24.0",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.2.31",
     "web3": "^1.6.1",
     "web3-utils": "^1.6.1"
   },

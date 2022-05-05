@@ -2851,3 +2851,41 @@ Fri May 06 2022 00:49:00 gas required exceeds allowance (0)
 Fri May 06 2022 00:49:00 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.011319540000091016ETH msg Insufficient funds or some data error
 Fri May 06 2022 00:49:00 gas required exceeds allowance (0)
 Fri May 06 2022 00:49:00 nft buy tx err from acc[2] 0xEE8bd4599d5806b00F26F7432Ee19646Fcb20127 bal:0.015646360000994108ETH msg Insufficient funds or some data error
+
+
+
+
+Fri May 06 2022 01:06:03 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:06:03 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:06:03 loop end
+
+
+
+
+Fri May 06 2022 01:06:40 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:06:40 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:06:40 loop end
+
+
+
+
+Fri May 06 2022 01:07:36 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:07:36 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:07:36 loop end
+
+
+
+
+Fri May 06 2022 01:09:54 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:09:54 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:09:54 loop end
+
+
+
+
+Fri May 06 2022 01:10:14 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:10:14 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:10:14 loop end
+
+
+
+
+Fri May 06 2022 01:11:02 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 01:11:02 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 01:11:02 loop end
+Fri May 06 2022 01:11:05 gas required exceeds allowance (0)
+Fri May 06 2022 01:11:05 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.011319540000091016ETH msg Insufficient funds or some data error
