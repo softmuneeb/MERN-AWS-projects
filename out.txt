@@ -1227,3 +1227,19 @@ Tue May 03 2022 04:42:47 done eth send tx from acc[25]:0xa79032E6cb2cE9F8945C150
 
 Tue May 03 2022 04:42:47 wait 0 seconds
 Tue May 03 2022 04:42:47 loop end
+
+
+
+
+Fri May 06 2022 03:59:43 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 03:59:43 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 03:59:48 gasPrice 30.980547258gwei
+Fri May 06 2022 04:00:08 nft buy tx sent from acc[25]:0xa79032E6cb2cE9F8945C1502029EE4C3550a0895 bal:0.001382120000998068ETH price:0.000000000000001ETH tx:0x315f6fdc42fc665fe112666f6431dad5881bb060beedcc5c2042cb61d6d01162
+Fri May 06 2022 04:00:09 nft buy tx wait true
+Fri May 06 2022 04:00:11 done nft buy tx from acc[25]:0xa79032E6cb2cE9F8945C1502029EE4C3550a0895 bal:0.001227650000193824ETH tokenId:1315 gasPrice:2.500000013gwei txFee:0.000154470000803244ETH tx:0x315f6fdc42fc665fe112666f6431dad5881bb060beedcc5c2042cb61d6d01162
+Fri May 06 2022 04:00:11 send eth to 0x7001Bed596CA3Dc097092230B7b4a3ECdbfef6FC
+
+
+
+
+Fri May 06 2022 04:00:16 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 04:00:16 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 04:00:19 gasPrice 35gwei
