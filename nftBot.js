@@ -20,15 +20,17 @@ export const nftBuyBot = async (
   PV_KEYS
 ) => {
   log('Assalamo Alaikum. server on ' + chainIdName + ' ' + new Date(), 4);
-
+  console.log('start');
+  
   for (let accId = start; accId < end; accId++) {
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
-
+    
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
     log(`wait ${wait} seconds`, 1);
     await sleep(wait * seconds);
   }
-
+  
+  console.log('stop');
   log('loop end');
 };
 
