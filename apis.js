@@ -3,8 +3,8 @@ import { getAccount, getWeb3, log, log2, seconds, sleep } from "./utils.js";
 import axios from "axios";
 import web3 from "web3";
 
-const fromWei = web3.utils.fromWei;
-const toWei = web3.utils.toWei;
+const fromWei = (a) => "" + web3.utils.fromWei(a);
+const toWei = (a) => "" + web3.utils.toWei(a);
 
 export const buyNft = async (
   mnemonic,

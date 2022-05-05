@@ -2835,3 +2835,19 @@ Wed May 04 2022 12:34:55 done nft buy tx from acc[767]: 0x12d7a421eCB328d593BFa9
 Wed May 04 2022 12:34:55 done nft buy tx from acc[784]: 0xF087a7852B9040a63E728Eb92308A59d7cA414Df bal:0.000605559999999ETH tokenId:1214 gasPrice:5gwei txFee:0.00039444ETH tx: 0x0edd8d51c57f8db119956e732c281c39586436f04a128e3e3a55bb2ef0200883
 Wed May 04 2022 12:34:55 done nft buy tx from acc[776]: 0xb526D3Ca1aFb08D7ebBBD71B33CE4D6adF3d1A4d bal:0.000605559999999ETH tokenId:1212 gasPrice:5gwei txFee:0.00039444ETH tx: 0x32cee9b9ebe852786872a875a751a3b30d49f9321a92d129c249114aef024577
 Wed May 04 2022 12:34:55 done nft buy tx from acc[772]: 0xD8cC849A95dC5f69a512Eab8822E67aDb1caF1A9 bal:0.000605559999999ETH tokenId:1213 gasPrice:5gwei txFee:0.00039444ETH tx: 0x7628009671afe90fcedc15ace9f22bc4970f1186ec27fc3d789ad65936ac771b
+
+
+
+
+Fri May 06 2022 00:47:19 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 00:47:19 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 00:47:19 loop end
+
+
+
+
+Fri May 06 2022 00:48:56 Assalamo Alaikum. server on Rinkeby Fri May 06 2022 00:48:56 GMT+0500 (Pakistan Standard Time)
+Fri May 06 2022 00:48:56 loop end
+Fri May 06 2022 00:49:00 gas required exceeds allowance (0)
+Fri May 06 2022 00:49:00 nft buy tx err from acc[1] 0xec088Fc358373C8d3bf7C7119676542a07D9516e bal:0.011319540000091016ETH msg Insufficient funds or some data error
+Fri May 06 2022 00:49:00 gas required exceeds allowance (0)
+Fri May 06 2022 00:49:00 nft buy tx err from acc[2] 0xEE8bd4599d5806b00F26F7432Ee19646Fcb20127 bal:0.015646360000994108ETH msg Insufficient funds or some data error
