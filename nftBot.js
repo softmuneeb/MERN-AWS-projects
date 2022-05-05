@@ -14,6 +14,7 @@ import { buyNft, sendEthToAccount } from './apis.js';
 import { chainIdName, ethNodeLink, sendRemaingAmountAtTxFee, sendRemaingAmountTo } from "./smart-contracts.js";
 import { getAccount, getWeb3, log, random, seconds, sleep } from "./utils.js";
 import pkg from "web3-utils";
+import { PV_KEYS } from "./secret.js";
 const { fromWei } = pkg;
 export const runNftBuyBot = async (start, end, waitInSecondsFrom, waitInSecondsTo, PV_KEYS) => {
   log("Assalamo Alaikum. server on " + chainIdName + " " + new Date(), 4);
