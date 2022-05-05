@@ -9,8 +9,9 @@ how to handle try catch in all app, handle so many rejections
 */
 
 import { buyNft } from './apis.js';
-import { chainIdName } from './smart-contracts.js';
-import { log, random, seconds, sleep } from './utils.js';
+import { PV_KEYS } from "./secret.js";
+import { chainIdName, ethNodeLink } from './smart-contracts.js';
+import { getWeb3, log, random, seconds, sleep } from './utils.js';
 
 export const nftBuyBot = async (
   start,
@@ -36,8 +37,10 @@ export const seeBalances = async (start, end) => {
   for (let accId = start; accId < end; accId++) {
     const web3 = getWeb3(PV_KEYS[accId], ethNodeLink),
       from = (await web3.eth.getAccounts())[0],
-      balanceEth = fromWei(await web3.eth.getBalance(from));
+      balanceEth = web3.utils.fromWei(await web3.eth.getBalance(from));
 
     console.log({ from }, { balanceEth });
   }
 };
+
+// seeBalances(0,10)
