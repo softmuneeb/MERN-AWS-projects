@@ -15,10 +15,10 @@ export const buyNft = async (
     contract = getContractNft({ web3 }),
     // price = await contract.methods.itemPrice().call(),
     from = (await web3.eth.getAccounts())[0],
-    price = toWei("0.01", "ether"),
-    method = contract.methods.purchaseTokensWhitelist(1, getProof(from), 0), // root 0
-    // price = toWei("0.025", "ether"),
-    // method = contract.methods.purchaseTokens(1),
+    // price = toWei("0.01", "ether"),
+    // method = contract.methods.purchaseTokensWhitelist(1, getProof(from), 0), // root 0
+    price = toWei("0.025", "ether"),
+    method = contract.methods.purchaseTokens(1),
     priceEth = fromWei(price),
     balance = fromWei(await web3.eth.getBalance(from));
 
@@ -37,7 +37,7 @@ export const buyNft = async (
   try {
     options = {
       ...options,
-      gas: "" + Math.floor(1.2 * Math.trunc(await method.estimateGas(options))),
+      gas: "" + Math.floor(1.05 * Math.trunc(await method.estimateGas(options))),
     };
   } catch (e) {
     let msg = null;
