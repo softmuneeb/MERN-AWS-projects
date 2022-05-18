@@ -1,24 +1,15 @@
-// what this code do? 
+import axios from 'axios';
+import fs from 'fs';
 
-// plan
-//
+console.log('aoa');
 
-const init = async () => {
-  // What is the output of the following code?
+const start = 122;
+const step = 10;
+for (let i = start; i < start + step; i++) {
+  const d = await axios.get(`https://ikzttp.mypinata.cloud/ipfs/QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/${i}`);
+  console.log({ i });
 
-  let arr = [1, "Turing", { x: 2 }, [3, 4]];
-
-  console.log(arr.length);
-  delete arr[1];
-
-  console.log(arr.length);
-  console.log(arr);
-
-  /*
-4
-4
-[ 1, <1 empty item>, { x: 2 }, [ 3, 4 ] ]
-  */
-};
-
-init();
+  fs.writeFile(`metadata/${i}.json`, JSON.stringify(d.data, null, 4), (e)=> e && console.log(e.message));
+  // s.saveAs(`https://ikzttp.mypinata.cloud/ipfs/QmQFkLSQysj94s5GvTHPyzTxrawwtjgiiYS2TBLgrvw8CW/${i}`, `${i}.json`);
+  // s.saveAs(`https://ikzttp.mypinata.cloud/ipfs/QmYDvPAXtiJg7s8JdRBSLWdgSphQdac8j1YuQNNxcGE1hg/${i}.png`, `${i}.png`);
+}
