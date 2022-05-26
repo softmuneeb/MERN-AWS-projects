@@ -10,6 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
-  "type": "module"
+  "dependencies": {
+    "moralis": "^1.7.0"
+  }
 }
