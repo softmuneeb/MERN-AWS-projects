@@ -15,6 +15,10 @@
 // What is the input of the following code?
 // What is the output of the following code?
 
+// smaller steps:
+// 1. step 1, get selling price
+
+
 const Moralis = require('moralis/node');
 const { serverUrl, appId, masterKey } = require('./secret2.js');
 
@@ -24,7 +28,8 @@ const init = async () => {
   const options = { address: '0x350b4cdd07cc5836e30086b993d27983465ec014', limit: '3', chain: 'eth' };
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log(JSON.stringify(NFTTrades));
+  console.log(NFTTrades.result[0].price);
+  // console.log(JSON.stringify(NFTTrades));
 };
 
 init();
