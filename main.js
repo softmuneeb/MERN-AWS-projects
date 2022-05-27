@@ -1,16 +1,19 @@
 // what this code do?
 // this code helps is giving royalties to nft holders if they sell nft at a good price
+// input nft trades
+// output report, plus verify result total reward received to owner == reward calculated from nft trades
+
+// SoftBlock.Live: I buy 1 eth nft and sell at 2 eth then, (If royalties are 10%)
+// 0.1 ETH Goes to me
+// 0.1 ETH Goes to owner
+
 // drawbacks, a person sells to himself, solution, use bird api account rating etc, age, balance, no of tx
 
 // plan
 // get nft trades on a collection
-// token id | mint at eth | sell at eth |    % sold  | reward to give
-//    10    |     1       |     1.5     |     50%    | 100% |
-//    51    |     1       |     1.1     |     10%    | 100% |
-//    17    |     1       |     1.5     |     50%    | 100% |
-//    21    |     1       |     2.1     |     210%   |
-//    70    |     1       |     1.9     |     90%    |
-//
+// token id | mint at eth | sell at eth |    % sold  | reward to give | address
+//    10    |     1       |     1.5     |     50%    |    0.075       | 0x2312312312893u12398u1
+//    21    |     1       |     2.0     |     200%   |    0.100       | 0x874398574393230928321
 
 // What is the input of the following code?
 // What is the output of the following code?
@@ -29,6 +32,7 @@ const init = async () => {
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
   console.log(NFTTrades.result[0].price);
+  console.log(Moralis.Units.FromWei(NFTTrades.result[0].price), 'ETH');
   // console.log(JSON.stringify(NFTTrades));
 };
 
