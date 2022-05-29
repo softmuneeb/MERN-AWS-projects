@@ -11,6 +11,7 @@
 
 // plan
 // get nft trades on a collection
+// let royalty = 10% so 2 ETH item gives 0.2 ETH, 0.1 ETH goes to seller and 0.1 to owner
 // token id | mint at eth | sell at eth |    % sold  | reward to give | address
 //    10    |     1       |     1.5     |     50%    |    0.075       | 0x2312312312893u12398u1
 //    21    |     1       |     2.0     |     200%   |    0.100       | 0x874398574393230928321
@@ -31,8 +32,10 @@ const init = async () => {
   const options = { address: '0x350b4cdd07cc5836e30086b993d27983465ec014', limit: '3', chain: 'eth' };
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log(NFTTrades.result[0].price);
-  console.log(Moralis.Units.FromWei(NFTTrades.result[0].price), 'ETH');
+  NFTTrades.result.map((result) => {
+    console.log(Moralis.Units.FromWei(result.price), 'ETH');
+  });
+
   // console.log(JSON.stringify(NFTTrades));
 };
 
