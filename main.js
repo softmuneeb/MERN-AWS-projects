@@ -22,21 +22,39 @@
 // smaller steps:
 // 1. step 1, get selling price
 
-
 const Moralis = require('moralis/node');
 const { serverUrl, appId, masterKey } = require('./secret2.js');
 
-const init = async () => {
-  await Moralis.start({ serverUrl, appId, masterKey });
+const init = async (moralis, options) => {
+  await Moralis.start(moralis);
 
-  const options = { address: '0x350b4cdd07cc5836e30086b993d27983465ec014', limit: '3', chain: 'eth' };
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
   NFTTrades.result.map((result) => {
+    console.log(result.seller_address);
+    console.log(result.token_ids);
     console.log(Moralis.Units.FromWei(result.price), 'ETH');
+    console.log();
   });
-
-  // console.log(JSON.stringify(NFTTrades));
 };
 
-init();
+init(
+  { serverUrl, appId, masterKey },
+  {
+    marketplace: "opensea",
+    address: '0x350b4cdd07cc5836e30086b993d27983465ec014',
+    from_date: '22 May 2022 00:00:00 GMT',
+    to_date: '24 May 2022 00:00:00 GMT',
+    chain: 'eth',
+  },
+);
+
+/*
+options:
+
+from_block
+to_block
+from_date: '26 May 2021 00:00:00 GMT',
+to_date: '26 May 2021 00:00:00 GMT'
+limit: '3'
+*/
