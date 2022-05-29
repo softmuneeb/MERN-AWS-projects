@@ -30,11 +30,9 @@ const init = async (moralis, options) => {
 
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
+  console.log('Seller, TokenId, Price_ETH');
   NFTTrades.result.map((result) => {
-    console.log(result.seller_address);
-    console.log(result.token_ids);
-    console.log(Moralis.Units.FromWei(result.price), 'ETH');
-    console.log();
+    console.log(`"${result.seller_address}", ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}`);
   });
 };
 
