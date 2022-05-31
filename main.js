@@ -31,11 +31,15 @@ const init = async (moralis, options, mint) => {
 
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log('Seller, TokenId, Price_ETH, Up Sold');
+  console.log('Time, Seller, TokenId, Price_ETH, Up Sold, Royalty %');
   NFTTrades.result.map((result) => {
     const upSold = Moralis.Units.FromWei(result.price) / mint.price;
+    let royalty = 0;
 
-    console.log(`'${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}, ${upSold}`);
+    if (upSold >= 1.25 && upSold < 1.5) royalty = 25; // 25%
+    else if (upSold > 1.5) royalty = 50; // 50%
+
+    console.log(`${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}, ${upSold}, ${royalty}`);
   });
 };
 
@@ -44,8 +48,8 @@ init(
   {
     marketplace: 'opensea',
     address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
-    from_date: '22 May 2022 00:00:00 GMT',
-    to_date: '24 May 2022 00:00:00 GMT',
+    from_date: '23 May 2021 00:00:00 GMT',
+    to_date: '24 May 2021 00:00:00 GMT',
     chain: 'eth',
   },
   { price: 0.08 },
