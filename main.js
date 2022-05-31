@@ -28,7 +28,7 @@ const BigNumber = require('bignumber.js');
 
 const fs = require('fs');
 
-const { serverUrl, appId, masterKey } = require('./secret2.js');
+const { serverUrl, appId, masterKey } = require('./secret.js');
 
 const e = (err) => err && console.log(err.message);
 
