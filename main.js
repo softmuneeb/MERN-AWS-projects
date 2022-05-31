@@ -13,6 +13,7 @@
 // get nft trades on a collection
 // let royalty = 10% so 2 ETH item gives 0.2 ETH, 0.1 ETH goes to seller and 0.1 to owner
 // token id | mint at eth | sell at eth |    % sold  | reward to give | address
+//    10    |     1       |     1.25    |     25%    |    0.05       | 0x2312312312893u12398u1
 //    10    |     1       |     1.5     |     50%    |    0.075       | 0x2312312312893u12398u1
 //    21    |     1       |     2.0     |     200%   |    0.100       | 0x874398574393230928321
 
@@ -25,26 +26,29 @@
 const Moralis = require('moralis/node');
 const { serverUrl, appId, masterKey } = require('./secret2.js');
 
-const init = async (moralis, options) => {
+const init = async (moralis, options, mint) => {
   await Moralis.start(moralis);
 
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log('Seller, TokenId, Price_ETH');
+  console.log('Seller, TokenId, Price_ETH, Up Sold');
   NFTTrades.result.map((result) => {
-    console.log(`"${result.seller_address}", ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}`);
+    const upSold = Moralis.Units.FromWei(result.price) / mint.price;
+
+    console.log(`'${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}, ${upSold}`);
   });
 };
 
 init(
   { serverUrl, appId, masterKey },
   {
-    marketplace: "opensea",
-    address: '0x350b4cdd07cc5836e30086b993d27983465ec014',
+    marketplace: 'opensea',
+    address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
     from_date: '22 May 2022 00:00:00 GMT',
     to_date: '24 May 2022 00:00:00 GMT',
     chain: 'eth',
   },
+  { price: 0.08 },
 );
 
 /*
