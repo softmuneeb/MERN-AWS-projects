@@ -80,13 +80,3 @@ init(
   },
   { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: 0.1 }, // 10% royalty on opensea
 );
-
-/*
-options:
-
-from_block
-to_block
-from_date: '26 May 2021 00:00:00 GMT',
-to_date: '26 May 2021 00:00:00 GMT'
-limit: '3'
-*/
