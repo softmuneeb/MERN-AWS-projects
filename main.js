@@ -26,14 +26,22 @@
 const Moralis = require('moralis/node');
 const BigNumber = require('bignumber.js');
 
+const fs = require('fs');
+
 const { serverUrl, appId, masterKey } = require('./secret2.js');
+
+const e = (err) => err && console.log(err.message);
 
 const init = async (moralis, options, mint) => {
   await Moralis.start(moralis);
 
+  let table = '';
+  let addresses = [];
+  let rewards = [];
+
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log('Time, Seller, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward');
+  table += 'Time, Seller, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
   NFTTrades.result.map((result) => {
     const sellingPrice = BigNumber(result.price);
     const upSold = sellingPrice.dividedBy(mint.price);
@@ -46,11 +54,19 @@ const init = async (moralis, options, mint) => {
       // the person sold 25% or more
       const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty).decimalPlaces(0);
       const reward = ownerRoyalty.multipliedBy(rewardRoyalty).decimalPlaces(0);
-      console.log(
-        `${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(mint.price + '')}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold*100}%, ${rewardRoyalty*100}%, ${Moralis.Units.FromWei(reward + '')} `,
-      );
+
+      addresses.push(result.seller_address);
+      rewards.push(reward + '');
+
+      table += `\n${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(
+        mint.price + '',
+      )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
     }
   });
+
+  fs.writeFile('table.csv', table, e);
+  fs.writeFile('addresses.txt', JSON.stringify(addresses).replace('[','').replace(']',''), e);
+  fs.writeFile('rewards.txt', JSON.stringify(rewards).replace('[', '').replace(']', ''), e);
 };
 
 init(
