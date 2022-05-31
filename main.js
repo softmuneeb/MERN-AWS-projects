@@ -44,12 +44,11 @@ const init = async (moralis, options, mint) => {
 
     if (rewardRoyalty !== 0) {
       // the person sold 25% or more
-      const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty);
-      const reward = ownerRoyalty.multipliedBy(rewardRoyalty);
-      console.log({ sellingPrice: sellingPrice + '', ownerRoyalty: ownerRoyalty + '', reward: reward + '' });
-      // console.log(
-      //   `${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${mint.price}, ${sellingPrice}, ${upSold*100}%, ${rewardRoyalty*100}%, ${reward} `,
-      // );
+      const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty).decimalPlaces(0);
+      const reward = ownerRoyalty.multipliedBy(rewardRoyalty).decimalPlaces(0);
+      console.log(
+        `${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(mint.price + '')}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold*100}%, ${rewardRoyalty*100}%, ${Moralis.Units.FromWei(reward + '')} `,
+      );
     }
   });
 };
