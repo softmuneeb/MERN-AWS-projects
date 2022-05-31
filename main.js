@@ -24,6 +24,8 @@
 // 1. step 1, get selling price
 
 const Moralis = require('moralis/node');
+const BigNumber = require('bignumber.js');
+
 const { serverUrl, appId, masterKey } = require('./secret2.js');
 
 const init = async (moralis, options, mint) => {
@@ -31,15 +33,24 @@ const init = async (moralis, options, mint) => {
 
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log('Time, Seller, TokenId, Price_ETH, Up Sold, Royalty %');
+  console.log('Time, Seller, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward');
   NFTTrades.result.map((result) => {
-    const upSold = Moralis.Units.FromWei(result.price) / mint.price;
-    let royalty = 0;
+    const sellingPrice = BigNumber(result.price);
+    const upSold = sellingPrice.dividedBy(mint.price);
+    let rewardRoyalty = 0;
 
-    if (upSold >= 1.25 && upSold < 1.5) royalty = 25; // 25%
-    else if (upSold > 1.5) royalty = 50; // 50%
+    if (upSold.isGreaterThanOrEqualTo(1.25) && upSold.isLessThan(1.5)) rewardRoyalty = 0.25; // 25%
+    else if (upSold.isGreaterThan(1.5)) rewardRoyalty = 0.5; // 50%
 
-    console.log(`${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(result.price)}, ${upSold}, ${royalty}`);
+    if (rewardRoyalty !== 0) {
+      // the person sold 25% or more
+      const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty);
+      const reward = ownerRoyalty.multipliedBy(rewardRoyalty);
+      console.log({ sellingPrice: sellingPrice + '', ownerRoyalty: ownerRoyalty + '', reward: reward + '' });
+      // console.log(
+      //   `${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${mint.price}, ${sellingPrice}, ${upSold*100}%, ${rewardRoyalty*100}%, ${reward} `,
+      // );
+    }
   });
 };
 
@@ -52,7 +63,7 @@ init(
     to_date: '24 May 2021 00:00:00 GMT',
     chain: 'eth',
   },
-  { price: 0.08 },
+  { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: 0.1 }, // 10% royalty on opensea
 );
 
 /*
