@@ -70,13 +70,13 @@ const init = async (moralis, options, mint) => {
 };
 
 init(
-  { serverUrl, appId, masterKey },
-  {
+  (moralis = { serverUrl, appId, masterKey }),
+  (options = {
     marketplace: 'opensea',
-    address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D',
+    address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D', // BoredApes NFT Address
     from_date: '23 May 2021 00:00:00 GMT',
     to_date: '24 May 2021 00:00:00 GMT',
     chain: 'eth',
-  },
-  { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: 0.1 }, // 10% royalty on opensea
+  }),
+  (mint = { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: 0.1 }), // 10% royalty on opensea
 );
