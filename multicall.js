@@ -12,7 +12,7 @@ export const getNftHolders = async () => {
 
   let supply = await getContractNft().methods.totalSupply().call();
 
-  for (let i = 0; i <= supply; i++) {
+  for (let i = 9001; i <= supply; i++) {
     calls1.push({
       methodName: "ownerOf",
       methodParameters: [i],
