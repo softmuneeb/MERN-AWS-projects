@@ -1,57 +1,42 @@
-// what this code do?
-// this code helps is giving royalties to nft holders if they sell nft at a good price
-// input nft trades
-// output report, plus verify result total reward received to owner == reward calculated from nft trades
-
-// SoftBlock.Live: I buy 1 eth nft and sell at 2 eth then, (If royalties are 10%)
-// 0.1 ETH Goes to me
-// 0.1 ETH Goes to owner
-
-// drawbacks, a person sells to himself, solution, use bird api account rating etc, age, balance, no of tx
-
-// plan
-// get nft trades on a collection
-// let royalty = 10% so 2 ETH item gives 0.2 ETH, 0.1 ETH goes to seller and 0.1 to owner
-// token id | mint at eth | sell at eth |    % sold  | reward to give | address
-//    10    |     1       |     1.25    |     25%    |    0.05       | 0x2312312312893u12398u1
-//    10    |     1       |     1.5     |     50%    |    0.075       | 0x2312312312893u12398u1
-//    21    |     1       |     2.0     |     200%   |    0.100       | 0x874398574393230928321
-
-// lion 1 eth, sold 2 eth for life rewards go to seller 1 on token id 1
-// lion 1 eth, sold 1 eth for life no rewards on token id 2
-
-// What is the input of the following code?
-// What is the output of the following code?
-
-// smaller steps:
-// 1. step 1, get selling price
-
 const Moralis = require('moralis/node');
 const BigNumber = require('bignumber.js');
 
 const fs = require('fs');
 
 const { serverUrl, appId, masterKey } = require('./secret.js');
+const { savedRoyaltySettings } = require('./royaltySettings.js');
 
 const e = (err) => err && console.log(err.message);
 
 const init = async (moralis, options, mint) => {
   await Moralis.start(moralis);
-
-  let table = '';
-  let addresses = [];
-  let rewards = [];
-
   const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  table += 'Time, Seller, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
+  let addresses = [];
+  let rewards = [];
+  let royaltySettings = { ...savedRoyaltySettings };
+  let table = 'Time, Seller, Reward Winner, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
+
   NFTTrades.result.map((result) => {
     const sellingPrice = BigNumber(result.price);
+    const tokenId = result.token_ids[0];
     const upSold = sellingPrice.dividedBy(mint.price);
-    let rewardRoyalty = 0;
+    let rewardWinner; // address of winner
+    let rewardRoyalty = 0; // 0 or 0.25 or 0.50 means 50%
 
-    if (upSold.isGreaterThanOrEqualTo(1.25) && upSold.isLessThan(1.5)) rewardRoyalty = 0.25; // 25%
-    else if (upSold.isGreaterThan(1.5)) rewardRoyalty = 0.5; // 50%
+    // its the first seller, calculate and save the first seller address and rewards % to give him now and for future
+    if (royaltySettings[tokenId] === undefined || !royaltySettings[tokenId]) {
+      rewardWinner = result.seller_address;
+
+      if (upSold.isGreaterThanOrEqualTo(1.25) && upSold.isLessThan(1.5)) rewardRoyalty = 0.25; // 25%
+      else if (upSold.isGreaterThan(1.5)) rewardRoyalty = 0.5; // 50%
+
+      royaltySettings[tokenId] = { rewardRoyalty, rewardWinner }; // save royaltySettings
+    } else {
+      // its not the first seller, load the first seller address and rewards % to give him
+      rewardWinner = royaltySettings[tokenId].rewardWinner;
+      rewardRoyalty = royaltySettings[tokenId].rewardRoyalty;
+    }
 
     if (rewardRoyalty === 0) return;
 
@@ -59,17 +44,22 @@ const init = async (moralis, options, mint) => {
     const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty).decimalPlaces(0);
     const reward = ownerRoyalty.multipliedBy(rewardRoyalty).decimalPlaces(0);
 
-    addresses.push(result.seller_address);
+    addresses.push(rewardWinner);
     rewards.push(reward + '');
 
-    table += `\n${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(
+    table += `\n${result.block_timestamp}, '${result.seller_address}', '${rewardWinner}', ${tokenId}, ${Moralis.Units.FromWei(
       mint.price + '',
     )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
   });
 
   fs.writeFile('table.csv', table, e);
-  fs.writeFile('addresses.txt', JSON.stringify(addresses).replace('[','').replace(']',''), e);
+  fs.writeFile('addresses.txt', JSON.stringify(addresses).replace('[', '').replace(']', ''), e);
   fs.writeFile('rewards.txt', JSON.stringify(rewards).replace('[', '').replace(']', ''), e);
+  fs.writeFile(
+    'royaltySettings.js',
+    'const savedRoyaltySettings = ' + JSON.stringify(royaltySettings, null, 4) + '\nmodule.exports = { savedRoyaltySettings };',
+    e,
+  );
 };
 
 init(
@@ -81,5 +71,5 @@ init(
     to_date: '24 May 2021 00:00:00 GMT',
     chain: 'eth',
   }),
-  (mint = { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: 0.1 }), // 10% royalty on opensea
+  (mint = { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: Number('0.10') }), // 10% royalty on opensea
 );

@@ -41,6 +41,11 @@ if (Moralis.Units.FromWei(result.price) === '0.28') {
         reward: Moralis.Units.FromWei(reward + ''),
       });
 
+    if (result.seller_address !== rewardWinner)
+    table += `\n${result.block_timestamp}, '${result.seller_address}', '${rewardWinner}', ${tokenId}, ${Moralis.Units.FromWei(
+      mint.price + '',
+    )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
+    
 
       console.log(
         `${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(mint.price + '')}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold*100}%, ${rewardRoyalty*100}%, ${Moralis.Units.FromWei(reward + '')} `,
