@@ -53,18 +53,18 @@ const init = async (moralis, options, mint) => {
     if (upSold.isGreaterThanOrEqualTo(1.25) && upSold.isLessThan(1.5)) rewardRoyalty = 0.25; // 25%
     else if (upSold.isGreaterThan(1.5)) rewardRoyalty = 0.5; // 50%
 
-    if (rewardRoyalty !== 0) {
-      // the person sold 25% or more
-      const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty).decimalPlaces(0);
-      const reward = ownerRoyalty.multipliedBy(rewardRoyalty).decimalPlaces(0);
+    if (rewardRoyalty === 0) return;
 
-      addresses.push(result.seller_address);
-      rewards.push(reward + '');
+    // the person sold 25% or more
+    const ownerRoyalty = sellingPrice.multipliedBy(mint.royalty).decimalPlaces(0);
+    const reward = ownerRoyalty.multipliedBy(rewardRoyalty).decimalPlaces(0);
 
-      table += `\n${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(
-        mint.price + '',
-      )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
-    }
+    addresses.push(result.seller_address);
+    rewards.push(reward + '');
+
+    table += `\n${result.block_timestamp}, '${result.seller_address}', ${result.token_ids[0]}, ${Moralis.Units.FromWei(
+      mint.price + '',
+    )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
   });
 
   fs.writeFile('table.csv', table, e);
