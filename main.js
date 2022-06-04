@@ -17,7 +17,9 @@ const init = async (moralis, options, mint) => {
   let royaltySettings = { ...savedRoyaltySettings };
   let table = 'Time, Seller, Reward Winner, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
 
-  NFTTrades.result.map((result) => {
+  for (let i = 0; i < NFTTrades.result.length; i++) {
+    const result = NFTTrades.result[i];
+
     const sellingPrice = BigNumber(result.price);
     const tokenId = result.token_ids[0];
     const upSold = sellingPrice.dividedBy(mint.price);
@@ -50,7 +52,7 @@ const init = async (moralis, options, mint) => {
     table += `\n${result.block_timestamp}, '${result.seller_address}', '${rewardWinner}', ${tokenId}, ${Moralis.Units.FromWei(
       mint.price + '',
     )}, ${Moralis.Units.FromWei(sellingPrice + '')}, ${upSold * 100}%, ${rewardRoyalty * 100}%, ${Moralis.Units.FromWei(reward + '')} `;
-  });
+  }
 
   fs.writeFile('table.csv', table, e);
   fs.writeFile('addresses.txt', JSON.stringify(addresses).replace('[', '').replace(']', ''), e);
