@@ -17,8 +17,10 @@ const init = async (moralis, options, mint) => {
   let royaltySettings = { ...savedRoyaltySettings };
   let table = 'Time, Seller, Reward Winner, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
 
-  for (let i = 0; i < NFTTrades.result.length; i++) {
-    const result = NFTTrades.result[i];
+  const tradesLength = NFTTrades.result.length;
+
+  for (let i = 0; i < tradesLength; i++) {
+    const result = NFTTrades.result[tradesLength - i - 1];
 
     const sellingPrice = BigNumber(result.price);
     const tokenId = result.token_ids[0];

@@ -53,7 +53,7 @@ const savedRoyaltySettings = {
     },
     "2956": {
         "rewardRoyalty": 0.5,
-        "rewardWinner": "0xc7daff430efad15679f8bb53530debee0308eb1b"
+        "rewardWinner": "0xbb403d793dda52f8512950953771b7c341086120"
     },
     "3310": {
         "rewardRoyalty": 0.5,
@@ -278,12 +278,6 @@ const savedRoyaltySettings = {
     "9830": {
         "rewardRoyalty": 0.5,
         "rewardWinner": "0x7a37a180b143bf8b9b3875c0dcdbc6bca5b0050f"
-    },
-    "55000": {
-        "7": 4
-    },
-    "66000": {
-        "2": 1
     }
 }
 module.exports = { savedRoyaltySettings };
