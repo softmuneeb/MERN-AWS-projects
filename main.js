@@ -17,6 +17,9 @@
 //    10    |     1       |     1.5     |     50%    |    0.075       | 0x2312312312893u12398u1
 //    21    |     1       |     2.0     |     200%   |    0.100       | 0x874398574393230928321
 
+// lion 1 eth, sold 2 eth for life rewards go to seller 1 on token id 1
+// lion 1 eth, sold 1 eth for life no rewards on token id 2
+
 // What is the input of the following code?
 // What is the output of the following code?
 
