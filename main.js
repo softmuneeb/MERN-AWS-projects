@@ -1,24 +1,22 @@
-// what this code do? 
+// what this code do?
+// helps to find nft token ids deposited in staking contract
 
-// plan
-//
+// What is the input of the following code?
+// staking contract address, user address, nft address, chain: eth, avax
+
+// What is the output of the following code?
+// token ids that are given by user and staking contract
+
+const Moralis = require('moralis/node');
+const { serverUrl, appId, masterKey } = require('./secret.js');
 
 const init = async () => {
-  // What is the output of the following code?
+  await Moralis.start({ serverUrl, appId, masterKey });
 
-  let arr = [1, "Turing", { x: 2 }, [3, 4]];
+  const options = { address: '0x350b4cdd07cc5836e30086b993d27983465ec014', limit: '3', chain: 'eth' };
+  const NFTTrades = await Moralis.Web3API.token.getNFTTrades(options);
 
-  console.log(arr.length);
-  delete arr[1];
-
-  console.log(arr.length);
-  console.log(arr);
-
-  /*
-4
-4
-[ 1, <1 empty item>, { x: 2 }, [ 3, 4 ] ]
-  */
+  console.log(JSON.stringify(NFTTrades));
 };
 
 init();
