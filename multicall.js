@@ -1,5 +1,5 @@
 import { Multicall } from "ethereum-multicall";
-import { defaultWeb3, getContractNft, multicallCustomContractAddress, nftAbi, nftAddress } from "./smart-contract.js";
+import { defaultWeb3, getContractNft, multicallCustomContractAddress, nftAbi, nftAddress, stakingAddress } from "./smart-contract.js";
 
 export const getNftsStaked = async () => {
   const multicall = new Multicall({
@@ -10,18 +10,18 @@ export const getNftsStaked = async () => {
 
   let calls1 = [];
 
-  let supply = await getContractNft().methods.totalSupply().call();
+  let nftStakedTotal = await getContractNft().methods.balanceOf(stakingAddress).call();
 
-  for (let i = 1; i <= 1000; i++) {
+  for (let i = 0; i < 150; i++) {
     calls1.push({
-      methodName: 'ownerOf',
-      methodParameters: [i],
+      methodName: 'tokenOfOwnerByIndex',
+      methodParameters: [stakingAddress, i],
     });
   }
 
   const contractCallContext = [
     {
-      reference: 'SmartContractCall1',
+      reference: 'Call1',
       contractAddress: nftAddress,
       abi: nftAbi,
       calls: calls1,
@@ -33,7 +33,9 @@ export const getNftsStaked = async () => {
   // console.log(JSON.stringify(results));
 
   let holders = [];
-  results.results['SmartContractCall1'].callsReturnContext.map((obj, i) => obj.success && holders.push(obj.returnValues[0]));
+  results.results['Call1'].callsReturnContext.map((obj, i) => obj.success && holders.push(obj.returnValues[0]));
+
+  // console.log(JSON.stringify(results.results['Call1'].callsReturnContext, null, 4));
 
   return holders;
 };
