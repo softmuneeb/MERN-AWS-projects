@@ -11,8 +11,8 @@ export const getTokenIdsInStaking = async () => {
   let calls1 = [];
 
   let nftStakedTotal = await getContractNft().methods.balanceOf(stakingAddress).call();
-
-  for (let i = 0; i < 150; i++) {
+  let pillow = 350;
+  for (let i = 0 + pillow; i < 50 + pillow; i++) {
     calls1.push({
       methodName: 'tokenOfOwnerByIndex',
       methodParameters: [stakingAddress, i],
@@ -43,7 +43,6 @@ export const getTokenIdsInStaking = async () => {
 export const getTokenIdsInStakingOfThisAddress = async () => {
   const tokenIdsInStaking = await getTokenIdsInStaking();
   
-
   const multicall = new Multicall({
     multicallCustomContractAddress,
     web3Instance: defaultWeb3,
@@ -52,12 +51,12 @@ export const getTokenIdsInStakingOfThisAddress = async () => {
 
   let calls1 = [];
 
-  let nftStakedTotal = await getContractNft().methods.balanceOf(stakingAddress).call();
-
-  for (let i = 0; i < 150; i++) {
+  // let nftStakedTotal = await getContractNft().methods.balanceOf(stakingAddress).call();
+  let nftOwnerWallet = '0x2B7574F25c68bc274CC4857658b63F12fcBdf29A';
+  for (let i = 0; i < 50; i++) {
     calls1.push({
       methodName: 'nftOwnerOf',
-      methodParameters: [stakingAddress, Number(tokenIdsInStaking[i].hex)],
+      methodParameters: [nftOwnerWallet, Number(tokenIdsInStaking[i].hex)],
     });
   }
 
@@ -74,10 +73,12 @@ export const getTokenIdsInStakingOfThisAddress = async () => {
 
   // console.log(JSON.stringify(results));
 
-  let holders = [];
-  results.results['Call1'].callsReturnContext.map((obj, i) => obj.success && holders.push(obj.returnValues[0]));
+  let zero = '0x0000000000000000000000000000000000000000';
 
-  // console.log(JSON.stringify(results.results['Call1'].callsReturnContext, null, 4));
+  let holders = [];
+  results.results['Call1'].callsReturnContext.map((obj, i) => obj.success && obj.returnValues[0] !== zero && holders.push(obj.returnValues[0]));
+
+  console.log(holders);
 
   return holders;
 };
