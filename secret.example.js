@@ -1,16 +1,11 @@
-// let arr = [1, 2, 3, 4]
+// mainnet
+const serverUrl = 'https://ahhnertegfd3s.usemoralis.com:2053/server';
+const appId = 'DOfdgxPAhW6j089472342flzEunudgo4BkoorJYE';
+const masterKey = 'Xy8nyASAzghfddsfnKnsdskcLsZapAxifby4';
 
-// for (let i = 0; i < arr.length; i++) {
-//     const e = arr[i];
-//     console.log(e);
-// }
+// testnet
+// const serverUrl = '';
+// const appId = '';
+// const masterKey = '';
 
-// invert array
-
-// let arr = [1, 2, 888];
-
-// for (let i = 0; i < arr.length; i++) {
-//   const e = arr[arr.length - i - 1];
-
-//   console.log(e);
-// }
+module.exports = { serverUrl, appId, masterKey };

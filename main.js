@@ -3,7 +3,7 @@ const BigNumber = require('bignumber.js');
 
 const fs = require('fs');
 
-const { serverUrl, appId, masterKey } = require('./secret.js');
+const { serverUrl, applicationId, masterKey } = require('./secret.js');
 const { savedRoyaltySettings } = require('./royaltySettings.js');
 
 const e = (err) => err && console.log(err.message);
@@ -67,7 +67,7 @@ const init = async (moralis, options, mint) => {
 };
 
 init(
-  (moralis = { serverUrl, appId, masterKey }),
+  (moralis = { serverUrl, applicationId, masterKey }),
   (options = {
     marketplace: 'opensea',
     address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D', // BoredApes NFT Address
