@@ -1,5 +1,16 @@
 what this code do?
 this code helps is giving royalties to nft holders if they sell nft at a good price
+
+how to use it?
+make sure when you first run this code you have royaltySettings.js file look like this:
+
+const savedRoyaltySettings = {};
+module.exports = { savedRoyaltySettings };
+
+it means you previous settings are empty, first owners who sold nft for larger price.
+
+
+
 input nft trades
 output report, plus verify result total reward received to owner == reward calculated from nft trades
 
