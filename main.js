@@ -14,6 +14,7 @@ const init = async (moralis, options, mint) => {
 
   let addresses = [];
   let rewards = [];
+  let totalReward = new BigNumber(0);
   let royaltySettings = { ...savedRoyaltySettings };
   let table = 'Time, Seller, Reward Winner, TokenId, Mint Price ETH, Selling Price ETH, Up Sold, Royalty, Reward';
 
@@ -50,6 +51,7 @@ const init = async (moralis, options, mint) => {
 
     addresses.push(rewardWinner);
     rewards.push(reward + '');
+    totalReward = totalReward.plus(reward);
 
     table += `\n${result.block_timestamp}, '${result.seller_address}', '${rewardWinner}', ${tokenId}, ${Moralis.Units.FromWei(
       mint.price + '',
@@ -57,8 +59,17 @@ const init = async (moralis, options, mint) => {
   }
 
   fs.writeFile('table.csv', table, e);
-  fs.writeFile('addresses.txt', JSON.stringify(addresses).replace('[', '').replace(']', ''), e);
-  fs.writeFile('rewards.txt', JSON.stringify(rewards).replace('[', '').replace(']', ''), e);
+  fs.writeFile('addresses.txt', 'total addresses: ' + addresses.length + '\n\n' + JSON.stringify(addresses).replace('[', '').replace(']', ''), e);
+  fs.writeFile(
+    'rewards.txt',
+    'total rewards count: ' +
+      rewards.length +
+      '\ntotal reward to give to users ' +
+      Moralis.Units.FromWei('' + totalReward) +
+      ' ETH \n\n' +
+      JSON.stringify(rewards).replace('[', '').replace(']', ''),
+    e,
+  );
   fs.writeFile(
     'royaltySettings.js',
     'const savedRoyaltySettings = ' + JSON.stringify(royaltySettings, null, 4) + '\nmodule.exports = { savedRoyaltySettings };',
