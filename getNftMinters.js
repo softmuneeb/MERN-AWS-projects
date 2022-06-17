@@ -1,7 +1,7 @@
 // get the minters of Avian Avatars Nft and get their Details from Api and save in CSV file
 
 // config
-const nftAddress = "0xF97Cbb4B1f883F616fdB418E599B69E9d1a698de"; // uac nft
+const nftAddress = '0x18613D38367ddE6522D36f3546b9777880d88cA3'; // "0xF97Cbb4B1f883F616fdB418E599B69E9d1a698de"; // uac nft
 
 const web3ProviderLink = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
 
@@ -44,7 +44,8 @@ const getContractEvents = async ({ fromBlock, toBlock, address = nftAddress, eve
 const driver = async () => {
   // try put this function in file, for reuse.
   try {
-    const birdApi = "https://api.birdprotocol.com/analytics/address/";
+    // https://www.bird.money/analytics/address/0xc18E78C0F67A09ee43007579018b2Db091116B4C
+    const birdApi = 'https://api.birdprotocol.com/analytics/address/';
     await axios.get(`${birdApi}0xc18E78C0F67A09ee43007579018b2Db091116B4C`);
   } catch (e) {
     console.log("Turn on internet! ", "e: ", e && e.message.substr(0, 100));
@@ -55,12 +56,8 @@ const driver = async () => {
   const events = await getContractEvents({
     address: nftAddress,
     eventName: "Transfer",
-    fromBlock: 0, // see from https://etherscan.com
-    toBlock: 114152471,
-    // fromBlock: 13294663, // see from https://etherscan.com
-    // toBlock: 14152471,
-    // fromBlock: 13309878, // see from https://etherscan.com
-    // toBlock: 13309879,
+    fromBlock: 	14896401, // see from https://etherscan.com
+    toBlock: 14976781,
   });
 
   console.log(`events: ${events.length}`);
@@ -90,11 +87,13 @@ const driver = async () => {
   }));
 
   usersArr.sort((a, b) => b.minted - a.minted);
-  console.log("users " + usersArr.length);
 
-  let usersArr1 = Object.keys(users).map((addr) => addr);
-  usersArr1.sort();
-  console.log({ usersArr1 });
+  console.log("users " + usersArr.length);
+  console.log(JSON.stringify(usersArr, null, 4));
+
+  // let usersArr1 = Object.keys(users).map((addr) => addr);
+  // usersArr1.sort();
+  // console.log({ usersArr1 });
   // let usersArr4 = usersArr.filter((minter) => minter.minted === 4).map((a) => a.addr);
   // let usersArr3 = usersArr.filter((minter) => minter.minted === 3).map((a) => a.addr);
   // let usersArr2 = usersArr.filter((minter) => minter.minted === 2).map((a) => a.addr);
