@@ -1412,3 +1412,17 @@ Fri May 06 2022 04:34:29 done eth send tx from acc[15]:0x6F0D5b9Fd9c59175D716aCd
 
 Fri May 06 2022 04:34:29 wait 0 seconds
 Fri May 06 2022 04:34:29 loop end
+
+
+
+
+Sat Jun 18 2022 22:04:01 Assalamo Alaikum. server on Rinkeby Sat Jun 18 2022 22:04:01 GMT+0500 (Pakistan Standard Time)
+Sat Jun 18 2022 22:04:05 gasPrice 0.0000000292gwei
+Sat Jun 18 2022 22:04:06 nft buy tx err from acc[14] 0xc736F33CB753AA709A6361aF815798a1C24fb3E2 bal:0ETH msg Insufficient funds or some data error
+
+Sat Jun 18 2022 22:04:06 wait 0 seconds
+Sat Jun 18 2022 22:04:08 gasPrice 0.0000000292gwei
+
+Sat Jun 18 2022 22:04:09 wait 0 seconds
+Sat Jun 18 2022 22:04:09 nft buy tx err from acc[15] 0x6284D4B7fFaA0E8c7d8e6aCC8dd55d1Fd5a3dc13 bal:0ETH msg Insufficient funds or some data error
+Sat Jun 18 2022 22:04:09 loop end
