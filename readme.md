@@ -1,5 +1,14 @@
 store:
 
+return {
+      addr,
+      age: a.age,
+      noOfTx: a.noOfTx,
+      balance: a.balance,
+      minted: users[addr],
+      birdRating: a.birdRating,
+    };
+    
 usersArr.sort((a, b) => b.minted - a.minted);
   console.log(JSON.stringify(usersArr, null, 4));
 

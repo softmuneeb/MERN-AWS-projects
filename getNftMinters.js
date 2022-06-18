@@ -13,12 +13,14 @@ const nftAbi = JSON.parse(
 import axios from 'axios';
 import EthDater from 'ethereum-block-by-date';
 import Web3 from 'web3';
+import fs from 'fs';
 
 // utils
 const defaultWeb3 = new Web3(web3ProviderLink);
 const days = 86400 * 1000; // 1 day
 const getContractNft = ({ web3 = defaultWeb3, address = nftAddress }) => new web3.eth.Contract(nftAbi, address);
 const dater = new EthDater(defaultWeb3);
+const err = (e) => e && console.log(e.message);
 // work
 const getContractEvents = async ({ fromBlock, toBlock, address = nftAddress, eventName = 'Transfer' }) => {
   // if there are inputs for fromBlock and toBlock then get block of last 24 hrs
@@ -40,10 +42,16 @@ const getContractEvents = async ({ fromBlock, toBlock, address = nftAddress, eve
 };
 
 const getAnalytics = async (addr) => {
-  const birdApi = 'https://api.birdprotocol.com/analytics/address/';
-  const { eth_balance, nbr_transaction_count, nbr_account_age_days, bird_rating } = (await axios.get(`${birdApi}${addr}`)).data;
-  // console.log({ addr, balance: eth_balance, noOfTx: nbr_transaction_count, age: nbr_account_age_days, birdRating: bird_rating });
-  return { balance: eth_balance, noOfTx: nbr_transaction_count, age: nbr_account_age_days, birdRating: bird_rating };
+  try {
+    const birdApi = 'https://api.birdprotocol.com/analytics/address/';
+    const { eth_balance, nbr_transaction_count, nbr_account_age_days, bird_rating } = (await axios.get(`${birdApi}${addr}`)).data;
+    // console.log({ addr, balance: eth_balance, noOfTx: nbr_transaction_count, age: nbr_account_age_days, birdRating: bird_rating });
+    return { balance: eth_balance, noOfTx: nbr_transaction_count, age: nbr_account_age_days, birdRating: bird_rating };
+  } catch (e) {
+    fs.appendFile('errors.txt', "\n"+addr, err);
+    // e && console.log(e.message);
+    return await getAnalytics(addr);
+  }
 };
 
 const driver = async () => {
@@ -66,8 +74,9 @@ const driver = async () => {
   });
 
   let users = {};
+  let table = '';
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < events.length; i++) {
     const e = events[i];
     const to = Web3.utils.toChecksumAddress(e.returnValues.to);
 
@@ -80,25 +89,23 @@ const driver = async () => {
     // );
   }
 
+  table += 'Address, Age, No Of Tx, Balance, Minted, Bird Rating';
   console.log('Address, Age, No Of Tx, Balance, Minted, Bird Rating');
 
-  let usersArr = Object.keys(users).map(async (addr) => {
-    const a = await getAnalytics(addr);
-
-    console.log(addr, a.age, a.noOfTx, a.balance, users[addr], a.birdRating);
-
-    return {
-      addr,
-      age: a.age,
-      noOfTx: a.noOfTx,
-      balance: a.balance,
-      minted: users[addr],
-      birdRating: a.birdRating,
-    };
-  });
+  const userObjs = Object.keys(users);
+  const userObjsLen = userObjs.length;
 
   console.log(`Mint events: ${events.length}`);
-  console.log('Total users: ' + usersArr.length);
+  console.log('Total users: ' + userObjsLen);
+
+  for (let i = 6813; i < userObjsLen; i++) {
+    const addr = userObjs[i];
+    const a = await getAnalytics(addr);
+    table += '\n' + addr + ',' + a.age + ',' + a.noOfTx + ',' + a.balance + ',' + users[addr] + ',' + a.birdRating;
+    console.log(i + '/' + userObjsLen + ',' + addr + ',' + a.age + ',' + a.noOfTx + ',' + a.balance + ',' + users[addr] + ',' + a.birdRating);
+  }
+
+  fs.writeFile('minters.csv', table, err);
   console.log('Stop');
 };
 
