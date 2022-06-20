@@ -21,7 +21,7 @@ export const buyNft = async (
     from = (await web3.eth.getAccounts())[0],
     balance = fromWei(await web3.eth.getBalance(from));
 
-  const gasPrice = (await axios.get("https://etherchain.org/api/gasnow")).data.data.fast; //standard, slow
+  const gasPrice = (await axios.get("https://etherchain.org/api/gasnow")).data.data.fast; //rapid, fast, standard, slow
   log("gasPrice " + fromWei(gasPrice, "gwei") + "gwei");
 
   let options = {
