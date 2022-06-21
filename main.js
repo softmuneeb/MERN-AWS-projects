@@ -1,24 +1,35 @@
-// what this code do? 
-
-// plan
-//
+const { POSClient, use } = require('@maticnetwork/maticjs');
+const { Web3ClientPlugin } = require('@maticnetwork/maticjs-web3');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 const init = async () => {
-  // What is the output of the following code?
+  use(Web3ClientPlugin);
 
-  let arr = [1, "Turing", { x: 2 }, [3, 4]];
+  const posClient = new POSClient();
+  await posClient.init({
+    network: 'testnet',
+    version: 'mumbai',
+    parent: {
+      provider: new HDWalletProvider(PV_KEY, BLOCKCHAIN_URL_FROM),
+      defaultConfig: {
+        from: PUB_KEY,
+      },
+    },
+    child: {
+      provider: new HDWalletProvider(PV_KEY, BLOCKCHAIN_URL_TO),
+      defaultConfig: {
+        from: PUB_KEY,
+      },
+    },
+  });
 
-  console.log(arr.length);
-  delete arr[1];
+  const result = await posClient.depositEther('100000000000000', PUB_KEY);
 
-  console.log(arr.length);
-  console.log(arr);
+  const txHash = await result.getTransactionHash();
+  console.log({ txHash });
 
-  /*
-4
-4
-[ 1, <1 empty item>, { x: 2 }, [ 3, 4 ] ]
-  */
+  const txReceipt = await result.getReceipt();
+  console.log({ txReceipt });
 };
 
 init();
