@@ -1,4 +1,34 @@
+// get the nft trades
+
+
 store:
+
+'{"anonymous":false,"inputs":[{"indexed":false,"name":"buyHash","type":"bytes32"},{"indexed":false,"name":"sellHash","type":"bytes32"},{"indexed":true,"name":"maker","type":"address"},{"indexed":true,"name":"taker","type":"address"},{"indexed":false,"name":"price","type":"uint256"},{"indexed":true,"name":"metadata","type":"bytes32"}],"name":"OrdersMatched","type":"event"}'
+    os abi 
+
+    
+    fromBlock: 0,
+    toBlock: 9999999999999999999999,
+
+
+        fromBlock:15008988,
+    toBlock: 15010205,
+
+
+    maker: '0x0000000000000000000000000000000000000000'
+
+
+
+  // for (let i = 0; i < events.length; i++) {
+  //   const e = events[i];
+  //   const to = Web3.utils.toChecksumAddress(e.returnValues.to);
+
+  //   users[to] = !users[to] || users[to] === undefined ? 1 : users[to] + 1;
+
+  //   //   `tokenId#${e.returnValues.tokenId}    ${e.returnValues.to} Block#${
+  //   //     e.blockNumber
+
+const err = (e) => e && console.log(e.message);
 
 return {
       addr,
