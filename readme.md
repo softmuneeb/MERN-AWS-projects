@@ -1,12 +1,13 @@
 // get the nft trades
 
+https://api.etherscan.io/api?module=account&action=txlist&address=0x7242ca848aB6e8A52942E189b0Afd5B7410Ef5f9&startblock=0&endblock=99999999&sort=asc&apikey=ENQVC426J12E8IT6RJH7ZEGVWSANHYUAN2
 
 store:
 
 '{"anonymous":false,"inputs":[{"indexed":false,"name":"buyHash","type":"bytes32"},{"indexed":false,"name":"sellHash","type":"bytes32"},{"indexed":true,"name":"maker","type":"address"},{"indexed":true,"name":"taker","type":"address"},{"indexed":false,"name":"price","type":"uint256"},{"indexed":true,"name":"metadata","type":"bytes32"}],"name":"OrdersMatched","type":"event"}'
     os abi 
 
-    
+
     fromBlock: 0,
     toBlock: 9999999999999999999999,
 
