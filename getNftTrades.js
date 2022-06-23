@@ -1,18 +1,17 @@
 // get the nft trades
 import Web3 from 'web3';
-const nftAddress = '0xed5af388653567af2f388e6224dc7c4b3241c544';
+const nftAddress = '0xf97cbb4b1f883f616fdb418e599b69e9d1a698de'; //dsop
 const osAddress = '0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b';
 const blockchain_url = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
-const osAbi = JSON.parse(
-  '[{"anonymous":false,"inputs":[{"indexed":false,"name":"buyHash","type":"bytes32"},{"indexed":false,"name":"sellHash","type":"bytes32"},{"indexed":true,"name":"maker","type":"address"},{"indexed":true,"name":"taker","type":"address"},{"indexed":false,"name":"price","type":"uint256"},{"indexed":true,"name":"metadata","type":"bytes32"}],"name":"OrdersMatched","type":"event"}]',
+const nftAbi = JSON.parse(
+  '[{ "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "from", "type": "address" }, { "indexed": true, "internalType": "address", "name": "to", "type": "address" }, { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" } ], "name": "Transfer", "type": "event" }]',
 );
 
 const web3 = new Web3(blockchain_url);
 const config = {
-  fromBlock: 14000000,
-  toBlock: 14000001,
-  //   filter: {},
+  fromBlock: 0,
+  toBlock: 1450000000,
 };
-const contract = new web3.eth.Contract(osAbi, osAddress);
-const selectedEvents = await contract.getPastEvents('OrdersMatched', config);
+const contract = new web3.eth.Contract(nftAbi, nftAddress);
+const selectedEvents = await contract.getPastEvents('Transfer', config);
 console.log(JSON.stringify(selectedEvents));
