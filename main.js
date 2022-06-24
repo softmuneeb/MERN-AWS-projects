@@ -83,7 +83,7 @@ init(
     marketplace: 'opensea',
     address: '0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D', // BoredApes NFT Address
     from_date: '23 May 2021 00:00:00 GMT',
-    to_date: '24 May 2021 00:00:00 GMT',
+    to_date: '26 May 2021 00:00:00 GMT',
     chain: 'eth',
   }),
   (mint = { price: BigNumber(Moralis.Units.ETH('0.08')), royalty: Number('0.10') }), // 10% royalty on opensea
