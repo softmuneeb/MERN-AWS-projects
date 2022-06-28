@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Todo = require("./models/todo");
+const mongoose = require('mongoose');
+const Todo = require('./models/todo');
 
 // tutorial https://www.youtube.com/watch?v=5QEwqX5U_2M
 
@@ -8,9 +8,9 @@ const Todo = require("./models/todo");
 // https://www.mongodb.com/try/download/community
 
 const init = async () => {
-  mongoose.connect("mongodb://localhost/berry-db");
-  await read();
-  // await create();
+  mongoose.connect('mongodb+srv://User123:Pass123@verysmallcluster.gq04lby.mongodb.net/myFirstDatabase', { useNewUrlParser: true });
+//   await read();
+  await create();
   // await update();
   // await deleteRecord();
 };
@@ -21,17 +21,17 @@ const read = async () => {
 };
 
 const create = async () => {
-  const response = await Todo.create({ record: "Muneeb Khan", date: 200 });
+  const response = await Todo.create({ record: 'Muneeb Khan', date: 200 });
   console.log({ response });
 };
 
 const update = async () => {
-  const response = await Todo.updateOne({ record: "mzk" }, { record: "mzk.." });
+  const response = await Todo.updateOne({ record: 'mzk' }, { record: 'mzk..' });
   console.log({ response });
 };
 
 const deleteRecord = async () => {
-  const response = await Todo.deleteOne({ record: "mzk.." });
+  const response = await Todo.deleteOne({ record: 'mzk..' });
   console.log({ response });
 };
 
