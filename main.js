@@ -1,7 +1,5 @@
 // what this code do? 
 
-// plan
-//
-
+// plan, steps to do
 
 // code
