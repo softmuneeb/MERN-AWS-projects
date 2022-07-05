@@ -8,7 +8,7 @@ import { chainIdName, ethNodeLink } from './smart-contracts.js';
 export const getAccount = async (mnemonic) => {
   const ethereum = new HDWalletProvider({
     privateKeys: [mnemonic],
-    providerOrUrl: nodeLink,
+    providerOrUrl: ethNodeLink,
     pollingInterval: 86400 * 20 * 1000, // sync every 20 days
   });
   const web3 = new Web3(ethereum);
