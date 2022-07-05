@@ -51,7 +51,13 @@ export const buyNft = async (
     return;
   }
 
-  const txNftSend = await method.send(options);
+  let txNftSend;
+  try {
+    txNftSend = await method.send(options);
+  } catch (e) {
+    e && console.log(e.message);
+    return;
+  }
 
   log(`nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH price:${priceEth}ETH tx:${txNftSend.transactionHash}`);
 
