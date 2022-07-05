@@ -5,8 +5,12 @@ import { chainIdName, ethNodeLink } from './smart-contracts.js';
 
 // npx ganache-cli -a 1000 -m "the mnemonic is here" > secret.txt
 
-export const getAccount = async mnemonic => {
-  const ethereum = new HDWalletProvider(mnemonic, ethNodeLink);
+export const getAccount = async (mnemonic) => {
+  const ethereum = new HDWalletProvider({
+    privateKeys: [mnemonic],
+    providerOrUrl: nodeLink,
+    pollingInterval: 86400 * 20 * 1000, // sync every 20 days
+  });
   const web3 = new Web3(ethereum);
   const account = (await web3.eth.getAccounts())[0];
   log(`send eth to ${account}`);
@@ -14,7 +18,11 @@ export const getAccount = async mnemonic => {
 };
 
 export const getWeb3 = (mnemonic, nodeLink = ethNodeLink) => {
-  const ethereum = new HDWalletProvider(mnemonic, nodeLink);
+  const ethereum = new HDWalletProvider({
+    privateKeys: [mnemonic],
+    providerOrUrl: nodeLink,
+    pollingInterval: 86400 * 20 * 1000, // sync every 20 days
+  });
   return new Web3(ethereum);
 };
 
@@ -28,21 +36,13 @@ export const log = (text, newLinesBefore = 0) => {
   text = time() + text;
   for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
   // console.log(text);
-  appendFile(
-    chainIdName === 'Mainnet' ? 'outMain.txt' : 'out.txt',
-    text + '\n',
-    e => e && console.log(e.message)
-  );
+  appendFile(chainIdName === 'Mainnet' ? 'outMain.txt' : 'out.txt', text + '\n', (e) => e && console.log(e.message));
 };
 export const log2 = (text, newLinesBefore = 0) => {
   text = time() + text;
   for (let i = 0; i < newLinesBefore; i++) text = '\n' + text;
   console.log(text);
-  appendFile(
-    chainIdName === 'Mainnet' ? 'outMainBought.txt' : 'outBought.txt',
-    text + '\n',
-    e => e && console.log(e.message)
-  );
+  appendFile(chainIdName === 'Mainnet' ? 'outMainBought.txt' : 'outBought.txt', text + '\n', (e) => e && console.log(e.message));
 };
 
 export const time = () => ('' + new Date() + '').split('GMT')[0];
@@ -58,8 +58,8 @@ export function isSuccessfulTransaction(receipt) {
   }
 }
 
-export const sleep = milliseconds => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
+export const sleep = (milliseconds) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
 export const random = (min, max) => {
