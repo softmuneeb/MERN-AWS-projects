@@ -20,11 +20,11 @@ if (removeDuplicates) {
 
 console.log(JSON.stringify(addresses, null, 4));
 // output
-// fs.writeFile(
-//   'ethAddressesOut.txt',
-//   `total addresses were: ${addrLen}
-//   ${addresses.length} 'unique addresses were found. Thanks to Allah.'
+fs.writeFile(
+  'ethAddressesOut.txt',
+  `total addresses were: ${addrLen}
+  ${addresses.length} 'unique addresses were found. Thanks to Allah.'
   
-//   ${addresses}`,
-//   e => e && console.log(e.message),
-// );
+  ${addresses}`,
+  e => e && console.log(e.message),
+);
