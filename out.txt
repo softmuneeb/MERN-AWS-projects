@@ -2134,3 +2134,305 @@ Wed Jul 06 2022 11:32:40 done eth send tx from acc[12]:0x0828FD90b797181ED70450b
 
 Wed Jul 06 2022 11:32:40 wait 0 seconds
 Wed Jul 06 2022 11:32:40 loop end
+
+
+
+
+Wed Jul 06 2022 11:44:23 Server on Rinkeby Wed Jul 06 2022 11:44:23 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:44:27 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:44:39 nft buy tx sent from acc[13]:0x1c7a7dc349E5C1B6E8a6fFa7eCaa86a265D65dB9 bal:0.790008254961287364ETH qty: 5 price:0.000000000000000003ETH tx:0x5a202a8e2eb78281e6dc090a43bd4b40a4f2d94727edc42f7ebd161e1dcdfa84
+Wed Jul 06 2022 11:44:39 nft buy tx wait true
+Wed Jul 06 2022 11:44:41 done nft buy tx from acc[13]:0x1c7a7dc349E5C1B6E8a6fFa7eCaa86a265D65dB9 bal:0.789758539960088729ETH tokenId:178 to 182 gasPrice:2.500000012gwei txFee:0.000249715001198632ETH tx: 0x5a202a8e2eb78281e6dc090a43bd4b40a4f2d94727edc42f7ebd161e1dcdfa84
+Wed Jul 06 2022 11:44:42 send eth to 0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd
+Wed Jul 06 2022 11:44:54 eth send tx sent from acc[13]:0x1c7a7dc349E5C1B6E8a6fFa7eCaa86a265D65dB9 bal:0.790008254961287364ETH tx:0x05072e863793590f0ceb9c8f0eb1952f5e51161f3adcf0b3fc2a491c74e88d67
+Wed Jul 06 2022 11:44:55 send eth tx wait true
+Wed Jul 06 2022 11:44:57 done eth send tx from acc[13]:0x1c7a7dc349E5C1B6E8a6fFa7eCaa86a265D65dB9 bal:0.000000000000010029ETH gasPrice:2.500000012gwei txFee:0.000249715001198632ETH tx:0x05072e863793590f0ceb9c8f0eb1952f5e51161f3adcf0b3fc2a491c74e88d67
+
+Wed Jul 06 2022 11:44:57 wait 0 seconds
+Wed Jul 06 2022 11:44:57 loop end
+
+
+
+
+Wed Jul 06 2022 11:49:27 Server on Rinkeby Wed Jul 06 2022 11:49:27 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:49:30 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:49:31 nft buy tx err from acc[0] 0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd bal:0.789706039959836769ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:49:31 wait 0 seconds
+Wed Jul 06 2022 11:49:31 loop end
+
+
+
+
+Wed Jul 06 2022 11:50:52 Server on Rinkeby Wed Jul 06 2022 11:50:52 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:50:55 gasPrice 20.32gwei
+Wed Jul 06 2022 11:50:56 nft buy tx err from acc[1] 0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2 bal:0.000000000000010108ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:50:56 wait 0 seconds
+Wed Jul 06 2022 11:50:56 loop end
+
+
+
+
+Wed Jul 06 2022 11:51:35 Server on Rinkeby Wed Jul 06 2022 11:51:35 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:51:38 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:51:39 nft buy tx err from acc[2] 0xd897Ab2F708A98D10948800572ED73156fe9Dcc9 bal:0.000000000000009982ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:51:39 wait 0 seconds
+Wed Jul 06 2022 11:51:39 loop end
+
+
+
+
+Wed Jul 06 2022 11:52:10 Server on Rinkeby Wed Jul 06 2022 11:52:10 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:52:13 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:52:15 nft buy tx err from acc[3] 0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.000000000000010045ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:52:15 wait 0 seconds
+Wed Jul 06 2022 11:52:15 loop end
+
+
+
+
+Wed Jul 06 2022 11:53:11 Server on Rinkeby Wed Jul 06 2022 11:53:11 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:53:15 gasPrice 23.152693529gwei
+Wed Jul 06 2022 11:53:16 nft buy tx err from acc[4] 0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.000000000000010098ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:53:16 wait 0 seconds
+Wed Jul 06 2022 11:53:16 loop end
+
+
+
+
+Wed Jul 06 2022 11:53:29 Server on Rinkeby Wed Jul 06 2022 11:53:29 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:53:33 gasPrice 16gwei
+
+Wed Jul 06 2022 11:53:36 wait 0 seconds
+Wed Jul 06 2022 11:53:36 loop end
+
+
+
+
+Wed Jul 06 2022 11:53:43 Server on Rinkeby Wed Jul 06 2022 11:53:43 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:53:47 gasPrice 17.039032243gwei
+Wed Jul 06 2022 11:53:47 nft buy tx err from acc[6] 0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C bal:0.000000000000009993ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:53:47 wait 0 seconds
+Wed Jul 06 2022 11:53:47 loop end
+
+
+
+
+Wed Jul 06 2022 11:54:15 Server on Rinkeby Wed Jul 06 2022 11:54:15 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:54:19 gasPrice 17.039032243gwei
+Wed Jul 06 2022 11:54:20 nft buy tx err from acc[7] 0x70C0f35326b97CC65BDA7EF0fE1cD6b5E6b18Ffd bal:0.00000000000001009ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:54:20 wait 0 seconds
+Wed Jul 06 2022 11:54:20 loop end
+
+
+
+
+Wed Jul 06 2022 11:54:35 Server on Rinkeby Wed Jul 06 2022 11:54:35 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:54:38 gasPrice 22.253566325gwei
+Wed Jul 06 2022 11:54:39 nft buy tx err from acc[8] 0x7FEfdEd8DB20C8f5917BB1F25f636eB7BDA68648 bal:0.000000000000010057ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 11:54:39 wait 0 seconds
+Wed Jul 06 2022 11:54:39 loop end
+
+
+
+
+Wed Jul 06 2022 11:54:57 Server on Rinkeby Wed Jul 06 2022 11:54:57 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:55:01 gasPrice 23.186368953gwei
+
+Wed Jul 06 2022 11:55:05 wait 0 seconds
+Wed Jul 06 2022 11:55:05 loop end
+
+
+
+
+Wed Jul 06 2022 11:55:18 Server on Rinkeby Wed Jul 06 2022 11:55:18 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:55:21 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:55:40 nft buy tx sent from acc[0]:0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd bal:0.789706039959836769ETH qty: 2 price:0ETH tx:0x8747ac20861c46c679b46ea29dc070d63f50304d6e542906e23133946a5a8c07
+Wed Jul 06 2022 11:55:41 nft buy tx wait true
+Wed Jul 06 2022 11:55:43 done nft buy tx from acc[0]:0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd bal:0.789471412458804408ETH tokenId:1 to 2 gasPrice:2.500000011gwei txFee:0.000234627501032361ETH tx: 0x8747ac20861c46c679b46ea29dc070d63f50304d6e542906e23133946a5a8c07
+Wed Jul 06 2022 11:55:44 send eth to 0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2
+Wed Jul 06 2022 11:55:55 eth send tx sent from acc[0]:0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd bal:0.789706039959836769ETH tx:0xd557b968a01feacb8a7ee0a8b62246e989543c8b2db6b3a845d989e0da7405fb
+Wed Jul 06 2022 11:55:56 send eth tx wait true
+Wed Jul 06 2022 11:55:58 done eth send tx from acc[0]:0x9a5949C788Ac766d4fd2999a7CA61b7Af8585DAd bal:0.000000000000010108ETH gasPrice:2.500000011gwei txFee:0.000234627501032361ETH tx:0xd557b968a01feacb8a7ee0a8b62246e989543c8b2db6b3a845d989e0da7405fb
+
+Wed Jul 06 2022 11:55:58 wait 0 seconds
+Wed Jul 06 2022 11:55:58 loop end
+
+
+
+
+Wed Jul 06 2022 11:56:49 Server on Rinkeby Wed Jul 06 2022 11:56:49 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:56:53 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:57:11 nft buy tx sent from acc[1]:0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2 bal:0.789418912458573408ETH qty: 2 price:0ETH tx:0xa1a30cbb9bd698f50301b456e83c16e42191be6b189de69eb57f895e88bc5c2b
+Wed Jul 06 2022 11:57:12 nft buy tx wait true
+Wed Jul 06 2022 11:57:13 done nft buy tx from acc[1]:0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2 bal:0.789184284957447196ETH tokenId:3 to 4 gasPrice:2.500000012gwei txFee:0.000234627501126212ETH tx: 0xa1a30cbb9bd698f50301b456e83c16e42191be6b189de69eb57f895e88bc5c2b
+Wed Jul 06 2022 11:57:14 send eth to 0xd897Ab2F708A98D10948800572ED73156fe9Dcc9
+Wed Jul 06 2022 11:57:25 eth send tx sent from acc[1]:0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2 bal:0.789418912458573408ETH tx:0x5771dfb2c04c462217152d9dcfd1b3bdf3390546f7a7d35c361775f1ec4dfd67
+Wed Jul 06 2022 11:57:26 send eth tx wait true
+Wed Jul 06 2022 11:57:27 done eth send tx from acc[1]:0x2a1be777BA90a198A88A1078816a6b88F2DC7ef2 bal:0.000000000000009996ETH gasPrice:2.500000012gwei txFee:0.000234627501126212ETH tx:0x5771dfb2c04c462217152d9dcfd1b3bdf3390546f7a7d35c361775f1ec4dfd67
+
+Wed Jul 06 2022 11:57:28 wait 0 seconds
+Wed Jul 06 2022 11:57:28 loop end
+
+
+
+
+Wed Jul 06 2022 11:57:42 Server on Rinkeby Wed Jul 06 2022 11:57:42 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:57:45 gasPrice 23.186368953gwei
+Wed Jul 06 2022 11:57:55 nft buy tx sent from acc[2]:0xd897Ab2F708A98D10948800572ED73156fe9Dcc9 bal:0.789131784957195182ETH qty: 5 price:0.000000000000000003ETH tx:0x458dd4565e937126f10208f2eb12cd801d1f8d0a0b728f82dd93037837480600
+Wed Jul 06 2022 11:57:56 nft buy tx wait true
+Wed Jul 06 2022 11:57:58 done nft buy tx from acc[2]:0xd897Ab2F708A98D10948800572ED73156fe9Dcc9 bal:0.789011921755996547ETH tokenId:5 to 9 gasPrice:1.200000012gwei txFee:0.000119863201198632ETH tx: 0x458dd4565e937126f10208f2eb12cd801d1f8d0a0b728f82dd93037837480600
+Wed Jul 06 2022 11:57:59 send eth to 0x40ed225c98F40956E717e2125615F47e7948E1E2
+Wed Jul 06 2022 11:58:11 eth send tx sent from acc[2]:0xd897Ab2F708A98D10948800572ED73156fe9Dcc9 bal:0.789131784957195182ETH tx:0x4a83217da3e8d7b8b99148fb9306a4e85084279e7d4b51b096ce5650818b8405
+Wed Jul 06 2022 11:58:12 send eth tx wait true
+Wed Jul 06 2022 11:58:13 done eth send tx from acc[2]:0xd897Ab2F708A98D10948800572ED73156fe9Dcc9 bal:0.000000000000010047ETH gasPrice:1.200000012gwei txFee:0.000119863201198632ETH tx:0x4a83217da3e8d7b8b99148fb9306a4e85084279e7d4b51b096ce5650818b8405
+
+Wed Jul 06 2022 11:58:13 wait 0 seconds
+Wed Jul 06 2022 11:58:13 loop end
+
+
+
+
+Wed Jul 06 2022 11:58:56 Server on Rinkeby Wed Jul 06 2022 11:58:56 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 11:59:28 gasPrice 26.037542457gwei
+
+
+
+
+Wed Jul 06 2022 12:01:46 Server on Rinkeby Wed Jul 06 2022 12:01:46 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:01:49 gasPrice 19.142826859gwei
+
+Wed Jul 06 2022 12:14:26 wait 0 seconds
+Wed Jul 06 2022 12:14:26 loop end
+
+
+
+
+Wed Jul 06 2022 12:23:07 Server on Rinkeby Wed Jul 06 2022 12:23:07 GMT+0500 (Pakistan Standard Time)
+
+
+
+
+Wed Jul 06 2022 12:23:23 Server on Rinkeby Wed Jul 06 2022 12:23:23 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:23:27 gasPrice 14.5854129gwei
+Wed Jul 06 2022 12:23:28 nft buy tx err from acc[4] 0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.000000000000010098ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 12:23:28 wait 0 seconds
+Wed Jul 06 2022 12:23:28 loop end
+
+
+
+
+Wed Jul 06 2022 12:24:42 Server on Rinkeby Wed Jul 06 2022 12:24:42 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:24:46 gasPrice 20.923540358gwei
+
+
+
+
+Wed Jul 06 2022 12:29:14 Server on Rinkeby Wed Jul 06 2022 12:29:14 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:29:18 gasPrice 12.213608189gwei
+Wed Jul 06 2022 12:29:19 nft buy tx err from acc[3] 0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288578583755513545ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 12:29:19 wait 0 seconds
+Wed Jul 06 2022 12:29:19 loop end
+
+
+
+
+Wed Jul 06 2022 12:30:07 Server on Rinkeby Wed Jul 06 2022 12:30:07 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:30:11 gasPrice 9.298186076gwei
+Wed Jul 06 2022 12:30:12 nft buy tx err from acc[4] 0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.000000000000010098ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 12:30:12 wait 0 seconds
+Wed Jul 06 2022 12:30:12 loop end
+
+
+
+
+Wed Jul 06 2022 12:30:21 Server on Rinkeby Wed Jul 06 2022 12:30:21 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:30:25 gasPrice 19.682339115gwei
+Wed Jul 06 2022 12:30:26 nft buy tx err from acc[3] 0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288578583755513545ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 12:30:26 wait 0 seconds
+Wed Jul 06 2022 12:30:26 loop end
+
+
+
+
+Wed Jul 06 2022 12:31:06 Server on Rinkeby Wed Jul 06 2022 12:31:06 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:31:10 gasPrice 14.248724699gwei
+Wed Jul 06 2022 12:31:11 nft buy tx err from acc[3] 0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288578583755513545ETH msg Insufficient funds or some data error
+
+Wed Jul 06 2022 12:31:11 wait 0 seconds
+Wed Jul 06 2022 12:31:11 loop end
+
+
+
+
+Wed Jul 06 2022 12:32:48 Server on Rinkeby Wed Jul 06 2022 12:32:48 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 12:32:51 gasPrice 11.530704527gwei
+Wed Jul 06 2022 12:33:13 nft buy tx sent from acc[3]:0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288578583755513545ETH qty: 1 price:0.000000000000000001ETH tx:0x6c138b911d13cdf7286d258dde9549572dc568a3fcff9e45928415cb52f8d0de
+Wed Jul 06 2022 12:33:13 nft buy tx wait true
+Wed Jul 06 2022 12:33:15 done nft buy tx from acc[3]:0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288354630755513544ETH tokenId:12 gasPrice:3gwei txFee:0.000223953ETH tx: 0x6c138b911d13cdf7286d258dde9549572dc568a3fcff9e45928415cb52f8d0de
+Wed Jul 06 2022 12:33:16 send eth to 0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA
+Wed Jul 06 2022 12:33:27 eth send tx sent from acc[3]:0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.288578583755513545ETH tx:0x55e4f267709dde4a28158ceeef034113e7b450e9a382322584bcb13f32a41626
+Wed Jul 06 2022 12:33:28 send eth tx wait true
+Wed Jul 06 2022 12:33:30 done eth send tx from acc[3]:0x40ed225c98F40956E717e2125615F47e7948E1E2 bal:0.000000000000009994ETH gasPrice:3gwei txFee:0.000223953ETH tx:0x55e4f267709dde4a28158ceeef034113e7b450e9a382322584bcb13f32a41626
+
+Wed Jul 06 2022 12:33:30 wait 0 seconds
+Wed Jul 06 2022 12:33:30 loop end
+
+
+
+
+Wed Jul 06 2022 13:03:01 Server on Rinkeby Wed Jul 06 2022 13:03:01 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 13:03:04 gasPrice 23.572594438gwei
+Wed Jul 06 2022 13:03:21 nft buy tx sent from acc[4]:0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.288291630755513648ETH qty: 1 price:0ETH tx:0x905ed41be87bc7af9e380b27f3a57f6a68fc807e93d28648cd8839cf66755c6b
+Wed Jul 06 2022 13:03:22 nft buy tx wait true
+Wed Jul 06 2022 13:03:23 done nft buy tx from acc[4]:0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.288016059755513648ETH tokenId:13 gasPrice:3gwei txFee:0.000275571ETH tx: 0x905ed41be87bc7af9e380b27f3a57f6a68fc807e93d28648cd8839cf66755c6b
+Wed Jul 06 2022 13:03:24 send eth to 0x1e44E3a7D092Fc9E5BA94E72e68583b8e547CE7a
+Wed Jul 06 2022 13:03:34 eth send tx sent from acc[4]:0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.288291630755513648ETH tx:0xae6b7ade9f1808e009bc1ef5e314fee225e412a8700ee259e8dcf118fc696714
+Wed Jul 06 2022 13:03:35 send eth tx wait true
+Wed Jul 06 2022 13:03:37 done eth send tx from acc[4]:0x29C11c93449294eE035Fd432c8f19a88C9Cf4DeA bal:0.000000000000009968ETH gasPrice:3gwei txFee:0.000275571ETH tx:0xae6b7ade9f1808e009bc1ef5e314fee225e412a8700ee259e8dcf118fc696714
+
+Wed Jul 06 2022 13:03:37 wait 0 seconds
+Wed Jul 06 2022 13:03:37 loop end
+
+
+
+
+Wed Jul 06 2022 13:05:25 Server on Rinkeby Wed Jul 06 2022 13:05:25 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 13:05:28 gasPrice 25.145774523gwei
+Wed Jul 06 2022 13:05:35 nft buy tx sent from acc[5]:0x1e44E3a7D092Fc9E5BA94E72e68583b8e547CE7a bal:0.287953059755513649ETH qty: 1 price:0ETH tx:0x0d4e5b8d7913337241ab8ea8ee5a1be55b2c6810fa3321134b1b60b60fd960ca
+Wed Jul 06 2022 13:05:36 nft buy tx wait true
+Wed Jul 06 2022 13:05:38 done nft buy tx from acc[5]:0x1e44E3a7D092Fc9E5BA94E72e68583b8e547CE7a bal:0.287126346755513649ETH tokenId:14 gasPrice:9gwei txFee:0.000826713ETH tx: 0x0d4e5b8d7913337241ab8ea8ee5a1be55b2c6810fa3321134b1b60b60fd960ca
+Wed Jul 06 2022 13:05:39 send eth to 0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C
+Wed Jul 06 2022 13:05:50 eth send tx sent from acc[5]:0x1e44E3a7D092Fc9E5BA94E72e68583b8e547CE7a bal:0.287953059755513649ETH tx:0x3560321df514c837037baff0fbd938eef4083b9ef49bf4dcb5a7260ea5897375
+Wed Jul 06 2022 13:05:51 send eth tx wait true
+Wed Jul 06 2022 13:05:52 done eth send tx from acc[5]:0x1e44E3a7D092Fc9E5BA94E72e68583b8e547CE7a bal:0.000000000000009969ETH gasPrice:9gwei txFee:0.000826713ETH tx:0x3560321df514c837037baff0fbd938eef4083b9ef49bf4dcb5a7260ea5897375
+
+Wed Jul 06 2022 13:05:52 wait 0 seconds
+Wed Jul 06 2022 13:05:52 loop end
+
+
+
+
+Wed Jul 06 2022 13:09:16 Server on Rinkeby Wed Jul 06 2022 13:09:16 GMT+0500 (Pakistan Standard Time)
+Wed Jul 06 2022 13:09:19 gasPrice 30gwei
+Wed Jul 06 2022 13:09:38 nft buy tx sent from acc[6]:0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C bal:0.286937346755513673ETH qty: 1 price:0ETH tx:0x867d47cdbeedde47ae6a4828dd82322bb7e72f1c65871fb921e73aba6f7ddd50
+Wed Jul 06 2022 13:09:39 nft buy tx wait true
+Wed Jul 06 2022 13:09:41 done nft buy tx from acc[6]:0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C bal:0.28670770425101268ETH tokenId:15 gasPrice:2.500000049gwei txFee:0.000229642504500993ETH tx: 0x867d47cdbeedde47ae6a4828dd82322bb7e72f1c65871fb921e73aba6f7ddd50
+Wed Jul 06 2022 13:09:41 send eth to 0x70C0f35326b97CC65BDA7EF0fE1cD6b5E6b18Ffd
+Wed Jul 06 2022 13:09:53 eth send tx sent from acc[6]:0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C bal:0.286937346755513673ETH tx:0xbcbe9a550b7300b3d061c3d7c54378ca3958816f2d78ea797117bc457960edfd
+Wed Jul 06 2022 13:09:54 send eth tx wait true
+Wed Jul 06 2022 13:09:56 done eth send tx from acc[6]:0xCF02E7E01a6A48Bcc455F640F5dbd1eb7404F33C bal:0.00000000000000998ETH gasPrice:2.500000049gwei txFee:0.000229642504500993ETH tx:0xbcbe9a550b7300b3d061c3d7c54378ca3958816f2d78ea797117bc457960edfd
+
+Wed Jul 06 2022 13:09:56 wait 0 seconds
+Wed Jul 06 2022 13:09:56 loop end

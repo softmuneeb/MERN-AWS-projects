@@ -20,8 +20,9 @@ export const nftBuyBot = async (PV_KEYS, start, totalToUse, waitInSecondsFrom, w
 
   for (let accId = start; accId < end; accId++) {
     // await buyNft(PV_KEYS[accId], PV_KEYS[0], accId); // if you want to send money to first account
+    // fs.writeFileSync('accIdToUse', '' + 0);
+    
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
-
     fs.writeFileSync('accIdToUse', '' + (accId + 1));
 
     const wait = random(waitInSecondsFrom, waitInSecondsTo);

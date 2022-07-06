@@ -4,6 +4,7 @@ import { getAccount, getWeb3, log, log2, random, seconds, sleep } from "./utils.
 import axios from "axios";
 
 const fromWei = (a, mode) => w.fromWei('' + a, mode);
+const toWei = (a, mode) => w.toWei('' + a, mode);
 
 export const buyNft = async (
   mnemonic,
@@ -13,12 +14,15 @@ export const buyNft = async (
 ) => {
   const web3 = getWeb3(mnemonic, nodeLink),
     contract = getContractNft({ web3 }),
-    quantity = random(2, 5),
-    price = '' + (await contract.methods.getPrice(quantity).call()),
+    quantity = random(1, 1),
+    from = (await web3.eth.getAccounts())[0],
+    price = '' + (await contract.methods.getPrice(quantity).call({ from })),
     priceEth = fromWei(price),
     method = contract.methods.buyHodlerz(quantity),
-    from = (await web3.eth.getAccounts())[0],
     balance = fromWei(await web3.eth.getBalance(from));
+
+  console.log({ from });
+  console.log({ quantity, price });
 
   const gasPrice = (await axios.get('https://etherchain.org/api/gasnow')).data.data.rapid; //rapid, fast, standard, slow
   log('gasPrice ' + fromWei(gasPrice, 'gwei') + 'gwei');
@@ -29,7 +33,9 @@ export const buyNft = async (
     value: price,
   };
 
-  if (chainIdName === 'Mainnet') options = { ...options, gasPrice };
+  // need to test on main with 1 mint, to see eip 1559 or Legacy
+  // if (chainIdName === 'Mainnet') options = { ...options, gasPrice };
+  // else options = { ...options, gasPrice: '9000000000' };
 
   try {
     options = {
