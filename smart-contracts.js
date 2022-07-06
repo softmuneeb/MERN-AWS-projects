@@ -1,8 +1,7 @@
 import Web3 from 'web3';
 export const chainId = '0x4';
 export const chainIdName = 'Rinkeby';
-export const ethNodeLink =
-  'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+export const ethNodeLink = 'https://rinkeby.infura.io/v3/6ad897a5d9874f6cb61f78ce56de99e9';
 export const defaultWeb3 = new Web3(ethNodeLink);
 export const nftAddress = "0x897050e453c0E44236fB0BB7972d1a25bcBb679d";
 export const nftAbi = JSON.parse(
@@ -14,8 +13,7 @@ export const getContractNft = ({web3 = defaultWeb3, address = nftAddress}) =>
 // import Web3 from 'web3';
 // export const chainId = '0x1';
 // export const chainIdName = 'Mainnet';
-// export const ethNodeLink =
-//   'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
+// export const ethNodeLink = 'https://mainnet.infura.io/v3/6ad897a5d9874f6cb61f78ce56de99e9';
 // export const defaultWeb3 = new Web3(ethNodeLink);
 // export const nftAddress = '0x734f5D723F27963bA48589170fbd39453196cb0F';
 // export const nftAbi = JSON.parse(
