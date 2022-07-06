@@ -8,6 +8,7 @@
 how to handle try catch in all app, handle so many rejections
 */
 
+import fs from 'fs';
 import { buyNft } from './apis.js';
 import { chainIdName } from './smart-contracts.js';
 import { log, random, seconds, sleep } from './utils.js';
@@ -25,6 +26,8 @@ export const nftBuyBot = async (
   for (let accId = start; accId < end; accId++) {
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
     
+    fs.writeFileSync('accIdToUse', '' + (accId + 1));
+
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
     log(`wait ${wait} seconds`, 1);
     await sleep(wait * seconds);

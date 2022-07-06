@@ -1,8 +1,8 @@
-const init = async () => {
-  const a = 1,
-    b = a + 1;
-  console.log(a);
-  console.log(b);
-};
+// dependencies
+// import fs from 'fs';
 
-init();
+// write
+// fs.writeFileSync('accIdUsed', ''+1);
+
+// read
+// let i = Number('' + fs.readFileSync('accIdUsed'));
