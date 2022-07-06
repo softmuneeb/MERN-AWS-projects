@@ -1,10 +1,8 @@
 /node_modules
 package-lock.json
 .env
-secret.js
 # out.txt
 .DS_Store
 secret.txt
-secret2.js
 output
 metadataEmpty
