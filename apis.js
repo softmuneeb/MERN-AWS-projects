@@ -13,10 +13,10 @@ export const buyNft = async (
 ) => {
   const web3 = getWeb3(mnemonic, nodeLink),
     contract = getContractNft({ web3 }),
-    quantity = random(3, 6),
-    price = quantity * (await contract.methods.itemPrice().call()),
+    quantity = random(2, 5),
+    price = '' + (await contract.methods.getPrice(quantity).call()),
     priceEth = fromWei(price),
-    method = contract.methods.purchaseTokens(quantity),
+    method = contract.methods.buyHodlerz(quantity),
     from = (await web3.eth.getAccounts())[0],
     balance = fromWei(await web3.eth.getBalance(from));
 
@@ -58,7 +58,7 @@ export const buyNft = async (
     return;
   }
 
-  log(`nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH price:${priceEth}ETH tx:${txNftSend.transactionHash}`);
+  log(`nft buy tx sent from acc[${accountId}]:${from} bal:${balance}ETH qty: ${quantity} price:${priceEth}ETH tx:${txNftSend.transactionHash}`);
 
   let txReceipt = null;
   while (txReceipt === null) {
