@@ -4,7 +4,7 @@ import Web3 from 'web3';
 export const chainId = '0x4';
 export const chainIdName = 'Rinkeby';
 export const ethNodeLink = 'https://rinkeby.infura.io/v3/6ad897a5d9874f6cb61f78ce56de99e9';
-export const nftAddress = '0x02E8Ca04722304Be067D79F357b1877359864Ad1';
+export const nftAddress = '0x4635Be209d8003fcD51895eAF9F1235812bDcE7a';
 
 // Mainnet
 // export const chainId = '0x1';
