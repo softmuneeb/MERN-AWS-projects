@@ -2,13 +2,11 @@ import fs from 'fs';
 import { nftBuyBot } from './nftBot.js';
 import { minutes } from './utils.js';
 import { PV_KEYS } from './secret.js';
+import { PV_KEYS2 } from './secret2.js';
 
-let accIdToUse = Number('' + fs.readFileSync('accIdToUse'));
 let numOfAccountsToUse = 1;
 
-const startAccId = accIdToUse,
-  endAccId = accIdToUse + numOfAccountsToUse,
-  waitInSecondsFrom = 0 * minutes,
-  waitInSecondsTo = 0 * minutes;
+let accIdToUse = Number('' + fs.readFileSync('accIdToUse'));
 
-nftBuyBot(startAccId, endAccId, waitInSecondsFrom, waitInSecondsTo, PV_KEYS);
+nftBuyBot(PV_KEYS, accIdToUse, numOfAccountsToUse, 0 * minutes, 0 * minutes);
+nftBuyBot(PV_KEYS2, accIdToUse, numOfAccountsToUse, 0 * minutes, 0 * minutes);

@@ -13,26 +13,22 @@ import { buyNft } from './apis.js';
 import { chainIdName } from './smart-contracts.js';
 import { log, random, seconds, sleep } from './utils.js';
 
-export const nftBuyBot = async (
-  start,
-  end,
-  waitInSecondsFrom,
-  waitInSecondsTo,
-  PV_KEYS
-) => {
-  log('Assalamo Alaikum. server on ' + chainIdName + ' ' + new Date(), 4);
+export const nftBuyBot = async (PV_KEYS, start, totalToUse, waitInSecondsFrom, waitInSecondsTo) => {
+  const end = start + totalToUse;
+  log('Server on ' + chainIdName + ' ' + new Date(), 4);
   console.log('start');
-  
+
   for (let accId = start; accId < end; accId++) {
+    // await buyNft(PV_KEYS[accId], PV_KEYS[0], accId); // if you want to send money to first account
     await buyNft(PV_KEYS[accId], PV_KEYS[accId + 1], accId);
-    
+
     fs.writeFileSync('accIdToUse', '' + (accId + 1));
 
     const wait = random(waitInSecondsFrom, waitInSecondsTo);
     log(`wait ${wait} seconds`, 1);
     await sleep(wait * seconds);
   }
-  
+
   console.log('stop');
   log('loop end');
 };
