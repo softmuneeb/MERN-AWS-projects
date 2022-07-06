@@ -3,8 +3,7 @@ import { chainIdName, ethNodeLink, getContractNft } from "./smart-contracts.js";
 import { getAccount, getWeb3, log, log2, random, seconds, sleep } from "./utils.js";
 import axios from "axios";
 
-const fromWei = (a) => w.fromWei("" + a);
-const toWei = (a) => w.toWei("" + a);
+const fromWei = (a, mode) => w.fromWei('' + a, mode);
 
 export const buyNft = async (
   mnemonic,
