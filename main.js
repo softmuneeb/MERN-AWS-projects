@@ -6,7 +6,7 @@ import { PV_KEYS2 } from './secret2.js';
 import { PV_KEYS3 } from './secret3.js';
 import { PV_KEYS4 } from './secret4.js';
 
-let numOfAccountsToUse = 1;
+let numOfAccountsToUse = 10;
 
 let accIdToUse = Number('' + fs.readFileSync('accIdToUse'));
 
