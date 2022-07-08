@@ -28,4 +28,5 @@ const keys = Object.keys(count)
 
 const countBetter = keys.filter((key) => count[key] > 20);
 
-console.log({ countBetter });
+const c = countBetter.map((key) => ({ a: key, b: count[key] }));
+console.log({ c });
