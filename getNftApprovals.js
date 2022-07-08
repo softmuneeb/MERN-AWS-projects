@@ -41,7 +41,6 @@ const getContractEvents = async ({
   const config = {
     fromBlock,
     toBlock,
-    filter: { to: '0x0000000000000000000000000000000000000000' },
   };
   const selectedEvents = await getContractNft({ address }).getPastEvents(
     eventName,
@@ -64,22 +63,21 @@ const driver = async () => {
   console.log('Getting events...');
   const events = await getContractEvents({
     address: nftAddress,
-    eventName: 'Transfer',
-    fromBlock: 13813033, // see from https://etherscan.com
-    toBlock: 14823851,
+    eventName: 'ApprovalForAll',
+    fromBlock: 0, // see from https://etherscan.com
+    toBlock: 9999999999,
   });
 
   console.log(`events: ${events.length}`);
 
   console.log('Getting buyers stats...');
+
+  console.log(`owner, operator, block, line`);
+
   for (let i = 0; i < events.length; i++) {
     const e = events[i];
 
-    console.log(
-      `tokenId#${e.returnValues.tokenId}    ${e.returnValues.from} Block#${
-        e.blockNumber
-      } Line#${i + 1}`,
-    );
+    console.log(`'${e.returnValues.owner}', '${e.returnValues.operator}', ${e.blockNumber}, ${i + 1}`);
   }
 };
 
