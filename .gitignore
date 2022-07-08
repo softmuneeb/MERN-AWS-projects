@@ -4,3 +4,4 @@ main.js
 yarn.lock
 secret.js
 .env
+.DS_Store
