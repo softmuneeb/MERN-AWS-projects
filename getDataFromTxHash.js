@@ -16,7 +16,7 @@ const scAbi3 = JSON.parse(
 
 web3.eth.getTransaction(transaction, function (err, tx) {
   //   abiDecoder.addABI(scAbi3);
-  let tx_data = tx.input;
+  let tx_data = tx;
 
   console.log(tx_data);
   //   let decoded_data = abiDecoder.decodeMethod(tx_data);
