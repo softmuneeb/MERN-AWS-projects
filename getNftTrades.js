@@ -28,11 +28,8 @@ import Web3 from 'web3';
 
 const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
   let txs = {};
-  let counter = 0;
 
   for (let i = 0; i < events.length; i++) {
-    counter++;
-
     const event = events[i];
 
     const { transactionHash } = event;
@@ -40,7 +37,7 @@ const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
 
     const tokenIds = txs[transactionHash] ? [tokenId, ...txs[transactionHash].tokenIds] : [tokenId];
 
-    txs[transactionHash] = { counter, from, tokenIds, transactionHash };
+    txs[transactionHash] = { from, tokenIds, transactionHash };
   }
 
   const combinedTokenIdEvents = Object.keys(txs).map((tx) => txs[tx]);
@@ -49,27 +46,18 @@ const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
 };
 
 const getEventsWithSellingPrice = async (web3, events) => {
-  let txs = {};
-  let counter = 0;
+  let combinedTokenIdEvents = [];
 
   for (let i = 0; i < events.length; i++) {
-    console.log({ i: i + 1 + '/' + events.length });
-    counter++;
-
     const event = events[i];
-
-    const { transactionHash } = event;
+    console.log({ i: i + 1 + '/' + events.length });
 
     const { value } = await web3.eth.getTransaction(event.transactionHash);
 
     if (value === '0') continue; // ignore normal transfer events
 
-    const valueEther = web3.utils.fromWei(value);
-
-    txs[transactionHash] = { ...txs[transactionHash], counter, value, valueEther };
+    combinedTokenIdEvents.push({ ...event, value, valueEther: web3.utils.fromWei(value) });
   }
-
-  const combinedTokenIdEvents = Object.keys(txs).map((tx) => txs[tx]);
 
   return combinedTokenIdEvents;
 };
@@ -104,13 +92,13 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
 
   const eventsAll = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock);
   console.log({ eventsAll: eventsAll.length });
-  console.log({ eventsAll: JSON.stringify(eventsAll, null, 4) });
 
   const eventsWithoutMints = getEventsWithoutMint(eventsAll);
   console.log({ eventsWithoutMints: eventsWithoutMints.length });
 
   const eventsWithCombinedTokenIdsInSingleSale = getEventsWithCombinedTokenIdsInSingleSale(eventsWithoutMints);
   console.log({ eventsWithCombinedTokenIdsInSingleSale: eventsWithCombinedTokenIdsInSingleSale.length });
+  console.log({ eventsWithCombinedTokenIdsInSingleSale: JSON.stringify(eventsWithCombinedTokenIdsInSingleSale, null, 4) });
 
   const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithCombinedTokenIdsInSingleSale);
   console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
