@@ -98,7 +98,6 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
 
   const eventsWithCombinedTokenIdsInSingleSale = getEventsWithCombinedTokenIdsInSingleSale(eventsWithoutMints);
   console.log({ eventsWithCombinedTokenIdsInSingleSale: eventsWithCombinedTokenIdsInSingleSale.length });
-  console.log({ eventsWithCombinedTokenIdsInSingleSale: JSON.stringify(eventsWithCombinedTokenIdsInSingleSale, null, 4) });
 
   const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithCombinedTokenIdsInSingleSale);
   console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
