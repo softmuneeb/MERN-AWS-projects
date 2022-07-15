@@ -1,0 +1,231 @@
+{ fromBlock: 13975838, toBlock: 13991838 }
+{ events: 200 }
+{ eventsAll: 200 }
+{
+  eventsAll: '[\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 160,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_aecbf61e",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "0",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "0"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 161,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_dce78710",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "1",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "1"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000001"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 162,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_0478d729",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "2",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "2"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000002"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 163,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_ce15cbb1",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "3",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "3"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000003"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 164,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_3ddf68a9",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "4",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "4"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000004"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 165,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_54e86986",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "5",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "5"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000005"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 166,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_b3270a6e",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "6",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "6"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '        "raw": {\n' +
+    '            "data": "0x",\n' +
+    '            "topics": [\n' +
+    '                "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000000",\n' +
+    '                "0x000000000000000000000000d45058bf25bbd8f586124c479d384c8c708ce23a",\n' +
+    '                "0x0000000000000000000000000000000000000000000000000000000000000006"\n' +
+    '            ]\n' +
+    '        }\n' +
+    '    },\n' +
+    '    {\n' +
+    '        "address": "0xED5AF388653567Af2F388E6224dC7C4b3241C544",\n' +
+    '        "blockHash": "0xd6f675de32403ca9b1cd4853062cb56a7d94d4b97be6c2b655bb97a24f15df33",\n' +
+    '        "blockNumber": 13988541,\n' +
+    '        "logIndex": 167,\n' +
+    '        "removed": false,\n' +
+    '        "transactionHash": "0xc208fdb2f133bda64522fececd6518a565aaa6e8801b0a776f2f93c922fe9420",\n' +
+    '        "transactionIndex": 224,\n' +
+    '        "id": "log_c62bb9b6",\n' +
+    '        "returnValues": {\n' +
+    '            "0": "0x0000000000000000000000000000000000000000",\n' +
+    '            "1": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "2": "7",\n' +
+    '            "from": "0x0000000000000000000000000000000000000000",\n' +
+    '            "to": "0xd45058Bf25BBD8F586124C479D384c8C708CE23A",\n' +
+    '            "tokenId": "7"\n' +
+    '        },\n' +
+    '        "event": "Transfer",\n' +
+    '        "signature": "0xddf252ad1be2c89b69c2b068fc378daa95'... 252382 more characters
+}
+{ eventsWithoutMints: 0 }
+{ eventsWithCombinedTokenIdsInSingleSale: 0 }
+{ eventsWithSellingPrice: 0 }

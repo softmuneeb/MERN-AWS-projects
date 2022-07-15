@@ -48,29 +48,25 @@ const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
   return combinedTokenIdEvents;
 };
 
-const getEventsWithCombinedTokenIdsInSingleSale2 = async (web3, events) => {
+const getEventsWithSellingPrice = async (web3, events) => {
   let txs = {};
   let counter = 0;
 
   for (let i = 0; i < events.length; i++) {
-    console.log({ i: i + '/' + events.length });
+    console.log({ i: i + 1 + '/' + events.length });
     counter++;
 
     const event = events[i];
 
     const { transactionHash } = event;
-    const { from, to, tokenId } = event.returnValues;
 
     const { value } = await web3.eth.getTransaction(event.transactionHash);
 
     if (value === '0') continue; // ignore normal transfer events
-    // if (to !== '') continue; // ignore normal transfer events
-
-    const tokenIds = txs[transactionHash] ? [tokenId, ...txs[transactionHash].tokenIds] : [tokenId];
 
     const valueEther = web3.utils.fromWei(value);
 
-    txs[transactionHash] = { counter, from, value, valueEther, tokenIds, transactionHash };
+    txs[transactionHash] = { ...txs[transactionHash], counter, value, valueEther };
   }
 
   const combinedTokenIdEvents = Object.keys(txs).map((tx) => txs[tx]);
@@ -108,6 +104,7 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
 
   const eventsAll = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock);
   console.log({ eventsAll: eventsAll.length });
+  console.log({ eventsAll: JSON.stringify(eventsAll, null, 4) });
 
   const eventsWithoutMints = getEventsWithoutMint(eventsAll);
   console.log({ eventsWithoutMints: eventsWithoutMints.length });
@@ -115,14 +112,14 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
   const eventsWithCombinedTokenIdsInSingleSale = getEventsWithCombinedTokenIdsInSingleSale(eventsWithoutMints);
   console.log({ eventsWithCombinedTokenIdsInSingleSale: eventsWithCombinedTokenIdsInSingleSale.length });
 
-  //  const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithoutMints);
-  //  console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
+  const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithCombinedTokenIdsInSingleSale);
+  console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
 
-  return eventsWithCombinedTokenIdsInSingleSale;
+  return eventsWithSellingPrice;
 
   // plan
   // get transfer events
   // for every event
   //  get tx hash and find its price (value) in ETH paid in that transaction
   // send that list back to earth
-};;;
+};
