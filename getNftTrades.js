@@ -66,8 +66,10 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
 
   const eventsWithoutMints = getEventsWithoutMint(events);
   const eventsWithCombinedTokenIdsInSingleSale = getEventsWithCombinedTokenIdsInSingleSale(web3, eventsWithoutMints);
+
   return eventsWithCombinedTokenIdsInSingleSale;
 
+  // plan
   // get transfer events
   // for every event
   //  get tx hash and find its price (value) in ETH paid in that transaction
