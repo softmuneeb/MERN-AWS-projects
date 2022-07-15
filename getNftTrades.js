@@ -4,6 +4,7 @@ Interface
 
 const getNftTrades = (fromBlock, toBlock) => {
   // ignore 0 value trades
+  // Assume trades of OpenSea only, not of Gem.xyz
 
   return [
     {
