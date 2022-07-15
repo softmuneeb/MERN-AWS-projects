@@ -31,6 +31,7 @@ const getEventsWithCombinedTokenIdsInSingleSale = async (web3, events) => {
   let counter = 0;
 
   for (let i = 0; i < events.length; i++) {
+    console.log({ i: i + '/' + events.length });
     counter++;
 
     const event = events[i];
@@ -58,12 +59,26 @@ const getEventsWithCombinedTokenIdsInSingleSale = async (web3, events) => {
 const getEventsWithoutMint = (events) => events.filter((event) => event.returnValues.from !== '0x0000000000000000000000000000000000000000');
 
 const getTransferEvents = async (web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock) => {
-  const eventsAll = await new web3.eth.Contract(NFT_ABI, NFT_ADDRESS).getPastEvents('Transfer', {
-    fromBlock,
-    toBlock,
-  });
+  console.log({ fromBlock, toBlock });
+  try {
+    const events = await new web3.eth.Contract(NFT_ABI, NFT_ADDRESS).getPastEvents('Transfer', {
+      fromBlock,
+      toBlock,
+    });
 
-  return eventsAll;
+    console.log({ events: events.length });
+    return events;
+  } catch (error) {
+    error && console.log('err', error.message);
+
+    const mid = Math.floor(fromBlock + (toBlock - fromBlock) / 2);
+
+    console.log({ mid });
+    const events1 = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, fromBlock, mid);
+    const events2 = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, mid + 1, toBlock);
+
+    return [...events1, ...events2];
+  }
 };
 
 export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock) => {
