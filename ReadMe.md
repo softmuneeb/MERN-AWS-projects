@@ -14,33 +14,27 @@ todo small improv code view
 ideas:
 * loopholes, if someone sells nft a higher cost to his own wallet?
 
+output:
+node main.js"
+
+{ fromBlock: 14748168, toBlock: 15148168 }
+err Returned error: query returned more than 10000 results
+{ mid: 14949662 }
+{ fromBlock: 14748168, toBlock: 14949662 }
+{ events: 8314 }
+{ fromBlock: 14949663, toBlock: 15148168 }
+{ events: 2958 }
+{ events: 11272 }
+{ eventsWithoutMints: 11272 }
+{ i: '0/11272' }
+{ i: '1/11272' }
+{ i: '2/11272' }
+{ i: '3/11272' }
+{ i: '4/11272' }
+{ i: '5/11272' }
 
 store:
 console.log({ value, from, tokenId });
-
-
-{ fromBlock: 14748168, toBlock: 15148168 }
-
-err Returned error: query returned more than 10000 results
-{ mid:       22522252 }
-{ fromBlock: 14748168, toBlock: 22522252 }
-err Returned error: query returned more than 10000 results
-{ mid: 29896336 }
-{ fromBlock: 14748168, toBlock: 29896336 }
-err Returned error: query returned more than 10000 results
-{ mid: 37270420 }
-{ fromBlock: 14748168, toBlock: 37270420 }
-err Returned error: query returned more than 10000 results
-{ mid: 44644504 }
-{ fromBlock: 14748168, toBlock: 44644504 }
-err Returned error: query returned more than 10000 results
-{ mid: 52018588 }
-{ fromBlock: 14748168, toBlock: 52018588 }
-err Returned error: query returned more than 10000 results
-{ mid: 59392672 }
-{ fromBlock: 14748168, toBlock: 59392672 }
-^C
-mzk@mzk js-code-lab-1 % 
 
 100 300
 
