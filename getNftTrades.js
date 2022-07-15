@@ -26,7 +26,29 @@ import Web3 from 'web3';
 // const os_seaport = ;
 // const os_wyvern = ;
 
-const getEventsWithCombinedTokenIdsInSingleSale = async (web3, events) => {
+const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
+  let txs = {};
+  let counter = 0;
+
+  for (let i = 0; i < events.length; i++) {
+    counter++;
+
+    const event = events[i];
+
+    const { transactionHash } = event;
+    const { from, tokenId } = event.returnValues;
+
+    const tokenIds = txs[transactionHash] ? [tokenId, ...txs[transactionHash].tokenIds] : [tokenId];
+
+    txs[transactionHash] = { counter, from, tokenIds, transactionHash };
+  }
+
+  const combinedTokenIdEvents = Object.keys(txs).map((tx) => txs[tx]);
+
+  return combinedTokenIdEvents;
+};
+
+const getEventsWithCombinedTokenIdsInSingleSale2 = async (web3, events) => {
   let txs = {};
   let counter = 0;
 
@@ -84,14 +106,17 @@ const getTransferEvents = async (web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock)
 export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock) => {
   const web3 = new Web3(BLOCKCHAIN_URL);
 
-  const events = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock);
-  console.log({ events: events.length });
+  const eventsAll = await getTransferEvents(web3, NFT_ABI, NFT_ADDRESS, fromBlock, toBlock);
+  console.log({ eventsAll: eventsAll.length });
 
-  const eventsWithoutMints = getEventsWithoutMint(events);
+  const eventsWithoutMints = getEventsWithoutMint(eventsAll);
   console.log({ eventsWithoutMints: eventsWithoutMints.length });
 
-  const eventsWithCombinedTokenIdsInSingleSale = await getEventsWithCombinedTokenIdsInSingleSale(web3, eventsWithoutMints);
+  const eventsWithCombinedTokenIdsInSingleSale = getEventsWithCombinedTokenIdsInSingleSale(eventsWithoutMints);
   console.log({ eventsWithCombinedTokenIdsInSingleSale: eventsWithCombinedTokenIdsInSingleSale.length });
+
+  //  const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithoutMints);
+  //  console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
 
   return eventsWithCombinedTokenIdsInSingleSale;
 
@@ -100,4 +125,4 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
   // for every event
   //  get tx hash and find its price (value) in ETH paid in that transaction
   // send that list back to earth
-};
+};;;
