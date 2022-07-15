@@ -29,13 +29,18 @@ const getEventsWithCombinedTokenIdsInSingleSale = async (web3, events) => {
   for (let i = 0; i < events.length; i++) {
     const event = events[i];
 
-    const { from, tokenId, transactionHash } = event.returnValues;
+    const { transactionHash } = event;
+    const { from, tokenId } = event.returnValues;
 
     const { value } = await web3.eth.getTransaction(event.transactionHash);
 
+    if (value === '0') continue; // ignore normal transfer events
+
     const tokenIds = txs[transactionHash] ? [tokenId, ...txs[transactionHash].tokenIds] : [tokenId];
 
-    txs[transactionHash] = { from, value, tokenIds };
+    const valueEther = web3.utils.fromWei(value);
+
+    txs[transactionHash] = { from, value, valueEther, tokenIds, transactionHash };
   }
 
   const combinedTokenIdEvents = Object.keys(txs).map((tx) => txs[tx]);
