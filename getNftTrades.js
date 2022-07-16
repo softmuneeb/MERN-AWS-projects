@@ -24,8 +24,8 @@ const getNftTrades = (fromBlock, toBlock) => {
 
 import Web3 from 'web3';
 
-// const os_seaport = ;
-// const os_wyvern = ;
+const os_seaport = '0x00000000006c3852cbEf3e08E8dF289169EdE581';
+const os_wyvern = '0x7f268357a8c2552623316e2562d90e642bb538e5';
 
 const getEventsWithCombinedTokenIdsInSingleSale = (events) => {
   let txs = {};
@@ -53,11 +53,12 @@ const getEventsWithSellingPrice = async (web3, events) => {
     const event = events[i];
     console.log({ i: i + 1 + '/' + events.length });
 
-    const { value } = await web3.eth.getTransaction(event.transactionHash);
+    const tx = await web3.eth.getTransaction(event.transactionHash);
+    const { value, to } = tx;
+    if (value === '0') continue;
+    if (!(to === os_seaport || to === os_wyvern)) continue;
 
-    if (value === '0') continue; // ignore normal transfer events
-
-    combinedTokenIdEvents.push({ ...event, value, valueEther: web3.utils.fromWei(value) });
+    combinedTokenIdEvents.push({ ...event, to, value, valueEther: web3.utils.fromWei(value) });
   }
 
   return combinedTokenIdEvents;
