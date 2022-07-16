@@ -102,7 +102,7 @@ export const getNftTrades = async (BLOCKCHAIN_URL, NFT_ABI, NFT_ADDRESS, fromBlo
   console.log({ eventsWithCombinedTokenIdsInSingleSale: eventsWithCombinedTokenIdsInSingleSale.length });
 
   const eventsWithSellingPrice = await getEventsWithSellingPrice(web3, eventsWithCombinedTokenIdsInSingleSale);
-  console.log({ eventsWithSellingPrice: eventsWithSellingPrice.length });
+  console.log({ eventsOpensea: eventsWithSellingPrice.length });
 
   return eventsWithSellingPrice;
 
