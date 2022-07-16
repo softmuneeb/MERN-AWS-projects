@@ -1,12 +1,14 @@
 
 todo major:
+
+done major:
 * getTransferEvents 10K + results handle
+* const os_seaport = ;
+* const os_wyvern = ;
 
 todos small improvemets:
 * getTransaction vs getTransactionReceipt speed comparison
 * getTransaction vs getTransactionReceipt ERC20 token trades detect
-* const os_seaport = ;
-* const os_wyvern = ;
 
 todo small improv code view
 * saparate getEventsWithCombinedTokenIdsInSingleSale and getPrices
