@@ -1,0 +1,10 @@
+read { response: { a: { c: 'power', d: 2 }, b: { e: 3, f: 'hi' } } }
+update {
+  response: {
+    acknowledged: true,
+    modifiedCount: 0,
+    upsertedId: null,
+    upsertedCount: 0,
+    matchedCount: 1
+  }
+}

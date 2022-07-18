@@ -33,7 +33,7 @@ const saveRoyaltySettings = async (record) => {
   return response;
 };
 
-// saveRoyaltySettings({ a: { c: "power", d: 2 }, b: { e: 3, f: 'hi' } });
-// readRoyaltySettings();
+saveRoyaltySettings({ a: { c: "power", d: 2 }, b: { e: 3, f: 'hi' } });
+readRoyaltySettings();
 
 module.exports = { readRoyaltySettings, saveRoyaltySettings };
