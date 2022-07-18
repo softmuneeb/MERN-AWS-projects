@@ -1,38 +1,37 @@
 const mongoose = require('mongoose');
-const Todo = require('./models/todo');
 
-// tutorial https://www.youtube.com/watch?v=5QEwqX5U_2M
+const TodoSchema = new mongoose.Schema({
+  record: {
+    type: {},
+    required: true,
+  },
+  date: { type: Number, default: new Date() },
+});
 
-// first install mongo db and robo T3
-// https://robomongo.org/download
-// https://www.mongodb.com/try/download/community
+const Todo = new mongoose.model('TodoModel', TodoSchema);
 
-const init = async () => {
-  mongoose.connect('mongodb+srv://User123:Pass123@verysmallcluster.gq04lby.mongodb.net/myFirstDatabase', { useNewUrlParser: true });
-//   await read();
-  await create();
-  // await update();
-  // await deleteRecord();
+const readRoyaltySettings = async () => {
+  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const response = await Todo.find({ _id: '62d4f26ae0242c27a4e39ebf' });
+  await mongoose.connection.close();
+  console.log({ response: response[0].record });
+  return response[0].record;
 };
 
-const read = async () => {
-  const response = await Todo.find({});
+const saveRoyaltySettings = async (record) => {
+  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const response = await Todo.updateOne({ _id: '62d4f26ae0242c27a4e39ebf' }, { record });
+  await mongoose.connection.close();
+
   console.log({ response });
+  return response;
 };
 
-const create = async () => {
-  const response = await Todo.create({ record: 'Muneeb Khan', date: 200 });
-  console.log({ response });
-};
-
-const update = async () => {
-  const response = await Todo.updateOne({ record: 'mzk' }, { record: 'mzk..' });
-  console.log({ response });
-};
-
-const deleteRecord = async () => {
-  const response = await Todo.deleteOne({ record: 'mzk..' });
-  console.log({ response });
-};
-
-init();
+// saveRoyaltySettings({ a: { c: "power", d: 2 }, b: { e: 3, f: 'hi' } });
+readRoyaltySettings();
