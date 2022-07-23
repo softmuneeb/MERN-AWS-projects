@@ -8,7 +8,7 @@ const TodoSchema = new mongoose.Schema({
   date: { type: Number, default: new Date() },
 });
 
-const readRoyaltySettings = async () => {
+const readRoyaltySettings = async (mode = 'normal') => {
   const Todo = new mongoose.model('TodoModel', TodoSchema);
 
   mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
@@ -18,8 +18,12 @@ const readRoyaltySettings = async () => {
   const response = await Todo.find({ _id: '62d4f26ae0242c27a4e39ebf' });
   await mongoose.connection.close();
 
-  if (response.length === 0) return {};
-  return response[0].record;
+  console.log({ response });
+
+  if (mode === 'normal') {
+    if (response.length === 0) return {};
+    return response[0].record;
+  } else return response[0];
 };
 
 const saveRoyaltySettings = async (record) => {
@@ -34,11 +38,11 @@ const saveRoyaltySettings = async (record) => {
   return response;
 };
 
-// (async () => {
-//   // const data = await saveRoyaltySettings({ 1: 1 });
-//   // console.log({ data });
-//   // const data = await readRoyaltySettings();
-//   // console.log({ data });
-// })();
+(async () => {
+  const data = await readRoyaltySettings();
+  console.log({ data });
+
+  await saveRoyaltySettings(data);
+})();
 
 // module.exports = { readRoyaltySettings, saveRoyaltySettings };
