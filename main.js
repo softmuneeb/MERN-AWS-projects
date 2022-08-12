@@ -8,8 +8,12 @@ const Todo = require('./models/todo');
 // https://www.mongodb.com/try/download/community
 
 const init = async () => {
-  mongoose.connect('mongodb+srv://User123:Pass123@verysmallcluster.gq04lby.mongodb.net/myFirstDatabase', { useNewUrlParser: true });
-//   await read();
+  await mongoose.connect('mongodb+srv://user1:BdGTvfkXGeeEeEXC@coolroyaltysystem.uxmzymo.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  // await read();
   await create();
   // await update();
   // await deleteRecord();
