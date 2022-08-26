@@ -10,5 +10,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "@opensea/seaport-js": "^1.0.5",
+    "ethers": "^5.7.0"
+  },
+  "type": "module"
 }
