@@ -15,8 +15,10 @@ const PV2 = 'fe4c05f39bb90a57ef97338dd231339cdcc4fadbfaee3b08bd4c401da5ce8b5e';
 const offerer = PB1;
 const fulfiller = PB2;
 const signer = new ethers.Wallet(PV1, provider);
+const signer2 = new ethers.Wallet(PV2, provider);
 
 const seaport = new Seaport(signer);
+const seaport2 = new Seaport(signer2);
 
 const { executeAllActions } = await seaport.createOrder(
   {
@@ -30,7 +32,7 @@ const { executeAllActions } = await seaport.createOrder(
     consideration: [
       {
         amount: '100',
-        recipient: offerer,
+        recipient: fulfiller,
       },
     ],
   },
@@ -41,7 +43,7 @@ const order = await executeAllActions();
 
 console.log({ order });
 
-const { executeAllActions: executeAllFulfillActions } = await seaport.fulfillOrder({
+const { executeAllActions: executeAllFulfillActions } = await seaport2.fulfillOrder({
   order,
   accountAddress: fulfiller,
 });
