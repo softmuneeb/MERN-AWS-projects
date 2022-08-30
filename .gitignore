@@ -1,17 +1,8 @@
 /node_modules
-package-lock.json
 .env
 .DS_Store
 secret.js
-secret2.js
 secret.txt
 output
-metadataEmpty
-metadata
-snowies 30
-snowies 10,000
-snowies 10,030
 images
-snowies img 10,030
-snowies metadata 10,030
 backup
