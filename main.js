@@ -35,6 +35,8 @@ const { executeAllActions } = await seaport.createOrder(
         recipient: fulfiller,
       },
     ],
+    // zone: '0x00000000E88FE2628EbC5DA81d2b3CeaD633E89e',
+    // restrictedByZone: true,
   },
   offerer,
 );
