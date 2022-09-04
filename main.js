@@ -12,3 +12,9 @@ const { Builder, Browser, By, Key, until } = require('selenium-webdriver');
     await driver.quit();
   }
 })();
+
+// const webdriver = require('selenium-webdriver');
+// const chrome = require('selenium-webdriver/chrome');
+// const chromedriver = require('chromedriver');
+
+// chrome.setDefaultService(new chrome.ServiceBuilder(chromedriver.path).build());
