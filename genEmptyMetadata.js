@@ -16,33 +16,16 @@ import { writeFile } from "fs/promises";
 // metadata is according to opensea standards
 
 const tokenIdFrom = 1;
-const tokenIdTo = 4999;
+const tokenIdTo = 1000;
 
-const emptyImageHash = "QmdkL5BvuRUBdYWKQSCEvNVNFr78f3ZnCRLkVNdRMG7brr";
-const external_url = "http://boredsone.com/";
+const emptyImageHash = 'https://bafybeiaw3iq3be2xjfjxyowd5cchvg7jhzhzepuxlg7fs557hcgr4drwji.ipfs.nftstorage.link/morph-mint.gif';
+const external_url = 'https://morphgenesis.com/';
 const outputFolder = "./metadataEmpty/";
-const tokenName = "Boredsone";
-const description =
-  "A long-lost spot in the metaverse has been founded by the Boredsone Engineers and a lot of work had gone into making it a magical and incredible place.";
+const tokenName = "Morph";
+const description = 'Morph is an NFT collection of 1000 charming creatures. Clumsy, Endearing and adorable each of them has their own personality.';
 
-// // some settings for the code
-// const imagesFolderHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
-// const tokenName = "Golden Ticket";
-// const external_url = "https://metadegensociety.io/";
-// const imgExt = ".png";
-// const inputFileName = "./traits.json";
-// const outputFolder = "./output/";
-
-// const tokenIdFrom = 1;
-// const tokenIdTo = 1000;
-// // Hash of the metadataEmpthy folder = ipfs://QmfKgWoKSDDU1qnLwGuRQq3wfW3fPrue4wEWGNgXfFkZHw/
-// const emptyImageHash = "QmNs9B4csb5SMPgfGfKH3EUW7S9ggQpnWsc9BNTP9pVgp4";
-// const external_url = "https://metadegensociety.io/";
-// const outputFolder = "./metadataEmpty/";
-// const tokenName = "Golden Ticket";
-// const description = "The golden ticket will allow you to mint a meta degen nft for free"
 let metadata = {
-  image: `ipfs://${emptyImageHash}`,
+  image: emptyImageHash,
   external_url,
   description,
 };
