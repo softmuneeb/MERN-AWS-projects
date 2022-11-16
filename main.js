@@ -14,8 +14,8 @@ const emptySpaceFound = (a, b) => {
 const merge = (a, b) => {
   return [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 };
-const allFilled = (a) => {
-  return 1 === a[0] * a[1] * a[2];
+const allFilled = (row) => {
+  return 1 === row.reduce((a, b) => a * b, 1);
 };
 function solution(field, figure) {
   let rowFallen = 0;
@@ -100,9 +100,9 @@ function solution(field, figure) {
 }
 
 const zeros = [
-  [9, 9, 9],
-  [9, 9, 9],
-  [9, 9, 9],
+  [9, 9, 9, 9],
+  [9, 9, 9, 9],
+  [9, 9, 9, 9],
 ];
 const figure = [
   [0, 0, 1],
@@ -110,11 +110,16 @@ const figure = [
   [0, 0, 1],
 ];
 const field = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-  [1, 0, 0],
-  [1, 1, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 1, 0, 0],
+  [0, 1, 1, 0],
 ];
 
 console.log({ sol: solution(field, figure) });
+
+
+// testing 1 func before using, i.e unit test
+// let row = [1,1,1,1]
+// console.log({ r: row.reduce((a, b) => a * b, 1) });
