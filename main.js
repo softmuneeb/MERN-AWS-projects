@@ -1,4 +1,5 @@
 // what this code do? plan, steps to do
+// 1 hr 40 mins and ques not solved...
 
 // 55MINS..
 
