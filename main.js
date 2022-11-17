@@ -9,8 +9,15 @@
 // check any full rows available
 // refactor complexity 1 of code, show adil, ...
 
-const emptySpaceFound = (a, b) => {
+// going out of my range may start again from scratch
+// make foldable functions from start...
+
+const emptySpaceFound2 = (a, b) => {
   return 0 === a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+};
+
+const emptySpaceFound = (fieldRow, figureRow, figureRowPutAtPosition) => {
+  return emptySpaceFound2(figureRow, fieldRow.splice(figureRowPutAtPosition, figureRowPutAtPosition + 3));
 };
 
 const merge2 = (a, b) => {
@@ -30,18 +37,29 @@ const allFilled = (row) => {
 };
 
 function solution(field, figure) {
-  let rowFallen = 0;
-  for (let i = 0; i < field.length; i++) {
-    if (emptySpaceFound(field[i], [...figure[figure.length - 1]])) {
-      rowFallen = 1;
+  let rowFallen = 0,
+    breakAll = false;
+  for (let j = 0; j < field[0].length; j++) {
+    //
+    for (let i = 0; i < field.length; i++) {
+      //
+      if (emptySpaceFound(field[i], [...figure[figure.length - 1]], j)) {
+        rowFallen = 1;
 
-      if (i - 3 >= 0) field[i - 3] = [0, 0, 0];
-      if (i - 2 >= 0) field[i - 2] = [...figure[figure.length - 3]];
-      if (i - 1 >= 0) field[i - 1] = [...figure[figure.length - 2]];
-      field[i] = merge(field[i], [...figure[figure.length - 1]], 0); // field[next] = figure[last]
-    } else {
-      break;
+        if (i - 3 >= 0) field[i - 3] = [0, 0, 0];
+        if (i - 2 >= 0) field[i - 2] = [...figure[figure.length - 3]];
+        if (i - 1 >= 0) field[i - 1] = [...figure[figure.length - 2]];
+        field[i] = merge(field[i], [...figure[figure.length - 1]], j); // field[next] = figure[last]
+      }
+      //
+      else {
+        breakAll = true;
+        break;
+      }
+      //
     }
+    //
+    if (breakAll) break;
   }
 
   console.log([...zeros, ...field]);
