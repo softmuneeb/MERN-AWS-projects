@@ -8,15 +8,27 @@
 // fell properly, 0 covers 1 is not correct, merge the 2 rows
 // check any full rows available
 // refactor complexity 1 of code, show adil, ...
+
 const emptySpaceFound = (a, b) => {
   return 0 === a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 };
-const merge = (a, b) => {
+
+const merge2 = (a, b) => {
   return [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
 };
+
+const merge = (fieldRow, figureRow, figureRowPutAtPosition) => {
+  return [
+    ...fieldRow.splice(0, figureRowPutAtPosition),
+    ...merge2(figureRow, fieldRow.splice(figureRowPutAtPosition, figureRowPutAtPosition + 3)),
+    ...fieldRow.splice(figureRowPutAtPosition + 3),
+  ]; // +3 till end
+};
+
 const allFilled = (row) => {
   return 1 === row.reduce((a, b) => a * b, 1);
 };
+
 function solution(field, figure) {
   let rowFallen = 0;
   for (let i = 0; i < field.length; i++) {
@@ -26,7 +38,7 @@ function solution(field, figure) {
       if (i - 3 >= 0) field[i - 3] = [0, 0, 0];
       if (i - 2 >= 0) field[i - 2] = [...figure[figure.length - 3]];
       if (i - 1 >= 0) field[i - 1] = [...figure[figure.length - 2]];
-      field[i] = merge(field[i], [...figure[figure.length - 1]]); // field[next] = figure[last]
+      field[i] = merge(field[i], [...figure[figure.length - 1]], 0); // field[next] = figure[last]
     } else {
       break;
     }
@@ -119,7 +131,11 @@ const field = [
 
 console.log({ sol: solution(field, figure) });
 
-
 // testing 1 func before using, i.e unit test
 // let row = [1,1,1,1]
 // console.log({ r: row.reduce((a, b) => a * b, 1) });
+
+// const fieldRow = [0, 0, 0, 0];
+// const figureRow = [1, 1, 1];
+// const figureRowPutAtPosition = 1;
+// console.log({ merge: merge(fieldRow, figureRow, figureRowPutAtPosition) });
