@@ -1,0 +1,25 @@
+{
+  element: Result {
+    '0': '0xA827c2964536668D9d2ce10962392c328af4c131', // user
+    '1': '5' // mint amount
+  }
+}
+{
+  element: Result {
+    '0': '0xA827c2964536668D9d2ce10962392c328af4c131', // user
+    '1': '5' // mint amount
+  }
+}
+
+
+console.log({ events });
+const count = {};
+for (let i = 0; i < events.length; i++) {
+  const e = events[i];
+  const element = e.returnValues.operator.toLowerCase();
+  count[element] = (count[element] || 0) + 1;
+}
+const keys = Object.keys(count)
+const countBetter = keys.filter((key) => count[key] > 20);
+const c = countBetter.map((key) => ({ a: key, b: count[key] }));
+console.log(`events: ${events.length}`, { c });
