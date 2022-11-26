@@ -1,11 +1,12 @@
 {
-  "name": "js-code-lab",
+  "name": "js-code-lab-1",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
-    "s": "yarn start",
-    "start": "node main.js"
+    "start": "node main.js",
+    "test": "node test.js",
+    "install dependencies": "yarn"
   },
   "keywords": [],
   "author": "",
