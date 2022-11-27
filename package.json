@@ -11,5 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  }
 }
