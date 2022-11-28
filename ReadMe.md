@@ -24,3 +24,37 @@ node frontend.js
     exp: 1669552865
   }
 }
+
+{
+  token: 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjY1ZTEzMjk5LTcxMWEtNDQxNy1iMWFmLTgwNjA3MTMxMDM4ZiJ9.eyJuYW1lIjoiTXVuZWViIFp1YmFpciBLaGFuIiwiZW1haWwiOiJtdW5lZWJAd2ViM2F1dGguaW8iLCJzdWIiOiJDdXN0b20gSldUIGZvciBXZWIzQXV0aCBDdXN0b20gQXV0aCIsImF1ZCI6InVybjpteS1yZXNvdXJjZS1zZXJ2ZXIiLCJpc3MiOiJodHRwczovL215LWF1dGh6LXNlcnZlciIsImlhdCI6MTY2OTU5MDI2NywiZXhwIjoxNjY5NTkwMjc3fQ.A_CaA2EQl9svNBsoltqglclTlbOAxKWShSMZJjI2awXWM1QbAnVCSsjwIOwD7TxIlctfNUfnV7eh1GbF97BS0Q'
+}
+{
+  decoded: {
+    name: 'Muneeb Zubair Khan',
+    email: 'muneeb@web3auth.io',
+    sub: 'Custom JWT for Web3Auth Custom Auth',
+    aud: 'urn:my-resource-server',
+    iss: 'https://my-authz-server',
+    iat: 1669590267,
+    exp: 1669590277
+  }
+}
+{
+  decoded_: {
+    header: {
+      alg: 'RS256',
+      typ: 'JWT',
+      kid: '65e13299-711a-4417-b1af-80607131038f'
+    },
+    payload: {
+      name: 'Muneeb Zubair Khan',
+      email: 'muneeb@web3auth.io',
+      sub: 'Custom JWT for Web3Auth Custom Auth',
+      aud: 'urn:my-resource-server',
+      iss: 'https://my-authz-server',
+      iat: 1669590267,
+      exp: 1669590277
+    },
+    signature: 'A_CaA2EQl9svNBsoltqglclTlbOAxKWShSMZJjI2awXWM1QbAnVCSsjwIOwD7TxIlctfNUfnV7eh1GbF97BS0Q'
+  }
+}

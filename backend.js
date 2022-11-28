@@ -23,4 +23,6 @@ console.log({ token });
 
 // verify token got from client
 const decoded = jwt.verify(token, publicKey);
+const decoded_ = jwt.decode(token, { complete: true });
 console.log({ decoded });
+console.log({ decoded_ });
