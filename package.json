@@ -11,5 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {}
+  "dependencies": {
+    "node-telegram-bot-api": "^0.60.0"
+  }
 }
