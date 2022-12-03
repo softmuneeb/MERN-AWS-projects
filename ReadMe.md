@@ -1,6 +1,6 @@
 what this code do?
 
-TON MLM SYSTEM SCHEME:
+PLAN, TON MLM SYSTEM SCHEME:
 
 TON SEND and RECEIVE module, fee used to send ton, ...:
     0. get public address from mnemonic 1, 2
