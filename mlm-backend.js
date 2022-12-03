@@ -1,19 +1,18 @@
+// explanation / plan in readme file
+
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
 async function transferTxTon() {
-  // mnemonic to key pair
   const mnemonic =
     'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
 
-  // list available wallet versions
   const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
-  // instance of wallet V4 r2 (from the list printed above)
   const WalletClass = tonweb.wallet.all['v4R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const seqno = (await wallet.methods.seqno().call()) || 0;
