@@ -3,20 +3,39 @@
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
-async function transferTxTon() {
+async function publicKey() {
   const mnemonic =
     'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
+  console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
   const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
-  const WalletClass = tonweb.wallet.all['v4R2'];
+  const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const seqno = (await wallet.methods.seqno().call()) || 0;
   console.log('seqno:', seqno);
+
+  const address = (await wallet.getAddress()).toString(true, true, true);
+  console.log({ address });
+
+  // ['simpleR1', 'simpleR2', 'simpleR3', 'v2R1', 'v2R2', 'v3R1', 'v3R2', 'v4R1', 'v4R2'].map(async (v) => {
+  //   const WalletClass = tonweb.wallet.all[v];
+  //   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  //   const seqno = (await wallet.methods.seqno().call()) || 0;
+  //   console.log('seqno:', seqno);
+
+  //   const address = (await wallet.getAddress()).toString(true, true, true);
+
+  //   console.log({ v, address });
+  // });
+}
+
+async function transferTxTon() {
+  // publicKey();
   await sleep(1500); // avoid throttling by toncenter.com
 
   const fee = await wallet.methods
@@ -70,11 +89,11 @@ async function getBalance() {
   console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
-transferTxTon();
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+publicKey();
+// getBalance();
+// transferTxTon();
 
 /*
 output:
