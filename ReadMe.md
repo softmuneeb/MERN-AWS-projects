@@ -1,8 +1,9 @@
-what this code do?
+Write full steps from start to end, respective to a normal user of this system.
+...
 
 PLAN, TON MLM SYSTEM SCHEME:
 
-TON SEND and RECEIVE module, fee used to send ton, ...:
+1hr TON SEND and RECEIVE module, fee used to send ton, ...:
     0. get public address from mnemonic 1, 2
     1. send TON from wallet 1 to wallet
     2. payment confirmation in code
@@ -18,3 +19,4 @@ Next Advanced Requirements:
     1. ...pool 1 distribution
     2. ...pool 2 distribution rule
     3. ...super power club
+
