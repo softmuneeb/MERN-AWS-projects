@@ -4,7 +4,7 @@ const TonWeb = require('tonweb');
 async function transferTxTon() {
   // mnemonic to key pair
   const mnemonic =
-    'rail sound peasant garment bounce trigger true abuse arctic gravity ribbon ocean absurd okay blue remove neck cash reflect sleep hen portion gossip arrow';
+    'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
@@ -19,17 +19,6 @@ async function transferTxTon() {
   const seqno = (await wallet.methods.seqno().call()) || 0;
   console.log('seqno:', seqno);
   await sleep(1500); // avoid throttling by toncenter.com
-
-  // const fee = await wallet.methods
-  //   .transfer({
-  //     secretKey,
-  //     toAddress: 'EQDjVXa_oltdBP64Nc__p397xLCvGm2IcZ1ba7anSW0NAkeP',
-  //     amount: TonWeb.utils.toNano(0.01), // 0.01 TON
-  //     seqno: seqno,
-  //     payload: 'Hello',
-  //     sendMode: 3,
-  //   })
-  //   .estimateFee();
 
   const fee = await wallet.methods
     .transfer({
