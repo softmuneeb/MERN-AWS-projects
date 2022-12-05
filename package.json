@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "node-telegram-bot-api": "^0.60.0",
+    "ton-payment-tracker": "github:nns2009/ton-payment-tracker",
     "tonweb": "^0.0.58",
     "tonweb-mnemonic": "^1.0.1"
   }

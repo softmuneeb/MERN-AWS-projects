@@ -66,7 +66,7 @@ async function transferTxTon() {
 async function getBalance() {
   // mnemonic to key pair
   const mnemonic =
-    'rail sound peasant garment bounce trigger true abuse arctic gravity ribbon ocean absurd okay blue remove neck cash reflect sleep hen portion gossip arrow';
+    'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
@@ -77,7 +77,7 @@ async function getBalance() {
 
   // ['simpleR1', simpleR2, simpleR3, v2R1, v2R2, v3R1, v3R2, v4R1, v4R2];
   // instance of wallet V4 r2 (from the list printed above)
-  const WalletClass = tonweb.wallet.all['v4R2'];
+  const WalletClass = tonweb.wallet.all['v3R2'];
 
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const address = await wallet.getAddress();
@@ -87,12 +87,14 @@ async function getBalance() {
   await sleep(1500); // avoid throttling by toncenter.com
   const balance = await tonweb.getBalance(address);
   console.log('balance:', TonWeb.utils.fromNano(balance));
+
+  return balance;
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-publicKey();
-// getBalance();
+// publicKey();
+getBalance();
 // transferTxTon();
 
 /*
