@@ -1,9 +1,9 @@
 // explanation / plan in readme file
 
 const TelegramBot = require('node-telegram-bot-api');
+const { getBalance } = require('./mlm-backend');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o';
 const bot = new TelegramBot(token, { polling: true });
-
 
 // const PaymentTracker = require('ton-payment-tracker');
 
@@ -33,7 +33,6 @@ const bot = new TelegramBot(token, { polling: true });
 bot.on('message', (msg) => {
   // const chatId = msg.chat.id;
   const chatId = '1672843321';
-  console.log({ chatId });
   bot.sendMessage(
     chatId,
     `Please send 0.25 TON to this address to invest in MLM
@@ -41,6 +40,16 @@ bot.on('message', (msg) => {
   );
 });
 
-setInterval(() => {
+let botBalance = '';
 
-}, 1000);
+setInterval(async () => {
+  const [, balance] = await getBalance();
+
+  if (botBalance !== balance) {
+    console.log({ balance, botBalance });
+    botBalance = balance;
+
+    const chatId = '1672843321';
+    bot.sendMessage(chatId, `Payment received`);
+  }
+}, 5000);

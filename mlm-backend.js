@@ -69,11 +69,11 @@ async function getBalance() {
     'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
-  console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
+  // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
   // list available wallet versions
   const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
-  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
   // ['simpleR1', simpleR2, simpleR3, v2R1, v2R2, v3R1, v3R2, v4R1, v4R2];
   // instance of wallet V4 r2 (from the list printed above)
@@ -81,20 +81,20 @@ async function getBalance() {
 
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const address = await wallet.getAddress();
-  console.log('address:', address.toString(true, true, true));
+  // console.log('address:', address.toString(true, true, true));
   const seqno = await wallet.methods.seqno().call();
-  console.log('seqno:', seqno);
+  // console.log('seqno:', seqno);
   await sleep(1500); // avoid throttling by toncenter.com
   const balance = await tonweb.getBalance(address);
-  console.log('balance:', TonWeb.utils.fromNano(balance));
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
 
-  return balance;
+  return [balance, TonWeb.utils.fromNano(balance)];
 }
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // publicKey();
-getBalance();
+// getBalance();
 // transferTxTon();
 
 /*
@@ -106,3 +106,7 @@ address: EQAC824gsw8OZLoMV6_nr4nkxaEQFlbzoiHHOWIYY81eM5rQ
 seqno: 8
 balance: 0.000099975
 */
+
+module.exports = {
+  getBalance,
+};
