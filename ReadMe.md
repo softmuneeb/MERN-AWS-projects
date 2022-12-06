@@ -22,8 +22,8 @@ Next Advanced Requirements:
 
 
 Later TODO:
-start stop bot may change chat id
-
+* start stop bot may change chat id
+* get balance from public key only, not from pv key
 
 Output 6.31pm sat dec 3 2022:
 node mlm-backend.js
