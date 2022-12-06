@@ -16,7 +16,7 @@ const [a, m] = [
 bot.on('message', async (msg) => {
   // const chatId = msg.chat.id;
 
-  console.log({ msg: JSON.stringify(msg) });
+  console.log(JSON.stringify(msg, null, 2));
 
   // const [a, m] = await mnemonicGenerate();
   if (msg.text === 'invest') {
@@ -24,10 +24,17 @@ bot.on('message', async (msg) => {
   } else if (msg.text === 'balance') {
     const [, balance] = await getBalance(m);
     bot.sendMessage(chatId, '' + balance + ' TON');
+  } else if (msg.text.includes('/start') && (await existingUser(msg.text.split(' ')[1]))) {
+    bot.sendMessage(chatId, 'You are invited by ' + msg.text.split(' ')[1]);
   } else {
     bot.sendMessage(chatId, 'hi');
   }
 });
+
+const existingUser = async () => {
+  // TODO: get from db
+  return true;
+};
 
 // let botBalance = '';
 // setInterval(async () => {
