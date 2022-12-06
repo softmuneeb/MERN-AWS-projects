@@ -20,7 +20,9 @@ Next Advanced Requirements:
     2. ...pool 2 distribution rule
     3. ...super power club
 
-5%
+
+Later TODO:
+start stop bot may change chat id
 
 
 Output 6.31pm sat dec 3 2022:

@@ -63,11 +63,9 @@ async function transferTxTon() {
   console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
-async function getBalance() {
-  // mnemonic to key pair
-  const mnemonic =
-    'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second';
-  const mnemonicArray = mnemonic.split(' ');
+async function getBalance(m) {
+  console.log({ m });
+  const mnemonicArray = m.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
