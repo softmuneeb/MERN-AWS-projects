@@ -1,7 +1,6 @@
 // get the minters of Avian Avatars Nft and get their Details from Api and save in CSV file
 
 import Web3 from 'web3';
-import { getWithoutMintTranfers } from './getWithoutMintTranfers.js';
 
 const scAddress = '0x7e6cad6e237ed68707788846ead1b8c5076f1d08';
 const infuraLink = 'https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161';
@@ -15,6 +14,4 @@ const events = await new web3.eth.Contract(scAbi, scAddress).getPastEvents('Tran
   toBlock: 9999999999999,
 });
 
-const withoutMintTranfers = getWithoutMintTranfers(events);
-
-console.log(JSON.stringify(withoutMintTranfers));
+console.log(JSON.stringify(events));
