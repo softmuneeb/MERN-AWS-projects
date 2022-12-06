@@ -6,7 +6,7 @@ PLAN, TON MLM SYSTEM SCHEME:
 1hr TON SEND and RECEIVE module, fee used to send ton, ...:
     0. get public address from mnemonic 1, 2
     1. send TON from wallet 1 to wallet
-    2. payment confirmation in code
+    ROAD BLOCK 2. payment confirmation in code... 
 
 MLM Basic System:
     1. In bot send the address to receive ton. 
