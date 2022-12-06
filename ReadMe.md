@@ -22,6 +22,9 @@ Next Advanced Requirements:
 
 
 Later TODO:
+
+* Commands Add
+
 * start stop bot may change chat id
 * get balance from public key only, not from pv key
 
