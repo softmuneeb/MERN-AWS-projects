@@ -42,7 +42,7 @@ const saveRoyaltySettings = async (record) => {
   const data = await readRoyaltySettings();
   console.log({ data });
 
-  await saveRoyaltySettings(data);
+  // await saveRoyaltySettings(data);
 })();
 
 // module.exports = { readRoyaltySettings, saveRoyaltySettings };
