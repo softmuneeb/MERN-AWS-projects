@@ -3,6 +3,38 @@ Write full steps from start to end, respective to a normal user of this system.
 
 PLAN, TON MLM SYSTEM SCHEME:
 
+Telegram MLM Project Modules:
+• 3 hr Database to store referrals tree
+• Deposit Wallets generate module
+• Telegram Bot Module 
+• Payment Tracker Module
+• MLM Logic Module
+
+Progress MLM System in Telegram 
+
+Done:
+* Referring module basics done
+* Deposit Wallets generate module done
+* Showing balance to user
+
+Upcoming today:
+(add DB)
+* Currently system works for 1 user, now I will make it for any number of users
+* Making chains of referrers
+* Upgrade Method for user
+* Making Pool 1
+
+Tomorrow:
+* Commands Panel like /invest /plan /wallet /refer etc
+* Withdraw Method for user
+* Make Pool 2
+* Admin force withdraw button (so admin can do a force withdraw after month)
+* Super Heros logic
+
+Later:
+* Add option to deposit ETH, USDT, USDC and other networks like Binance
+
+
 1hr TON SEND and RECEIVE module, fee used to send ton, ...:
     0. get public address from mnemonic 1, 2
     1. send TON from wallet 1 to wallet
