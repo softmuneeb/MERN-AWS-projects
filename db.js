@@ -20,7 +20,7 @@ const readBook = async (_id) => {
     useUnifiedTopology: true,
   });
   return null;
-  const response = await Todo.find({ _id});
+  const response = await Todo.find({ _id });
   await mongoose.connection.close();
 
   // console.log({ response });
@@ -43,6 +43,20 @@ const writeBook = async (_id, record) => {
   return response;
 };
 
+const createBook = async (record) => {
+  const Todo = new mongoose.model('TodoModel', TodoSchema);
+  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const response = await Todo.create({ record });
+  console.log({ response });
+  await mongoose.connection.close(); // TODO: can we omit await
+
+  return response;
+};
+
+createBook({balance: '0'});
 // (async () => {
 //   const data = await readBook();
 //   console.log({ data });
