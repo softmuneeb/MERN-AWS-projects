@@ -10,6 +10,8 @@ Telegram MLM Project Modules:
 • pend Payment Tracker Module
 • pend MLM Logic Module
 
+* Clean the code, use functions at one place...
+
 Progress MLM System in Telegram 
 
 Done:
