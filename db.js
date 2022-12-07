@@ -48,4 +48,4 @@ const writeBook = async (record) => {
 //   // await writeBook(data);
 // })();
 
-// module.exports = { readRoyaltySettings, saveRoyaltySettings };
+module.exports = { readBook, writeBook };
