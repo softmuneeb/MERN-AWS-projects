@@ -18,7 +18,7 @@ Done:
 * Showing balance to user
 
 Upcoming today:
-(add DB)
+(add DB) https://mongoosejs.com/docs/queries.html
 * Currently system works for 1 user, now I will make it for any number of users
 * Making chains of referrers
 * Upgrade Method for user
@@ -59,6 +59,22 @@ Later TODO:
 
 * start stop bot may change chat id
 * get balance from public key only, not from pv key
+
+Model.deleteMany()
+Model.deleteOne()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findByIdAndRemove()
+Model.findByIdAndUpdate()
+Model.findOne()
+Model.findOneAndDelete()
+Model.findOneAndRemove()
+Model.findOneAndReplace()
+Model.findOneAndUpdate()
+Model.replaceOne()
+Model.updateMany()
+Model.updateOne()
 
 Output 6.31pm sat dec 3 2022:
 node mlm-backend.js
