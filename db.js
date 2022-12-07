@@ -19,7 +19,6 @@ const readBook = async (_id) => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  return null;
   const response = await Todo.find({ _id });
   await mongoose.connection.close();
 
@@ -56,7 +55,7 @@ const createBook = async (record) => {
   return response;
 };
 
-createBook({balance: '0'});
+// createBook({balance: '0'});
 // (async () => {
 //   const data = await readBook();
 //   console.log({ data });
