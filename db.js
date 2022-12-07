@@ -5,15 +5,31 @@ mongoose.set('strictQuery', false);
 const UserSchema = new mongoose.Schema({
   chatId: {
     type: String,
+    default: '0',
+  },
+  userName: {
+    type: String,
+    default: '0',
   },
   balance: {
     type: String,
+    default: '0',
   },
   publicKey: {
     type: String,
+    default: '0',
   },
   mnemonic: {
     type: String,
+    default: '0',
+  },
+  parent: {
+    type: String, // chatId of the person who referred me
+    default: '0',
+  },
+  child: {
+    type: [], // chatId of the people I am bringing into the system
+    default: [],
   },
   date: { type: Number, default: new Date() },
 });
@@ -29,7 +45,7 @@ const readBook = async (user) => {
   let [response] = await User.find(user);
 
   if (response === undefined) {
-    response = await User.create({ chatId: user.chatId, mnemonic: '0', publicKey: '0', balance: '0' });
+    response = await User.create({ chatId: user.chatId });
   }
 
   return response;
@@ -48,11 +64,14 @@ const writeBook = async (user, newUserState) => {
 };
 
 // Driver Code
-// (async () => {
-//   const data = await readBook({ chatId: '1672843321______qqqq' });
-//   console.log({ data });
-//
-//   await writeBook({ chatId: data.chatId }, { balance: '11' });
-// })();
+(async () => {
+  const user = await readBook({ chatId: '1672843321______qqqq1' });
+  console.log({ user });
+
+  await writeBook({ chatId: user.chatId }, { balance: '11' });
+
+  const user2 = await readBook({ chatId: user.chatId });
+  console.log({ user2 });
+})();
 
 module.exports = { readBook, writeBook };
