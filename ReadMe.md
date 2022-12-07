@@ -4,11 +4,11 @@ Write full steps from start to end, respective to a normal user of this system.
 PLAN, TON MLM SYSTEM SCHEME:
 
 Telegram MLM Project Modules:
-• 3 hr Database to store referrals tree
-• Deposit Wallets generate module
-• Telegram Bot Module 
-• Payment Tracker Module
-• MLM Logic Module
+• done 3 hr base + 3 hr phasa Database to store referrals tree
+• done 2 hr Deposit Wallets generate module
+• partDone Telegram Bot Module 
+• pend Payment Tracker Module
+• pend MLM Logic Module
 
 Progress MLM System in Telegram 
 
@@ -51,6 +51,7 @@ Next Advanced Requirements:
     1. ...pool 1 distribution
     2. ...pool 2 distribution rule
     3. ...super power club
+
 
 
 Later TODO:
@@ -136,3 +137,10 @@ seqno: 0
   v: 'v4R1',
   address: 'EQDzk7gq05ZoikzELNGz6ocx58g8Cn_zjJAToBmx1paRkTVa'
 }
+
+
+// Store
+
+  if (msg.text === 'invest') {
+    bot.sendMessage(chatId, 'Please send 0.25 TON to this address to invest in MLM ' + user.address);
+  } else

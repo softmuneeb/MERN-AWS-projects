@@ -26,9 +26,9 @@ const readBook = async (user) => {
     useUnifiedTopology: true,
   });
 
-  let response = await User.find(user);
+  let [response] = await User.find(user);
 
-  if (response.length === 0) {
+  if (response === undefined) {
     response = await User.create({ chatId: user.chatId, mnemonic: '0', publicKey: '0', balance: '0' });
   }
 
@@ -47,9 +47,11 @@ const writeBook = async (user, newUserState) => {
   return response;
 };
 
+// Driver Code
 // (async () => {
-//   const [data] = await readBook({ chatId: '1672843321' });
+//   const data = await readBook({ chatId: '1672843321______qqqq' });
 //   console.log({ data });
+//
 //   await writeBook({ chatId: data.chatId }, { balance: '11' });
 // })();
 

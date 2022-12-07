@@ -1,47 +1,55 @@
 // explanation / plan in readme file
 
-const TelegramBot = require('node-telegram-bot-api');
 const { readBook, writeBook } = require('./db');
 const { getBalance, mnemonicGenerate } = require('./mlm-backend');
-const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o';// TODO: add in env
+
+const TelegramBot = require('node-telegram-bot-api');
+const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
-bot.on('message', async (msg) => {
+const onMessage = async (msg) => {
   const chatId = msg.chat.id;
+  // const chatId = '1672843321';
 
-  let user = await readBook(chatId);
+  let user = await readBook({ chatId });
   console.log({ user });
 
-  if (!user) {
-    const [account, mnemonic] = await mnemonicGenerate();
-
+  if (user.publicKey === '0') {
+    // new user
+    const [publicKey, mnemonic] = await mnemonicGenerate();
     const [, balance] = await getBalance(mnemonic);
-    user = { account, mnemonic, balance };
-
-    console.log({ user });
-    // await writeBook(chatId, user); // TODO: can we skip await here? any problem?
+    user = { chatId, publicKey, mnemonic, balance };
+    await writeBook({ chatId }, user); // TODO: can we skip await here? any problem?
   }
 
-  return;
+  // return;
 
-  if (msg.text === 'invest') {
-    bot.sendMessage(chatId, 'Please send 0.25 TON to this address to invest in MLM ' + user.address);
-  } else if (msg.text === 'info') {
-    user = await readBook(chatId);
-    const [, balance] = await getBalance(user.mnemonic);
-    await writeBook(chatId, { balance, ...user }); // update user balance // TODO: can we skip await here? any problem?
+  if (msg.text === '/start') {
+    let balance = user.balance;
+    // update balance in db
+    if (user.publicKey !== '0') {
+      [, balance] = await getBalance(user.mnemonic);
+      await writeBook({ chatId }, { balance });
+    }
 
-    bot.sendMessage(chatId, '' + balance + ' TON');
-  } else if (msg.text.includes('/start') && (await existingUser(msg.text.split(' ')[1] || 0))) {
-    bot.sendMessage(chatId, 'You are invited by ' + msg.text.split(' ')[1]);
+    bot.sendMessage(chatId, 'Your wallet ' + user.publicKey + '\n' + balance + ' TON');
+  } else if (msg.text.includes('/start') && (await existingUser(msg))) {
+    bot.sendMessage(chatId, 'You are invited');
   } else {
-    bot.sendMessage(chatId, 'hi');
+    bot.sendMessage(chatId, 'hi, type /start');
   }
-});
+};
 
-const existingUser = async (u) => {
+// onMessage();
+bot.on('message', onMessage);
+
+const existingUser = async (msg) => {
+  // const u = msg.text.split(' ')[1];
+
   // TODO: get from db
-  return u === 0 ? false : true;
+  // return u === 0 ? false : u;
+
+  return true;
 };
 
 // let botBalance = '';
