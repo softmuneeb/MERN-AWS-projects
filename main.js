@@ -3,7 +3,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const { readBook, writeBook } = require('./db');
 const { getBalance, mnemonicGenerate } = require('./mlm-backend');
-const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o';
+const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o';// TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
 bot.on('message', async (msg) => {
