@@ -2,66 +2,55 @@ const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
 
-const TodoSchema = new mongoose.Schema({
-  record: {
-    type: {},
-    required: true,
+const UserSchema = new mongoose.Schema({
+  chatId: {
+    type: String,
+  },
+  balance: {
+    type: String,
+  },
+  publicKey: {
+    type: String,
+  },
+  mnemonic: {
+    type: String,
   },
   date: { type: Number, default: new Date() },
 });
 
-const readBook = async (_id) => {
-  const mode = 'normal';
-
-  const Todo = new mongoose.model('TodoModel', TodoSchema);
+const readBook = async (user) => {
+  const User = new mongoose.model('UserModel', UserSchema);
 
   mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const response = await Todo.find({ _id });
-  await mongoose.connection.close();
 
-  // console.log({ response });
+  let response = await User.find(user);
 
-  if (mode === 'normal') {
-    if (response.length === 0) return null;
-    return response[0].record;
-  } else return response[0];
-};
-
-const writeBook = async (_id, record) => {
-  const Todo = new mongoose.model('TodoModel', TodoSchema);
-  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  const response = await Todo.updateOne({ _id }, { record });
-  await mongoose.connection.close();
+  if (response.length === 0) {
+    response = await User.create({ chatId: user.chatId, mnemonic: '0', publicKey: '0', balance: '0' });
+  }
 
   return response;
 };
 
-const createBook = async (record) => {
-  const Todo = new mongoose.model('TodoModel', TodoSchema);
+const writeBook = async (user, newUserState) => {
+  const Todo = new mongoose.model('UserModel', UserSchema);
   mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const response = await Todo.create({ record });
+  const response = await Todo.updateOne(user, newUserState);
+  // await mongoose.connection.close();
   console.log({ response });
-  await mongoose.connection.close(); // TODO: can we omit await
-
   return response;
 };
 
-// createBook({balance: '0'});
 // (async () => {
-//   const data = await readBook();
+//   const [data] = await readBook({ chatId: '1672843321' });
 //   console.log({ data });
-
-//   // const data = { msg: 'hi' };
-//   // await writeBook(data);
+//   await writeBook({ chatId: data.chatId }, { balance: '11' });
 // })();
 
 module.exports = { readBook, writeBook };
