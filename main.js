@@ -8,33 +8,40 @@ const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in 
 const bot = new TelegramBot(token, { polling: true });
 
 const onMessage = async (msg) => {
+  console.log({ message: msg.text });
+
   const chatId = msg.chat.id;
-  // const chatId = '1672843321';
-
   let user = await readBook({ chatId });
-  console.log({ user });
 
-  if (user.publicKey === '0') {
-    // new user
+  if (newUser(user)) {
     const [publicKey, mnemonic] = await mnemonicGenerate();
     const [, balance] = await getBalance(mnemonic);
     user = { chatId, publicKey, mnemonic, balance };
     await writeBook({ chatId }, user); // TODO: can we skip await here? any problem?
   }
 
-  // return;
-
+  // show deposit instructions
   if (msg.text === '/start') {
     let balance = user.balance;
-    // update balance in db
-    if (user.publicKey !== '0') {
+    if (!newUser(user)) {
+      // update balance in db
       [, balance] = await getBalance(user.mnemonic);
       await writeBook({ chatId }, { balance });
     }
 
-    bot.sendMessage(chatId, 'Your wallet ' + user.publicKey + '\n' + balance + ' TON');
-  } else if (msg.text.includes('/start') && (await existingUser(msg))) {
-    bot.sendMessage(chatId, 'You are invited');
+    bot.sendMessage(chatId, '/start\nYour wallet /' + user.publicKey + '\n' + balance + ' TON');
+  }
+
+  // users who came from
+  else if (msg.text.includes('/start')) {
+    const referrer = msg.text.split(' ')[1];
+
+    if (referrer === undefined) {
+      bot.sendMessage(chatId, 'You are invited none.');
+    } else {
+      await writeBook({ chatId }, { parent: referrer });
+      bot.sendMessage(chatId, 'You are invited by ' + referrer);
+    }
   } else {
     bot.sendMessage(chatId, 'hi, type /start');
   }
@@ -43,7 +50,9 @@ const onMessage = async (msg) => {
 // onMessage();
 bot.on('message', onMessage);
 
-const existingUser = async (msg) => {
+const newUser = async (user) => {
+  return user.publicKey === '0';
+
   // const u = msg.text.split(' ')[1];
 
   // TODO: get from db
