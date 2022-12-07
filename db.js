@@ -10,31 +10,34 @@ const TodoSchema = new mongoose.Schema({
   date: { type: Number, default: new Date() },
 });
 
-const readBook = async (mode = 'normal') => {
+const readBook = async (_id) => {
+  const mode = 'normal';
+
   const Todo = new mongoose.model('TodoModel', TodoSchema);
 
   mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const response = await Todo.find({ _id: '62d4f26ae0242c27a4e39ebf' });
+  return null;
+  const response = await Todo.find({ _id});
   await mongoose.connection.close();
 
   // console.log({ response });
 
   if (mode === 'normal') {
-    if (response.length === 0) return {};
+    if (response.length === 0) return null;
     return response[0].record;
   } else return response[0];
 };
 
-const writeBook = async (record) => {
+const writeBook = async (_id, record) => {
   const Todo = new mongoose.model('TodoModel', TodoSchema);
   mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const response = await Todo.updateOne({ _id: '62d4f26ae0242c27a4e39ebf' }, { record });
+  const response = await Todo.updateOne({ _id }, { record });
   await mongoose.connection.close();
 
   return response;

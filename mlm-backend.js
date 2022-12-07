@@ -7,19 +7,19 @@ async function publicKey(mnemonic) {
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
 
-  console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
-  console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
+  // console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
+  // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
   const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
-  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
   const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const seqno = (await wallet.methods.seqno().call()) || 0;
-  console.log('seqno:', seqno);
+  // console.log('seqno:', seqno);
 
   const address = (await wallet.getAddress()).toString(true, true, true);
-  console.log({ address });
+  // console.log({ address });
 
   return address;
   // ['simpleR1', 'simpleR2', 'simpleR3', 'v2R1', 'v2R2', 'v3R1', 'v3R2', 'v4R1', 'v4R2'].map(async (v) => {
@@ -64,7 +64,6 @@ async function transferTxTon() {
 }
 
 async function getBalance(m) {
-  console.log({ m });
   const mnemonicArray = m.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
