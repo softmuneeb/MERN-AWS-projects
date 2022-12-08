@@ -45,7 +45,7 @@ const readBook = async (user) => {
   let [response] = await User.find(user);
 
   if (response === undefined) {
-    response = await User.create({ chatId: user.chatId });
+    response = await User.create({ userName: user.userName });
   }
 
   return response;
