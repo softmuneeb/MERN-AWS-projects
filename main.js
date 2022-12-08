@@ -40,7 +40,7 @@ const onMessage = async (msg) => {
         balance +
         ' TON in Your wallet:\n' +
         user.publicKey +
-        (user.parent !== '0' && '\nYou invited: ' + user.parent) +
+        (user.parent !== '0' && '\nYou are invited by: ' + user.parent) +
         (user.child !== '0' && '\nYou invited: ' + user.child) +
         '\nYour invite link: https://t.me/sheikhu_bot?start=' +
         user.userName,
