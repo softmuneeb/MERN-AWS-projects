@@ -1,6 +1,11 @@
 Write full steps from start to end, respective to a normal user of this system.
 ...
 
+* Upgrade Level System, add 25 ton -> withdraw all -> add 25 ton 
+* 
+
+
+
 PLAN, TON MLM SYSTEM SCHEME:
 
 Telegram MLM Project Modules:
