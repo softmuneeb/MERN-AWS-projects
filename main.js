@@ -11,12 +11,14 @@ const onMessage = async (msg) => {
   console.log({ message: msg.text });
 
   const chatId = msg.chat.id;
+  const userName = msg.chat.username;
   let user = await readBook({ chatId });
 
   if (newUser(user)) {
+    console.log('Congrats new user!');
     const [publicKey, mnemonic] = await mnemonicGenerate();
     const [, balance] = await getBalance(mnemonic);
-    user = { chatId, publicKey, mnemonic, balance };
+    user = { chatId, userName, publicKey, mnemonic, balance };
     await writeBook({ chatId }, user); // TODO: can we skip await here? any problem?
   }
 
@@ -29,7 +31,19 @@ const onMessage = async (msg) => {
       await writeBook({ chatId }, { balance });
     }
 
-    bot.sendMessage(chatId, '/start\nYour wallet /' + user.publicKey + '\n' + balance + ' TON');
+    bot.sendMessage(
+      chatId,
+      'Your wallet ' +
+        user.publicKey +
+        '\n' +
+        balance +
+        ' TON\nYou were invited by: ' +
+        user.parent +
+        '\nYou invited: ' +
+        user.child +
+        '\nYour invite link: https://t.me/sheikhu_bot?start=' +
+        user.chatId,
+    );
   }
 
   // users who came from
@@ -40,6 +54,8 @@ const onMessage = async (msg) => {
       bot.sendMessage(chatId, 'You are invited none.');
     } else {
       await writeBook({ chatId }, { parent: referrer });
+      await writeBook({ chatId: referrer }, { child: [chatId] });
+
       bot.sendMessage(chatId, 'You are invited by ' + referrer);
     }
   } else {
@@ -50,15 +66,8 @@ const onMessage = async (msg) => {
 // onMessage();
 bot.on('message', onMessage);
 
-const newUser = async (user) => {
+const newUser = (user) => {
   return user.publicKey === '0';
-
-  // const u = msg.text.split(' ')[1];
-
-  // TODO: get from db
-  // return u === 0 ? false : u;
-
-  return true;
 };
 
 // let botBalance = '';
