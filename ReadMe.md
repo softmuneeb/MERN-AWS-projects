@@ -1,9 +1,16 @@
 Write full steps from start to end, respective to a normal user of this system.
 ...
 
-* Upgrade Level System, add 25 ton -> withdraw all -> add 25 ton 
+Make best case flow:
+* Upgrade Level System, add 25 ton level 1 -> again add 25 ton You level is 2...
+* pend MLM Logic Module 20% goes to ...
+* REFERRING CONDItions ...
 * 
 
+Later:
+* User name not exists? use chatid to store and name to display...
+* Image send
+* Keyboard commands
 
 
 PLAN, TON MLM SYSTEM SCHEME:
@@ -13,8 +20,8 @@ Telegram MLM Project Modules:
 • done 2 hr Deposit Wallets generate module
 • partDone Telegram Bot Module 
 • pend Payment Tracker Module
-• pend MLM Logic Module
 
+General:
 * Clean the code, use functions at one place...
 
 Progress MLM System in Telegram 
@@ -23,29 +30,31 @@ Done:
 * Referring module basics done
 * Deposit Wallets generate module done
 * Showing balance to user
-
-Upcoming today:
 (add DB) https://mongoosejs.com/docs/queries.html
 * Currently system works for 1 user, now I will make it for any number of users
 * Making chains of referrers
+
+Upcoming today:
 * Upgrade Method for user
 * Making Pool 1
 
 Tomorrow:
-* Commands Panel like /invest /plan /wallet /refer etc
 * Withdraw Method for user
-* Make Pool 2
 * Admin force withdraw button (so admin can do a force withdraw after month)
 * Super Heros logic
+* Make Pool 2
+* Commands Panel like /invest /plan /wallet /refer etc
 
 Later:
 * Add option to deposit ETH, USDT, USDC and other networks like Binance
 
 
+ROAD BLOCK 2. payment confirmation in code... 
+
+
 1hr TON SEND and RECEIVE module, fee used to send ton, ...:
     0. get public address from mnemonic 1, 2
     1. send TON from wallet 1 to wallet
-    ROAD BLOCK 2. payment confirmation in code... 
 
 MLM Basic System:
     1. In bot send the address to receive ton. 

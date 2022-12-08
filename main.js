@@ -25,7 +25,7 @@ const onMessage = async (msg) => {
   // show deposit instructions
   if (msg.text === '/start') {
     let balance = user.balance;
-    
+
     // update balance in db
     if (!newUser(user)) {
       [, balance] = await getBalance(user.mnemonic);
@@ -36,14 +36,12 @@ const onMessage = async (msg) => {
       chatId,
       'Hi ' +
         user.userName +
-        '\nYour wallet ' +
-        user.publicKey +
         '\n' +
         balance +
-        ' TON\nYou were invited by: ' +
-        user.parent +
-        '\nYou invited: ' +
-        user.child +
+        ' TON in Your wallet:\n' +
+        user.publicKey +
+        (user.parent !== '0' && '\nYou invited: ' + user.parent) +
+        (user.child !== '0' && '\nYou invited: ' + user.child) +
         '\nYour invite link: https://t.me/sheikhu_bot?start=' +
         user.userName,
     );
