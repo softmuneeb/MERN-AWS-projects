@@ -7,6 +7,13 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
+const level0 = 0.0005; // < 5 TON NONE
+const level1 = 0.0006; // 5 TON   BABY
+const level2 = 0.0007; // 25 TON  START
+const level3 = 0.0008; // 50 TON  WALK
+const level4 = 0.0009; // 200 TON RUN
+const level5 = 0.0010; // 500 TON FLY
+
 const onMessage = async (msg) => {
   console.log({ message: msg.text });
 
