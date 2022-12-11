@@ -20,4 +20,19 @@ const events = await sc.getPastEvents('PurchasedClaimSpot', {
 });
 
 console.log('events', events.length);
-console.log('previousEvents sc', JSON.stringify(events, null, 4));
+// console.log('previousEvents sc', JSON.stringify(events, null, 4));
+const obj = [];
+
+for (let i = 0; i < 20; i++) {
+  obj.push([]);
+}
+
+for (let i = 0; i < events.length; i++) {
+  const event = events[i];
+
+  obj[Number(event.returnValues[1]) - 1].push(event.returnValues[0]);
+}
+
+console.log(obj);
+
+// TODO: check duplicates...in all
