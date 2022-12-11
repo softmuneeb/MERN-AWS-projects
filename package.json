@@ -4,6 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
+    "start": "node eventsGetWeb3.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,7 +19,6 @@
   },
   "homepage": "https://github.com/muneebsoftblock/js-code-lab-1#readme",
   "dependencies": {
-    "ethers": "^5.7.2",
     "web3": "^1.7.4"
   },
   "type": "module"
