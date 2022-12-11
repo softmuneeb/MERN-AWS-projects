@@ -12,7 +12,7 @@ const level1 = 0.0006; // 5 TON   BABY
 const level2 = 0.0007; // 25 TON  START
 const level3 = 0.0008; // 50 TON  WALK
 const level4 = 0.0009; // 200 TON RUN
-const level5 = 0.0010; // 500 TON FLY
+const level5 = 0.001; // 500 TON FLY
 
 const onMessage = async (msg) => {
   console.log({ message: msg.text });
@@ -66,6 +66,10 @@ const onMessage = async (msg) => {
 
       bot.sendMessage(chatId, 'You are invited by ' + referrer);
     }
+  }
+  // users who want to upgrade
+  else if (msg.text === '/upgrade') {
+    bot.sendMessage(chatId, 'Under development');
   } else {
     bot.sendMessage(chatId, 'hi, type /start');
   }

@@ -1,8 +1,97 @@
+MLM Questions:
+
+* YES, in case if starts from 5 TON, First withdraw starts at 25 TON+ package START, Upgrade 100% on 5 TON..
+* When person deposit % goes to Upgrade Pool, Upgrade Pool only use to monthly upgrade people
+* When person deposit % goes to Recycle Pool, Recycle Pool only used to give monthly profit to people
+
+pool 1, 10 bacha ra on every join, 50% goes to company, 50% to 7 direct people pool
+pool 2, 10 bacha ra, 50% goes to company, 50% to 5 rank people
+pool 3, recycle pool ki bach rai 25% - 30%, to reward club
+
+A person deposit 25 TON
+
+    25 TON
+  -2.5 TON  (10%) go to the referrer
+ -1.25 TON  (5%) 1.25 goes to ADMIN WALLET 1
+ -1.25 TON  (5%) 1.25 goes to ADMIN WALLET 2
+ -1.25 TON  (5%) goes to Upgrade Pool
+-----------------------------------------
+= 18.75 TON is the balance of the user?
+-----------------------------------------
+
+* If this user upgrades, 70% goes to user upgrade khata and 30% goes to Recycle Pool. 70% and 30% are 18.75 TON?
+
+* If this user withdraws, 10% goes to ADMIN WALLET 1, 40% goes to user wallet and 60% goes to Recycle Pool. 10, 40 and 60 are of 18.75 TON?
+* 10 + 30 + 60 ? OR 10 + 40 + 50 ?
+
+* Person wi
+* FLY 500$, what will happen to that upgrade system. Auto & manual.
+* Referral links will not generated for people at level 15.
+
+Useful extra features:
+* Admin can see how many TON are in Upgrade Pool
+* Admin can see how much TON are in Recycle Pool
+* Admin can see how many people are in the system
+* Admin can see how much people are in Level 1, 2, 3, ….
+* Any one can see much people are under him at Level 1, 2, 3, ….
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Done:
+* Referring module basics done
+* Deposit Wallets generate module done
+* Showing balance to user
+(add DB) https://mongoosejs.com/docs/queries.html
+* Currently system works for 1 user, now I will make it for any number of users
+* Making chains of referrers
+* get public address from mnemonic 1, 2
+* send TON from wallet 1 to wallet
+* In bot send the address to receive TON. 
+* After receiving TON. note down the balance of the person in DB.
+
+Todo:
+* MLM Logic
+* Upgrade Method for user
+* Withdraw Method for user
+* Making Pool 1
+* Make Pool 2
+* Withdraw Method for user
+* Admin force withdraw but TON (so admin can do a force withdraw after month)
+* Super Heros logic
+* Commands Panel like /invest /plan /wallet /refer etc
+
+
+
+
+
+
+
+
+
+
 Write full steps from start to end, respective to a normal user of this system.
 ...
 
 Make best case flow:
-* Upgrade Level System, add 25 ton level 1 -> again add 25 ton You level is 2...
+* Upgrade Level System, add 25 TON level 1 -> again add 25 TON You level is 2...
 * pend MLM Logic Module 20% goes to ...
 * REFERRING CONDItions ...
 * 
@@ -40,7 +129,7 @@ Upcoming today:
 
 Tomorrow:
 * Withdraw Method for user
-* Admin force withdraw button (so admin can do a force withdraw after month)
+* Admin force withdraw butTON (so admin can do a force withdraw after month)
 * Super Heros logic
 * Make Pool 2
 * Commands Panel like /invest /plan /wallet /refer etc
@@ -52,12 +141,12 @@ Later:
 ROAD BLOCK 2. payment confirmation in code... 
 
 
-1hr TON SEND and RECEIVE module, fee used to send ton, ...:
+1hr TON SEND and RECEIVE module, fee used to send TON, ...:
     0. get public address from mnemonic 1, 2
     1. send TON from wallet 1 to wallet
 
 MLM Basic System:
-    1. In bot send the address to receive ton. 
+    1. In bot send the address to receive TON. 
     2. After receiving TON. note down the balance of the person in DB.
     3. if referrer exists, 10% goes to pool 1, 10% go to referrer if exists
     4. if referrer not exists, 20% goes to pool 1
