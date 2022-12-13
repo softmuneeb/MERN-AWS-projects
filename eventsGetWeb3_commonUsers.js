@@ -228,16 +228,16 @@ for (let i = 0; i < eventsWeb2.length; i++) {
   objWeb2[minter] = (objWeb2[minter] || 0) + mintQty;
 }
 console.log({ totalMinted });
-const web2addrs = Object.keys(objWeb2);
+// const web2addrs = Object.keys(objWeb2);
 
 // web2users = web3and2addrs - web3addrs, let difference = arr1.filter(x => !arr2.includes(x));
 // webCommon = common web2 web3, let intersection =
 
-let webCommon = web2addrs.filter((x) => web3addrs.includes(x));
-console.log({ webCommon });
+// let webCommon = web2addrs.filter((x) => web3addrs.includes(x));
+// console.log({ webCommon });
 
 // combining data
-const addresses = Object.keys(obj);
+const addresses = Object.keys(objWeb2);
 const obj2 = [];
 for (let i = 0; i < 50; i++) {
   obj2.push([]);
@@ -245,7 +245,7 @@ for (let i = 0; i < 50; i++) {
 
 for (let i = 0; i < addresses.length; i++) {
   const user = addresses[i];
-  const userMinted = obj[user];
+  const userMinted = objWeb2[user];
   obj2[userMinted - 1].push(user); // arrIndexForUI
 }
 
@@ -254,9 +254,9 @@ for (let i = 0; i < addresses.length; i++) {
 for (let i = 0; i < obj2.length; i++) {
   const obj = obj2[i];
 
-  // console.log('// can mint ' + (i + 1) + ': ');
-  // console.log(
-  //   obj.map((a) => a.toLowerCase()),
-  //   ', ',
-  // );
+  console.log('// can mint ' + (i + 1) + ': ');
+  console.log(
+    obj.map((a) => a.toLowerCase()),
+    ', ',
+  );
 }

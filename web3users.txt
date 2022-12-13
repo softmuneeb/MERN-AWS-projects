@@ -1,0 +1,159 @@
+web3 users
+// can mint 1: 
+[
+  '0x8acdd3b98ad25bde9b65c5689245a657ef813ed5',
+  '0x500f2c848b6f5d40312918158007e0d95574ad33',
+  '0x03474b528375248477405579f14257ca5fb43591',
+  '0x7afcca97ec517805d426b2e23fe55984eaba84d0',
+  '0x76ff1758dfcc8153e9475e2f84e8e609afdc7009',
+  '0xc9dc270b3da6cd0a105e2ebbd2f6b61c7ba79eac',
+  '0xe95e2b48318fd48254b68aba1a5a579d8ec68afa',
+  '0xb79160ff6188553dcc8b5e56fec8caeab2be09b8',
+  '0xc173869d2408bf57b567266bbe3e8974653021ea',
+  '0x7d83a56dc461bd48fba32e2cd19e09dc3b58f160',
+  '0xc0acaa668af06267e1c8850bdda28c0431d313b4',
+  '0xef991dbd572ef1d4c83db11763e7d36b4a5ca132',
+  '0xc760a7572b3e57d48bc78545ccf896a5969c7982',
+  '0x0cf61ae1ff633c968a78868ae138d2e1f143b084',
+  '0x1788610c4192c7ea988f7d09d8532df910ef0820',
+  '0xcb0ddd93ba1b0a5cef7f7170ccb143d6284fe6a9',
+  '0x60f80a2b14e2d2d4579c14f14b2744a98e0baa3d',
+  '0xda9bb5abbf95b5a9e1ce3ab7d7c5629a1be61553',
+  '0x18db3d5ffa4b947c3ddac98a50217d53b95460d6',
+  '0x9d4dc5080235906e7642aba4b55ca633cae0a551',
+  '0x4cbc193859f0f4d58828b9bf63fb440a9757b6f7',
+  '0xe55f8de8b7a957bf7510be3d97eca160134c80c4',
+  '0x0f50305301154125a9c031e085b026be0beb266a',
+  '0x8d93f0ae4249fe45b9ced6dccbf36c4e3bbabb85'
+] , 
+// can mint 2: 
+[
+  '0xa31e919bd76492fb855ab322bc440b51c96b3287',
+  '0x5fa449a6fdd4a540b7215eabafe38d48e4ac56f4',
+  '0x93f2b489b195b0d4029dc05c2f56918ba7b2aa1c',
+  '0xc22d82b1cbaca3667595ff7a2044f462d7c52bc6',
+  '0x1bf0238e62451bd5ac445926f9bb031eec399ee8',
+  '0x10e2c379da0ac845b51938cd5f16afb211ff4446',
+  '0x4c5fae2d9e2283285707ac13dca0ed6740a18a42',
+  '0x785423440d5b4d799df9f0c439921801d881f191'
+] , 
+// can mint 3: 
+[
+  '0x45de3d5f58b4c4cd373d0cc3708c7ed2406ce102',
+  '0x9fdf8a92d344ee09ea91a327eba4dbc719ab0132',
+  '0x9f96df5fcf6ed6970d2bbac7355168d60f688089',
+  '0x671e4d58f407be00fcc383732c020a7ac1afde73',
+  '0xf027a117c5738b71cf81be3f3946d72d34dc4253'
+] , 
+// can mint 4: 
+[
+  '0x4abf5a3974b2255853ba465a686349191458caed',
+  '0x587222ab75c9e4e462fa09c839903234dfd3909b',
+  '0xa18e7bbdf4f4379f7d992c7e4a275f4a14bc124f',
+  '0x744562243e6683b93c3c973638f08f8c03275809'
+] , 
+// can mint 5: 
+[
+  '0xbf7267e9614166b300c5e7dabd57751b96e0c607',
+  '0x51086b663e95029b11a279732878f9e6921641a1',
+  '0x19dab4b1df86265dfec9f7e579e6b14fe6161c87',
+  '0x7ffe1597de8933f106aa72c8802d4b19c3b74dab'
+] , 
+// can mint 6: 
+[] , 
+// can mint 7: 
+[
+  '0x6294e83a6aaa0069189d015605cdcab382a8defa',
+  '0x4cc077a6fe37eedf8c6f7aa8fd1985e66c983d6a',
+  '0x7734c878688638701c36cd42637841a1524f1d27'
+] , 
+// can mint 8: 
+[ '0xf4f1bbf39689916dd531648217580af39cb493ad' ] , 
+// can mint 9: 
+[ '0xcbb48c6fc095f439c419ea782853fdf026866d02' ] , 
+// can mint 10: 
+[
+  '0x18483261db539ec1a03541e310858fe93d174f3a',
+  '0x6d1efc21fe299b2022be9f6ad70c62d5225a0a81',
+  '0xd9db947fe8f5932ca43c4b565018abffdfd50941'
+] , 
+// can mint 11: 
+[] , 
+// can mint 12: 
+[] , 
+// can mint 13: 
+[] , 
+// can mint 14: 
+[ '0x2b44b04abd1e815de41fcd34a96c1662455691bc' ] , 
+// can mint 15: 
+[] , 
+// can mint 16: 
+[] , 
+// can mint 17: 
+[] , 
+// can mint 18: 
+[ '0x95b3df1d5dd672771ef77d8669f0d1d0a8ba4273' ] , 
+// can mint 19: 
+[] , 
+// can mint 20: 
+[ '0x47da83d297cae410346630738b2e6e8a23bf8995' ] , 
+// can mint 21: 
+[] , 
+// can mint 22: 
+[] , 
+// can mint 23: 
+[] , 
+// can mint 24: 
+[] , 
+// can mint 25: 
+[] , 
+// can mint 26: 
+[] , 
+// can mint 27: 
+[] , 
+// can mint 28: 
+[] , 
+// can mint 29: 
+[] , 
+// can mint 30: 
+[] , 
+// can mint 31: 
+[] , 
+// can mint 32: 
+[] , 
+// can mint 33: 
+[] , 
+// can mint 34: 
+[] , 
+// can mint 35: 
+[] , 
+// can mint 36: 
+[] , 
+// can mint 37: 
+[] , 
+// can mint 38: 
+[] , 
+// can mint 39: 
+[] , 
+// can mint 40: 
+[] , 
+// can mint 41: 
+[] , 
+// can mint 42: 
+[] , 
+// can mint 43: 
+[] , 
+// can mint 44: 
+[] , 
+// can mint 45: 
+[] , 
+// can mint 46: 
+[] , 
+// can mint 47: 
+[] , 
+// can mint 48: 
+[] , 
+// can mint 49: 
+[] , 
+// can mint 50: 
+[] , 
