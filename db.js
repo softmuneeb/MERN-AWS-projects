@@ -15,10 +15,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: '0',
   },
-  upgradeBalance: {
-    type: String,
-    default: '0',
-  },
   publicKey: {
     type: String,
     default: '0',

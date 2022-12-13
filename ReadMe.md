@@ -1,3 +1,13 @@
+doing:
+* distribute profit 15 levels up (note down in db, give from company wallet...)
+* send deposited money to ADMIN WALLET
+* add % to people balances 15 levels up, 10% TO refferer, 2% to 5% to 15 levels up.
+
+
+
+
+
+
 MLM Questions:
 
 * YES, in case if starts from 5 TON, First withdraw starts at 25 TON+ package START, Upgrade 100% on 5 TON..
