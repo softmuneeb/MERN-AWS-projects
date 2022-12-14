@@ -34,6 +34,42 @@ async function publicKey(mnemonic) {
   // });
 }
 
+async function transferFrom(mnemonic, toAddress, amount) {
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
+
+  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
+  const WalletClass = tonweb.wallet.all['v3R2'];
+  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  await sleep(1500); // TODO: api key check... avoid throttling by toncenter.com
+
+  const fee = await wallet.methods
+    .transfer({
+      secretKey: keyPair.secretKey,
+      toAddress,
+      amount, // TonWeb.utils.toNano('0.0006'), // 0.0006 TON
+      seqno: seqno,
+      payload: 'MLM Bot', // optional comment
+      sendMode: 3,
+    })
+    // .estimateFee()
+    .send();
+
+  console.log({ fee });
+  // // wait until confirmed // note down things in db ...
+  let currentSeqno = seqno;
+  while (currentSeqno == seqno) {
+    console.log('waiting for transaction to confirm...');
+    await sleep(1500); // avoid throttling by toncenter.com
+    currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  }
+  const address = await wallet.getAddress();
+  await sleep(1500); // avoid throttling by toncenter.com
+  const balance = await tonweb.getBalance(address);
+  console.log('balance:', TonWeb.utils.fromNano(balance));
+}
+
 async function transferTxTon() {
   // publicKey();
   await sleep(1500); // avoid throttling by toncenter.com
@@ -66,11 +102,11 @@ async function transferTxTon() {
 async function getBalance(m) {
   const mnemonicArray = m.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
-  // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
+  console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
   // list available wallet versions
   const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
-  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
   // ['simpleR1', simpleR2, simpleR3, v2R1, v2R2, v3R1, v3R2, v4R1, v4R2];
   // instance of wallet V4 r2 (from the list printed above)
@@ -78,9 +114,9 @@ async function getBalance(m) {
 
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const address = await wallet.getAddress();
-  // console.log('address:', address.toString(true, true, true));
-  const seqno = await wallet.methods.seqno().call();
-  // console.log('seqno:', seqno);
+  console.log('address:', address.toString(true, true, true));
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  console.log('seqno:', seqno);
   await sleep(1500); // avoid throttling by toncenter.com
   const balance = await tonweb.getBalance(address);
   // console.log('balance:', TonWeb.utils.fromNano(balance));
@@ -127,9 +163,29 @@ function toHexString(byteArray) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// publicKey();
-// getBalance();
-// transferTxTon();
+// const unitTest = async () => {
+//   // publicKey();
+//   // transferTxTon();
+//   const [userAddress, userMnemonic] = [
+//     'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
+//     'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
+//   ];
+//   const [bNano, b] = await getBalance(userMnemonic);
+
+//   console.log({ bNano, b });
+//   const [adminAddress, adminMnemonic] = [
+//     'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+//     'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+//   ];
+
+//   try {
+//     await transferFrom(userMnemonic, adminAddress, bNano);
+//   } catch (e) {
+//     console.log("error is:", e)
+//   }
+// };
+
+// unitTest();
 
 /*
 output:
@@ -139,10 +195,18 @@ wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
 address: EQAC824gsw8OZLoMV6_nr4nkxaEQFlbzoiHHOWIYY81eM5rQ
 seqno: 8
 balance: 0.000099975
+
+14 dec 2022
+public key: 93b00b63b2b4e32cff00ed0321a4eef3decf2065e87bb57bf8fa8789b4294b48
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+address: EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS
+seqno: 0
+{ bNano: '100496150', b: '0.10049615' }
 */
 
 module.exports = {
   getBalance,
   mnemonicGenerate,
   publicKey,
+  transferFrom,
 };
