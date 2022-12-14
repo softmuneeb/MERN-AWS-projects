@@ -72,10 +72,13 @@ const onMessage = async (msg) => {
       // on each level check their plan deposited amounts...
       // level 1 done above, now we go level 2 to 15 levels up
       console.log('parents start:');
+      console.log({ i: 1, userParent: userParent.userName });
       for (let i = 2; i <= 15; i++) {
         if (userParent.userName === '0') break;
 
         userParent = await readBook({ userName: userParent.parent });
+        await writeBook({ userName: userParent.userName }, { balance: userParent.balance + balance * 5 * percent });
+
         console.log({ i, userParent: userParent.userName });
       }
       console.log('parents end:');
@@ -98,7 +101,7 @@ const onMessage = async (msg) => {
         bot.sendMessage(chatId, 'Invalid link OR Your sponsor does not exist in MLM System');
         return;
       }
-      
+
       await writeBook({ userName }, { parent: referrer });
 
       await writeBook({ userName: referrer }, { child: [...referrerObj.child, userName] });
