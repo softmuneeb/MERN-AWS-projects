@@ -1,3 +1,29 @@
+Progress:
+* print 14 parents
+// send deposited money to ADMIN WALLET
+// add % to people balances 15 levels up
+// TODO: if someone comes direct in bot, make sheikhu his default parent. for code to work proper.
+// check balance increased? we can transfer funds later to admin wallet
+// if yes the give rewards
+// show user stats
+// TODO: can do later admin runs 1 script and all money is transferred to main wallet, or monthly run with withdraw...
+// transferFrom(user.mnemonic, adminAddress, balanceNano);
+// TODO: refresh DB to avoid chain recursion
+// TODO: child: [...user.child, userName]
+// create referrals chain
+// TODO: if referrer not found or undefined then register new user under first user in system
+// recycle pool distribution
+// await writeBook({ userName: user.parent }, {balance: getBalance(userParent.mnemonic)+ balance * userParent.plan * percent}); // userParent.plan for START is 2%, WALK 3%, RUN 4%, FLY 5%
+
+
+TODO: show user name to user on start
+// invitelink userId
+// db identifier chatId
+// on very fast /start error solve
+
+// db backups every 5 min...
+// api server if goes down then ...
+
 doing:
 * distribute profit 15 levels up (note down in db, give from company wallet...)
 * send deposited money to ADMIN WALLET
@@ -18,9 +44,6 @@ doing:
 25 10
 
 25
-
-Progress:
-* print 14 parents
 
 
 
