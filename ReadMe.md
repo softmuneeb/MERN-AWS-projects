@@ -1,3 +1,33 @@
+Buttons Menu
+Level Show
+My team
+
+Withdraw
+Upgrade
+Recycle
+
+About
+
+User & Admin Dashboard:
+My Wallet
+My Referral Link
+All Required Data
+
+Admin Sends Video/Media to all users...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Progress:
 * print 14 parents
 // send deposited money to ADMIN WALLET
@@ -44,6 +74,10 @@ doing:
 25 10
 
 25
+
+
+
+
 
 
 
