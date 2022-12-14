@@ -38,10 +38,12 @@ const UserSchema = new mongoose.Schema({
   date: { type: Number, default: new Date() },
 });
 
-const readBook = async (user) => {
-  const User = new mongoose.model('UserModel', UserSchema);
+const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
+const dbName = 'UserModel17';
 
-  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
+const readBook = async (user) => {
+  const User = new mongoose.model(dbName, UserSchema);
+  mongoose.connect(dbLink, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -56,8 +58,8 @@ const readBook = async (user) => {
 };
 
 const writeBook = async (user, newUserState) => {
-  const Todo = new mongoose.model('UserModel', UserSchema);
-  mongoose.connect('mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority', {
+  const Todo = new mongoose.model(dbName, UserSchema);
+  mongoose.connect(dbLink, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
