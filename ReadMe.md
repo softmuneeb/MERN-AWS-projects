@@ -1,3 +1,6 @@
+WHATSAPP ME +923348438939
+CAN NOT UNDERSTAND CODE?
+
 // break big problem in small ones is an art...
 
 // make code pure...
