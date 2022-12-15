@@ -1,7 +1,7 @@
 // explanation / plan in readme file
 
 const { readBook, writeBook } = require('./db');
-const { getBalance, mnemonicGenerate, transferFrom, publicKey } = require('./mlm-backend');
+const { getBalance, mnemonicGenerate } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
