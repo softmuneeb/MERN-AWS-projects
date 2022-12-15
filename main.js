@@ -42,7 +42,7 @@ const onMessage = async (msg) => {
     // show stats saved in db to telegram user
 
     if (existsUser(user)) {
-      // give reward if balance updated
+      // give reward if deposited funds changed
       const [balanceNano, balance] = await getBalance(user.mnemonic);
       // await writeBook({ userName }, { depositedFunds: balance });
       // check balance change
@@ -73,13 +73,19 @@ const onMessage = async (msg) => {
       // level 1 done above, now we go level 2 to 15 levels up
       console.log('parents start:');
       console.log({ i: 1, userParent: userParent.userName });
-      for (let i = 2; i <= 15; i++) {
+      for (let level = 2; level <= 15; level++) {
         if (userParent.userName === '0') break;
 
-        userParent = await readBook({ userName: userParent.parent });
-        await writeBook({ userName: userParent.userName }, { balance: userParent.balance + balance * 5 * percent });
+        // TODO: can not understand code? whatsapp me +923348438939
 
-        console.log({ i, userParent: userParent.userName });
+        userParent = await readBook({ userName: userParent.parent });
+        planLevelsAllowed = getPlanLevel(userParent.depositedFunds);
+
+        if (level < planLevelsAllowed)
+          // give reward
+          await writeBook({ userName: userParent.userName }, { balance: userParent.balance + balance * 5 * percent });
+
+        console.log({ i: level, userParent: userParent.userName });
       }
       console.log('parents end:');
     } else {
@@ -103,12 +109,12 @@ const onMessage = async (msg) => {
       }
 
       await writeBook({ userName }, { parent: referrer });
-
       await writeBook({ userName: referrer }, { child: [...referrerObj.child, userName] });
 
       bot.sendMessage(chatId, userName + ' is invited by ' + referrer);
     }
 
+    // show stats saved in db to telegram user
     let parent = '';
     let child = '';
     let showPublicKey = '';
@@ -164,6 +170,18 @@ const existsUser = (user) => {
 
 //d depositedFunds
 const plan = (d) => {
+  let p; // plan
+  if (d <= level0) p = 0;
+  else if (d <= level1) p = 1;
+  else if (d <= level2) p = 2;
+  else if (d <= level3) p = 3;
+  else if (d <= level4) p = 4;
+  else if (d <= level5) p = 5;
+  return p;
+};
+
+//d depositedFunds
+const getPlanLevel = (d) => {
   let p; // plan
   if (d <= level0) p = 0;
   else if (d <= level1) p = 1;
