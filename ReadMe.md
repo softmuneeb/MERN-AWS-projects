@@ -1,3 +1,26 @@
+// break big problem in small ones is an art...
+
+// make the things saparately as unit functions then integrate them
+// in this way I can spit work in developers and complete the work <-FAST-
+// all have to agree on interfaces, inputs and outputs and expected time of each function
+// functions should be stateless, pure, in-dependant etc
+
+transferFromOnChain(from, to, amount) -> true or false with message
+fundsTransferOffChain(to, amount) -> true or false with message
+fundsTransferOffChainToParents(N, getPercentage: (p, level)=>{use p.depositedFunds} ) -> true or false with message
+
+getPercentageForRecycle: p.depositedFunds
+getPercentageForReferral: 5% * level > level(p.depositedFunds)
+
+userSchema : {
+  balance,
+  ...
+}
+
+fundsTransferOffChainSuperClub()
+.....
+
+
 Buttons Menu
 Level Show
 My team
@@ -14,6 +37,7 @@ My Referral Link
 All Required Data
 
 Admin Sends Video/Media to all users...
+
 
 
 
