@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
   },
   parent: {
     type: String, // chatId of the person who referred me
-    default: '0',
+    default: null,
   },
   child: {
     type: [], // chatId of the people I am bringing into the system

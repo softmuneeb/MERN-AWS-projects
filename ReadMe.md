@@ -1,5 +1,6 @@
 // break big problem in small ones is an art...
 
+// make code pure...
 // make the things saparately as unit functions then integrate them
 // in this way I can spit work in developers and complete the work <-FAST-
 // all have to agree on interfaces, inputs and outputs and expected time of each function

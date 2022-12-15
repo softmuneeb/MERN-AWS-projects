@@ -7,7 +7,15 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
-const defaultReferrer = 'crypto_millio';
+// TODO: it should come from env
+
+const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
+  'crypto_millio',
+  '1672843321',
+  'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+  'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+];
+
 // Admin Wallet
 const [adminUserName, adminAddress, adminMnemonic] = [
   'ADMIN',
@@ -41,61 +49,21 @@ const onMessage = async (msg) => {
     //
     // show stats saved in db to telegram user
 
-    if (existsUser(user)) {
-      // give reward if deposited funds changed
-      const [balanceNano, balance] = await getBalance(user.mnemonic);
-      // await writeBook({ userName }, { depositedFunds: balance });
-      // check balance change
-      let userParent = await readBook({ userName: user.parent });
-      let admin = await readBook({ userName: adminUserName });
-      let pool = await readBook({ userName: 'POOL' });
-
-      // 1 to 3
-      if (user.child.length <= 3) {
-        // await writeBook({ userName }, { balance: 0 });
-        await writeBook({ userName: user.parent }, { balance: userParent.balance + balance * 10 * percent });
-        await writeBook({ userName: adminUserName }, { balance: admin.balance + balance * 5 * percent });
-        await writeBook({ userName: 'POOL' }, { balance: pool.balance + balance * 5 * percent });
+    if (oldUser(user)) {
+      const [, depositedFunds] = await getBalance(user.mnemonic);
+      // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
+      if (depositedFunds !== user.depositedFunds) {
+        await giveRewards(user, depositedFunds);
       }
-
-      // 4 to 6
-      else if (user.child.length <= 6) {
-        await writeBook({ userName: user.parent }, { balance: userParent.balance + balance * 15 * percent });
-        await writeBook({ userName: adminUserName }, { balance: admin.balance + balance * 2.5 * percent });
-        await writeBook({ userName: 'POOL' }, { balance: pool.balance + balance * 2.5 * percent });
-      }
-      // 7 or more child
-      else {
-        await writeBook({ userName: user.parent }, { balance: userParent.balance + userParent.balance * 20 * percent });
-      }
-
-      // on each level check their plan deposited amounts...
-      // level 1 done above, now we go level 2 to 15 levels up
-      console.log('parents start:');
-      console.log({ i: 1, userParent: userParent.userName });
-      for (let level = 2; level <= 15; level++) {
-        if (userParent.userName === '0') break;
-
-        // TODO: can not understand code? whatsapp me +923348438939
-
-        userParent = await readBook({ userName: userParent.parent });
-        planLevelsAllowed = getPlanLevel(userParent.depositedFunds);
-
-        if (level < planLevelsAllowed)
-          // give reward
-          await writeBook({ userName: userParent.userName }, { balance: userParent.balance + balance * 5 * percent });
-
-        console.log({ i: level, userParent: userParent.userName });
-      }
-      console.log('parents end:');
-    } else {
-      console.log('Congrats new user!');
-
+    }
+    // New User
+    else {
       // Create and Save Wallet
       const [publicKey, mnemonic] = await mnemonicGenerate();
       pub = publicKey;
       await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
 
+      // get referrer
       let referrer = msg.text.split(' ')[1];
       if (referrer === undefined) {
         referrer = defaultReferrer;
@@ -103,49 +71,35 @@ const onMessage = async (msg) => {
 
       // referrer must exist in system
       const referrerObj = await readBook({ userName: referrer });
-      if (!existsUser(referrerObj)) {
+      if (!oldUser(referrerObj)) {
         bot.sendMessage(chatId, 'Invalid link OR Your sponsor does not exist in MLM System');
         return;
       }
 
+      // make referrer chain
       await writeBook({ userName }, { parent: referrer });
       await writeBook({ userName: referrer }, { child: [...referrerObj.child, userName] });
 
+      // TODO: call the /start for the referrer here! :) // test and move it to readme
       bot.sendMessage(chatId, userName + ' is invited by ' + referrer);
+      bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
     }
 
     // show stats saved in db to telegram user
-    let parent = '';
-    let child = '';
-    let showPublicKey = '';
-
-    if (user.parent !== '0') {
-      parent = 'You are invited by: ' + user.parent + '\n';
-    }
-    if (user.child.length > 0) {
-      child = 'You invited: ' + user.child + '\n';
-    }
-
-    if (user.publicKey === '0') showPublicKey = pub;
-    else showPublicKey = user.publicKey;
-
-    console.log({ c: user.child });
+    let parent = user.parent ? 'You are invited by: ' + user.parent + '\n' : '';
+    let child = user.child.length > 0 ? 'You invited: ' + user.child + '\n' : '';
+    let publicKey = user.publicKey === '0' ? pub : user.publicKey;
 
     // show user info
     bot.sendMessage(
       chatId,
-      'Hi ' +
-        user.userName +
-        '\n' +
-        user.balance +
-        ' TON in Your wallet:\n' +
-        showPublicKey +
-        '\n' +
-        parent +
-        child +
-        'Your invite link: https://t.me/sheikhu_bot?start=' +
-        user.userName,
+      `${user.userName} has ${user.balance} TON
+      You are ${user.depositedFunds}
+      ${parent + child}
+      Invite link: https://t.me/sheikhu_bot?start=${user.userName}
+      TON deposit address:`,
     );
+    bot.sendMessage(chatId, '' + publicKey);
   }
   // users who want to upgrade
   else if (msg.text === '/upgrade') {
@@ -161,10 +115,62 @@ const onMessage = async (msg) => {
   }
 };
 
+// namaz pending and you are working = no barkat in this work
+const giveRewards = async (user, depositedFunds) => {
+  if (!user.parent) {
+    console.log('no user parent, no reward');
+    return;
+  }
+
+  await writeBook({ userName: user.userName }, { depositedFunds });
+  // check balance change
+  let userParent = await readBook({ userName: user.parent });
+  let admin = await readBook({ userName: adminUserName });
+  let pool = await readBook({ userName: 'POOL' });
+
+  // 1 to 3
+  if (user.child.length <= 3) {
+    // await writeBook({ userName }, { balance: 0 });
+    await writeBook({ userName: user.parent }, { balance: userParent.balance + depositedFunds * 10 * percent });
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds * 5 * percent });
+    await writeBook({ userName: 'POOL' }, { balance: pool.balance + depositedFunds * 5 * percent });
+  }
+
+  // 4 to 6
+  else if (user.child.length <= 6) {
+    await writeBook({ userName: user.parent }, { balance: userParent.balance + depositedFunds * 15 * percent });
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds * 2.5 * percent });
+    await writeBook({ userName: 'POOL' }, { balance: pool.balance + depositedFunds * 2.5 * percent });
+  }
+  // 7 or more child
+  else {
+    await writeBook({ userName: user.parent }, { balance: userParent.balance + userParent.balance * 20 * percent });
+  }
+
+  // on each level check their plan deposited amounts...
+  // level 1 done above, now we go level 2 to 15 levels up
+  console.log('parents start:');
+  console.log({ i: 1, userParent: userParent.userName });
+  for (let level = 2; level <= 15; level++) {
+    if (!userParent.parent) break;
+
+    // TODO: can not understand code? whatsapp me +923348438939
+
+    userParent = await readBook({ userName: userParent.parent });
+    planLevelsAllowed = getPlanLevel(userParent.depositedFunds);
+
+    if (level < planLevelsAllowed)
+      // give reward
+      await writeBook({ userName: userParent.userName }, { balance: userParent.balance + depositedFunds * 5 * percent });
+
+    console.log({ i: level, userParent: userParent.userName });
+  }
+  console.log('parents end:');
+};
 // onMessage();
 bot.on('message', onMessage);
 
-const existsUser = (user) => {
+const oldUser = (user) => {
   return user.publicKey !== '0';
 };
 
@@ -193,10 +199,18 @@ const getPlanLevel = (d) => {
 };
 
 const seedDB = async () => {
-  if (!existsUser(await readBook({ userName: defaultReferrer }))) {
+  if (!oldUser(await readBook({ userName: defaultReferrer }))) {
     console.log('db used first time');
-    const [publicKey, mnemonic] = await mnemonicGenerate();
-    await writeBook({ userName: defaultReferrer }, { userName: defaultReferrer, chatId: 'tbd', publicKey, mnemonic });
+
+    await writeBook(
+      { userName: defaultReferrer },
+      {
+        chatId: defaultReferrerChatId,
+        userName: defaultReferrer,
+        publicKey: defaultReferrerAddress,
+        mnemonic: defaultReferrerMnemonic,
+      },
+    );
   } else {
     console.log('db used second or more times');
   }
