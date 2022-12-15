@@ -1,27 +1,17 @@
 // explanation / plan in readme file
 
-const { readBook, writeBook } = require('./db');
-const { getBalance, mnemonicGenerate } = require('./mlm-backend');
-
-const TelegramBot = require('node-telegram-bot-api');
-const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
-const bot = new TelegramBot(token, { polling: true });
-
 // TODO: it should come from env
-
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
   'crypto_millio',
   '1672843321',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
-
-// Admin Wallet
 const [adminUserName, adminAddress, adminMnemonic] = [
   'ADMIN',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-]; // would come from env file
+];
 
 const level0 = 0.0005; // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
 const level1 = 0.0006; // 5 TON   BABY --- all money goto ADMIN -- he will get referral link -- can upgrade
@@ -30,6 +20,13 @@ const level3 = 0.0008; // 50 TON  WALK
 const level4 = 0.0009; // 200 TON RUN
 const level5 = 0.001; // 500 TON FLY
 const percent = 1 / 100;
+
+const { readBook, writeBook } = require('./db');
+const { getBalance, mnemonicGenerate } = require('./mlm-backend');
+
+const TelegramBot = require('node-telegram-bot-api');
+const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
+const bot = new TelegramBot(token, { polling: true });
 
 const onMessage = async (msg) => {
   console.log({ message: msg.text });
