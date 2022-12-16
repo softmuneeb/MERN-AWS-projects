@@ -6,6 +6,8 @@ Road blocks:
 * transactions get balance get
 * 
 
+// namaz pending and you are working = no barkat in this work
+
 arrange read me file... backlog...
 // break big problem in small ones is an art...
 
