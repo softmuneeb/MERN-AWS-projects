@@ -6,7 +6,7 @@ Road blocks:
 * transactions get balance get
 * 
 
-
+arrange read me file... backlog...
 // break big problem in small ones is an art...
 
 // make code pure...
@@ -57,6 +57,7 @@ Admin Sends Video/Media to all users...
 
 
 
+      // TODO: call the /start for the referrer here! :) // test and move it to readme
 
 
 
@@ -107,11 +108,37 @@ doing:
 2 6 25 5 
 1 6 25 10
 
-25
+50 5%
+
+25 0 percent <---- test case
+
+25 5%
+25 5%
+25 5%
+
+25 5%
+25 5% 
+25 10%
+
+25 joined
 
 
 
+50 5%
 
+25 0 percent <---- test case
+
+25 5%
+25 5%
+25 5%
+
+25 5%
+25 5% 
+25 10%
+
+25 joined
+
+// if (level < planNumber(user)) {}
 
 
 
@@ -366,3 +393,14 @@ seqno: 0
   if (msg.text === 'invest') {
     bot.sendMessage(chatId, 'Please send 0.25 TON to this address to invest in MLM ' + user.address);
   } else
+
+
+ // on each level check their plan deposited amounts...
+  // level 1 done above, now we go level 2 to 15 levels up
+
+  console.log('parents start:');
+  console.log({ i: 1, userParent: userParent.userName });
+    // TODO: can not understand code? whatsapp me +923348438939
+    // give reward on level 6, 9, 12, 15
+    console.log({ i: level, userParent: userParent.userName });
+  console.log('parents end:');

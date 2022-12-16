@@ -13,13 +13,32 @@ const [adminUserName, adminAddress, adminMnemonic] = [
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
 
-const level0 = 0.0005; // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
-const level1 = 0.0006; // 5 TON   BABY --- all money goto ADMIN -- he will get referral link -- can upgrade
-const level2 = 0.0007; // 25 TON  START --- withdraw starts here
-const level3 = 0.0008; // 50 TON  WALK
-const level4 = 0.0009; // 200 TON RUN
-const level5 = 0.001; // 500 TON FLY
-const percent = 1 / 100;
+// moved some functions in an object because they depend on each other
+const p = {
+  level0: 1 * 0.0005, // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
+  level1: 2 * 0.0005, // 5 TON   BABY --- all money goto ADMIN -- he will get referral link -- can upgrade
+  level2: 3 * 0.0005, // 25 TON  START --- withdraw starts here
+  level3: 4 * 0.0005, // 50 TON  WALK
+  level4: 5 * 0.0005, // 200 TON RUN
+  level5: 6 * 0.0005, // 500 TON FLY
+
+  // d depositedFunds
+  getPlanNumber: ({ depositedFunds: d }) => {
+    let ans; // plan
+    if (d >= p.level5) ans = 5;
+    else if (d >= p.level4) ans = 4;
+    else if (d >= p.level3) ans = 3;
+    else if (d >= p.level2) ans = 2;
+    else if (d >= p.level1) ans = 1;
+    else ans = 0;
+    return ans;
+  },
+
+  plan: ({ depositedFunds: d }) => {
+    const plans = ['NONE', 'BABY', 'START', 'WALK', 'RUN', 'FLY'];
+    return plans[p.getPlanNumber(d)];
+  },
+};
 
 const { readBook, writeBook } = require('./db');
 const { getBalance, mnemonicGenerate } = require('./mlm-backend');
@@ -33,7 +52,7 @@ const onMessage = async (msg) => {
 
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
-  let pub;
+  let publicKey, mnemonic;
   let user = await readBook({ userName });
 
   // show deposit instructions
@@ -71,15 +90,13 @@ const onMessage = async (msg) => {
       }
 
       // create and save wallet
-      const [publicKey, mnemonic] = await mnemonicGenerate();
-      pub = publicKey;
+      [publicKey, mnemonic] = await mnemonicGenerate();
       await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
 
       // make referrer chain
       await writeBook({ userName }, { parent: referrerObj.userName });
       await writeBook({ userName: referrerObj.userName }, { child: [...referrerObj.child, userName] });
 
-      // TODO: call the /start for the referrer here! :) // test and move it to readme
       bot.sendMessage(chatId, userName + ' is invited by ' + referrerObj.userName);
       bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
     }
@@ -87,14 +104,14 @@ const onMessage = async (msg) => {
     // show stats saved in db to telegram user
     let parent = user.parent ? 'You are invited by: ' + user.parent + '\n' : '';
     let child = user.child.length > 0 ? 'You invited: ' + user.child + '\n' : '';
-    let publicKey = user.publicKey ? user.publicKey : pub;
+    publicKey = user.publicKey ? user.publicKey : publicKey;
 
     // show user info
     bot.sendMessage(
       chatId,
       `${user.userName} has earned ${user.balance} TON
 Deposited Funds ${user.depositedFunds} TON
-Your plan ${plan(user.depositedFunds)}
+Your plan ${p.plan(user)}
 ${parent + child}
 Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:`,
@@ -124,76 +141,61 @@ const giveRewards = async (user, depositedFunds) => {
   }
 
   await writeBook({ userName: user.userName }, { depositedFunds });
+
   // check balance change
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: 'POOL' });
 
+  let remaining = 100; // percent
+  const percent = depositedFunds / 100;
+
+  // NONE OR BABY PLAN
+  if (p.getPlanNumber(user.depositedFunds) <= 1) {
+    // give all balance to admin
+    remaining -= 100; // percent
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
+    return;
+  }
+
   // 1 to 3
-  if (user.child.length <= 3) {
-    // await writeBook({ userName }, { balance: 0 });
-    await writeBook({ userName: user.parent }, { balance: userParent.balance + depositedFunds * 10 * percent });
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds * 5 * percent });
-    await writeBook({ userName: 'POOL' }, { balance: pool.balance + depositedFunds * 5 * percent });
+  else if (user.child.length <= 3) {
+    await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
+    await writeBook({ userName: 'POOL' }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
   else if (user.child.length <= 6) {
-    await writeBook({ userName: user.parent }, { balance: userParent.balance + depositedFunds * 15 * percent });
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds * 2.5 * percent });
-    await writeBook({ userName: 'POOL' }, { balance: pool.balance + depositedFunds * 2.5 * percent });
+    await writeBook({ userName: user.parent }, { balance: userParent.balance + 15 * percent });
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
+    await writeBook({ userName: 'POOL' }, { balance: pool.balance + 2.5 * percent });
   }
   // 7 or more child
   else {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + userParent.balance * 20 * percent });
   }
+  remaining -= 20; // percent, 20% distributed on LEVEL 1
 
-  // on each level check their plan deposited amounts...
-  // level 1 done above, now we go level 2 to 15 levels up
-  console.log('parents start:');
-  console.log({ i: 1, userParent: userParent.userName });
-  for (let level = 2; level <= 15; level++) {
-    if (!userParent.parent) {
-      break;
-    }
-    // TODO: can not understand code? whatsapp me +923348438939
+  // give reward till level 6, 9, 12, 15
+  for (let level = 2; level <= 15 && userParent.parent; level++) {
     userParent = await readBook({ userName: userParent.parent });
-    planLevelsAllowed = getPlanLevel(userParent.depositedFunds);
-    // give reward on level 6, 9, 12, 15
-    if (level < planLevelsAllowed) {
-      await writeBook({ userName: userParent.userName }, { balance: userParent.balance + depositedFunds * 5 * percent });
+    if (level < p.getPlanNumber(userParent)) {
+      remaining -= 5; // percent
+      console.log({ remaining });
+      await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
     }
-    console.log({ i: level, userParent: userParent.userName });
   }
-  console.log('parents end:');
+
+  // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
+  console.log({ remainingSending: remaining });
+  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
 };
 // onMessage();
 bot.on('message', onMessage);
 
 const existsUser = (user) => {
   return user.publicKey !== null;
-};
-
-//d depositedFunds
-const plan = (d) => {
-  let p; // plan
-  if (d <= level0) p = 'BABY';
-  else if (d <= level1) p = 'START';
-  else if (d <= level2) p = 'WALK';
-  else if (d <= level3) p = 'RUN';
-  else p = 'FLY';
-  return p;
-};
-
-//d depositedFunds
-const getPlanLevel = (d) => {
-  let p; // plan
-  if (d <= level0) p = 0;
-  else if (d <= level1) p = 1;
-  else if (d <= level2) p = 2;
-  else if (d <= level3) p = 3;
-  else p = 4;
-  return p;
 };
 
 const seedDB = async () => {
@@ -209,8 +211,11 @@ const seedDB = async () => {
         mnemonic: defaultReferrerMnemonic,
       },
     );
+
+    bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
   } else {
     console.log('db used second or more times');
+    bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
   }
 };
 
