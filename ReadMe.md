@@ -1,6 +1,10 @@
 WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
+
+// Show invite link to new user or not?
+// or if he invites some he does not get the reward?
+
 Road blocks:
 * many /start at a time cause problem
 * transactions get balance get
