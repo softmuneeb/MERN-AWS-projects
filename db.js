@@ -13,11 +13,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  depositedFunds: {
+  depositedFunds: { // decides plan of user is START, WALK, RUN or FLY 
     type: Number,
     default: 0,
   },
-  balance: {
+  balance: { // referral earnings
     type: Number,
     default: 0,
   },

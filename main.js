@@ -46,6 +46,17 @@ const p = {
     return ans;
   },
 
+  getWithdrawRecyclePercentage: ({ depositedFunds: d }) => {
+    let ans; // plan
+    if (d >= p.level5) ans = [70, 30];
+    else if (d >= p.level4) ans = [60, 40];
+    else if (d >= p.level3) ans = [50, 50];
+    else if (d >= p.level2) ans = [40, 60];
+    else if (d >= p.level1) ans = [0, 0];
+    else ans = [0, 0];
+    return ans;
+  },
+
   // d depositedFunds
   getRecycleRewardLevelPercentage: ({ depositedFunds: d }) => {
     let ans; // plan
@@ -153,7 +164,7 @@ TON deposit address:`,
     setTimeout(() => bot.sendMessage(chatId, '' + publicKey), 100);
   }
   // users who want to upgrade
-  else if (msg.text === '/upgrade') {
+  else if (msg.text.includes('/upgrade')) {
     // give rewards as 70 30
 
     if (!existsUser(user)) {
@@ -171,10 +182,27 @@ TON deposit address:`,
     await giveRewardsNormal(user, user.balance * 0.7); // 70%
     await writeBook({ userName }, { balance: 0 });
 
-    bot.sendMessage(chatId, 'Under development');
+    bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7));
   }
   // users who want to withdraw
-  else if (msg.text === '/withdraw') {
+  else if (msg.text.includes('/withdraw')) {
+    // get referrer
+    let withdrawWallet = msg.text.split(' ')[1];
+    // if referrer undefined then make defaultReferrer his referrer
+    if (withdrawWallet === undefined) {
+      bot.sendMessage(chatId, 'Please send valid TON deposit address');
+      return;
+    }
+    // TODO: if address is invalid tell users
+
+    const percent = 1 / 100;
+    const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
+
+    // TODO: add in DB that TON left from system
+    // TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
+    await transferFrom(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
+    await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
+
     bot.sendMessage(chatId, 'Under development');
   }
   // bot does not understand message
