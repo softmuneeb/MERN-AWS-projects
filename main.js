@@ -47,6 +47,15 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
+// setup express app so we can visit link after vercel api hosting
+const express = require('express');
+const app = express();
+const cors = require('cors');
+app.use(cors());
+app.set('json spaces', 2);
+app.get('/', (r, res) => res.json({ message: 'hi ' + Date() }));
+const listener = app.listen(process.env.PORT || 8080, () => console.log('Listening on port ' + listener.address().port));
+
 const onMessage = async (msg) => {
   console.log({ message: msg.text });
 
@@ -66,7 +75,7 @@ const onMessage = async (msg) => {
     // show stats saved in db to telegram user
 
     if (existsUser(user)) {
-       [, depositedFunds] = await getBalance(user.mnemonic);
+      [, depositedFunds] = await getBalance(user.mnemonic);
       // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
       if (Number(depositedFunds) !== user.depositedFunds) {
         console.log('giveRewards');
@@ -120,7 +129,6 @@ TON deposit address:`,
   }
   // users who want to upgrade
   else if (msg.text === '/upgrade') {
-
     // give rewards as 70 30
 
     bot.sendMessage(chatId, 'Under development');
