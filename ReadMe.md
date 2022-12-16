@@ -1,6 +1,12 @@
 WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
+Road blocks:
+* many /start at a time cause problem
+* transactions get balance get
+* 
+
+
 // break big problem in small ones is an art...
 
 // make code pure...
