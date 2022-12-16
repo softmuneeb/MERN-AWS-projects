@@ -1,15 +1,17 @@
-const mongoose = require('mongoose');
+const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
+const dbName = 'UserModel21';
 
+const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
 const UserSchema = new mongoose.Schema({
   chatId: {
     type: String,
-    default: '0',
+    default: null,
   },
   userName: {
     type: String,
-    default: '0',
+    default: null,
   },
   depositedFunds: {
     type: Number,
@@ -21,11 +23,11 @@ const UserSchema = new mongoose.Schema({
   },
   publicKey: {
     type: String,
-    default: '0',
+    default: null,
   },
   mnemonic: {
     type: String,
-    default: '0',
+    default: null,
   },
   parent: {
     type: String, // chatId of the person who referred me
@@ -37,9 +39,6 @@ const UserSchema = new mongoose.Schema({
   },
   date: { type: Number, default: new Date() },
 });
-
-const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'UserModel17';
 
 const readBook = async (user) => {
   const User = new mongoose.model(dbName, UserSchema);

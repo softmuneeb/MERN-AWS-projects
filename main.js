@@ -85,18 +85,20 @@ const onMessage = async (msg) => {
     // show stats saved in db to telegram user
     let parent = user.parent ? 'You are invited by: ' + user.parent + '\n' : '';
     let child = user.child.length > 0 ? 'You invited: ' + user.child + '\n' : '';
-    let publicKey = user.publicKey === '0' ? pub : user.publicKey;
+    let publicKey = user.publicKey ? user.publicKey : pub;
 
     // show user info
     bot.sendMessage(
       chatId,
       `${user.userName} has ${user.balance} TON
-      You are ${user.depositedFunds}
-      ${parent + child}
-      Invite link: https://t.me/sheikhu_bot?start=${user.userName}
-      TON deposit address:`,
+Your plan ${user.depositedFunds}
+Deposit more TON to reach next level
+${parent + child}
+Invite link: https://t.me/sheikhu_bot?start=${user.userName}
+TON deposit address:`,
     );
-    bot.sendMessage(chatId, '' + publicKey);
+    // send msg after 100 ms, just to confirm it reaches after 1st message
+    setTimeout(() => bot.sendMessage(chatId, '' + publicKey), 100);
   }
   // users who want to upgrade
   else if (msg.text === '/upgrade') {
@@ -149,17 +151,16 @@ const giveRewards = async (user, depositedFunds) => {
   console.log('parents start:');
   console.log({ i: 1, userParent: userParent.userName });
   for (let level = 2; level <= 15; level++) {
-    if (!userParent.parent) break;
-
+    if (!userParent.parent) {
+      break;
+    }
     // TODO: can not understand code? whatsapp me +923348438939
-
     userParent = await readBook({ userName: userParent.parent });
     planLevelsAllowed = getPlanLevel(userParent.depositedFunds);
-
-    if (level < planLevelsAllowed)
-      // give reward
+    // give reward on level 6, 9, 12, 15
+    if (level < planLevelsAllowed) {
       await writeBook({ userName: userParent.userName }, { balance: userParent.balance + depositedFunds * 5 * percent });
-
+    }
     console.log({ i: level, userParent: userParent.userName });
   }
   console.log('parents end:');
@@ -168,7 +169,7 @@ const giveRewards = async (user, depositedFunds) => {
 bot.on('message', onMessage);
 
 const oldUser = (user) => {
-  return user.publicKey !== '0';
+  return user.publicKey !== null;
 };
 
 //d depositedFunds
