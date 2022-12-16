@@ -120,6 +120,9 @@ TON deposit address:`,
   }
   // users who want to upgrade
   else if (msg.text === '/upgrade') {
+
+    // give rewards as 70 30
+
     bot.sendMessage(chatId, 'Under development');
   }
   // users who want to withdraw
