@@ -32,7 +32,6 @@ const onMessage = async (msg) => {
   console.log({ message: msg.text });
 
   const chatId = msg.chat.id;
-  console.log({ chatId });
   const userName = msg.chat.username;
   let pub;
   let user = await readBook({ userName });
@@ -51,7 +50,8 @@ const onMessage = async (msg) => {
       console.log('old user');
       const [, depositedFunds] = await getBalance(user.mnemonic);
       // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
-      if (depositedFunds !== user.depositedFunds) {
+      if (Number(depositedFunds) !== user.depositedFunds) {
+        console.log('giveRewards');
         await giveRewards(user, depositedFunds);
       }
     }
@@ -92,9 +92,9 @@ const onMessage = async (msg) => {
     // show user info
     bot.sendMessage(
       chatId,
-      `${user.userName} has ${user.balance} TON
-Your plan ${user.depositedFunds}
-Deposit more TON to reach next level
+      `${user.userName} has earned ${user.balance} TON
+Deposited Funds ${user.depositedFunds} TON
+Your plan ${plan(user.depositedFunds)}
 ${parent + child}
 Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:`,
@@ -177,12 +177,11 @@ const existsUser = (user) => {
 //d depositedFunds
 const plan = (d) => {
   let p; // plan
-  if (d <= level0) p = 0;
-  else if (d <= level1) p = 1;
-  else if (d <= level2) p = 2;
-  else if (d <= level3) p = 3;
-  else if (d <= level4) p = 4;
-  else if (d <= level5) p = 5;
+  if (d <= level0) p = 'BABY';
+  else if (d <= level1) p = 'START';
+  else if (d <= level2) p = 'WALK';
+  else if (d <= level3) p = 'RUN';
+  else p = 'FLY';
   return p;
 };
 
@@ -193,8 +192,7 @@ const getPlanLevel = (d) => {
   else if (d <= level1) p = 1;
   else if (d <= level2) p = 2;
   else if (d <= level3) p = 3;
-  else if (d <= level4) p = 4;
-  else if (d <= level5) p = 5;
+  else p = 4;
   return p;
 };
 
