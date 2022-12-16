@@ -214,7 +214,7 @@ const seedDB = async () => {
       },
     );
 
-    bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
+    // bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
   } else {
     console.log('db used second or more times');
     bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
