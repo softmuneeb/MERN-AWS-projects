@@ -1,5 +1,5 @@
 const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'UserModel21';
+const dbName = 'UserModel27';
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -64,7 +64,8 @@ const writeBook = async (user, newUserState) => {
   });
   const response = await Todo.updateOne(user, newUserState);
   // await mongoose.connection.close();
-  console.log({ response });
+  // console.log({ response });
+  console.log({ responseModifiedCount: response.modifiedCount });
   return response;
 };
 

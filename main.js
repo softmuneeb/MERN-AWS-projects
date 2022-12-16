@@ -3,7 +3,7 @@
 // TODO: it should come from env
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
   'crypto_millio',
-  '1672843321',
+  '5729797630',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
@@ -32,6 +32,7 @@ const onMessage = async (msg) => {
   console.log({ message: msg.text });
 
   const chatId = msg.chat.id;
+  console.log({ chatId });
   const userName = msg.chat.username;
   let pub;
   let user = await readBook({ userName });
@@ -46,7 +47,8 @@ const onMessage = async (msg) => {
     //
     // show stats saved in db to telegram user
 
-    if (oldUser(user)) {
+    if (existsUser(user)) {
+      console.log('old user');
       const [, depositedFunds] = await getBalance(user.mnemonic);
       // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
       if (depositedFunds !== user.depositedFunds) {
@@ -55,30 +57,30 @@ const onMessage = async (msg) => {
     }
     // New User
     else {
-      // Create and Save Wallet
+      console.log('new user');
+      // get referrer
+      let referrer = msg.text.split(' ')[1];
+      // if referrer undefined then make defaultReferrer his referrer
+      if (referrer === undefined) {
+        referrer = defaultReferrer;
+      }
+      // if referrer not exist then make defaultReferrer his referrer
+      let referrerObj = await readBook({ userName: referrer });
+      if (!existsUser(referrerObj)) {
+        referrerObj = await readBook({ userName: defaultReferrer });
+      }
+
+      // create and save wallet
       const [publicKey, mnemonic] = await mnemonicGenerate();
       pub = publicKey;
       await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
 
-      // get referrer
-      let referrer = msg.text.split(' ')[1];
-      if (referrer === undefined) {
-        referrer = defaultReferrer;
-      }
-
-      // referrer must exist in system
-      const referrerObj = await readBook({ userName: referrer });
-      if (!oldUser(referrerObj)) {
-        bot.sendMessage(chatId, 'Invalid link OR Your sponsor does not exist in MLM System');
-        return;
-      }
-
       // make referrer chain
-      await writeBook({ userName }, { parent: referrer });
-      await writeBook({ userName: referrer }, { child: [...referrerObj.child, userName] });
+      await writeBook({ userName }, { parent: referrerObj.userName });
+      await writeBook({ userName: referrerObj.userName }, { child: [...referrerObj.child, userName] });
 
       // TODO: call the /start for the referrer here! :) // test and move it to readme
-      bot.sendMessage(chatId, userName + ' is invited by ' + referrer);
+      bot.sendMessage(chatId, userName + ' is invited by ' + referrerObj.userName);
       bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
     }
 
@@ -168,7 +170,7 @@ const giveRewards = async (user, depositedFunds) => {
 // onMessage();
 bot.on('message', onMessage);
 
-const oldUser = (user) => {
+const existsUser = (user) => {
   return user.publicKey !== null;
 };
 
@@ -197,7 +199,7 @@ const getPlanLevel = (d) => {
 };
 
 const seedDB = async () => {
-  if (!oldUser(await readBook({ userName: defaultReferrer }))) {
+  if (!existsUser(await readBook({ userName: defaultReferrer }))) {
     console.log('db used first time');
 
     await writeBook(
