@@ -1,5 +1,5 @@
 const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'UserModel28';
+const dbName = 'UserModel29';
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);

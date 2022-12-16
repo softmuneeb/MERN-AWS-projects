@@ -52,7 +52,7 @@ const onMessage = async (msg) => {
 
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
-  let publicKey, mnemonic;
+  let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
 
   // show deposit instructions
@@ -66,8 +66,7 @@ const onMessage = async (msg) => {
     // show stats saved in db to telegram user
 
     if (existsUser(user)) {
-      console.log('old user');
-      const [, depositedFunds] = await getBalance(user.mnemonic);
+       [, depositedFunds] = await getBalance(user.mnemonic);
       // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
       if (Number(depositedFunds) !== user.depositedFunds) {
         console.log('giveRewards');
@@ -76,7 +75,6 @@ const onMessage = async (msg) => {
     }
     // New User
     else {
-      console.log('new user');
       // get referrer
       let referrer = msg.text.split(' ')[1];
       // if referrer undefined then make defaultReferrer his referrer
@@ -110,9 +108,10 @@ const onMessage = async (msg) => {
     bot.sendMessage(
       chatId,
       `${user.userName} has earned ${user.balance} TON
-Deposited Funds ${user.depositedFunds} TON
+Deposited Funds ${depositedFunds} TON
 Your plan ${p.plan(user)}
-${parent + child}
+${parent}
+${child}
 Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:`,
     );
