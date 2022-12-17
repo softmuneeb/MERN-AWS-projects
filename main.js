@@ -1,6 +1,8 @@
 // explanation / plan in readme file
 
 // TODO: it should come from env
+const admins = ['crypto_millio', 'ADMIN'];
+
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
   'crypto_millio',
   '5729797630',
@@ -13,6 +15,7 @@ const [adminUserName, adminAddress, adminMnemonic] = [
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
 
+const _7SponsorPool = '7_SPONSOR_POOL';
 // moved some functions in an object because they depend on each other
 const p = {
   level0: 1 * 0.0005, // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
@@ -75,7 +78,11 @@ const p = {
   },
 };
 
-const { readBook, writeBook } = require('./db');
+const IN_POOL = 1;
+const NOT_IN_POOL = 0;
+const REMOVED_FROM_POOL = 2;
+
+const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
@@ -142,7 +149,7 @@ const onMessage = async (msg) => {
 
       bot.sendMessage(chatId, userName + ' is invited by ' + referrerObj.userName);
       bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
-      // 
+      //
     }
 
     // show stats saved in db to telegram user
@@ -206,6 +213,47 @@ TON deposit address:`,
 
     bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
   }
+  // users who want to withdraw
+  else if (msg.text.includes('/reward_7_pool_members')) {
+    /// TODO: only admin can access this function
+    const userName = msg.chat.username;
+
+    if (!admins.includes(userName)) {
+      bot.sendMessage(chatId, `Only admins can access this function`);
+      return;
+    }
+
+    const usersOf7Pool = await readBookMany({ isIn7SponsorPool: IN_POOL });
+    const pool = await readBook({ userName: _7SponsorPool });
+    const rewardPerUser = pool.balance / usersOf7Pool.length;
+
+    let backToPoolTotal = 0;
+    //// TODO: if users go to 1000, or Millions then any problem in loop?...
+    // optimize database read writes...
+
+    if (rewardPerUser === 0) {
+      bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`);
+      return;
+    }
+
+    for (let i = 0; i < usersOf7Pool.length; i++) {
+      const user = usersOf7Pool[i];
+      const reward = user.earnings7SponsorPool + rewardPerUser;
+      const maxReward = 2 * user.depositedFunds;
+      if (reward >= maxReward) {
+        const backToPool = reward - maxReward;
+        backToPoolTotal += backToPool;
+        // TODO: note down the user.depositedFunds, date time of this event
+        await writeBook({ userName: user.parent }, { earnings7SponsorPool: maxReward, isIn7SponsorPool: REMOVED_FROM_POOL });
+      } else {
+        await writeBook({ userName: user.userName }, { earnings7SponsorPool: user.earnings7SponsorPool + reward });
+      }
+    }
+
+    await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
+
+    bot.sendMessage(chatId, `Successfully sent ${100} TON to pool members`);
+  }
   // bot does not understand message
   else {
     bot.sendMessage(chatId, 'click /start');
@@ -224,7 +272,7 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   // check balance change
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
-  let pool = await readBook({ userName: '7_SPONSOR_POOL' });
+  let pool = await readBook({ userName: _7SponsorPool });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
@@ -253,9 +301,11 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   // 7 or more child
   else {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 20 * percent });
-    
-    // add person to _7_SPONSOR_POOL
-    await writeBook({ userName: user.parent }, { _7_SPONSOR_POOL: true });
+
+    // add person to isIn7SponsorPool
+    if (user.isIn7SponsorPool === NOT_IN_POOL) {
+      await writeBook({ userName: user.parent }, { isIn7SponsorPool: IN_POOL });
+    }
   }
   remaining -= 20; // percent, 20% distributed on LEVEL 1
 
@@ -266,13 +316,14 @@ const giveRewardsNormal = async (user, depositedFunds) => {
       remaining -= 5; // percent
       console.log({ remaining });
       await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
+      bot.sendMessage(userParent.chatId, `You have earned ${userParent.balance + 5 * percent} TON from deposit of ${user.userName}`);
     }
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent });
-  await writeBook({ userName: '7_SPONSOR_POOL' }, { balance: pool.balance + 0.5 * remaining * percent });
+  await writeBook({ userName: _7SponsorPool }, { balance: pool.balance + 0.5 * remaining * percent });
 };
 
 const giveRewardsRecycle = async (user, depositedFunds) => {

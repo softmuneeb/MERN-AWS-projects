@@ -13,11 +13,21 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  depositedFunds: { // decides plan of user is START, WALK, RUN or FLY 
+  isIn7SponsorPool: {
+    type: Number,
+    default: 0, // 0 not added to pool, 1 added to pool, 2 removed from pool and he can not enter again
+  },
+  earnings7SponsorPool: {
+    type: Number,
+    default: 0, // if earnings go 2x of depositedFunds then person is removed from pool and can not enter gain
+  },
+  depositedFunds: {
+    // decides plan of user is START, WALK, RUN or FLY
     type: Number,
     default: 0,
   },
-  balance: { // referral earnings
+  balance: {
+    // referral earnings
     type: Number,
     default: 0,
   },
@@ -56,6 +66,22 @@ const readBook = async (user) => {
   return response;
 };
 
+const readBookMany = async (user) => {
+  const User = new mongoose.model(dbName, UserSchema);
+  mongoose.connect(dbLink, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+
+  let response = await User.find(user);
+
+  if (response === undefined) {
+    response = [];
+  }
+
+  return response;
+};
+
 const writeBook = async (user, newUserState) => {
   const Todo = new mongoose.model(dbName, UserSchema);
   mongoose.connect(dbLink, {
@@ -80,4 +106,4 @@ const writeBook = async (user, newUserState) => {
 //   console.log({ user2 });
 // })();
 
-module.exports = { readBook, writeBook };
+module.exports = { readBook, writeBook, readBookMany };
