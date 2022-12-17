@@ -1,6 +1,15 @@
 // explanation / plan in readme file
 
 // TODO: it should come from env
+
+const keyboard = [
+  ['💎 Wallet', 'Upgrade'],
+  ['Reward 7 Pool Members'],
+  ['Reward Super Star Pool Members'],
+  ['Withdraw'],
+  ['HELP'],
+];
+
 const admins = ['crypto_millio', 'ADMIN'];
 
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
@@ -96,7 +105,9 @@ const cors = require('cors');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (r, res) => res.json({ message: 'hi ' + Date() }));
-const listener = app.listen(process.env.PORT || 8080, () => console.log('Listening on port ' + listener.address().port));
+const listener = app.listen(process.env.PORT || 8080, () =>
+  console.log('Listening on port ' + listener.address().port),
+);
 
 // on telegram message
 const onMessage = async (msg) => {
@@ -109,7 +120,7 @@ const onMessage = async (msg) => {
 
   // show deposit instructions
   // users who came from referral link
-  if (msg.text.includes('/start')) {
+  if (msg.text.includes('/start') || msg.text.includes('Wallet')) {
     // old user: if balance updated then update rewards up in the chain and also update balance deposited
     // new user: ------> with refer
     //         |-------> without refer
@@ -169,10 +180,18 @@ Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:`,
     );
     // send msg after 100 ms, just to confirm it reaches after 1st message
-    setTimeout(() => bot.sendMessage(chatId, '' + publicKey), 100);
+    setTimeout(
+      () =>
+        bot.sendMessage(chatId, '' + publicKey, {
+          reply_markup: {
+            keyboard,
+          },
+        }),
+      100,
+    );
   }
   // users who want to upgrade
-  else if (msg.text.includes('/upgrade')) {
+  else if (msg.text.includes('Upgrade')) {
     // give rewards as 70 30
 
     if (!existsUser(user)) {
@@ -180,7 +199,7 @@ TON deposit address:`,
       return;
     }
     if (user.balance === 0) {
-      bot.sendMessage(chatId, 'No balance, No upgrade');
+      bot.sendMessage(chatId, 'Low balance to upgrade');
       return;
     }
 
@@ -193,7 +212,7 @@ TON deposit address:`,
     bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7));
   }
   // users who want to withdraw
-  else if (msg.text.includes('/withdraw')) {
+  else if (msg.text.includes('Withdraw')) {
     // get referrer
     let withdrawWallet = msg.text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
@@ -214,7 +233,7 @@ TON deposit address:`,
     bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
   }
   // users who want to withdraw
-  else if (msg.text.includes('/reward_7_pool_members')) {
+  else if (msg.text.includes('Reward 7 Pool Members')) {
     /// TODO: only admin can access this function
     const userName = msg.chat.username;
 
@@ -244,7 +263,13 @@ TON deposit address:`,
         const backToPool = reward - maxReward;
         backToPoolTotal += backToPool;
         // TODO: note down the user.depositedFunds, date time of this event
-        await writeBook({ userName: user.parent }, { earnings7SponsorPool: maxReward, isIn7SponsorPool: REMOVED_FROM_POOL });
+        await writeBook(
+          { userName: user.parent },
+          {
+            earnings7SponsorPool: maxReward,
+            isIn7SponsorPool: REMOVED_FROM_POOL,
+          },
+        );
       } else {
         await writeBook({ userName: user.userName }, { earnings7SponsorPool: user.earnings7SponsorPool + reward });
       }
@@ -255,7 +280,7 @@ TON deposit address:`,
     bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`);
   }
   // users who want to withdraw
-  else if (msg.text.includes('/reward_super_star_pool_members')) {
+  else if (msg.text.includes('Reward Super Star Pool Members')) {
     /// TODO: only admin can access this function
     const userName = msg.chat.username;
 
@@ -268,7 +293,11 @@ TON deposit address:`,
   }
   // bot does not understand message
   else {
-    bot.sendMessage(chatId, 'click /start');
+    bot.sendMessage(chatId, 'hi https://www.youtube.com/watch?v=covxjhXsCi8', {
+      reply_markup: {
+        keyboard,
+      },
+    });
   }
 };
 
@@ -328,7 +357,10 @@ const giveRewardsNormal = async (user, depositedFunds) => {
       remaining -= 5; // percent
       console.log({ remaining });
       await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
-      bot.sendMessage(userParent.chatId, `You have earned ${userParent.balance + 5 * percent} TON from deposit of ${user.userName}`);
+      bot.sendMessage(
+        userParent.chatId,
+        `You have earned ${userParent.balance + 5 * percent} TON from deposit of ${user.userName}`,
+      );
     }
   }
 
@@ -390,8 +422,6 @@ const seedDB = async () => {
         mnemonic: defaultReferrerMnemonic,
       },
     );
-
-    // bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
   } else {
     console.log('db used second or more times');
     // bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
