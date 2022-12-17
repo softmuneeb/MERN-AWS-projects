@@ -142,6 +142,7 @@ const onMessage = async (msg) => {
 
       bot.sendMessage(chatId, userName + ' is invited by ' + referrerObj.userName);
       bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
+      // 
     }
 
     // show stats saved in db to telegram user
@@ -203,11 +204,11 @@ TON deposit address:`,
     await transferFrom(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
     await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
 
-    bot.sendMessage(chatId, 'Under development');
+    bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
   }
   // bot does not understand message
   else {
-    bot.sendMessage(chatId, 'hi, type /start');
+    bot.sendMessage(chatId, 'click /start');
   }
 };
 
@@ -223,7 +224,7 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   // check balance change
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
-  let pool = await readBook({ userName: 'POOL' });
+  let pool = await readBook({ userName: '7_SPONSOR_POOL' });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
@@ -252,6 +253,9 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   // 7 or more child
   else {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 20 * percent });
+    
+    // add person to _7_SPONSOR_POOL
+    await writeBook({ userName: user.parent }, { _7_SPONSOR_POOL: true });
   }
   remaining -= 20; // percent, 20% distributed on LEVEL 1
 
@@ -267,7 +271,8 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
+  await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent });
+  await writeBook({ userName: '7_SPONSOR_POOL' }, { balance: pool.balance + 0.5 * remaining * percent });
 };
 
 const giveRewardsRecycle = async (user, depositedFunds) => {
