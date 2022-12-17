@@ -3,16 +3,14 @@
 // TODO: it should come from env
 
 const keyboard = [
-  ['💎 Wallet', 'Upgrade'],
-  ['Reward 7 Pool Members'],
-  ['Reward Super Star Pool Members'],
-  ['Withdraw'],
-  ['HELP'],
+  ['💎 Wallet', '🚀 Upgrade'],
+  ['💳 Withdraw'],
+  ['🙏🏻 HELP'],['💁‍♂️ Info'],['⭐️ Start'],['🖇 Referrals list'],['🔗 Invitation link'],
 ];
 
 const adminKeyBoard = [
-  ['Reward 7 Pool Members'],
-  ['Reward Super Star Pool Members'],
+  ['🤵🏼‍♂️ Reward 7 Pool Members'],
+  ['🦸‍♂️ Reward Super Star Pool Members'],
 ]
 const admins = ['crypto_millio', 'ADMIN'];
 
