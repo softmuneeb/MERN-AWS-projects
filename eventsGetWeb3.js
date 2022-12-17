@@ -1,6 +1,7 @@
 // detect events
 import Web3 from 'web3';
-const networkLink = 'https://polygon-rpc.com';
+// const networkLink = 'https://polygon-rpc.com';
+const networkLink = 'https://matic-mumbai.chainstacklabs.com';
 const web3 = new Web3(networkLink);
 
 const scAddress = '0x74a845ADC5A0487887Ccc6437cCA2Ee2E5Ee8a8B';
@@ -12,9 +13,16 @@ const sc = new web3.eth.Contract(scAbi, scAddress);
 const gasPrice = await web3.eth.getGasPrice();
 console.log({ gasPrice: web3.utils.fromWei(gasPrice, 'gwei') + ' GWEI' });
 
-const events = await sc.getPastEvents('Transfer', {
-  fromBlock: 36912137,
-  toBlock: 36926021,
+const chainId = await web3.eth.getChainId();
+console.log({
+  chainId,
+  chainId2: chainId === 80001,
 });
 
-console.log({ returnValue: events[0].returnValues });
+// const events = await sc.getPastEvents('Transfer', {
+//   fromBlock: 36912137,
+//   toBlock: 36926021,
+// });
+
+// console.log({ events: events.length });
+// console.log({ returnValue: events[0].returnValues });
