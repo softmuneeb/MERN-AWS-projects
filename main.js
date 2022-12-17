@@ -252,7 +252,19 @@ TON deposit address:`,
 
     await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
 
-    bot.sendMessage(chatId, `Successfully sent ${100} TON to pool members`);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`);
+  }
+  // users who want to withdraw
+  else if (msg.text.includes('/reward_super_star_pool_members')) {
+    /// TODO: only admin can access this function
+    const userName = msg.chat.username;
+
+    if (!admins.includes(userName)) {
+      bot.sendMessage(chatId, `Only admins can access this function`);
+      return;
+    }
+
+    bot.sendMessage(chatId, `Successfully sent TON to pool members`);
   }
   // bot does not understand message
   else {
