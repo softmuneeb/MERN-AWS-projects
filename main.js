@@ -1,7 +1,7 @@
 // explanation / plan in readme file
 
 // TODO: it should come from env
-
+// ===============This section if for crypto millio
 const keyboard = [
   ['💎 Wallet', 'Upgrade'],
   ['Reward 7 Pool Members'],
@@ -14,6 +14,8 @@ const adminKeyBoard = [
   ['Reward 7 Pool Members'],
   ['Reward Super Star Pool Members'],
 ]
+// ===============Till Here =====
+
 const admins = ['crypto_millio', 'ADMIN'];
 
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
