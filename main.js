@@ -231,7 +231,7 @@ TON deposit address:`,
 
     // TODO: add in DB that TON left from system
     // TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
-    await transferFrom(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
+    await transferFromOnChain(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
     await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
 
     bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
