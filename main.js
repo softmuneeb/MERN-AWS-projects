@@ -10,6 +10,10 @@ const keyboard = [
   ['HELP'],
 ];
 
+const adminKeyBoard = [
+  ['Reward 7 Pool Members'],
+  ['Reward Super Star Pool Members'],
+]
 const admins = ['crypto_millio', 'ADMIN'];
 
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
