@@ -21,6 +21,12 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
+const pad = {
+  reply_markup: {
+    keyboard,
+  },
+};
+
 const admins = ['crypto_millio', 'ADMIN'];
 
 const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
@@ -109,6 +115,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
+let i = 1;
+
 // setup express app so we can visit link after vercel api hosting
 const express = require('express');
 const app = express();
@@ -129,50 +137,42 @@ const onMessage = async (msg) => {
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
 
+  // Old User
+  if (existsUser(user)) {
+    [, depositedFunds] = await getBalance(user.mnemonic); // wait to get balance next call
+    // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
+    if (Number(depositedFunds) !== user.depositedFunds) {
+      console.log('giveRewards');
+      await giveRewardsNormal(user, depositedFunds);
+    }
+  }
+  // New User
+  else {
+    let referrer = msg.text.split(' ')[1];
+    // if referrer undefined then make defaultReferrer his referrer
+    if (referrer === undefined) {
+      referrer = defaultReferrer;
+    }
+    // if referrer not exist then make defaultReferrer his referrer
+    let referrerObj = await readBook({ userName: referrer });
+    if (!existsUser(referrerObj)) {
+      referrerObj = await readBook({ userName: defaultReferrer });
+    }
+
+    // create and save wallet
+    [publicKey, mnemonic] = await mnemonicGenerate();
+    await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
+
+    // make referrer chain
+    await writeBook({ userName }, { parent: referrerObj.userName });
+    await writeBook({ userName: referrerObj.userName }, { child: [...referrerObj.child, userName] });
+
+    bot.sendMessage(chatId, 'You are invited by ' + referrerObj.userName, pad);
+    bot.sendMessage(referrerObj.chatId, 'You invited ' + userName, pad);
+  }
+
   // PUBLIC FUNCTIONS
   if (msg.text.includes('/start') || msg.text.includes('⭐️ Start')) {
-    // old user: if balance updated then update rewards up in the chain and also update balance deposited
-    // new user: ------> with refer
-    //         |-------> without refer
-    //
-    //
-    // show stats saved in db to telegram user
-
-    if (existsUser(user)) {
-      [, depositedFunds] = await getBalance(user.mnemonic);
-      // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
-      if (Number(depositedFunds) !== user.depositedFunds) {
-        console.log('giveRewards');
-        await giveRewardsNormal(user, depositedFunds);
-      }
-    }
-    // New User
-    else {
-      // get referrer
-      let referrer = msg.text.split(' ')[1];
-      // if referrer undefined then make defaultReferrer his referrer
-      if (referrer === undefined) {
-        referrer = defaultReferrer;
-      }
-      // if referrer not exist then make defaultReferrer his referrer
-      let referrerObj = await readBook({ userName: referrer });
-      if (!existsUser(referrerObj)) {
-        referrerObj = await readBook({ userName: defaultReferrer });
-      }
-
-      // create and save wallet
-      [publicKey, mnemonic] = await mnemonicGenerate();
-      await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
-
-      // make referrer chain
-      await writeBook({ userName }, { parent: referrerObj.userName });
-      await writeBook({ userName: referrerObj.userName }, { child: [...referrerObj.child, userName] });
-
-      bot.sendMessage(chatId, userName + ' is invited by ' + referrerObj.userName);
-      bot.sendMessage(referrerObj.chatId, 'You invited ' + userName);
-      //
-    }
-
     // show stats saved in db to telegram user
     let parent = user.parent ? 'You are invited by: ' + user.parent + '\n' : '';
     let child = user.child.length > 0 ? 'You invited: ' + user.child + '\n' : '';
@@ -190,26 +190,18 @@ Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:`,
     );
     // send msg after 100 ms, just to confirm it reaches after 1st message
-    setTimeout(
-      () =>
-        bot.sendMessage(chatId, '' + publicKey, {
-          reply_markup: {
-            keyboard,
-          },
-        }),
-      100,
-    );
+    setTimeout(() => bot.sendMessage(chatId, '' + publicKey, pad), 100);
   }
   //
   else if (msg.text.includes('🚀 Upgrade')) {
     // give rewards as 70 30
 
     if (!existsUser(user)) {
-      bot.sendMessage(chatId, 'Invalid user');
+      bot.sendMessage(chatId, 'Invalid user', pad);
       return;
     }
     if (user.balance === 0) {
-      bot.sendMessage(chatId, 'Low balance to upgrade');
+      bot.sendMessage(chatId, 'Low balance to upgrade', pad);
       return;
     }
 
@@ -219,31 +211,31 @@ TON deposit address:`,
     await giveRewardsNormal(user, user.balance * 0.7); // 70%
     await writeBook({ userName }, { balance: 0 });
 
-    bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7));
+    bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7), pad);
   }
   //
   else if (msg.text.includes('🖇 Referrals list')) {
-    bot.sendMessage(chatId, 'This Referrals list');
+    bot.sendMessage(chatId, 'This Referrals list', pad);
   }
   //
   else if (msg.text.includes('💎 Wallet')) {
-    bot.sendMessage(chatId, 'Wallet');
+    bot.sendMessage(chatId, 'Wallet', pad);
   }
   //
   else if (msg.text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, 'Invitation link');
+    bot.sendMessage(chatId, 'Invitation link', pad);
   }
   //
   else if (msg.text.includes('🕶 All Details')) {
-    bot.sendMessage(chatId, '🕶 All Details');
+    bot.sendMessage(chatId, '🕶 All Details', pad);
   }
   //
   else if (msg.text.includes('🙏🏻 HELP')) {
-    bot.sendMessage(chatId, '🙏🏻 HELP');
+    // _(() => bot.sendMessage(chatId, '🙏🏻 HELP ' + i, pad));
   }
   //
   else if (msg.text.includes('💁‍♂️ Info')) {
-    bot.sendMessage(chatId, '💁‍♂️ Info');
+    bot.sendMessage(chatId, '💁‍♂️ Info', pad);
   }
   //
   else if (msg.text.includes('💳 Withdraw')) {
@@ -251,7 +243,7 @@ TON deposit address:`,
     let withdrawWallet = msg.text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
     if (withdrawWallet === undefined) {
-      bot.sendMessage(chatId, 'Please send valid TON deposit address');
+      bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
       return;
     }
     // TODO: if address is invalid tell users
@@ -264,7 +256,7 @@ TON deposit address:`,
     await transferFromOnChain(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
     await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
 
-    bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
+    bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`, pad);
   }
   //
   // ADMIN FUNCTIONS
@@ -273,7 +265,7 @@ TON deposit address:`,
     const userName = msg.chat.username;
 
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`);
+      bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
 
@@ -286,7 +278,7 @@ TON deposit address:`,
     // optimize database read writes...
 
     if (rewardPerUser === 0) {
-      bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`);
+      bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`, pad);
       return;
     }
 
@@ -312,7 +304,7 @@ TON deposit address:`,
 
     await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
   }
   //
   else if (msg.text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
@@ -320,31 +312,27 @@ TON deposit address:`,
     const userName = msg.chat.username;
 
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`);
+      bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members`);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members`, pad);
   }
   //
   else if (msg.text.includes('💳 Force Withdraw All Users')) {
-    bot.sendMessage(chatId, 'Invitation link');
+    bot.sendMessage(chatId, 'Invitation link', pad);
   }
   //
   else if (msg.text.includes('🎥 Send Media to Users')) {
-    bot.sendMessage(chatId, '🎥 Send Media to Users');
+    bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
   }
   //
   else if (msg.text.includes('📊 Total Users in System')) {
-    bot.sendMessage(chatId, '📊 Total Users in System');
+    bot.sendMessage(chatId, '📊 Total Users in System', pad);
   }
   // bot does not understand message
   else {
-    bot.sendMessage(chatId, 'hi https://www.youtube.com/watch?v=covxjhXsCi8', {
-      reply_markup: {
-        keyboard,
-      },
-    });
+    bot.sendMessage(chatId, 'hi https://www.youtube.com/watch?v=covxjhXsCi8', pad);
   }
 };
 
@@ -469,17 +457,20 @@ const seedDB = async () => {
   } else {
     console.log('db used second or more times');
   }
-  console.log("Bot started");
+  console.log('Bot started');
 };
-
-seedDB().then(() => bot.on('message', onMessage));
+try {
+  seedDB().then(() => bot.on('message', onMessage));
+} catch (error) {
+  console.log(error);
+}
 
 // let botBalance = '';
 // setInterval(async () => {
 //   const [, balance] = await getBalance(m);
 
 //   if (botBalance !== balance) {
-//     botBalance !== '' && bot.sendMessage(chatId, `Payment received`);
+//     botBalance !== '' && bot.sendMessage(chatId, `Payment received`, pad);
 
 //     console.log({ balance, botBalance });
 //     botBalance = balance;

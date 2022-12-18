@@ -3,6 +3,9 @@
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
+const apiKey = 'ec70b7fdf198bda11333873b6484724d73f2b08ed1d8c6e6f1663808feb0e3c1';
+const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', { apiKey }));
+
 async function publicKey(mnemonic) {
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
@@ -10,7 +13,6 @@ async function publicKey(mnemonic) {
   // console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
   // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
-  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
   // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
   const WalletClass = tonweb.wallet.all['v3R2'];
@@ -37,7 +39,7 @@ async function publicKey(mnemonic) {
 async function transferFrom(mnemonic, toAddress, amount) {
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
 
-  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
+  // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
   const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
@@ -76,7 +78,7 @@ async function getBalance(m) {
   // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
 
   // list available wallet versions
-  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
+  // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
   // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
 
   // ['simpleR1', simpleR2, simpleR3, v2R1, v2R2, v3R1, v3R2, v4R1, v4R2];
@@ -142,18 +144,22 @@ const unitTest = async () => {
     'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
   ];
   const [bNano, b] = await getBalance(userMnemonic);
+  await getBalance(userMnemonic);
+  await getBalance(userMnemonic);
+  await getBalance(userMnemonic);
+  // await getBalance(userMnemonic);
 
   console.log({ bNano, b });
-  const [adminAddress, adminMnemonic] = [
-    'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-    'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-  ];
+  // const [adminAddress, adminMnemonic] = [
+  //   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+  //   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+  // ];
 
-  try {
-    await transferFrom(userMnemonic, adminAddress, bNano);
-  } catch (e) {
-    console.log("error is:", e)
-  }
+  // try {
+  //   await transferFrom(userMnemonic, adminAddress, bNano);
+  // } catch (e) {
+  //   console.log('error is:', e);
+  // }
 };
 
 // unitTest();

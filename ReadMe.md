@@ -1,5 +1,25 @@
 WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
+// TODO: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
+Make video to explain code... how to use bot, how to add fetaure? remove, update.
+
+
+
+
+
+
+
+
+
+
+
+// old user: if balance updated then update rewards up in the chain and also update balance deposited
+    // new user: ------> with refer
+    //         |-------> without refer
+    //
+    //
+    // show stats saved in db to telegram user
+
 
 
 // Show invite link to new user or not?
