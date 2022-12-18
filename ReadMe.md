@@ -1,9 +1,29 @@
 WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
+
+Critical:
+// TODO: correct the logic balance + nonce OR tx + last updated
+// TODO: minus the balance upon withdrawal
+// TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
+
+// TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
+// TODO: if users go to 1000, or Millions then any problem in loop?...
+// TODO: add in DB that TON left from system
+
+// DONE: only admin can access this function
+
+Nice to do:
 // TODO: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
+// TODO: it should come from env
+// TODO: optimize database read writes...
+
+Optional:
+
+Dont understand:
+// TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
+// TODO: if address is invalid tell users
+
 Make video to explain code... how to use bot, how to add fetaure? remove, update.
-
-
 
 
 
@@ -430,3 +450,20 @@ seqno: 0
     // give reward on level 6, 9, 12, 15
     console.log({ i: level, userParent: userParent.userName });
   console.log('parents end:');
+bot.sendMessage(
+      chatId,
+      `${user.userName} has earned ${user.balance} TON
+Deposited Funds ${depositedFunds} TON
+Your plan ${p.planName(user)}
+${parent}
+${child}
+Invite link: https://t.me/sheikhu_bot?start=${user.userName}
+TON deposit address:
+\`${publicKey}\``,
+      { ...pad, parse_mode: 'Markdown' },
+    );
+
+    // send msg after 100 ms, just to confirm it reaches after 1st message
+    // setTimeout(() => bot.sendMessage(chatId, '`' + publicKey + '`', pad), 100);
+    // show user info
+    // show stats saved in db to telegram user

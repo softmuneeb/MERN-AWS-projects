@@ -44,7 +44,7 @@ async function transferFrom(mnemonic, toAddress, amount) {
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
   const seqno = (await wallet.methods.seqno().call()) || 0;
-  await sleep(1500); // TODO: api key check... avoid throttling by toncenter.com
+  // await sleep(1500); // TODO: api key check... avoid throttling by toncenter.com
 
   const fee = await wallet.methods
     .transfer({
@@ -67,7 +67,7 @@ async function transferFrom(mnemonic, toAddress, amount) {
     currentSeqno = (await wallet.methods.seqno().call()) || 0;
   }
   const address = await wallet.getAddress();
-  await sleep(1500); // avoid throttling by toncenter.com
+  // await sleep(1500); // avoid throttling by toncenter.com
   const balance = await tonweb.getBalance(address);
   console.log('balance:', TonWeb.utils.fromNano(balance));
 }
@@ -88,13 +88,16 @@ async function getBalance(m) {
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   const address = await wallet.getAddress();
   // console.log('address:', address.toString(true, true, true));
-  const seqno = (await wallet.methods.seqno().call()) || 0;
+  // const seqno = (await wallet.methods.seqno().call()) || 0;
   // console.log('seqno:', seqno);
-  await sleep(1500); // avoid throttling by toncenter.com
-  const balance = await tonweb.getBalance(address);
-  // console.log('balance:', TonWeb.utils.fromNano(balance));
-
-  return [balance, TonWeb.utils.fromNano(balance)];
+  let balance;
+  try {
+    balance = await tonweb.getBalance(address);
+    return [balance, TonWeb.utils.fromNano(balance)];
+  } catch (error) {
+    console.log(error);
+    return [null, null];
+  }
 }
 
 async function mnemonicGenerate() {

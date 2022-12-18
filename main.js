@@ -1,6 +1,5 @@
 // explanation / plan in readme file
 
-// TODO: it should come from env
 // ===============This section if for crypto millio
 const keyboard = [
   ['💎 Wallet', '🚀 Upgrade'], //
@@ -130,25 +129,36 @@ const listener = app.listen(process.env.PORT || 8080, () =>
 
 // on telegram message
 const onMessage = async (msg) => {
-  console.log({ message: msg.text });
-
+  const text = msg.text;
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
+  console.log({ text });
+
+  //
+  if (text.includes('🙏🏻 HELP')) {
+    bot.sendMessage(chatId, '🙏🏻 HELP', pad);
+    return;
+  }
+  //
+  else if (text.includes('💁‍♂️ Info')) {
+    bot.sendMessage(chatId, '💁‍♂️ Info', pad);
+    return;
+  }
+
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
 
   // Old User
   if (existsUser(user)) {
-    [, depositedFunds] = await getBalance(user.mnemonic); // wait to get balance next call
-    // depositedFunds updated // TODO: correct the logic balance + nonce OR tx + last updated
-    if (Number(depositedFunds) !== user.depositedFunds) {
+    [, depositedFunds] = await getBalance(user.mnemonic);
+    if (depositedFunds && Number(depositedFunds) !== user.depositedFunds) {
       console.log('giveRewards');
       await giveRewardsNormal(user, depositedFunds);
     }
   }
   // New User
   else {
-    let referrer = msg.text.split(' ')[1];
+    let referrer = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
     if (referrer === undefined) {
       referrer = defaultReferrer;
@@ -171,31 +181,15 @@ const onMessage = async (msg) => {
     bot.sendMessage(referrerObj.chatId, 'You invited ' + userName, pad);
   }
 
+  //
+  //
+  //
   // PUBLIC FUNCTIONS
-  if (msg.text.includes('/start') || msg.text.includes('⭐️ Start')) {
-    // show stats saved in db to telegram user
-    let parent = user.parent ? 'You are invited by: ' + user.parent + '\n' : '';
-    let child = user.child.length > 0 ? 'You invited: ' + user.child + '\n' : '';
-    publicKey = user.publicKey ? user.publicKey : publicKey;
-
-    // show user info
-    bot.sendMessage(
-      chatId,
-      `${user.userName} has earned ${user.balance} TON
-Deposited Funds ${depositedFunds} TON
-Your plan ${p.planName(user)}
-${parent}
-${child}
-Invite link: https://t.me/sheikhu_bot?start=${user.userName}
-TON deposit address:`,
-    );
-    // send msg after 100 ms, just to confirm it reaches after 1st message
-    setTimeout(() => bot.sendMessage(chatId, '' + publicKey, pad), 100);
+  if (text.includes('/start') || text.includes('⭐️ Start')) {
+    bot.sendMessage(chatId, `${user.userName}\nDeposited ${depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
   }
   //
-  else if (msg.text.includes('🚀 Upgrade')) {
-    // give rewards as 70 30
-
+  else if (text.includes('🚀 Upgrade')) {
     if (!existsUser(user)) {
       bot.sendMessage(chatId, 'Invalid user', pad);
       return;
@@ -205,8 +199,6 @@ TON deposit address:`,
       return;
     }
 
-    // dis...
-    // TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
     await giveRewardsRecycle(user, user.balance * 0.3); // 30%
     await giveRewardsNormal(user, user.balance * 0.7); // 70%
     await writeBook({ userName }, { balance: 0 });
@@ -214,54 +206,67 @@ TON deposit address:`,
     bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7), pad);
   }
   //
-  else if (msg.text.includes('🖇 Referrals list')) {
-    bot.sendMessage(chatId, 'This Referrals list', pad);
+  else if (text.includes('🖇 Referrals list')) {
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    publicKey = user.publicKey ? user.publicKey : publicKey;
+
+    bot.sendMessage(chatId, `${parent} ${child}`, pad);
   }
   //
-  else if (msg.text.includes('💎 Wallet')) {
-    bot.sendMessage(chatId, 'Wallet', pad);
+  else if (text.includes('💎 Wallet')) {
+    bot.sendMessage(
+      chatId,
+      `Deposited: ${depositedFunds} TON\nPlan: ${p.planName(user)}\nDeposit Address:\n\`${user.publicKey}\``,
+      { ...pad, parse_mode: 'Markdown' },
+    );
   }
   //
-  else if (msg.text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, 'Invitation link', pad);
+  else if (text.includes('🔗 Invitation link')) {
+    bot.sendMessage(chatId, `Invite link: https://t.me/sheikhu_bot?start=${userName}`, pad);
   }
   //
-  else if (msg.text.includes('🕶 All Details')) {
-    bot.sendMessage(chatId, '🕶 All Details', pad);
+  else if (text.includes('🕶 All Details')) {
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    publicKey = user.publicKey ? user.publicKey : publicKey;
+
+    bot.sendMessage(
+      chatId,
+      `${user.userName} has earned ${user.balance} TON
+Deposited Funds ${depositedFunds} TON
+Your plan ${p.planName(user)}
+${parent}
+${child}
+Invite link: https://t.me/sheikhu_bot?start=${user.userName}
+TON deposit address:
+\`${publicKey}\``,
+      { ...pad, parse_mode: 'Markdown' },
+    );
   }
   //
-  else if (msg.text.includes('🙏🏻 HELP')) {
-    // _(() => bot.sendMessage(chatId, '🙏🏻 HELP ' + i, pad));
-  }
-  //
-  else if (msg.text.includes('💁‍♂️ Info')) {
-    bot.sendMessage(chatId, '💁‍♂️ Info', pad);
-  }
-  //
-  else if (msg.text.includes('💳 Withdraw')) {
+  else if (text.includes('💳 Withdraw')) {
     // get referrer
-    let withdrawWallet = msg.text.split(' ')[1];
+    let withdrawWallet = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
     if (withdrawWallet === undefined) {
       bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
       return;
     }
-    // TODO: if address is invalid tell users
 
     const percent = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    // TODO: add in DB that TON left from system
-    // TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
-    await transferFromOnChain(adminWalletMnemonic, withdrawWallet, user.balance * withdraw * percent);
+    await transferFromOnChain(adminMnemonic, withdrawWallet, user.balance * withdraw * percent);
     await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
+    await writeBook({ userName }, { balance: 0 });
 
     bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`, pad);
   }
   //
+  //
   // ADMIN FUNCTIONS
-  else if (msg.text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
-    /// TODO: only admin can access this function
+  else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     const userName = msg.chat.username;
 
     if (!admins.includes(userName)) {
@@ -274,8 +279,6 @@ TON deposit address:`,
     const rewardPerUser = pool.balance / usersOf7Pool.length;
 
     let backToPoolTotal = 0;
-    //// TODO: if users go to 1000, or Millions then any problem in loop?...
-    // optimize database read writes...
 
     if (rewardPerUser === 0) {
       bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`, pad);
@@ -307,7 +310,7 @@ TON deposit address:`,
     bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
   }
   //
-  else if (msg.text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
+  else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
     /// TODO: only admin can access this function
     const userName = msg.chat.username;
 
@@ -319,15 +322,15 @@ TON deposit address:`,
     bot.sendMessage(chatId, `Successfully sent TON to pool members`, pad);
   }
   //
-  else if (msg.text.includes('💳 Force Withdraw All Users')) {
+  else if (text.includes('💳 Force Withdraw All Users')) {
     bot.sendMessage(chatId, 'Invitation link', pad);
   }
   //
-  else if (msg.text.includes('🎥 Send Media to Users')) {
+  else if (text.includes('🎥 Send Media to Users')) {
     bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
   }
   //
-  else if (msg.text.includes('📊 Total Users in System')) {
+  else if (text.includes('📊 Total Users in System')) {
     bot.sendMessage(chatId, '📊 Total Users in System', pad);
   }
   // bot does not understand message
@@ -459,11 +462,16 @@ const seedDB = async () => {
   }
   console.log('Bot started');
 };
-try {
-  seedDB().then(() => bot.on('message', onMessage));
-} catch (error) {
-  console.log(error);
-}
+
+// prod
+// try {
+//   seedDB().then(() => bot.on('message', onMessage));
+// } catch (error) {
+//   console.log(error);
+// }
+
+// dev
+bot.on('message', onMessage);
 
 // let botBalance = '';
 // setInterval(async () => {
