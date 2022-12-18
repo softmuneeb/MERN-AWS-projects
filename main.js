@@ -5,7 +5,7 @@
 const keyboard = [
   ['💎 Wallet', '🚀 Upgrade'],
   ['💳 Withdraw'],
-  ['🙏🏻 HELP'],['💁‍♂️ Info'],['⭐️ Start'],['🖇 Referrals list'],['🔗 Invitation link'],
+  ['🙏🏻 HELP', '💁‍♂️ Info'],['⭐️ Start'],['🖇 Referrals list'],['🔗 Invitation link'],
 ];
 
 const adminKeyBoard = [
@@ -85,7 +85,7 @@ const p = {
     return ans;
   },
 
-  plan: ({ depositedFunds: d }) => {
+  planName: ({ depositedFunds: d }) => {
     const plans = ['NONE', 'BABY', 'START', 'WALK', 'RUN', 'FLY'];
     return plans[p.getPlanNumber(d)];
   },
@@ -177,7 +177,7 @@ const onMessage = async (msg) => {
       chatId,
       `${user.userName} has earned ${user.balance} TON
 Deposited Funds ${depositedFunds} TON
-Your plan ${p.plan(user)}
+Your plan ${p.planName(user)}
 ${parent}
 ${child}
 Invite link: https://t.me/sheikhu_bot?start=${user.userName}
