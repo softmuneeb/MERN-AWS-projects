@@ -129,9 +129,8 @@ const onMessage = async (msg) => {
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
 
-  // show deposit instructions
-  // users who came from referral link
-  if (msg.text.includes('/start') || msg.text.includes('Wallet')) {
+  // PUBLIC FUNCTIONS
+  if (msg.text.includes('/start') || msg.text.includes('⭐️ Start')) {
     // old user: if balance updated then update rewards up in the chain and also update balance deposited
     // new user: ------> with refer
     //         |-------> without refer
@@ -201,8 +200,8 @@ TON deposit address:`,
       100,
     );
   }
-  // users who want to upgrade
-  else if (msg.text.includes('Upgrade')) {
+  //
+  else if (msg.text.includes('🚀 Upgrade')) {
     // give rewards as 70 30
 
     if (!existsUser(user)) {
@@ -222,8 +221,32 @@ TON deposit address:`,
 
     bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7));
   }
-  // users who want to withdraw
-  else if (msg.text.includes('Withdraw')) {
+  //
+  else if (msg.text.includes('🖇 Referrals list')) {
+    bot.sendMessage(chatId, 'This Referrals list');
+  }
+  //
+  else if (msg.text.includes('💎 Wallet')) {
+    bot.sendMessage(chatId, 'Wallet');
+  }
+  //
+  else if (msg.text.includes('🔗 Invitation link')) {
+    bot.sendMessage(chatId, 'Invitation link');
+  }
+  //
+  else if (msg.text.includes('🕶 All Details')) {
+    bot.sendMessage(chatId, '🕶 All Details');
+  }
+  //
+  else if (msg.text.includes('🙏🏻 HELP')) {
+    bot.sendMessage(chatId, '🙏🏻 HELP');
+  }
+  //
+  else if (msg.text.includes('💁‍♂️ Info')) {
+    bot.sendMessage(chatId, '💁‍♂️ Info');
+  }
+  //
+  else if (msg.text.includes('💳 Withdraw')) {
     // get referrer
     let withdrawWallet = msg.text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
@@ -243,8 +266,9 @@ TON deposit address:`,
 
     bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`);
   }
-  // users who want to withdraw
-  else if (msg.text.includes('Reward 7 Pool Members')) {
+  //
+  // ADMIN FUNCTIONS
+  else if (msg.text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     /// TODO: only admin can access this function
     const userName = msg.chat.username;
 
@@ -290,8 +314,8 @@ TON deposit address:`,
 
     bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`);
   }
-  // users who want to withdraw
-  else if (msg.text.includes('Reward Super Star Pool Members')) {
+  //
+  else if (msg.text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
     /// TODO: only admin can access this function
     const userName = msg.chat.username;
 
@@ -301,6 +325,18 @@ TON deposit address:`,
     }
 
     bot.sendMessage(chatId, `Successfully sent TON to pool members`);
+  }
+  //
+  else if (msg.text.includes('💳 Force Withdraw All Users')) {
+    bot.sendMessage(chatId, 'Invitation link');
+  }
+  //
+  else if (msg.text.includes('🎥 Send Media to Users')) {
+    bot.sendMessage(chatId, '🎥 Send Media to Users');
+  }
+  //
+  else if (msg.text.includes('📊 Total Users in System')) {
+    bot.sendMessage(chatId, '📊 Total Users in System');
   }
   // bot does not understand message
   else {
@@ -413,9 +449,6 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   await writeBook({ userName: 'SUPER_POWER_CLUB' }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
 };
 
-// onMessage();
-bot.on('message', onMessage);
-
 const existsUser = (user) => {
   return user.publicKey !== null;
 };
@@ -435,11 +468,11 @@ const seedDB = async () => {
     );
   } else {
     console.log('db used second or more times');
-    // bot.sendMessage(defaultReferrerChatId, 'Bot ready to use');
   }
+  console.log("Bot started");
 };
 
-seedDB();
+seedDB().then(() => bot.on('message', onMessage));
 
 // let botBalance = '';
 // setInterval(async () => {
@@ -451,7 +484,7 @@ seedDB();
 //     console.log({ balance, botBalance });
 //     botBalance = balance;
 //   }
-// }, 5000);
+// }, 60 * 1000);
 
 // TonWeb.utils.fromNano
 // TonWeb.utils.toNano
