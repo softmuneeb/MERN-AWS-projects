@@ -3,7 +3,7 @@
 // TODO: it should come from env
 // ===============This section if for crypto millio
 const keyboard = [
-  [['💎 Wallet'], '🚀 Upgrade'], //
+  ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
   ['🙏🏻 HELP', '💁‍♂️ Info'], //
   ['⭐️ Start'], //
