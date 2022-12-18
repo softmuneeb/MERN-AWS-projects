@@ -3,15 +3,22 @@
 // TODO: it should come from env
 // ===============This section if for crypto millio
 const keyboard = [
-  ['💎 Wallet', '🚀 Upgrade'],
-  ['💳 Withdraw'],
-  ['🙏🏻 HELP', '💁‍♂️ Info'],['⭐️ Start'],['🖇 Referrals list'],['🔗 Invitation link'],
+  [['💎 Wallet'], '🚀 Upgrade'], //
+  ['💳 Withdraw'], //
+  ['🙏🏻 HELP', '💁‍♂️ Info'], //
+  ['⭐️ Start'], //
+  ['🖇 Referrals list'], //
+  ['🔗 Invitation link'], //
+  ['🕶 All Details'], //
 ];
 
 const adminKeyBoard = [
-  ['🤵🏼‍♂️ Reward 7 Pool Members'],
-  ['🦸‍♂️ Reward Super Star Pool Members'],
-]
+  ['🎥 Send Media to Users'], //
+  ['📊 Total Users in System'], //
+  ['🤵🏼‍♂️ Reward 7 Pool Members'], //
+  ['🦸‍♂️ Reward Super Star Pool Members'], //
+  ['💳 Force Withdraw All Users'], //
+];
 // ===============Till Here =====
 
 const admins = ['crypto_millio', 'ADMIN'];
