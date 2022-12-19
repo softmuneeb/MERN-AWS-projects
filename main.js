@@ -243,7 +243,7 @@ const onMessage = async (msg) => {
   //
   // PUBLIC FUNCTIONS
   if (text.includes('/start') || text.includes('⭐️ Start')) {
-    bot.sendMessage(chatId, `${user.userName}\nDeposited ${depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
+    bot.sendMessage(chatId, `${user.userName}\nDeposited ${user.depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
   }
   //
   else if (text.includes('🚀 Upgrade')) {
