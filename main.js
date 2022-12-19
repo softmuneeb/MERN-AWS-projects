@@ -2,6 +2,7 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
+  ['💳 Plans'], //
   ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
   ['🙏🏻 HELP', '💁‍♂️ Info'], //
@@ -45,6 +46,12 @@ If you have a question or issue that isn't addressed in our knowledge base, don'
 Social Media & User Forums
 
 Connect with other users and get help and advice from our community on our social media accounts or user forums.
+`;
+const plans = `
+START 25 TON, Withdraw 40% Earnings
+WALK 50 TON, Withdraw 50% Earnings
+RUN 200 TON, Withdraw 60% Earnings
+FLY 500 TON, Withdraw 70% Earnings
 `;
 
 const pad = {
@@ -173,6 +180,11 @@ const onMessage = async (msg) => {
     bot.sendMessage(chatId, info, pad);
     return;
   }
+  //
+  else if (text.includes('💳 Plans')) {
+    bot.sendMessage(chatId, plans, pad);
+    return;
+  }
 
   const userName = msg.chat.username;
   let publicKey, mnemonic, depositedFunds;
@@ -288,10 +300,11 @@ TON deposit address:
     // get referrer
     let withdrawWallet = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
-    if (withdrawWallet === undefined) {
-      bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
-      return;
-    }
+    // TODO: get withdraw wallet from user
+    // if (withdrawWallet === undefined) {
+    //   bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
+    //   return;
+    // }
 
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
@@ -300,6 +313,11 @@ TON deposit address:
     // await transferFrom(adminMnemonic, withdrawWallet, user.balance * withdraw * percentage);
     // await giveRewardsRecycle(user, user.balance * recycle * percentage);
     // await writeBook({ userName }, { balance: 0 });
+
+    if (withdraw === 0) {
+      bot.sendMessage(chatId, `You must be in PLAN to withdraw`, pad);
+      return;
+    }
 
     bot.sendMessage(
       chatId,
