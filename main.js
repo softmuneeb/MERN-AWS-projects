@@ -284,7 +284,7 @@ const onMessage = async (msg) => {
 
     bot.sendMessage(
       chatId,
-      `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
       padCopyAble,
     );
   }
