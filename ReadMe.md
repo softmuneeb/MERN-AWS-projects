@@ -10,6 +10,7 @@ Critical:
 // TODO: if users go to 1000, or Millions then any problem in loop?...
 // TODO: add in DB that TON left from system
 
+// TODO: race case in values can write some code run parallel to check any in consistency. fatoor.
 // DONE: only admin can access this function
 
 Nice to do:
@@ -20,6 +21,7 @@ Nice to do:
 // TODO: optimize database read writes...
 
 Optional:
+// TODO: make env use varible todo by crypto millio
 
 Dont understand:
 // TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
