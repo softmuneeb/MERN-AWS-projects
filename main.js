@@ -3,6 +3,7 @@
 // ===============This section if for crypto millio
 const keyboard = [
   ['💳 Plans'], //
+  ['💳 My Plans'], //
   ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
   ['🙏🏻 HELP', '💁‍♂️ Info'], //
@@ -224,6 +225,9 @@ const onMessage = async (msg) => {
   }
 
   //
+  user = await readBook({ userName });
+
+  //
   //
   //
   // PUBLIC FUNCTIONS
@@ -248,6 +252,10 @@ const onMessage = async (msg) => {
     bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7), pad);
   }
   //
+  else if (text.includes('💳 My Plans')) {
+    bot.sendMessage(chatId, `Plan: ${p.planName(user)}\n}`, pad);
+  }
+  //
   else if (text.includes('🖇 Referrals list')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
@@ -263,8 +271,11 @@ const onMessage = async (msg) => {
   else if (text.includes('💎 Wallet')) {
     bot.sendMessage(
       chatId,
-      `Deposited: ${depositedFunds} TON\nPlan: ${p.planName(user)}\nDeposit Address:\n\`${user.publicKey}\``,
-      { ...pad, parse_mode: 'Markdown' },
+      `Earnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      {
+        ...pad,
+        parse_mode: 'Markdown',
+      },
     );
   }
   //
