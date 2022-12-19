@@ -23,6 +23,9 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
+const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // token 1
+// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // token 2
+
 const info = `
 Website www.amazon.com
 Youtube www.ebay.com
@@ -71,7 +74,7 @@ const admins = ['crypto_millio', 'ADMIN'];
 
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'crypto_millio',
-  '5729797630',
+  '5492194169',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
@@ -158,8 +161,6 @@ const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
-// const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // online
-const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // dev offline
 const bot = new TelegramBot(token, { polling: true });
 
 // on telegram message
@@ -188,6 +189,7 @@ const onMessage = async (msg) => {
   }
 
   const chatId = msg.chat.id;
+  console.log({ chatId });
   if (text.includes('🙏🏻 HELP')) {
     bot.sendMessage(chatId, help, pad);
     return;
@@ -214,7 +216,7 @@ const onMessage = async (msg) => {
     if (depositedFunds && depositedFunds > user.depositedFunds) {
       console.log('giveRewards');
       const newDepositedFunds = depositedFunds;
-      await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
+      await writeBook({ userName }, { depositedFunds: newDepositedFunds });
       const newDeposit = depositedFunds - user.depositedFunds;
       await giveRewardsNormal(user, newDeposit);
     }
@@ -420,7 +422,10 @@ TON deposit address:
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
-    bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
+
+    bot.sendPhoto(chatId, 'plans .png', pad);
+
+    // bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -431,10 +436,12 @@ TON deposit address:
     let admin = await readBook({ userName: adminUserName });
     let __7_SPONSOR_POOL = await readBook({ userName: _7_SPONSOR_POOL });
     let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
+    let users = await readBookMany({});
+    console.log({ users });
 
     bot.sendMessage(
       chatId,
-      `Admin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
+      `Total Users in System: ${users.length}\nAdmin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
       pad,
     );
   }
@@ -482,14 +489,14 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   if (userParent.childPaying.length <= 3) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
-    await writeBook({ userName: 'POOL' }, { balance: pool.balance + 5 * percent });
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
   else if (userParent.childPaying.length <= 6) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 15 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
-    await writeBook({ userName: 'POOL' }, { balance: pool.balance + 2.5 * percent });
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent });
   }
   // 7 or more child Paying
   else {

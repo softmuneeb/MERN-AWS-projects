@@ -9,12 +9,17 @@ Critical:
 // TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
 // TODO: if users go to 1000, or Millions then any problem in loop?...
 // TODO: add in DB that TON left from system
+// TODO: 
+(node:20476) [node-telegram-bot-api] DeprecationWarning: In the future, content-type of files you send will default to "application/octet-stream". See https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md#sending-files for more information on how sending files has been improved and on how to disable this deprecation message altogether.
+(Use `node --trace-deprecation ...` to show where the warning was created)
 
 // TODO: race case in values can write some code run parallel to check any in consistency. fatoor.
+
 // DONE: only admin can access this function
 
 Nice to do:
 
+{ text: '🎥 Send Media to Users' }
 // TODO: Coding JS, And write calls at the end of the functions...
 // TODO: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
 // TODO: it should come from env

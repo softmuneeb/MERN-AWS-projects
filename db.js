@@ -1,5 +1,5 @@
 const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'UserModel37';
+const dbName = 'UserModel39';
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -63,9 +63,9 @@ const readBook = async (user) => {
 
   let [response] = await User.find(user);
 
-  if (response === undefined) {
-    response = await User.create({ userName: user.userName });
-  }
+  // if (response === undefined) {
+  //   response = await User.create({ userName: user.userName });
+  // }
 
   return response;
 };
