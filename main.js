@@ -14,6 +14,7 @@ const keyboard = [
 ];
 
 const adminKeyBoard = [
+  ['________ADMIN________'], //
   ['🎥 Send Media to Users'], //
   ['📊 Total Users in System'], //
   ['🤵🏼‍♂️ Reward 7 Pool Members'], //
@@ -58,6 +59,11 @@ FLY 500 TON, Withdraw 70% Earnings
 const pad = {
   reply_markup: {
     keyboard,
+  },
+};
+const padAdmin = {
+  reply_markup: {
+    keyboard: [...keyboard, ...adminKeyBoard],
   },
 };
 
@@ -343,8 +349,6 @@ TON deposit address:
   //
   // ADMIN FUNCTIONS
   else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
-    const userName = msg.chat.username;
-
     if (!admins.includes(userName)) {
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
@@ -383,34 +387,36 @@ TON deposit address:
 
     await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, padAdmin);
   }
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
-    /// TODO: only admin can access this function
-    const userName = msg.chat.username;
-
     if (!admins.includes(userName)) {
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members`, pad);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members`, padAdmin);
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
-    bot.sendMessage(chatId, 'Invitation link', pad);
+    bot.sendMessage(chatId, 'Invitation link', padAdmin);
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
-    bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
+    bot.sendMessage(chatId, '🎥 Send Media to Users', padAdmin);
   }
   //
   else if (text.includes('📊 Total Users in System')) {
-    bot.sendMessage(chatId, '📊 Total Users in System', pad);
+    bot.sendMessage(chatId, '📊 Total Users in System', padAdmin);
   }
   // bot does not understand message
   else {
+    if (admins.includes(userName)) {
+      bot.sendMessage(chatId, `Hi Admin`, padAdmin);
+      return;
+    }
+    
     bot.sendMessage(chatId, info, pad);
   }
 };
