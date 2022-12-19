@@ -3,7 +3,7 @@
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
-const apiKey = 'ec70b7fdf198bda11333873b6484724d73f2b08ed1d8c6e6f1663808feb0e3c1';
+const apiKey = '85ab5bbbedd3e23b7932501fda014e2bd8d7b5d1c0a3d23ed668e46c99a6ea34';
 const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', { apiKey }));
 
 async function publicKey(mnemonic) {
