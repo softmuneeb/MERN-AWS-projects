@@ -215,7 +215,7 @@ const onMessage = async (msg) => {
     let childPaying =
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
-        : 'You invited none';
+        : 'You invited no people who deposited funds';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(chatId, `${parent} ${child} ${childPaying}`, pad);
@@ -239,7 +239,7 @@ const onMessage = async (msg) => {
     let childPaying =
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
-        : 'You invited none';
+        : 'You invited no people who deposited funds';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(
