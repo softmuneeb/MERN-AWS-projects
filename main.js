@@ -66,6 +66,10 @@ const padAdmin = {
     keyboard: [...keyboard, ...adminKeyBoard],
   },
 };
+const padCopyAble = {
+  ...pad,
+  parse_mode: 'Markdown',
+};
 
 const admins = ['crypto_millio', 'ADMIN'];
 
@@ -281,15 +285,12 @@ const onMessage = async (msg) => {
     bot.sendMessage(
       chatId,
       `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
-      {
-        ...pad,
-        parse_mode: 'Markdown',
-      },
+      padCopyAble,
     );
   }
   //
   else if (text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, `Invite link: https://t.me/MLMS_bot?start=${userName}`, pad);
+    bot.sendMessage(chatId, `Invite link: \`https://t.me/MLMS_bot?start=${userName}\``, padCopyAble);
   }
   //
   else if (text.includes('🕶 All Details')) {
