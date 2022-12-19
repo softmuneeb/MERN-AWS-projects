@@ -253,7 +253,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('💳 My Plans')) {
-    bot.sendMessage(chatId, `Plan: ${p.planName(user)}\n}`, pad);
+    bot.sendMessage(chatId, `Plan: ${p.planName(user)}`, pad);
   }
   //
   else if (text.includes('🖇 Referrals list')) {
