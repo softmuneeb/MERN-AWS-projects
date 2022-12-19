@@ -23,6 +23,8 @@ Nice to do:
 Optional:
 // TODO: make env use varible todo by crypto millio
 // send once per day, bot.sendMessage(chatId, `Hi Admin`, pad); // TODO: optional 
+rem "tonweb": "^0.0.58",
+    "tonweb-mnemonic": "^1.0.1" for ton
 
 Dont understand:
 // TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
@@ -472,3 +474,34 @@ TON deposit address:
     // setTimeout(() => bot.sendMessage(chatId, '`' + publicKey + '`', pad), 100);
     // show user info
     // show stats saved in db to telegram user
+
+// const [defaultReferrer, adminAddress, adminMnemonic] = [
+//   'ADMIN',
+//   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+//   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+// ];
+
+
+ "cors": "^2.8.5",
+    "express": "^4.18.2",
+
+// setup express app so we can visit link after vercel api hosting
+const express = require('express');
+const app = express();
+const cors = require('cors');
+app.use(cors());
+app.set('json spaces', 2);
+app.get('/', (r, res) => res.json({ message: 'hi ' + Date() }));
+const listener = app.listen(process.env.PORT || 8080, () =>
+  console.log('Listening on port ' + listener.address().port),
+);
+
+
+let i = 1;
+
+
+
+
+make bal 0
+// await writeBook({ userName }, { depositedFunds: 0 });
+  // return;

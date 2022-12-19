@@ -69,19 +69,16 @@ const padAdmin = {
 
 const admins = ['crypto_millio', 'ADMIN'];
 
-const [defaultReferrer, defaultReferrerChatId, defaultReferrerAddress, defaultReferrerMnemonic] = [
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'crypto_millio',
   '5729797630',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
-const [adminUserName, adminAddress, adminMnemonic] = [
-  'ADMIN',
-  'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-  'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-];
 
-const _7SponsorPool = '7_SPONSOR_POOL';
+const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
+const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
+
 // moved some functions in an object because they depend on each other
 const p = {
   level0: 1 * 0.0005, // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
@@ -161,22 +158,9 @@ const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // online
-// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // dev offline
+// const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // online
+const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // dev offline
 const bot = new TelegramBot(token, { polling: true });
-
-let i = 1;
-
-// setup express app so we can visit link after vercel api hosting
-const express = require('express');
-const app = express();
-const cors = require('cors');
-app.use(cors());
-app.set('json spaces', 2);
-app.get('/', (r, res) => res.json({ message: 'hi ' + Date() }));
-const listener = app.listen(process.env.PORT || 8080, () =>
-  console.log('Listening on port ' + listener.address().port),
-);
 
 // on telegram message
 const onMessage = async (msg) => {
@@ -192,6 +176,16 @@ const onMessage = async (msg) => {
     return;
   }
   console.log({ text });
+
+  const userName = msg.chat.username;
+
+  if (admins.includes(userName)) {
+    pad = padAdmin;
+    padCopyAble = {
+      ...padAdmin,
+      parse_mode: 'Markdown',
+    };
+  }
 
   const chatId = msg.chat.id;
   if (text.includes('🙏🏻 HELP')) {
@@ -209,26 +203,20 @@ const onMessage = async (msg) => {
     return;
   }
 
-  const userName = msg.chat.username;
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
-
-  if (admins.includes(userName)) {
-    pad = padAdmin;
-    padCopyAble = {
-      ...padAdmin,
-      parse_mode: 'Markdown',
-    };
-  }
 
   // Old User
   if (existsUser(user)) {
     [, depositedFunds] = await getBalance(user.mnemonic);
-    if (depositedFunds && depositedFunds !== user.depositedFunds) {
+    console.log({ depositedFunds });
+    console.log({ depositedFunds2: user.depositedFunds });
+    if (depositedFunds && depositedFunds > user.depositedFunds) {
       console.log('giveRewards');
-      const newDepositedFunds = user.depositedFunds + depositedFunds;
+      const newDepositedFunds = depositedFunds;
       await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
-      await giveRewardsNormal(user, depositedFunds);
+      const newDeposit = depositedFunds - user.depositedFunds;
+      await giveRewardsNormal(user, newDeposit);
     }
   }
   // New User
@@ -236,12 +224,12 @@ const onMessage = async (msg) => {
     let referrer = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
     if (referrer === undefined) {
-      referrer = defaultReferrer;
+      referrer = adminUserName;
     }
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
     if (!existsUser(parent)) {
-      parent = await readBook({ userName: defaultReferrer });
+      parent = await readBook({ userName: adminUserName });
     }
 
     // create and save wallet
@@ -301,8 +289,6 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('💎 Wallet')) {
-    let admin = await readBook({ userName: adminUserName });
-
     bot.sendMessage(
       chatId,
       `Earnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
@@ -357,7 +343,7 @@ TON deposit address:
     // await writeBook({ userName }, { balance: 0 });
 
     if (withdraw === 0) {
-      bot.sendMessage(chatId, `You must be in PLAN to withdraw`, pad);
+      bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
       return;
     }
 
@@ -377,7 +363,7 @@ TON deposit address:
     }
 
     const usersOf7Pool = await readBookMany({ isIn7SponsorPool: IN_POOL });
-    const pool = await readBook({ userName: _7SponsorPool });
+    const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7Pool.length;
 
     let backToPoolTotal = 0;
@@ -407,7 +393,7 @@ TON deposit address:
       }
     }
 
-    await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPoolTotal });
 
     bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
   }
@@ -442,7 +428,15 @@ TON deposit address:
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
-    bot.sendMessage(chatId, `Admin Balance: ${admin.balance} TON`, pad);
+    let admin = await readBook({ userName: adminUserName });
+    let __7_SPONSOR_POOL = await readBook({ userName: _7_SPONSOR_POOL });
+    let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
+
+    bot.sendMessage(
+      chatId,
+      `Admin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
+      pad,
+    );
   }
   // bot does not understand message
   else {
@@ -465,7 +459,7 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
   let admin = await readBook({ userName: adminUserName });
-  let pool = await readBook({ userName: _7SponsorPool });
+  let pool = await readBook({ userName: _7_SPONSOR_POOL });
 
   // NONE OR BABY PLAN
   // give all balance to admin
@@ -525,7 +519,7 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent });
-  await writeBook({ userName: _7SponsorPool }, { balance: pool.balance + 0.5 * remaining * percent });
+  await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 0.5 * remaining * percent });
 };
 
 const giveRewardsRecycle = async (user, depositedFunds) => {
@@ -538,7 +532,7 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
   // TODO: resturn pool.userName as SUPER_POWER_CLUB
-  let pool = await readBook({ userName: 'SUPER_POWER_CLUB' });
+  let pool = await readBook({ userName: SUPER_STAR_POOL });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
@@ -557,7 +551,7 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
-  await writeBook({ userName: 'SUPER_POWER_CLUB' }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
+  await writeBook({ userName: SUPER_STAR_POOL }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
 };
 
 const existsUser = (user) => {
@@ -565,7 +559,7 @@ const existsUser = (user) => {
 };
 
 const seedDB = async () => {
-  const user = await readBook({ userName: defaultReferrer });
+  const user = await readBook({ userName: adminUserName });
 
   console.log({ user });
 
@@ -573,12 +567,12 @@ const seedDB = async () => {
     console.log('db used first time');
 
     await writeBook(
-      { userName: defaultReferrer },
+      { userName: adminUserName },
       {
-        chatId: defaultReferrerChatId,
-        userName: defaultReferrer,
-        publicKey: defaultReferrerAddress,
-        mnemonic: defaultReferrerMnemonic,
+        chatId: adminChatId,
+        userName: adminUserName,
+        publicKey: adminAddress,
+        mnemonic: adminMnemonic,
       },
     );
   } else {
