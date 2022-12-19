@@ -20,6 +20,11 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
+const info = `
+Website www.amazon.com
+Youtube www.ebay.com
+Blog www.walmart.com
+`;
 const help = `
 Help & Support
 
@@ -165,7 +170,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('💁‍♂️ Info')) {
-    bot.sendMessage(chatId, '💁‍♂️ Info', pad);
+    bot.sendMessage(chatId, info, pad);
     return;
   }
 
