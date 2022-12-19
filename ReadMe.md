@@ -2,10 +2,11 @@ WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
 Critical:
+// TODO: checking why users created auto, Coding improve just like, writes calls, ....
+//
 // TODO: correct the logic balance + nonce OR tx + last updated
 // TODO: minus the balance upon withdrawal
 // TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
-// TODO: checking why users created auto, Coding improve just like, writes calls, ....
 
 // TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
 // TODO: if users go to 1000, or Millions then any problem in loop?...

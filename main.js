@@ -23,8 +23,8 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
-const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // token 1
-// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // token 2
+const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // MLM Bot
+// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // Bot01
 
 const info = `
 Website www.amazon.com
@@ -163,6 +163,8 @@ const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(token, { polling: true });
 
+let i = 0;
+
 // on telegram message
 const onMessage = async (msg) => {
   let pad = padSimple;
@@ -207,6 +209,13 @@ const onMessage = async (msg) => {
 
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
+
+  if (admins.includes(userName) && i === 1) {
+    i = 0;
+    await sendMessageToAllUsers(text);
+    bot.sendMessage(chatId, 'Sent to all users', pad);
+    return;
+  }
 
   // Old User
   if (existsUser(user)) {
@@ -423,9 +432,11 @@ TON deposit address:
       return;
     }
 
-    bot.sendPhoto(chatId, 'plans .png', pad);
-
-    // bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
+    if (i === 0) {
+      i = 1;
+      bot.sendMessage(chatId, '🎥 Please send text / image / video here to send to all users', pad);
+    }
+    // bot.sendPhoto(chatId, 'plans .png', pad);
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -559,6 +570,14 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
   await writeBook({ userName: SUPER_STAR_POOL }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
+};
+const sendMessageToAllUsers = async (text) => {
+  let users = await readBookMany({});
+
+  for (let i = 0; i < users.length; i++) {
+    const user = users[i];
+    user.chatId && bot.sendMessage(user.chatId, text, padSimple);
+  }
 };
 
 const existsUser = (user) => {
