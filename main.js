@@ -146,7 +146,8 @@ const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
+const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk';
+// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
 const bot = new TelegramBot(token, { polling: true });
 
 let i = 1;
