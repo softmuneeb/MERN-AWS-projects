@@ -156,8 +156,8 @@ const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
-const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk';
-// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
+const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // online
+// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // dev offline
 const bot = new TelegramBot(token, { polling: true });
 
 let i = 1;
@@ -536,21 +536,26 @@ const existsUser = (user) => {
 };
 
 const seedDB = async () => {
-  if (!existsUser(await readBook({ userName: defaultReferrer }))) {
-    console.log('db used first time');
+  
+const user = await readBook({ userName: defaultReferrer });
 
-    await writeBook(
-      { userName: defaultReferrer },
-      {
-        chatId: defaultReferrerChatId,
-        userName: defaultReferrer,
-        publicKey: defaultReferrerAddress,
-        mnemonic: defaultReferrerMnemonic,
-      },
-    );
-  } else {
-    console.log('db used second or more times');
-  }
+console.log({ user });
+
+if (!existsUser(user)) {
+  console.log('db used first time');
+
+  await writeBook(
+    { userName: defaultReferrer },
+    {
+      chatId: defaultReferrerChatId,
+      userName: defaultReferrer,
+      publicKey: defaultReferrerAddress,
+      mnemonic: defaultReferrerMnemonic,
+    },
+  );
+} else {
+  console.log('db used second or more times');
+}
   console.log('Bot started');
 };
 
