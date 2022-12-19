@@ -226,6 +226,8 @@ const onMessage = async (msg) => {
     [, depositedFunds] = await getBalance(user.mnemonic);
     if (depositedFunds && depositedFunds !== user.depositedFunds) {
       console.log('giveRewards');
+      const newDepositedFunds = user.depositedFunds + depositedFunds;
+      await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
       await giveRewardsNormal(user, depositedFunds);
     }
   }
@@ -455,9 +457,6 @@ TON deposit address:
 
 // namaz pending and you are working = no barkat in this work
 const giveRewardsNormal = async (user, depositedFunds) => {
-  const newDepositedFunds = user.depositedFunds + depositedFunds;
-  await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
-
   if (!user.parent) {
     console.log('no user parent, no reward');
     return;
