@@ -535,14 +535,10 @@ const seedDB = async () => {
 };
 
 // prod
-// try {
-//   seedDB().then(() => bot.on('message', onMessage));
-// } catch (error) {
-//   console.log(error);
-// }
+seedDB().then(() => bot.on('message', onMessage));
 
 // dev
-bot.on('message', onMessage);
+// bot.on('message', onMessage);
 
 // let botBalance = '';
 // setInterval(async () => {
