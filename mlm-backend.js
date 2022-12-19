@@ -3,6 +3,9 @@
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
+let { TonClient } = require('ton');
+// TonClient = TonClient.TonClient;
+
 const apiKey = '85ab5bbbedd3e23b7932501fda014e2bd8d7b5d1c0a3d23ed668e46c99a6ea34';
 const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', { apiKey }));
 
@@ -66,10 +69,10 @@ async function transferFrom(mnemonic, toAddress, amount) {
     await sleep(1500); // avoid throttling by toncenter.com
     currentSeqno = (await wallet.methods.seqno().call()) || 0;
   }
-  // const address = await wallet.getAddress();
+  const address = await wallet.getAddress();
   // await sleep(1500); // avoid throttling by toncenter.com
-  // const balance = await tonweb.getBalance(address);
-  // console.log('balance:', TonWeb.utils.fromNano(balance));
+  const balance = await tonweb.getBalance(address);
+  console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
 async function getBalance(m) {
@@ -147,25 +150,56 @@ const unitTest = async () => {
     'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
   ];
   const [bNano, b] = await getBalance(userMnemonic);
-  await getBalance(userMnemonic);
-  await getBalance(userMnemonic);
-  await getBalance(userMnemonic);
-  // await getBalance(userMnemonic);
 
   console.log({ bNano, b });
-  // const [adminAddress, adminMnemonic] = [
-  //   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-  //   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-  // ];
+  const [adminAddress, adminMnemonic] = [
+    'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+  ];
 
-  // try {
-  //   await transferFrom(userMnemonic, adminAddress, bNano);
-  // } catch (e) {
-  //   console.log('error is:', e);
-  // }
+  try {
+    await transferFrom(userMnemonic, adminAddress, bNano);
+  } catch (e) {
+    console.log('error is:', e);
+  }
 };
 
-// unitTest();
+// Create Client
+const unitTest2 = async () => {
+  const client = new TonClient({
+    endpoint: 'https://toncenter.com/api/v2/jsonRPC',
+  });
+
+  const [userAddress, userMnemonic] = [
+    'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
+    'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
+  ];
+  const [adminAddress, adminMnemonic] = [
+    'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+  ];
+
+  // Open Wallet
+  const wallet = await client.openWalletFromAddress({ source: userAddress });
+  console.log(wallet);
+
+  // console.log('' + (await wallet.getBalance()));
+
+  // working
+  // const balance = '' + (await client.getBalance(userAddress));
+  // console.log(balance);
+
+  // Transferring coins
+  // let seqno = await client.getSeqNo();
+  // console.log({ seqno });
+  try {
+    // await client.transfer({ to: adminAddress, amount: 10.0, seqno: 0, secretKey: userMnemonic });
+  } catch (e) {
+    console.log('error is:', e);
+  }
+};
+
+// unitTest2();
 
 /*
 output:
