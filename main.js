@@ -210,12 +210,12 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('🖇 Referrals list')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
-    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin\n';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
-        : 'You invited no people who deposited funds';
+        : 'You invited no people who deposited funds\n';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(chatId, `${parent} ${child} ${childPaying}`, pad);
@@ -234,12 +234,12 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('🕶 All Details')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
-    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin\n';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
-        : 'You invited no people who deposited funds';
+        : 'You invited no people who deposited funds\n';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(
