@@ -53,10 +53,10 @@ const p = {
   // d depositedFunds
   getPlanNumber: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = 5;
-    else if (d >= p.level4) ans = 4;
-    else if (d >= p.level3) ans = 3;
-    else if (d >= p.level2) ans = 2;
+    if (d >= p.level5) ans = 5; // 500 TON FLY
+    else if (d >= p.level4) ans = 4; // 200 TON RUN
+    else if (d >= p.level3) ans = 3; // 50 TON  WALK
+    else if (d >= p.level2) ans = 2; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = 1;
     else ans = 0;
     return ans;
@@ -108,7 +108,7 @@ const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
 
 const { readBook, writeBook, readBookMany } = require('./db');
-const { getBalance, mnemonicGenerate } = require('./mlm-backend');
+const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
 const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // TODO: add in env
@@ -129,15 +129,14 @@ const listener = app.listen(process.env.PORT || 8080, () =>
 
 // on telegram message
 const onMessage = async (msg) => {
-  const text = msg.text;
-
-  if (!text || text === undefined) return;
-
-  const chatId = msg.chat.id;
-  const userName = msg.chat.username;
+  const { text } = msg;
+  if (!text || text === undefined) {
+    bot.sendMessage(chatId, 'Please send only text', pad);
+    return;
+  }
   console.log({ text });
 
-  //
+  const chatId = msg.chat.id;
   if (text.includes('🙏🏻 HELP')) {
     bot.sendMessage(chatId, '🙏🏻 HELP', pad);
     return;
@@ -148,13 +147,14 @@ const onMessage = async (msg) => {
     return;
   }
 
+  const userName = msg.chat.username;
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
 
   // Old User
   if (existsUser(user)) {
     [, depositedFunds] = await getBalance(user.mnemonic);
-    if (depositedFunds && Number(depositedFunds) !== user.depositedFunds) {
+    if (depositedFunds && depositedFunds !== user.depositedFunds) {
       console.log('giveRewards');
       await giveRewardsNormal(user, depositedFunds);
     }
@@ -167,9 +167,9 @@ const onMessage = async (msg) => {
       referrer = defaultReferrer;
     }
     // if referrer not exist then make defaultReferrer his referrer
-    let referrerObj = await readBook({ userName: referrer });
-    if (!existsUser(referrerObj)) {
-      referrerObj = await readBook({ userName: defaultReferrer });
+    let parent = await readBook({ userName: referrer });
+    if (!existsUser(parent)) {
+      parent = await readBook({ userName: defaultReferrer });
     }
 
     // create and save wallet
@@ -177,11 +177,11 @@ const onMessage = async (msg) => {
     await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
 
     // make referrer chain
-    await writeBook({ userName }, { parent: referrerObj.userName });
-    await writeBook({ userName: referrerObj.userName }, { child: [...referrerObj.child, userName] });
+    await writeBook({ userName }, { parent: parent.userName });
+    await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
 
-    bot.sendMessage(chatId, 'You are invited by ' + referrerObj.userName, pad);
-    bot.sendMessage(referrerObj.chatId, 'You invited ' + userName, pad);
+    bot.sendMessage(chatId, 'You are invited by ' + parent.userName, pad);
+    bot.sendMessage(parent.chatId, 'You invited ' + userName, pad);
   }
 
   //
@@ -212,9 +212,13 @@ const onMessage = async (msg) => {
   else if (text.includes('🖇 Referrals list')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    let childPaying =
+      user.childPaying.length > 0
+        ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
+        : 'You invited none';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
-    bot.sendMessage(chatId, `${parent} ${child}`, pad);
+    bot.sendMessage(chatId, `${parent} ${child} ${childPaying}`, pad);
   }
   //
   else if (text.includes('💎 Wallet')) {
@@ -232,6 +236,10 @@ const onMessage = async (msg) => {
   else if (text.includes('🕶 All Details')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none';
+    let childPaying =
+      user.childPaying.length > 0
+        ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
+        : 'You invited none';
     publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(
@@ -241,6 +249,7 @@ Deposited Funds ${depositedFunds} TON
 Your plan ${p.planName(user)}
 ${parent}
 ${child}
+${childPaying}
 Invite link: https://t.me/sheikhu_bot?start=${user.userName}
 TON deposit address:
 \`${publicKey}\``,
@@ -257,14 +266,18 @@ TON deposit address:
       return;
     }
 
-    const percent = 1 / 100;
+    const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    await transferFromOnChain(adminMnemonic, withdrawWallet, user.balance * withdraw * percent);
-    await giveRewardsRecycle(user, user.balance * recycle * percent); // 30%
+    await transferFrom(adminMnemonic, withdrawWallet, user.balance * withdraw * percentage);
+    await giveRewardsRecycle(user, user.balance * recycle * percentage);
     await writeBook({ userName }, { balance: 0 });
 
-    bot.sendMessage(chatId, `Successfully sent ${user.balance * withdraw * percent} TON to your wallet`, pad);
+    bot.sendMessage(
+      chatId,
+      `Successfully sent ${withdraw}% ${user.balance * withdraw * percentage} TON to your wallet`,
+      pad,
+    );
   }
   //
   //
@@ -349,15 +362,9 @@ const giveRewardsNormal = async (user, depositedFunds) => {
     return;
   }
 
-  await writeBook({ userName: user.userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  const newDepositedFunds = user.depositedFunds + depositedFunds;
 
-  // check balance change
-  let userParent = await readBook({ userName: user.parent });
-  let admin = await readBook({ userName: adminUserName });
-  let pool = await readBook({ userName: _7SponsorPool });
-
-  let remaining = 100; // percent
-  const percent = depositedFunds / 100;
+  await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
 
   // NONE OR BABY PLAN
   if (p.getPlanNumber(user.depositedFunds) <= 1) {
@@ -367,20 +374,35 @@ const giveRewardsNormal = async (user, depositedFunds) => {
     return; //  <---------------------<
   }
 
+  let admin = await readBook({ userName: adminUserName });
+  let pool = await readBook({ userName: _7SponsorPool });
+
+  let remaining = 100; // percent
+  const percent = depositedFunds / 100;
+
+  // check balance change
+  let userParent = await readBook({ userName: user.parent });
+
+  if (p.getPlanNumber({ depositedFunds: newDepositedFunds }) > 1 && !userParent.childPaying.includes(user.userName)) {
+    await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, user.userName] });
+  }
+
+  userParent = await readBook({ userName: user.parent });
+
   // 1 to 3
-  else if (userParent.child.length <= 3) {
+  if (userParent.childPaying.length <= 3) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
     await writeBook({ userName: 'POOL' }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
-  else if (userParent.child.length <= 6) {
+  else if (userParent.childPaying.length <= 6) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 15 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
     await writeBook({ userName: 'POOL' }, { balance: pool.balance + 2.5 * percent });
   }
-  // 7 or more child
+  // 7 or more child Paying
   else {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 20 * percent });
 

@@ -13,6 +13,8 @@ Critical:
 // DONE: only admin can access this function
 
 Nice to do:
+
+// TODO: Coding JS, And write calls at the end of the functions...
 // TODO: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
 // TODO: it should come from env
 // TODO: optimize database read writes...

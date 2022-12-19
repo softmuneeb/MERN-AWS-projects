@@ -93,7 +93,7 @@ async function getBalance(m) {
   let balance;
   try {
     balance = await tonweb.getBalance(address);
-    return [balance, TonWeb.utils.fromNano(balance)];
+    return [balance, Number(TonWeb.utils.fromNano(balance))];
   } catch (error) {
     console.log('error: ' + error);
     return [null, null];

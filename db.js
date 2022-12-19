@@ -47,6 +47,10 @@ const UserSchema = new mongoose.Schema({
     type: [], // chatId of the people I am bringing into the system
     default: [],
   },
+  childPaying: {
+    type: [], // chatId of the people I am bringing into the system and they deposited money
+    default: [],
+  },
   date: { type: Number, default: new Date() },
 });
 
