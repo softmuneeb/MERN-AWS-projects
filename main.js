@@ -281,7 +281,7 @@ const onMessage = async (msg) => {
   //
   else if (text.includes('💎 Wallet')) {
     let admin = await readBook({ userName: adminUserName });
-    
+
     bot.sendMessage(
       chatId,
       `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
@@ -417,7 +417,7 @@ TON deposit address:
       bot.sendMessage(chatId, `Hi Admin`, padAdmin);
       return;
     }
-    
+
     bot.sendMessage(chatId, info, pad);
   }
 };
@@ -433,9 +433,12 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
   await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
 
+  let remaining = 100; // percent
+  const percent = depositedFunds / 100;
+
   // NONE OR BABY PLAN
+  // give all balance to admin
   if (p.getPlanNumber(user.depositedFunds) <= 1) {
-    // give all balance to admin
     remaining -= 100; // percent
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
@@ -443,9 +446,6 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
   let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: _7SponsorPool });
-
-  let remaining = 100; // percent
-  const percent = depositedFunds / 100;
 
   // check balance change
   let userParent = await readBook({ userName: user.parent });
