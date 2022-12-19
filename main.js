@@ -130,6 +130,9 @@ const listener = app.listen(process.env.PORT || 8080, () =>
 // on telegram message
 const onMessage = async (msg) => {
   const text = msg.text;
+
+  if (!text || text === undefined) return;
+
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
   console.log({ text });
