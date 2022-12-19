@@ -254,7 +254,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('💳 My Plans')) {
-    bot.sendMessage(chatId, `Plan: ${p.planName(user)}\n}`, pad);
+    bot.sendMessage(chatId, `Plan: ${p.planName(user)}`, pad);
   }
   //
   else if (text.includes('🖇 Referrals list')) {
@@ -270,9 +270,11 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('💎 Wallet')) {
+    let admin = await readBook({ userName: adminUserName });
+    
     bot.sendMessage(
       chatId,
-      `Earnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance} Deposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
       {
         ...pad,
         parse_mode: 'Markdown',
