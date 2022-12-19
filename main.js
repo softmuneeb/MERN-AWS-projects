@@ -283,7 +283,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, `Invite link: https://t.me/sheikhu_bot?start=${userName}`, pad);
+    bot.sendMessage(chatId, `Invite link: https://t.me/MLMS_bot?start=${userName}`, pad);
   }
   //
   else if (text.includes('🕶 All Details')) {
@@ -303,7 +303,7 @@ Your plan ${p.planName(user)}
 ${parent}
 ${child}
 ${childPaying}
-Invite link: https://t.me/sheikhu_bot?start=${user.userName}
+Invite link: https://t.me/MLMS_bot?start=${user.userName}
 TON deposit address:
 \`${publicKey}\``,
       { ...pad, parse_mode: 'Markdown' },
