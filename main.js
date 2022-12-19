@@ -435,6 +435,8 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
+  let admin = await readBook({ userName: adminUserName });
+  let pool = await readBook({ userName: _7SponsorPool });
 
   // NONE OR BABY PLAN
   // give all balance to admin
@@ -443,9 +445,6 @@ const giveRewardsNormal = async (user, depositedFunds) => {
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
   }
-
-  let admin = await readBook({ userName: adminUserName });
-  let pool = await readBook({ userName: _7SponsorPool });
 
   // check balance change
   let userParent = await readBook({ userName: user.parent });
