@@ -379,7 +379,7 @@ TON deposit address:
   }
   // bot does not understand message
   else {
-    bot.sendMessage(chatId, 'hi https://www.youtube.com/watch?v=covxjhXsCi8', pad);
+    bot.sendMessage(chatId, info, pad);
   }
 };
 
