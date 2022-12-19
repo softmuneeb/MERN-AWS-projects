@@ -269,13 +269,14 @@ TON deposit address:
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    await transferFrom(adminMnemonic, withdrawWallet, user.balance * withdraw * percentage);
-    await giveRewardsRecycle(user, user.balance * recycle * percentage);
-    await writeBook({ userName }, { balance: 0 });
+    // TODO: test local transferFrom then push
+    // await transferFrom(adminMnemonic, withdrawWallet, user.balance * withdraw * percentage);
+    // await giveRewardsRecycle(user, user.balance * recycle * percentage);
+    // await writeBook({ userName }, { balance: 0 });
 
     bot.sendMessage(
       chatId,
-      `Successfully sent ${withdraw}% ${user.balance * withdraw * percentage} TON to your wallet`,
+      `It will send ${withdraw}% ${user.balance * withdraw * percentage} TON to your wallet`,
       pad,
     );
   }
