@@ -66,10 +66,10 @@ async function transferFrom(mnemonic, toAddress, amount) {
     await sleep(1500); // avoid throttling by toncenter.com
     currentSeqno = (await wallet.methods.seqno().call()) || 0;
   }
-  const address = await wallet.getAddress();
+  // const address = await wallet.getAddress();
   // await sleep(1500); // avoid throttling by toncenter.com
-  const balance = await tonweb.getBalance(address);
-  console.log('balance:', TonWeb.utils.fromNano(balance));
+  // const balance = await tonweb.getBalance(address);
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
 async function getBalance(m) {
@@ -95,7 +95,7 @@ async function getBalance(m) {
     balance = await tonweb.getBalance(address);
     return [balance, TonWeb.utils.fromNano(balance)];
   } catch (error) {
-    console.log(error);
+    console.log('error: ' + error);
     return [null, null];
   }
 }
