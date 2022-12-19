@@ -16,7 +16,7 @@ const keyboard = [
 const adminKeyBoard = [
   ['________ADMIN________'], //
   ['🎥 Send Media to Users'], //
-  ['📊 Total Users in System'], //
+  ['📊 System Stats'], //
   ['🤵🏼‍♂️ Reward 7 Pool Members'], //
   ['🦸‍♂️ Reward Super Star Pool Members'], //
   ['💳 Force Withdraw All Users'], //
@@ -56,7 +56,7 @@ const plans = `
 ✈️ FLY 500 TON, Withdraw 70% Earnings
 `;
 
-const pad = {
+const padSimple = {
   reply_markup: {
     keyboard,
   },
@@ -65,10 +65,6 @@ const padAdmin = {
   reply_markup: {
     keyboard: [...keyboard, ...adminKeyBoard],
   },
-};
-const padCopyAble = {
-  ...pad,
-  parse_mode: 'Markdown',
 };
 
 const admins = ['crypto_millio', 'ADMIN'];
@@ -143,6 +139,15 @@ const p = {
   },
 
   planName: ({ depositedFunds: d }) => {
+    let ans; // plan
+    if (d >= p.level5) ans = '✈️ FLY'; // 500 TON FLY
+    else if (d >= p.level4) ans = '🏃 RUN'; // 200 TON RUN
+    else if (d >= p.level3) ans = '🚶 WALK'; // 50 TON  WALK
+    else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level1) ans = '👶 BABY';
+    else ans = '👎 NONE';
+    return ans;
+
     const plans = ['👎 NONE', '👶 BABY', '⭐️ START', '🚶 WALK', '🏃 RUN', '✈️ FLY'];
     return plans[p.getPlanNumber(d)];
   },
@@ -175,6 +180,12 @@ const listener = app.listen(process.env.PORT || 8080, () =>
 
 // on telegram message
 const onMessage = async (msg) => {
+  let pad = padSimple;
+  let padCopyAble = {
+    ...padSimple,
+    parse_mode: 'Markdown',
+  };
+
   const { text } = msg;
   if (!text || text === undefined) {
     bot.sendMessage(chatId, 'Please send only text', pad);
@@ -201,6 +212,14 @@ const onMessage = async (msg) => {
   const userName = msg.chat.username;
   let publicKey, mnemonic, depositedFunds;
   let user = await readBook({ userName });
+
+  if (admins.includes(userName)) {
+    pad = padAdmin;
+    padCopyAble = {
+      ...padAdmin,
+      parse_mode: 'Markdown',
+    };
+  }
 
   // Old User
   if (existsUser(user)) {
@@ -284,7 +303,7 @@ const onMessage = async (msg) => {
 
     bot.sendMessage(
       chatId,
-      `\nAdmin Balance: ${admin.balance} TON\nEarnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      `Earnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
       padCopyAble,
     );
   }
@@ -388,7 +407,7 @@ TON deposit address:
 
     await writeBook({ userName: _7SponsorPool }, { balance: backToPoolTotal });
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, padAdmin);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
   }
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
@@ -397,24 +416,36 @@ TON deposit address:
       return;
     }
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members`, padAdmin);
+    bot.sendMessage(chatId, `Successfully sent TON to pool members`, pad);
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
-    bot.sendMessage(chatId, 'Invitation link', padAdmin);
+    if (!admins.includes(userName)) {
+      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      return;
+    }
+    bot.sendMessage(chatId, 'Invitation link', pad);
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
-    bot.sendMessage(chatId, '🎥 Send Media to Users', padAdmin);
+    if (!admins.includes(userName)) {
+      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      return;
+    }
+    bot.sendMessage(chatId, '🎥 Send Media to Users', pad);
   }
   //
-  else if (text.includes('📊 Total Users in System')) {
-    bot.sendMessage(chatId, '📊 Total Users in System', padAdmin);
+  else if (text.includes('📊 System Stats')) {
+    if (!admins.includes(userName)) {
+      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      return;
+    }
+    bot.sendMessage(chatId, `Admin Balance: ${admin.balance} TON`, pad);
   }
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
-      bot.sendMessage(chatId, `Hi Admin`, padAdmin);
+      bot.sendMessage(chatId, `Hi Admin`, pad);
       return;
     }
 
@@ -424,14 +455,13 @@ TON deposit address:
 
 // namaz pending and you are working = no barkat in this work
 const giveRewardsNormal = async (user, depositedFunds) => {
+  const newDepositedFunds = user.depositedFunds + depositedFunds;
+  await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
+
   if (!user.parent) {
     console.log('no user parent, no reward');
     return;
   }
-
-  const newDepositedFunds = user.depositedFunds + depositedFunds;
-
-  await writeBook({ userName: user.userName }, { depositedFunds: newDepositedFunds });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
@@ -536,26 +566,25 @@ const existsUser = (user) => {
 };
 
 const seedDB = async () => {
-  
-const user = await readBook({ userName: defaultReferrer });
+  const user = await readBook({ userName: defaultReferrer });
 
-console.log({ user });
+  console.log({ user });
 
-if (!existsUser(user)) {
-  console.log('db used first time');
+  if (!existsUser(user)) {
+    console.log('db used first time');
 
-  await writeBook(
-    { userName: defaultReferrer },
-    {
-      chatId: defaultReferrerChatId,
-      userName: defaultReferrer,
-      publicKey: defaultReferrerAddress,
-      mnemonic: defaultReferrerMnemonic,
-    },
-  );
-} else {
-  console.log('db used second or more times');
-}
+    await writeBook(
+      { userName: defaultReferrer },
+      {
+        chatId: defaultReferrerChatId,
+        userName: defaultReferrer,
+        publicKey: defaultReferrerAddress,
+        mnemonic: defaultReferrerMnemonic,
+      },
+    );
+  } else {
+    console.log('db used second or more times');
+  }
   console.log('Bot started');
 };
 
@@ -579,3 +608,6 @@ seedDB().then(() => bot.on('message', onMessage));
 
 // TonWeb.utils.fromNano
 // TonWeb.utils.toNano
+
+// unit testing, testing single functions
+// console.log(p.planName({depositedFunds: (6*0.0005)}));

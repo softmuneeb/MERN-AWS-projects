@@ -22,6 +22,7 @@ Nice to do:
 
 Optional:
 // TODO: make env use varible todo by crypto millio
+// send once per day, bot.sendMessage(chatId, `Hi Admin`, pad); // TODO: optional 
 
 Dont understand:
 // TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
