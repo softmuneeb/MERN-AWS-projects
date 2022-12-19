@@ -20,6 +20,28 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
+const help = `
+Help & Support
+
+Welcome to the Help & Support section of our website. Here, you'll find resources and information to assist you in using our site and its features.
+
+Knowledge Base
+
+Our knowledge base is a searchable database of answers to commonly asked questions and issues. Simply type a keyword or phrase into the search field to find helpful articles and solutions.
+
+Tutorials & User Guides
+
+Looking for step-by-step instructions on how to use a specific feature on our site? Our tutorials and user guides provide detailed instructions and helpful tips to help you get the most out of our site.
+
+Contact Us
+
+If you have a question or issue that isn't addressed in our knowledge base, don't hesitate to contact us. You can reach us by phone or email, or use our online contact form to send us a message.
+
+Social Media & User Forums
+
+Connect with other users and get help and advice from our community on our social media accounts or user forums.
+`;
+
 const pad = {
   reply_markup: {
     keyboard,
@@ -138,7 +160,7 @@ const onMessage = async (msg) => {
 
   const chatId = msg.chat.id;
   if (text.includes('🙏🏻 HELP')) {
-    bot.sendMessage(chatId, '🙏🏻 HELP', pad);
+    bot.sendMessage(chatId, help, pad);
     return;
   }
   //
