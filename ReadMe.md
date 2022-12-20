@@ -2,7 +2,10 @@ WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
 Critical:
-// TODO: checking why users created auto, Coding improve just like, writes calls, ....
+// TODO: writes calls at end, checking why users created auto, Coding improve just like, ....
+//
+// TODO: Help, users ask admin some thing and admin can reply
+// TODO: Levels Show, You are at Level 1, ...
 //
 // TODO: correct the logic balance + nonce OR tx + last updated
 // TODO: minus the balance upon withdrawal
