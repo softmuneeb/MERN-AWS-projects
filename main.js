@@ -21,14 +21,11 @@ const adminKeyBoard = [
   ['🦸‍♂️ Reward Super Star Pool Members'], //
   ['💳 Force Withdraw All Users'], //
 ];
+// ===============Till Here =====
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 
-// ===============Till Here =====
-
-// const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // MLM Bot
-// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // Bot01
 
 const info = `
 Website www.amazon.com
