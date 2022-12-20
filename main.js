@@ -289,7 +289,7 @@ const onMessage = async (msg) => {
 
     user = await readBook({ userName });
 
-    bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user.depositedFunds), pad);
+    bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
   }
   //
   else if (text.includes('💳 My Plan')) {
