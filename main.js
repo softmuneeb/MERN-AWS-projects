@@ -298,7 +298,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('🖇 Referrals list')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin\n';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
