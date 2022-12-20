@@ -3,7 +3,7 @@
 // ===============This section if for crypto millio
 const keyboard = [
   ['💳 Plans'], //
-  ['💳 My Plans'], //
+  ['💳 My Plan'], //
   ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
   ['🙏🏻 HELP', '💁‍♂️ Info'], //
@@ -281,7 +281,7 @@ const onMessage = async (msg) => {
     bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7), pad);
   }
   //
-  else if (text.includes('💳 My Plans')) {
+  else if (text.includes('💳 My Plan')) {
     bot.sendMessage(chatId, `Plan: ${p.planName(user)}`, pad);
   }
   //
