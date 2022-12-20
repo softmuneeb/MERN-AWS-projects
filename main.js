@@ -53,10 +53,10 @@ Social Media & User Forums
 Connect with other users and get help and advice from our community on our social media accounts or user forums.
 `;
 const plans = `
-⭐️ START 25 TON, Withdraw 40% Earnings
-🚶 WALK 50 TON, Withdraw 50% Earnings
-🏃 RUN 200 TON, Withdraw 60% Earnings
-✈️ FLY 500 TON, Withdraw 70% Earnings
+⭐️ START 25 TON
+🚶 WALK 50 TON 
+🏃 RUN 200 TON 
+✈️ FLY 500 TON
 `;
 
 const padSimple = {
@@ -148,8 +148,6 @@ const p = {
     else ans = '👎 NONE';
     return ans;
 
-    const plans = ['👎 NONE', '👶 BABY', '⭐️ START', '🚶 WALK', '🏃 RUN', '✈️ FLY'];
-    return plans[p.getPlanNumber(d)];
   },
 };
 
