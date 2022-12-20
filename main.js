@@ -23,8 +23,8 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
-const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // MLM Bot
-// const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // Bot01
+// const token = '5665092913:AAFUbS3FY-Msslv96Ujc_P-tMQ9qOdp_3jk'; // MLM Bot
+const token = '5824890097:AAFlY-9XwGl0-sM0mooKNaWISWHFsIR_T2o'; // Bot01
 
 const info = `
 Website www.amazon.com
@@ -66,11 +66,11 @@ const padSimple = {
 };
 const padAdmin = {
   reply_markup: {
-    keyboard: [...keyboard, ...adminKeyBoard],
+    keyboard: [...adminKeyBoard, ...keyboard],
   },
 };
 
-const admins = ['crypto_millio', 'ADMIN'];
+const admins = ['crypto_millio', 'thinkmuneeb', 'ADMIN'];
 
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'crypto_millio',
@@ -167,6 +167,7 @@ let i = 0;
 
 // on telegram message
 const onMessage = async (msg) => {
+  // console.log({ msg });
   let pad = padSimple;
   let padCopyAble = {
     ...padSimple,
@@ -174,11 +175,6 @@ const onMessage = async (msg) => {
   };
 
   const { text } = msg;
-  if (!text || text === undefined) {
-    bot.sendMessage(chatId, 'Please send only text', pad);
-    return;
-  }
-  console.log({ text });
 
   const userName = msg.chat.username;
 
@@ -192,17 +188,17 @@ const onMessage = async (msg) => {
 
   const chatId = msg.chat.id;
   console.log({ chatId });
-  if (text.includes('🙏🏻 HELP')) {
+  if (text && text.includes('🙏🏻 HELP')) {
     bot.sendMessage(chatId, help, pad);
     return;
   }
   //
-  else if (text.includes('💁‍♂️ Info')) {
+  else if (text && text.includes('💁‍♂️ Info')) {
     bot.sendMessage(chatId, info, pad);
     return;
   }
   //
-  else if (text.includes('💳 Plans')) {
+  else if (text && text.includes('💳 Plans')) {
     bot.sendMessage(chatId, plans, pad);
     return;
   }
@@ -212,10 +208,26 @@ const onMessage = async (msg) => {
 
   if (admins.includes(userName) && i === 1) {
     i = 0;
-    await sendMessageToAllUsers(text);
-    bot.sendMessage(chatId, 'Sent to all users', pad);
+
+    if (msg.document) {
+      await sendToAllUsers('sendDocument', msg.document.file_id);
+    } //
+    else if (msg.photo) {
+      await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
+    } //
+    else if (msg.text) {
+      await sendToAllUsers('sendMessage', msg.text);
+    }
+
+    bot.sendMessage(chatId, 'Sending... to all users', pad);
     return;
   }
+
+  if (!text || text === undefined) {
+    bot.sendMessage(chatId, 'Please send only text', pad);
+    return;
+  }
+  console.log({ text });
 
   // Old User
   if (existsUser(user)) {
@@ -549,7 +561,7 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   // check balance change
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
-  // TODO: resturn pool.userName as SUPER_POWER_CLUB
+  // TODO: return pool.userName as SUPER_POWER_CLUB
   let pool = await readBook({ userName: SUPER_STAR_POOL });
 
   let remaining = 100; // percent
@@ -571,13 +583,15 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
   await writeBook({ userName: SUPER_STAR_POOL }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
 };
-const sendMessageToAllUsers = async (text) => {
+const sendToAllUsers = async (method, msg) => {
   let users = await readBookMany({});
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    user.chatId && bot.sendMessage(user.chatId, text, padSimple);
+    user.chatId && bot[method](user.chatId, msg);
   }
+
+  // bot.sendMessage(chatId, 'Sending... to all users', pad);
 };
 
 const existsUser = (user) => {
