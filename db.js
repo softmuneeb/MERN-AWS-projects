@@ -95,7 +95,7 @@ const writeBook = async (user, newUserState) => {
   const response = await Todo.updateOne(user, newUserState);
   // await mongoose.connection.close();
   // console.log({ response });
-  console.log({ responseModifiedCount: response.modifiedCount });
+  console.log({ dbModifiedCount: response.modifiedCount });
   return response;
 };
 

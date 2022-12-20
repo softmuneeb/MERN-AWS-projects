@@ -230,12 +230,9 @@ const onMessage = async (msg) => {
   // Old User
   if (existsUser(user)) {
     [, depositedFunds] = await getBalance(user.mnemonic);
-    console.log({ depositedFunds });
-    console.log({ depositedFunds2: user.depositedFunds });
+
     if (depositedFunds && depositedFunds > user.depositedFunds) {
       console.log('giveRewards');
-      const newDepositedFunds = depositedFunds;
-      await writeBook({ userName }, { depositedFunds: newDepositedFunds });
       const newDeposit = depositedFunds - user.depositedFunds;
       await giveRewardsNormal(user, newDeposit);
     }
@@ -290,7 +287,9 @@ const onMessage = async (msg) => {
     await giveRewardsNormal(user, user.balance * 0.7); // 70%
     await writeBook({ userName }, { balance: 0 });
 
-    bot.sendMessage(chatId, 'Upgraded your package is ' + plan(user.depositedFunds + user.balance * 0.7), pad);
+    user = await readBook({ userName });
+
+    bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user.depositedFunds), pad);
   }
   //
   else if (text.includes('💳 My Plan')) {
@@ -480,9 +479,12 @@ TON deposit address:
 // namaz pending and you are working = no barkat in this work
 const giveRewardsNormal = async (user, depositedFunds) => {
   if (!user.parent) {
-    console.log('no user parent, no reward');
+    await writeBook({ userName: adminUserName }, { depositedFunds });
+    console.log('All depositedFunds sent to admin');
     return;
   }
+
+  await writeBook({ userName: user.userName }, { depositedFunds });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
@@ -491,23 +493,27 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
   // NONE OR BABY PLAN
   // give all balance to admin
-  if (p.getPlanNumber(user.depositedFunds) <= 1) {
+  if (p.getPlanNumber(user) < 2) {
+    // START
     remaining -= 100; // percent
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
   }
 
-  // check balance change
+  console.log('1');
+  // START OR BIGGER PLAN
   let userParent = await readBook({ userName: user.parent });
-
-  if (p.getPlanNumber({ depositedFunds: newDepositedFunds }) > 1 && !userParent.childPaying.includes(user.userName)) {
+  if (!userParent.childPaying.includes(user.userName)) {
+    console.log('2');
     await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, user.userName] });
   }
 
+  console.log('3');
   userParent = await readBook({ userName: user.parent });
 
   // 1 to 3
   if (userParent.childPaying.length <= 3) {
+    console.log('4');
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
@@ -552,6 +558,7 @@ const giveRewardsNormal = async (user, depositedFunds) => {
 
 const giveRewardsRecycle = async (user, depositedFunds) => {
   if (!user.parent) {
+    await writeBook({ userName: adminUserName }, { depositedFunds }); // 50% of remaining
     console.log('no user parent, no reward');
     return;
   }
