@@ -2,6 +2,7 @@ WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
 Critical:
+// TODO: tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;;;
 // TODO: Adil DB, Mongo, Change IP to specific addresses
 // TODO: writes calls at end, checking why users created auto, Coding improve just like, ....
 //
@@ -49,8 +50,11 @@ Make video to explain code... how to use bot, how to add fetaure? remove, update
 
 
 
+balance 0.0005 
+0.0021 = 0.001995 admin + 0.000105 pool
 
-
+0.001995 + 0.0005
+= 0.002495 admin
 
 
 

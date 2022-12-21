@@ -1,0 +1,158 @@
+npm run dev 
+
+
+> js-code-lab-1@1.0.0 dev
+> nodemon main.js
+
+[nodemon] 2.0.18
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node main.js`
+{ user: undefined }
+db used first time
+{
+  user: {
+    _id: new ObjectId("63a392b7029abf4e42976979"),
+    chatId: '5492194169',
+    userName: 'crypto_millio',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [],
+    childPaying: [],
+    date: 1671664303212,
+    __v: 0
+  }
+}
+Bot started Thu Dec 22 2022 04:11:52 GMT+0500 (Pakistan Standard Time)
+New user
+{ adminUserName: 'crypto_millio' }
+{
+  parent: {
+    _id: new ObjectId("63a392b7029abf4e42976979"),
+    chatId: '5492194169',
+    userName: 'crypto_millio',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [],
+    childPaying: [],
+    date: 1671664303212,
+    __v: 0
+  }
+}
+{
+  user: {
+    _id: new ObjectId("63a392c7029abf4e42976980"),
+    chatId: '5207150830',
+    userName: 'adilkh12',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQCgq7SOwUo3aA6omkK3H9kmzDKDahcYg-_k4TrJGt3pusYI',
+    mnemonic: 'cycle reopen diagram festival fresh program brand practice verify little option circle crater sort zoo gloom plug raw couple link spirit organ wire laundry',
+    parent: 'crypto_millio',
+    child: [],
+    childPaying: [],
+    date: 1671664303212,
+    __v: 0
+  },
+  d: 2022-12-21T23:12:08.780Z
+}
+Old user
+{ new: 0.0021, old: 0 }
+giveRewards
+{ remainingSending: 80 }
+{
+  user: {
+    _id: new ObjectId("63a392c7029abf4e42976980"),
+    chatId: '5207150830',
+    userName: 'adilkh12',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0.0021,
+    balance: 0,
+    publicKey: 'EQCgq7SOwUo3aA6omkK3H9kmzDKDahcYg-_k4TrJGt3pusYI',
+    mnemonic: 'cycle reopen diagram festival fresh program brand practice verify little option circle crater sort zoo gloom plug raw couple link spirit organ wire laundry',
+    parent: 'crypto_millio',
+    child: [],
+    childPaying: [],
+    date: 1671664303212,
+    __v: 0
+  },
+  d: 2022-12-21T23:13:54.698Z
+}
+Old user
+{ new: 0.0005, old: 0 }
+giveRewards
+{
+  user: {
+    _id: new ObjectId("63a392b7029abf4e42976979"),
+    chatId: '5492194169',
+    userName: 'crypto_millio',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0.0005,
+    balance: 0.0021799999999999996,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671664303212,
+    __v: 0
+  },
+  d: 2022-12-21T23:14:14.038Z
+}
+Old user
+{ new: 0.0021, old: 0.0021 }
+{
+  user: {
+    _id: new ObjectId("63a392c7029abf4e42976980"),
+    chatId: '5207150830',
+    userName: 'adilkh12',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0.0021,
+    balance: 0,
+    publicKey: 'EQCgq7SOwUo3aA6omkK3H9kmzDKDahcYg-_k4TrJGt3pusYI',
+    mnemonic: 'cycle reopen diagram festival fresh program brand practice verify little option circle crater sort zoo gloom plug raw couple link spirit organ wire laundry',
+    parent: 'crypto_millio',
+    child: [],
+    childPaying: [],
+    date: 1671664303212,
+    __v: 0
+  },
+  d: 2022-12-21T23:14:30.808Z
+}
+Old user
+{ new: 0.0005, old: 0.0005 }
+{
+  user: {
+    _id: new ObjectId("63a392b7029abf4e42976979"),
+    chatId: '5492194169',
+    userName: 'crypto_millio',
+    isIn7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    depositedFunds: 0.0005,
+    balance: 0.0021799999999999996,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671664303212,
+    __v: 0
+  },
+  d: 2022-12-21T23:14:39.822Z
+}

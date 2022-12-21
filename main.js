@@ -39,12 +39,12 @@ const REMOVED_FROM_POOL = 2;
 
 // moved some functions in an object because they depend on each other
 const p = {
-  level0: 0.0005, // < 5 TON ZERO
+  level0: 0.0, // < 5 TON ZERO
   level1: 0.001, // 5 TON   BABY
-  level2: 0.0015, // 25 TON  START
-  level3: 0.002, // 50 TON  WALK
-  level4: 0.0025, // 200 TON RUN
-  level5: 0.003, // 500 TON FLY
+  level2: 0.002, // 25 TON  START
+  level3: 0.003, // 50 TON  WALK
+  level4: 0.004, // 200 TON RUN
+  level5: 0.005, // 500 TON FLY
 
   ZERO: 0, // < 5 TON ZERO
   BABY: 1, // 5 TON   BABY
@@ -228,12 +228,14 @@ const onMessage = async (msg, ctx) => {
   // Old User
   if (exists(user)) {
     console.log('Old user');
-    const [, depositedFunds] = await getBalance(user.mnemonic);
+    let [, depositedFunds] = await getBalance(user.mnemonic);
+    console.log({ new: depositedFunds, old: user.depositedFunds });
 
     if (depositedFunds && depositedFunds > user.depositedFunds) {
       console.log('giveRewards');
       const newDeposit = depositedFunds - user.depositedFunds;
-      await deposit(user, newDeposit);
+      await deposit(user, newDeposit, userName);
+      user = await readBook({ userName });
     }
   }
   // New User
@@ -284,7 +286,7 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
-    await deposit(user, user.balance * 0.7); // 70% used in plan upgrade, distributed in referrals, admin
+    await deposit(user, user.balance * 0.7, userName); // 70% used in plan upgrade, distributed in referrals, admin
     await recycle(user, user.balance * 0.3); // 30% distributed in referrals, admin
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
@@ -321,7 +323,7 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🕶 All Details')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'You are invited by admin\n';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
@@ -329,18 +331,24 @@ const onMessage = async (msg, ctx) => {
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
+    bot.sendMessage(chatId, `Plan: ${p.planName(user)}\n${parent}${child}${childPaying}`, pad);
     bot.sendMessage(
       chatId,
-      `${userName} has earned ${user.balance} TON
-Deposited Funds ${user.depositedFunds} TON
-Your plan ${p.planName(user)}
-${parent}
-${child}${childPaying}
-Invite link: https://t.me/${botName}?start=${userName}
-TON deposit address:
-\`${user.publicKey}\``,
+      `Earnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
+
+    //     bot.sendMessage(
+    //       chatId,
+    //       `${userName} has earned ${user.balance} TON
+    // Deposited Funds ${user.depositedFunds} TON
+    // Your plan ${p.planName(user)}
+    // ${parent}${child}${childPaying}
+    // Invite link: https://t.me/${botName}?start=${userName}
+    // TON deposit address:
+    // \`${user.publicKey}\``,
+    //       padCopyAble,
+    //     );
   }
   //
   else if (text.includes('💳 Withdraw')) {
@@ -478,20 +486,21 @@ TON deposit address:
 };
 
 // namaz pending and you are working = no barkat in this work
-const deposit = async (user, depositedFunds) => {
+const deposit = async (user, depositedFunds, userName) => {
   let admin = await readBook({ userName: adminUserName });
-  if (!user.parent) {
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds });
-    return; //  <---------------------<
-  }
+  // if (!user.parent) {
+  //   await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds });
+  //   return; //  <---------------------<
+  // }
 
-  await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  await writeBook({ userName: user.userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  user = await readBook({ userName });
 
   const percent = depositedFunds / 100;
   let pool = await readBook({ userName: _7_SPONSOR_POOL });
 
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
-  if (p.getPlanNumber(user) < START) {
+  if (!user.parent || p.getPlanNumber(user) < p.START) {
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
   }
@@ -500,7 +509,7 @@ const deposit = async (user, depositedFunds) => {
   // START OR BIGGER PLAN
   if (!userParent.childPaying.includes(userName)) {
     await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, userName] });
-    userParent = await readBook({ userName: user.parent });
+    // userParent = await readBook({ userName: user.parent });
   }
 
   // 1 to 3
@@ -542,10 +551,8 @@ const deposit = async (user, depositedFunds) => {
     }
   }
 
-  // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent });
-  await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 0.5 * remaining * percent });
+  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
 };
 
 const recycle = async (user, depositedFunds) => {
