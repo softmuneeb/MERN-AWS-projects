@@ -331,24 +331,13 @@ const onMessage = async (msg, ctx) => {
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
-    bot.sendMessage(chatId, `Plan: ${p.planName(user)}\n${parent}${child}${childPaying}`, pad);
     bot.sendMessage(
       chatId,
-      `Earnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
+      `${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
+        user.depositedFunds
+      } TON\nDeposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
-
-    //     bot.sendMessage(
-    //       chatId,
-    //       `${userName} has earned ${user.balance} TON
-    // Deposited Funds ${user.depositedFunds} TON
-    // Your plan ${p.planName(user)}
-    // ${parent}${child}${childPaying}
-    // Invite link: https://t.me/${botName}?start=${userName}
-    // TON deposit address:
-    // \`${user.publicKey}\``,
-    //       padCopyAble,
-    //     );
   }
   //
   else if (text.includes('💳 Withdraw')) {
