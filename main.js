@@ -23,7 +23,6 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-// ===============Till Here =====
 const admins = ['crypto_millio', 'thinkmuneeb', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'crypto_millio',
@@ -169,6 +168,7 @@ let padCopyAble = {
   ...padSimple,
   parse_mode: 'Markdown',
 };
+let botName;
 
 // on telegram message
 const onMessage = async (msg, ctx) => {
@@ -317,7 +317,7 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, `Invite link: \`https://t.me/MLMS_bot?start=${userName}\``, padCopyAble);
+    bot.sendMessage(chatId, `Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
   }
   //
   else if (text.includes('🕶 All Details')) {
@@ -336,7 +336,7 @@ Deposited Funds ${user.depositedFunds} TON
 Your plan ${p.planName(user)}
 ${parent}
 ${child}${childPaying}
-Invite link: https://t.me/MLMS_bot?start=${userName}
+Invite link: https://t.me/${botName}?start=${userName}
 TON deposit address:
 \`${user.publicKey}\``,
       padCopyAble,
@@ -592,6 +592,8 @@ const exists = (user) => {
 };
 
 const seedDB = async () => {
+  botName = (await bot.getMe()).username;
+
   let user = await readBook({ userName: adminUserName });
   console.log({ user });
 
@@ -616,26 +618,4 @@ const seedDB = async () => {
   console.log('Bot started ' + new Date());
 };
 
-// prod
 seedDB().then(() => bot.on('message', onMessage));
-console.log({ aoa: 1 });
-// dev
-// bot.on('message', onMessage);
-
-// let botBalance = '';
-// setInterval(async () => {
-//   const [, balance] = await getBalance(m);
-
-//   if (botBalance !== balance) {
-//     botBalance !== '' && bot.sendMessage(chatId, `Payment received`, pad);
-
-//     console.log({ balance, botBalance });
-//     botBalance = balance;
-//   }
-// }, 60 * 1000);
-
-// TonWeb.utils.fromNano
-// TonWeb.utils.toNano
-
-// unit testing, testing single functions
-// console.log(p.planName({depositedFunds: (6*0.0005)}));

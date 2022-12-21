@@ -589,3 +589,27 @@ let i = 1;
 make bal 0
 // await writeBook({ userName }, { depositedFunds: 0 });
   // return;
+
+
+
+// console.log({ aoa: 1 });
+// dev
+// bot.on('message', onMessage);
+
+// let botBalance = '';
+// setInterval(async () => {
+//   const [, balance] = await getBalance(m);
+
+//   if (botBalance !== balance) {
+//     botBalance !== '' && bot.sendMessage(chatId, `Payment received`, pad);
+
+//     console.log({ balance, botBalance });
+//     botBalance = balance;
+//   }
+// }, 60 * 1000);
+
+// TonWeb.utils.fromNano
+// TonWeb.utils.toNano
+
+// unit testing, testing single functions
+// console.log(p.planName({depositedFunds: (6*0.0005)}));
