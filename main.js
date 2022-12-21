@@ -614,7 +614,7 @@ const seedDB = async () => {
 
 // prod
 seedDB().then(() => bot.on('message', onMessage));
-
+console.log({aoa:1})
 // dev
 // bot.on('message', onMessage);
 
