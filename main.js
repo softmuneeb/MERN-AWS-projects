@@ -21,67 +21,21 @@ const adminKeyBoard = [
   ['🦸‍♂️ Reward Super Star Pool Members'], //
   ['💳 Force Withdraw All Users'], //
 ];
+
 // ===============Till Here =====
-
-const info = `
-Website www.amazon.com
-Youtube www.ebay.com
-Blog www.walmart.com
-`;
-const help = `
-Help & Support
-
-Welcome to the Help & Support section of our website. Here, you'll find resources and information to assist you in using our site and its features.
-
-Knowledge Base
-
-Our knowledge base is a searchable database of answers to commonly asked questions and issues. Simply type a keyword or phrase into the search field to find helpful articles and solutions.
-
-Tutorials & User Guides
-
-Looking for step-by-step instructions on how to use a specific feature on our site? Our tutorials and user guides provide detailed instructions and helpful tips to help you get the most out of our site.
-
-Contact Us
-
-If you have a question or issue that isn't addressed in our knowledge base, don't hesitate to contact us. You can reach us by phone or email, or use our online contact form to send us a message.
-
-Social Media & User Forums
-
-Connect with other users and get help and advice from our community on our social media accounts or user forums.
-`;
-const plans = `
-⭐️ START 25 TON
-🚶 WALK 50 TON 
-🏃 RUN 200 TON 
-✈️ FLY 500 TON
-`;
-
-const padSimple = {
-  reply_markup: {
-    keyboard,
-  },
-};
-const padAdmin = {
-  reply_markup: {
-    keyboard: [...adminKeyBoard, ...keyboard],
-  },
-};
-let pad = padSimple;
-let padCopyAble = {
-  ...padSimple,
-  parse_mode: 'Markdown',
-};
 const admins = ['crypto_millio', 'thinkmuneeb', 'ADMIN'];
-
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'crypto_millio',
   '5492194169',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
-
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
+
+const IN_POOL = 1;
+const NOT_IN_POOL = 0;
+const REMOVED_FROM_POOL = 2;
 
 // moved some functions in an object because they depend on each other
 const p = {
@@ -155,9 +109,38 @@ const p = {
   },
 };
 
-const IN_POOL = 1;
-const NOT_IN_POOL = 0;
-const REMOVED_FROM_POOL = 2;
+const info = `
+Website www.amazon.com
+Youtube www.ebay.com
+Blog www.walmart.com
+`;
+const help = `
+Help & Support
+
+Welcome to the Help & Support section of our website. Here, you'll find resources and information to assist you in using our site and its features.
+
+Knowledge Base
+
+Our knowledge base is a searchable database of answers to commonly asked questions and issues. Simply type a keyword or phrase into the search field to find helpful articles and solutions.
+
+Tutorials & User Guides
+
+Looking for step-by-step instructions on how to use a specific feature on our site? Our tutorials and user guides provide detailed instructions and helpful tips to help you get the most out of our site.
+
+Contact Us
+
+If you have a question or issue that isn't addressed in our knowledge base, don't hesitate to contact us. You can reach us by phone or email, or use our online contact form to send us a message.
+
+Social Media & User Forums
+
+Connect with other users and get help and advice from our community on our social media accounts or user forums.
+`;
+const plans = `
+⭐️ START 25 TON
+🚶 WALK 50 TON 
+🏃 RUN 200 TON 
+✈️ FLY 500 TON
+`;
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
@@ -169,14 +152,30 @@ const bot = new TelegramBot(token, { polling: true });
 
 let SEND_MEDIA = 0;
 
+const padSimple = {
+  reply_markup: {
+    keyboard,
+  },
+};
+const padAdmin = {
+  reply_markup: {
+    keyboard: [...adminKeyBoard, ...keyboard],
+  },
+};
+let pad = padSimple;
+let padCopyAble = {
+  ...padSimple,
+  parse_mode: 'Markdown',
+};
+
 // on telegram message
 const onMessage = async (msg, a, b, c) => {
   const { text } = msg;
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
 
-  console.log({ msg, a, b, c }); // for dev
-  console.log({ text });
+  // console.log({ msg, a, b, c }); // for dev
+  // console.log({ text });
 
   if (admins.includes(userName)) {
     pad = padAdmin;
@@ -244,8 +243,12 @@ const onMessage = async (msg, a, b, c) => {
     }
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
+    console.log({ parent, i: 1 });
     if (!exists(parent)) {
+      console.log({ parent, i: 2 });
       parent = await readBook({ userName: adminUserName });
+      console.log({ adminUserName });
+      console.log({ parent });
     }
 
     const [publicKey, mnemonic] = await mnemonicGenerate();
@@ -261,7 +264,6 @@ const onMessage = async (msg, a, b, c) => {
   }
 
   //
-
   //
   //
   //
@@ -454,10 +456,11 @@ TON deposit address:
     let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
     let users = await readBookMany({}); // SHOW PEOPLE ON LEVELS
     console.log({ users });
+    const totalUsers = users.length - 2; // 2 pools are used as users
 
     bot.sendMessage(
       chatId,
-      `Total Users in System: ${users.length}\nAdmin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
+      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
       pad,
     );
   }
@@ -579,17 +582,18 @@ const sendToAllUsers = async (method, msg) => {
 };
 
 const exists = (user) => {
-  return user !== null;
+  return user !== undefined;
 };
 
 const seedDB = async () => {
   const user = await readBook({ userName: adminUserName });
-
   console.log({ user });
 
   if (!exists(user)) {
     console.log('db used first time');
 
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: 0 });
+    await writeBook({ userName: SUPER_STAR_POOL }, { balance: 0 });
     await writeBook(
       { userName: adminUserName },
       {
@@ -602,7 +606,7 @@ const seedDB = async () => {
   } else {
     console.log('db used second or more times');
   }
-  console.log('Bot started');
+  console.log('Bot started ' + new Date());
 };
 
 // prod

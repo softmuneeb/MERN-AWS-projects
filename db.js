@@ -1,5 +1,9 @@
-const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-const dbName = 'UserModel42';
+require('dotenv').config();
+const dbLink = process.env.DB_LINK;
+const dbName = process.env.DB_NAME;
+
+// const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
+// const dbName = 'UserModel51';
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
@@ -87,27 +91,37 @@ const readBookMany = async (user) => {
 };
 
 const writeBook = async (user, newUserState) => {
-  const Todo = new mongoose.model(dbName, UserSchema);
+  const User = new mongoose.model(dbName, UserSchema);
   mongoose.connect(dbLink, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
-  const response = await Todo.updateOne(user, newUserState);
+
+  let [responseRead] = await User.find(user);
+  if (responseRead === undefined) {
+    const responseCreate = await User.create(user, newUserState);
+    console.log({ responseCreate, newUserState });
+  } else {
+    const responseUpdate = await User.updateOne(user, newUserState);
+    console.log({ responseUpdate, newUserState });
+  }
+
   // await mongoose.connection.close();
-  // console.log({ response });
-  console.log({ dbModifiedCount: response.modifiedCount });
-  return response;
+  // console.log({ dbModifiedCount: response.modifiedCount, newUserState });
+  // return response;
 };
 
 // Driver Code
-// (async () => {
-//   const user = await readBook({ chatId: '1672843321______qqqq1' });
-//   console.log({ user });
+(async () => {
+  const chatId = '1672843321______qqqq2';
 
-//   await writeBook({ chatId: user.chatId }, { balance: '11' });
+  const user = await readBook({ chatId });
+  console.log({ user });
 
-//   const user2 = await readBook({ chatId: user.chatId });
-//   console.log({ user2 });
-// })();
+  await writeBook({ chatId }, { chatId, balance: '11' });
+
+  const user2 = await readBook({ chatId });
+  console.log({ user2 });
+})();
 
 module.exports = { readBook, writeBook, readBookMany };

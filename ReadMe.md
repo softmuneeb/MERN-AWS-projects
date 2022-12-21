@@ -2,6 +2,7 @@ WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
 Critical:
+// TODO: Adil DB, Mongo, Change IP to specific addresses
 // TODO: writes calls at end, checking why users created auto, Coding improve just like, ....
 //
 // TODO: 🙏🏻 HELP, users ask admin some thing and admin can reply
@@ -20,7 +21,7 @@ Critical:
 // TODO: note down the user.depositedFunds, date time of this event, to show him later REMOVED_FROM_POOL 
 (node:20476) [node-telegram-bot-api] DeprecationWarning: In the future, content-type of files you send will default to "application/octet-stream". See https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md#sending-files for more information on how sending files has been improved and on how to disable this deprecation message altogether.
 (Use `node --trace-deprecation ...` to show where the warning was created)
-
+// TODO: DB backs our own custom backup tool
 // TODO: race case in values can write some code run parallel to check any in consistency. fatoor.
 
 // DONE: only admin can access this function
