@@ -161,7 +161,7 @@ const padSimple = {
 };
 const padAdmin = {
   reply_markup: {
-    keyboard: [...adminKeyBoard, ...keyboard],
+    keyboard: [...keyboard, ...adminKeyBoard],
   },
 };
 let pad = padSimple;
@@ -271,7 +271,7 @@ const onMessage = async (msg, ctx) => {
   //
   // PUBLIC FUNCTIONS
   if (text.includes('/start') || text.includes('⭐️ Start')) {
-    bot.sendMessage(chatId, `${user.userName}\nDeposited ${user.depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
+    bot.sendMessage(chatId, `${userName}\nDeposited ${user.depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
   }
   //
   else if (text.includes('🚀 Upgrade')) {
@@ -284,8 +284,8 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
-    await recycle(user, user.balance * 0.3); // 30% distributed in referrals, admin
     await deposit(user, user.balance * 0.7); // 70% used in plan upgrade, distributed in referrals, admin
+    await recycle(user, user.balance * 0.3); // 30% distributed in referrals, admin
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
@@ -303,9 +303,9 @@ const onMessage = async (msg, ctx) => {
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
-    publicKey = user.publicKey ? user.publicKey : publicKey;
+    childPaying = user.child.length > 0 ? childPaying : '';
 
-    bot.sendMessage(chatId, `${parent} ${child} ${childPaying}`, pad);
+    bot.sendMessage(chatId, `${parent}${child}${childPaying}`, pad);
   }
   //
   else if (text.includes('💎 Wallet')) {
@@ -331,12 +331,12 @@ const onMessage = async (msg, ctx) => {
 
     bot.sendMessage(
       chatId,
-      `${user.userName} has earned ${user.balance} TON
+      `${userName} has earned ${user.balance} TON
 Deposited Funds ${user.depositedFunds} TON
 Your plan ${p.planName(user)}
 ${parent}
 ${child}${childPaying}
-Invite link: https://t.me/MLMS_bot?start=${user.userName}
+Invite link: https://t.me/MLMS_bot?start=${userName}
 TON deposit address:
 \`${user.publicKey}\``,
       padCopyAble,
@@ -403,14 +403,14 @@ TON deposit address:
         const backToPool = reward - maxReward;
         backToPoolTotal += backToPool;
         await writeBook(
-          { userName: user.userName },
+          { userName },
           {
             earnings7SponsorPool: maxReward,
             isIn7SponsorPool: REMOVED_FROM_POOL,
           },
         );
       } else {
-        await writeBook({ userName: user.userName }, { earnings7SponsorPool: user.earnings7SponsorPool + reward });
+        await writeBook({ userName }, { earnings7SponsorPool: user.earnings7SponsorPool + reward });
       }
     }
 
@@ -479,22 +479,27 @@ TON deposit address:
 
 // namaz pending and you are working = no barkat in this work
 const deposit = async (user, depositedFunds) => {
-  await writeBook({ userName: user.userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  let admin = await readBook({ userName: adminUserName });
+  if (!user.parent) {
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds });
+    return; //  <---------------------<
+  }
+
+  await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
 
   const percent = depositedFunds / 100;
-  let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: _7_SPONSOR_POOL });
 
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
-  if (!user.parent || p.getPlanNumber(user) < START) {
+  if (p.getPlanNumber(user) < START) {
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
   }
 
   let userParent = await readBook({ userName: user.parent });
   // START OR BIGGER PLAN
-  if (!userParent.childPaying.includes(user.userName)) {
-    await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, user.userName] });
+  if (!userParent.childPaying.includes(userName)) {
+    await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, userName] });
     userParent = await readBook({ userName: user.parent });
   }
 
@@ -533,7 +538,7 @@ const deposit = async (user, depositedFunds) => {
       remaining -= 5; // percent
       console.log({ remaining });
       await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
-      bot.sendMessage(userParent.chatId, `You have earned ${5 * percent} TON from deposit of ${user.userName}`);
+      bot.sendMessage(userParent.chatId, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
   }
 
@@ -545,8 +550,7 @@ const deposit = async (user, depositedFunds) => {
 
 const recycle = async (user, depositedFunds) => {
   if (!user.parent) {
-    await writeBook({ userName: adminUserName }, { depositedFunds });
-    console.log('All depositedFunds sent to admin');
+    bot.sendMessage(user.chatId, `Admin can not recycle`);
     return;
   }
 

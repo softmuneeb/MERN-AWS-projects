@@ -1,6 +1,6 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = 'UserModel_84'; //+ Date.now();
+const dbName = 'UserModel_85'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
