@@ -1,10 +1,6 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = process.env.DB_NAME;
-
-// const dbLink = 'mongodb+srv://User123:pakistan0047@verysmallcluster.gq04lby.mongodb.net/?retryWrites=true&w=majority';
-// const dbName = 'UserModel51';
-
+const dbName = 'UserModel_83'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
@@ -16,6 +12,8 @@ const UserSchema = new mongoose.Schema({
   userName: {
     type: String,
     default: null,
+    unique: true,
+    required: true,
   },
   isIn7SponsorPool: {
     type: Number,
@@ -57,71 +55,66 @@ const UserSchema = new mongoose.Schema({
   },
   date: { type: Number, default: new Date() },
 });
+const User = new mongoose.model(dbName, UserSchema);
+mongoose.connect(dbLink, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const readBook = async (user) => {
-  const User = new mongoose.model(dbName, UserSchema);
-  mongoose.connect(dbLink, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  let [response] = await User.find(user);
-
-  // if (response === undefined) {
-  //   response = await User.create({ userName: user.userName });
-  // }
-
-  return response;
+  let response = await User.find(user);
+  if (response.length > 1) {
+    console.log('problem, ', response); //only 1 user must be there with a userName
+  }
+  return response[0];
 };
 
-const readBookMany = async (user) => {
-  const User = new mongoose.model(dbName, UserSchema);
-  mongoose.connect(dbLink, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
+const readBooks = async (user) => {
   let response = await User.find(user);
-
+  if (response.length < 3) {
+    console.log('problem, ', response); //admin,pool1,pool2
+  }
   if (response === undefined) {
     response = [];
   }
-
   return response;
 };
 
 const writeBook = async (user, newUserState) => {
-  const User = new mongoose.model(dbName, UserSchema);
-  mongoose.connect(dbLink, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-
-  let [responseRead] = await User.find(user);
-  if (responseRead === undefined) {
-    const responseCreate = await User.create(user, newUserState);
-    console.log({ responseCreate, newUserState });
+  // only create a user if he does not exist, do not create a duplicate userName
+  let responseRead = await readBook(user);
+  if (!responseRead) {
+    const responseCreate = await User.create(newUserState);
+    // console.log({ responseCreate, newUserState });
   } else {
     const responseUpdate = await User.updateOne(user, newUserState);
-    console.log({ responseUpdate, newUserState });
+    // console.log({ responseUpdate, newUserState });
   }
-
-  // await mongoose.connection.close();
-  // console.log({ dbModifiedCount: response.modifiedCount, newUserState });
-  // return response;
 };
-
 // Driver Code
 (async () => {
-  const chatId = '1672843321______qqqq2';
+  // await User.deleteMany({}); /// TODO: destructive line MUST DELETE BEFORE LAUNCH...
+  // let r;
+  // r = await User.create({ userName: 'Jean-Luc Picard' });
+  // console.log({ r });
+  // r = await User.exists({ userName: /picard/i }); // { _id: ... }
+  // console.log({ r });
+  // r = await User.exists({ userName: /riker/i }); // null
+  // console.log({ r });
+  // r = await writeBook({ userName }, { userName, balance: '11' });
+  // console.log({ r });
+  // const users = await readBooks({});
+  // console.log({ users: users.length });
 
-  const user = await readBook({ chatId });
-  console.log({ user });
+  // const userName = '__________3';
+  // let user = await readBook({ userName });
 
-  await writeBook({ chatId }, { chatId, balance: '11' });
+  // if (!user) {
+  //   await writeBook({ userName }, { userName, balance: 10 });
+  //   user = await readBook({ userName });
+  // }
 
-  const user2 = await readBook({ chatId });
-  console.log({ user2 });
+  // console.log({ user });
 })();
 
-module.exports = { readBook, writeBook, readBookMany };
+module.exports = { readBook, writeBook, readBooks };

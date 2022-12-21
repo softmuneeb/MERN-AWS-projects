@@ -23,6 +23,7 @@ Critical:
 (Use `node --trace-deprecation ...` to show where the warning was created)
 // TODO: DB backs our own custom backup tool
 // TODO: race case in values can write some code run parallel to check any in consistency. fatoor.
+// TODO:  
 
 // DONE: only admin can access this function
 
@@ -392,6 +393,75 @@ Model.findOneAndUpdate()
 Model.replaceOne()
 Model.updateMany()
 Model.updateOne()
+
+Model()
+Model.$where()
+Model.aggregate()
+Model.applyDefaults()
+Model.bulkSave
+Model.bulkWrite()
+Model.castObject()
+Model.cleanIndexes()
+Model.count()
+Model.countDocuments()
+Model.create()
+Model.createCollection()
+Model.createIndexes()
+Model.db
+Model.deleteMany()
+Model.deleteOne()
+Model.diffIndexes()
+Model.discriminator()
+Model.distinct()
+Model.ensureIndexes()
+Model.estimatedDocumentCount()
+Model.events
+Model.exists()
+Model.find()
+Model.findById()
+Model.findByIdAndDelete()
+Model.findByIdAndRemove()
+Model.findByIdAndUpdate()
+Model.findOne()
+Model.findOneAndDelete()
+Model.findOneAndRemove()
+Model.findOneAndReplace()
+Model.findOneAndUpdate()
+Model.hydrate()
+Model.init()
+Model.insertMany()
+Model.inspect()
+Model.listIndexes()
+Model.mapReduce()
+Model.populate()
+Model.prototype.$model()
+Model.prototype.$remove()
+Model.prototype.$where
+Model.prototype.base
+Model.prototype.baseModelName
+Model.prototype.collection
+Model.prototype.collection
+Model.prototype.db
+Model.prototype.deleteOne()
+Model.prototype.discriminators
+Model.prototype.increment()
+Model.prototype.model()
+Model.prototype.modelName
+Model.prototype.remove()
+Model.prototype.save()
+Model.remove()
+Model.replaceOne()
+Model.schema
+Model.startSession()
+Model.syncIndexes()
+Model.translateAliases()
+Model.update()
+Model.updateMany()
+Model.updateOne()
+Model.validate()
+Model.watch()
+Model.where()
+
 
 Output 6.31pm sat dec 3 2022:
 node mlm-backend.js

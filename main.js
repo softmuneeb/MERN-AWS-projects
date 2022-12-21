@@ -1,3 +1,4 @@
+/// TODO: destructive line MUST DELETE BEFORE LAUNCH...  await User.deleteMany({});
 // explanation / plan in readme file
 
 // ===============This section if for crypto millio
@@ -145,7 +146,7 @@ const plans = `
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
-const { readBook, writeBook, readBookMany } = require('./db');
+const { readBook, writeBook, readBooks } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
@@ -170,14 +171,13 @@ let padCopyAble = {
 };
 
 // on telegram message
-const onMessage = async (msg, a, b, c) => {
+const onMessage = async (msg, ctx) => {
   const { text } = msg;
   const chatId = msg.chat.id;
   const userName = msg.chat.username;
 
-  // console.log({ msg, a, b, c }); // for dev
+  // console.log({ msg, ctx }); // for dev
   // console.log({ text });
-
   if (admins.includes(userName)) {
     pad = padAdmin;
     padCopyAble = {
@@ -227,6 +227,7 @@ const onMessage = async (msg, a, b, c) => {
 
   // Old User
   if (exists(user)) {
+    console.log('Old user');
     const [, depositedFunds] = await getBalance(user.mnemonic);
 
     if (depositedFunds && depositedFunds > user.depositedFunds) {
@@ -237,32 +238,32 @@ const onMessage = async (msg, a, b, c) => {
   }
   // New User
   else {
-    let referrer = text.split(' ')[1];
+    console.log('New user');
     // if referrer undefined then make defaultReferrer his referrer
+    let referrer = text.split(' ')[1];
     if (referrer === undefined) {
       referrer = adminUserName;
     }
+
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
-    console.log({ parent, i: 1 });
     if (!exists(parent)) {
-      console.log({ parent, i: 2 });
       parent = await readBook({ userName: adminUserName });
       console.log({ adminUserName });
       console.log({ parent });
     }
 
+    // create and save wallet, make referrer chain
     const [publicKey, mnemonic] = await mnemonicGenerate();
-
-    // create and save wallet
-    // make referrer chain
     await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
-
     bot.sendMessage(chatId, 'You are invited by ' + parent.userName, pad);
     bot.sendMessage(parent.chatId, 'You invited ' + userName, pad);
   }
+
+  console.log({ user, d: new Date() });
+  // return;
 
   //
   //
@@ -380,7 +381,7 @@ TON deposit address:
       return;
     }
 
-    const usersOf7Pool = await readBookMany({ isIn7SponsorPool: IN_POOL });
+    const usersOf7Pool = await readBooks({ isIn7SponsorPool: IN_POOL });
     if (usersOf7Pool.length === 0) {
       bot.sendMessage(chatId, `There are no 7 Pool Members`, pad);
       return;
@@ -455,7 +456,7 @@ TON deposit address:
     let admin = await readBook({ userName: adminUserName });
     let __7_SPONSOR_POOL = await readBook({ userName: _7_SPONSOR_POOL });
     let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
-    let users = await readBookMany({}); // SHOW PEOPLE ON LEVELS
+    let users = await readBooks({}); // SHOW PEOPLE ON LEVELS
     console.log({ users });
     const totalUsers = users.length - 2; // 2 pools are used as users
 
@@ -572,7 +573,7 @@ const recycle = async (user, depositedFunds) => {
 };
 
 const sendToAllUsers = async (method, msg) => {
-  let users = await readBookMany({});
+  let users = await readBooks({});
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
@@ -587,14 +588,14 @@ const exists = (user) => {
 };
 
 const seedDB = async () => {
-  const user = await readBook({ userName: adminUserName });
+  let user = await readBook({ userName: adminUserName });
   console.log({ user });
 
   if (!exists(user)) {
     console.log('db used first time');
 
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: 0 });
-    await writeBook({ userName: SUPER_STAR_POOL }, { balance: 0 });
+    // await writeBook({ userName: _7_SPONSOR_POOL }, {});
+    // await writeBook({ userName: SUPER_STAR_POOL }, {});
     await writeBook(
       { userName: adminUserName },
       {
@@ -604,6 +605,8 @@ const seedDB = async () => {
         mnemonic: adminMnemonic,
       },
     );
+    user = await readBook({ userName: adminUserName });
+    console.log({ user }); // dev
   } else {
     console.log('db used second or more times');
   }
