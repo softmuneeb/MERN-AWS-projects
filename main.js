@@ -593,13 +593,12 @@ const seedDB = async () => {
   if (!exists(user)) {
     console.log('db used first time');
 
-    // await writeBook({ userName: _7_SPONSOR_POOL }, {});
-    // await writeBook({ userName: SUPER_STAR_POOL }, {});
+    await writeBook({ userName: _7_SPONSOR_POOL }, {});
+    await writeBook({ userName: SUPER_STAR_POOL }, {});
     await writeBook(
       { userName: adminUserName },
       {
         chatId: adminChatId,
-        userName: adminUserName,
         publicKey: adminAddress,
         mnemonic: adminMnemonic,
       },

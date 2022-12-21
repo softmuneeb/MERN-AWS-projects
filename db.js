@@ -1,6 +1,6 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = 'UserModel_83'; //+ Date.now();
+const dbName = 'UserModel_84'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
@@ -84,7 +84,7 @@ const writeBook = async (user, newUserState) => {
   // only create a user if he does not exist, do not create a duplicate userName
   let responseRead = await readBook(user);
   if (!responseRead) {
-    const responseCreate = await User.create(newUserState);
+    const responseCreate = await User.create({ ...user, ...newUserState });
     // console.log({ responseCreate, newUserState });
   } else {
     const responseUpdate = await User.updateOne(user, newUserState);
