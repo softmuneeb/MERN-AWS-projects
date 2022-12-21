@@ -4,7 +4,7 @@ CAN NOT UNDERSTAND CODE?
 Critical:
 // TODO: writes calls at end, checking why users created auto, Coding improve just like, ....
 //
-// TODO: Help, users ask admin some thing and admin can reply
+// TODO: 🙏🏻 HELP, users ask admin some thing and admin can reply
 // TODO: Levels Show, You are at Level 1, ...
 //
 // TODO: correct the logic balance + nonce OR tx + last updated
@@ -15,6 +15,9 @@ Critical:
 // TODO: if users go to 1000, or Millions then any problem in loop?...
 // TODO: add in DB that TON left from system
 // TODO: 
+// user.earnings7SponsorPool
+// we can write unit tests for testing recycle and deposit, JS code to test...
+// TODO: note down the user.depositedFunds, date time of this event, to show him later REMOVED_FROM_POOL 
 (node:20476) [node-telegram-bot-api] DeprecationWarning: In the future, content-type of files you send will default to "application/octet-stream". See https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md#sending-files for more information on how sending files has been improved and on how to disable this deprecation message altogether.
 (Use `node --trace-deprecation ...` to show where the warning was created)
 

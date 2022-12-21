@@ -23,10 +23,6 @@ const adminKeyBoard = [
 ];
 // ===============Till Here =====
 
-require('dotenv').config();
-const token = process.env.BOT_TOKEN;
-
-
 const info = `
 Website www.amazon.com
 Youtube www.ebay.com
@@ -70,7 +66,11 @@ const padAdmin = {
     keyboard: [...adminKeyBoard, ...keyboard],
   },
 };
-
+let pad = padSimple;
+let padCopyAble = {
+  ...padSimple,
+  parse_mode: 'Markdown',
+};
 const admins = ['crypto_millio', 'thinkmuneeb', 'ADMIN'];
 
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
@@ -85,14 +85,20 @@ const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
 
 // moved some functions in an object because they depend on each other
 const p = {
-  level0: 1 * 0.0005, // < 5 TON ZERO --- NO LEVEL -- he can not get referral link
-  level1: 2 * 0.0005, // 5 TON   BABY --- all money goto ADMIN -- he will get referral link -- can upgrade
-  level2: 3 * 0.0005, // 25 TON  START --- withdraw starts here
-  level3: 4 * 0.0005, // 50 TON  WALK
-  level4: 5 * 0.0005, // 200 TON RUN
-  level5: 6 * 0.0005, // 500 TON FLY
+  level0: 0.0005, // < 5 TON ZERO
+  level1: 0.001, // 5 TON   BABY
+  level2: 0.0015, // 25 TON  START
+  level3: 0.002, // 50 TON  WALK
+  level4: 0.0025, // 200 TON RUN
+  level5: 0.003, // 500 TON FLY
 
-  // d depositedFunds
+  ZERO: 0, // < 5 TON ZERO
+  BABY: 1, // 5 TON   BABY
+  START: 2, // 25 TON  START
+  WALK: 3, // 50 TON  WALK
+  RUN: 4, // 200 TON RUN
+  FLY: 5, // 500 TON FLY
+
   getPlanNumber: ({ depositedFunds: d }) => {
     let ans; // plan
     if (d >= p.level5) ans = 5; // 500 TON FLY
@@ -104,7 +110,6 @@ const p = {
     return ans;
   },
 
-  // d depositedFunds
   getRewardLevelsUnlocked: ({ depositedFunds: d }) => {
     let ans; // plan
     if (d >= p.level5) ans = 15;
@@ -127,7 +132,6 @@ const p = {
     return ans;
   },
 
-  // d depositedFunds
   getRecycleRewardLevelPercentage: ({ depositedFunds: d }) => {
     let ans; // plan
     if (d >= p.level5) ans = 5;
@@ -155,26 +159,24 @@ const IN_POOL = 1;
 const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
 
+require('dotenv').config();
+const token = process.env.BOT_TOKEN;
 const { readBook, writeBook, readBookMany } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(token, { polling: true });
 
-let i = 0;
+let SEND_MEDIA = 0;
 
 // on telegram message
-const onMessage = async (msg) => {
-  // console.log({ msg });
-  let pad = padSimple;
-  let padCopyAble = {
-    ...padSimple,
-    parse_mode: 'Markdown',
-  };
-
+const onMessage = async (msg, a, b, c) => {
   const { text } = msg;
-
+  const chatId = msg.chat.id;
   const userName = msg.chat.username;
+
+  console.log({ msg, a, b, c }); // for dev
+  console.log({ text });
 
   if (admins.includes(userName)) {
     pad = padAdmin;
@@ -184,28 +186,8 @@ const onMessage = async (msg) => {
     };
   }
 
-  const chatId = msg.chat.id;
-  console.log({ chatId });
-  if (text && text.includes('🙏🏻 HELP')) {
-    bot.sendMessage(chatId, help, pad);
-    return;
-  }
-  //
-  else if (text && text.includes('💁‍♂️ Info')) {
-    bot.sendMessage(chatId, info, pad);
-    return;
-  }
-  //
-  else if (text && text.includes('💳 Plans')) {
-    bot.sendMessage(chatId, plans, pad);
-    return;
-  }
-
-  let publicKey, mnemonic, depositedFunds;
-  let user = await readBook({ userName });
-
-  if (admins.includes(userName) && i === 1) {
-    i = 0;
+  if (admins.includes(userName) && SEND_MEDIA === 1) {
+    SEND_MEDIA = 0;
 
     if (msg.document) {
       await sendToAllUsers('sendDocument', msg.document.file_id);
@@ -225,16 +207,32 @@ const onMessage = async (msg) => {
     bot.sendMessage(chatId, 'Please send only text', pad);
     return;
   }
-  console.log({ text });
+  //
+  else if (text.includes('🙏🏻 HELP')) {
+    bot.sendMessage(chatId, help, pad);
+    return;
+  }
+  //
+  else if (text.includes('💁‍♂️ Info')) {
+    bot.sendMessage(chatId, info, pad);
+    return;
+  }
+  //
+  else if (text.includes('💳 Plans')) {
+    bot.sendMessage(chatId, plans, pad);
+    return;
+  }
+
+  let user = await readBook({ userName });
 
   // Old User
-  if (existsUser(user)) {
-    [, depositedFunds] = await getBalance(user.mnemonic);
+  if (exists(user)) {
+    const [, depositedFunds] = await getBalance(user.mnemonic);
 
     if (depositedFunds && depositedFunds > user.depositedFunds) {
       console.log('giveRewards');
       const newDeposit = depositedFunds - user.depositedFunds;
-      await giveRewardsNormal(user, newDeposit);
+      await deposit(user, newDeposit);
     }
   }
   // New User
@@ -246,24 +244,23 @@ const onMessage = async (msg) => {
     }
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
-    if (!existsUser(parent)) {
+    if (!exists(parent)) {
       parent = await readBook({ userName: adminUserName });
     }
 
-    // create and save wallet
-    [publicKey, mnemonic] = await mnemonicGenerate();
-    await writeBook({ userName }, { userName, chatId, publicKey, mnemonic }); // TODO: can we skip await here? any problem?
+    const [publicKey, mnemonic] = await mnemonicGenerate();
 
+    // create and save wallet
     // make referrer chain
-    await writeBook({ userName }, { parent: parent.userName });
+    await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
+    user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
 
     bot.sendMessage(chatId, 'You are invited by ' + parent.userName, pad);
     bot.sendMessage(parent.chatId, 'You invited ' + userName, pad);
   }
 
   //
-  user = await readBook({ userName });
 
   //
   //
@@ -274,7 +271,7 @@ const onMessage = async (msg) => {
   }
   //
   else if (text.includes('🚀 Upgrade')) {
-    if (!existsUser(user)) {
+    if (!exists(user)) {
       bot.sendMessage(chatId, 'Invalid user', pad);
       return;
     }
@@ -283,10 +280,9 @@ const onMessage = async (msg) => {
       return;
     }
 
-    await giveRewardsRecycle(user, user.balance * 0.3); // 30%
-    await giveRewardsNormal(user, user.balance * 0.7); // 70%
+    await recycle(user, user.balance * 0.3); // 30% distributed in referrals, admin
+    await deposit(user, user.balance * 0.7); // 70% used in plan upgrade, distributed in referrals, admin
     await writeBook({ userName }, { balance: 0 });
-
     user = await readBook({ userName });
 
     bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
@@ -327,20 +323,19 @@ const onMessage = async (msg) => {
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
-    publicKey = user.publicKey ? user.publicKey : publicKey;
 
     bot.sendMessage(
       chatId,
       `${user.userName} has earned ${user.balance} TON
-Deposited Funds ${depositedFunds} TON
+Deposited Funds ${user.depositedFunds} TON
 Your plan ${p.planName(user)}
 ${parent}
 ${child}
 ${childPaying}
 Invite link: https://t.me/MLMS_bot?start=${user.userName}
 TON deposit address:
-\`${publicKey}\``,
-      { ...pad, parse_mode: 'Markdown' },
+\`${user.publicKey}\``,
+      padCopyAble,
     );
   }
   //
@@ -383,16 +378,19 @@ TON deposit address:
     }
 
     const usersOf7Pool = await readBookMany({ isIn7SponsorPool: IN_POOL });
+    if (usersOf7Pool.length === 0) {
+      bot.sendMessage(chatId, `There are no 7 Pool Members`, pad);
+      return;
+    }
+
     const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7Pool.length;
-
-    let backToPoolTotal = 0;
-
     if (rewardPerUser === 0) {
       bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`, pad);
       return;
     }
 
+    let backToPoolTotal = 0;
     for (let i = 0; i < usersOf7Pool.length; i++) {
       const user = usersOf7Pool[i];
       const reward = user.earnings7SponsorPool + rewardPerUser;
@@ -400,9 +398,8 @@ TON deposit address:
       if (reward >= maxReward) {
         const backToPool = reward - maxReward;
         backToPoolTotal += backToPool;
-        // TODO: note down the user.depositedFunds, date time of this event
         await writeBook(
-          { userName: user.parent },
+          { userName: user.userName },
           {
             earnings7SponsorPool: maxReward,
             isIn7SponsorPool: REMOVED_FROM_POOL,
@@ -414,8 +411,11 @@ TON deposit address:
     }
 
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPoolTotal });
-
-    bot.sendMessage(chatId, `Successfully sent TON to pool members remaining is ${backToPoolTotal} TON`, pad);
+    bot.sendMessage(
+      chatId,
+      `Successfully sent ${pool.balance - backToPoolTotal} TON to pool members remaining is ${backToPoolTotal} TON`,
+      pad,
+    );
   }
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
@@ -424,7 +424,7 @@ TON deposit address:
       return;
     }
 
-    bot.sendMessage(chatId, `Successfully sent TON to pool members`, pad);
+    bot.sendMessage(chatId, `Will send successfully send TON to pool members`, pad);
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
@@ -432,7 +432,7 @@ TON deposit address:
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
-    bot.sendMessage(chatId, 'Invitation link', pad);
+    bot.sendMessage(chatId, 'Will force Withdraw All Users', pad);
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
@@ -440,12 +440,8 @@ TON deposit address:
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
-
-    if (i === 0) {
-      i = 1;
-      bot.sendMessage(chatId, '🎥 Please send text / image / video here to send to all users', pad);
-    }
-    // bot.sendPhoto(chatId, 'plans .png', pad);
+    SEND_MEDIA = 1;
+    bot.sendMessage(chatId, '🎥 Please send text / image / video here to send to all users', pad);
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -456,7 +452,7 @@ TON deposit address:
     let admin = await readBook({ userName: adminUserName });
     let __7_SPONSOR_POOL = await readBook({ userName: _7_SPONSOR_POOL });
     let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
-    let users = await readBookMany({});
+    let users = await readBookMany({}); // SHOW PEOPLE ON LEVELS
     console.log({ users });
 
     bot.sendMessage(
@@ -477,55 +473,41 @@ TON deposit address:
 };
 
 // namaz pending and you are working = no barkat in this work
-const giveRewardsNormal = async (user, depositedFunds) => {
-  if (!user.parent) {
-    await writeBook({ userName: adminUserName }, { depositedFunds });
-    console.log('All depositedFunds sent to admin');
-    return;
-  }
+const deposit = async (user, depositedFunds) => {
+  await writeBook({ userName: user.userName }, { depositedFunds: user.depositedFunds + depositedFunds });
 
-  await writeBook({ userName: user.userName }, { depositedFunds });
-
-  let remaining = 100; // percent
   const percent = depositedFunds / 100;
   let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: _7_SPONSOR_POOL });
 
-  // NONE OR BABY PLAN
-  // give all balance to admin
-  if (p.getPlanNumber(user) < 2) {
-    // START
-    remaining -= 100; // percent
+  // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
+  if (!user.parent || p.getPlanNumber(user) < START) {
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
     return; //  <---------------------<
   }
 
-  console.log('1');
-  // START OR BIGGER PLAN
   let userParent = await readBook({ userName: user.parent });
+  // START OR BIGGER PLAN
   if (!userParent.childPaying.includes(user.userName)) {
-    console.log('2');
     await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, user.userName] });
+    userParent = await readBook({ userName: user.parent });
   }
 
-  console.log('3');
-  userParent = await readBook({ userName: user.parent });
-
   // 1 to 3
-  if (userParent.childPaying.length <= 3) {
-    console.log('4');
+  if (userParent.childPaying.length <= 1) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
-  else if (userParent.childPaying.length <= 6) {
+  else if (userParent.childPaying.length <= 2) {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 15 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent });
   }
-  // 7 or more child Paying
+
+  // 7 or more child paying
   else {
     await writeBook({ userName: user.parent }, { balance: userParent.balance + 20 * percent });
 
@@ -534,19 +516,19 @@ const giveRewardsNormal = async (user, depositedFunds) => {
       await writeBook({ userName: user.parent }, { isIn7SponsorPool: IN_POOL });
     }
   }
-  remaining -= 20; // percent, 20% distributed on LEVEL 1
 
+  let remaining = 100; // percent
+  remaining -= 20; // percent, 20% distributed on LEVEL 1
   // give reward till level 6, 9, 12, 15
   for (let level = 2; level <= 15 && userParent.parent; level++) {
     userParent = await readBook({ userName: userParent.parent });
-    if (level <= p.getRewardLevelsUnlocked(userParent)) {
+    const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
+    console.log({ level, levelUnlocked });
+    if (level <= levelUnlocked) {
       remaining -= 5; // percent
       console.log({ remaining });
       await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
-      bot.sendMessage(
-        userParent.chatId,
-        `You have earned ${userParent.balance + 5 * percent} TON from deposit of ${user.userName}`,
-      );
+      bot.sendMessage(userParent.chatId, `You have earned ${5 * percent} TON from deposit of ${user.userName}`);
     }
   }
 
@@ -556,31 +538,27 @@ const giveRewardsNormal = async (user, depositedFunds) => {
   await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 0.5 * remaining * percent });
 };
 
-const giveRewardsRecycle = async (user, depositedFunds) => {
+const recycle = async (user, depositedFunds) => {
   if (!user.parent) {
-    await writeBook({ userName: adminUserName }, { depositedFunds }); // 50% of remaining
-    console.log('no user parent, no reward');
+    await writeBook({ userName: adminUserName }, { depositedFunds });
+    console.log('All depositedFunds sent to admin');
     return;
   }
 
-  // check balance change
   let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
-  // TODO: return pool.userName as SUPER_POWER_CLUB
   let pool = await readBook({ userName: SUPER_STAR_POOL });
 
   let remaining = 100; // percent
   const percent = depositedFunds / 100;
 
-  // give reward till level 6, 9, 12, 15
-  for (let level = 2; level <= 15 && userParent.parent; level++) {
+  // give reward till level 15
+  for (let level = 1; level <= 15 && userParent.parent; level++) {
     userParent = await readBook({ userName: userParent.parent });
-    if (level <= p.getRewardLevelsUnlocked(userParent)) {
-      const reward = p.getRecycleRewardLevelPercentage(userParent.depositedFunds);
-      remaining -= reward;
-      console.log({ remaining });
-      await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
-    }
+    const reward = p.getRecycleRewardLevelPercentage(userParent.depositedFunds);
+    remaining -= reward;
+    console.log({ remaining });
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
@@ -588,6 +566,7 @@ const giveRewardsRecycle = async (user, depositedFunds) => {
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
   await writeBook({ userName: SUPER_STAR_POOL }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
 };
+
 const sendToAllUsers = async (method, msg) => {
   let users = await readBookMany({});
 
@@ -599,8 +578,8 @@ const sendToAllUsers = async (method, msg) => {
   // bot.sendMessage(chatId, 'Sending... to all users', pad);
 };
 
-const existsUser = (user) => {
-  return user.publicKey !== null;
+const exists = (user) => {
+  return user !== null;
 };
 
 const seedDB = async () => {
@@ -608,7 +587,7 @@ const seedDB = async () => {
 
   console.log({ user });
 
-  if (!existsUser(user)) {
+  if (!exists(user)) {
     console.log('db used first time');
 
     await writeBook(

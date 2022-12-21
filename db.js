@@ -63,9 +63,9 @@ const readBook = async (user) => {
 
   let [response] = await User.find(user);
 
-  if (response === undefined) {
-    response = await User.create({ userName: user.userName });
-  }
+  // if (response === undefined) {
+  //   response = await User.create({ userName: user.userName });
+  // }
 
   return response;
 };
