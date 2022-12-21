@@ -462,7 +462,7 @@ TON deposit address:
 
     bot.sendMessage(
       chatId,
-      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds}\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
+      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
       pad,
     );
   }
