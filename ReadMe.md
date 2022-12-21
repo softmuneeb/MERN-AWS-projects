@@ -2,48 +2,45 @@ WHATSAPP ME +923348438939
 CAN NOT UNDERSTAND CODE?
 
 Critical:
-// TODO: tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;;;
-// TODO: Adil DB, Mongo, Change IP to specific addresses
-// TODO: writes calls at end, checking why users created auto, Coding improve just like, ....
+// TODO: correct the logic balance + nonce OR tx + last updated
+// TODO: minus the balance upon withdrawal
+// TODO: three test cases we made on paper
+// TODO: to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;;;
+// done: Adil DB, Mongo, Change IP to specific addresses
+// done: writes calls at end, checking why users created auto, Coding improve just like, ....
 //
 // TODO: 🙏🏻 HELP, users ask admin some thing and admin can reply
 // TODO: Levels Show, You are at Level 1, ...
-//
-// TODO: correct the logic balance + nonce OR tx + last updated
-// TODO: minus the balance upon withdrawal
-// TODO: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
-
+// done: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
 // TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
+
 // TODO: if users go to 1000, or Millions then any problem in loop?...
 // TODO: add in DB that TON left from system
-// TODO: 
-// user.earnings7SponsorPool
+
 // we can write unit tests for testing recycle and deposit, JS code to test...
 // TODO: note down the user.depositedFunds, date time of this event, to show him later REMOVED_FROM_POOL 
-(node:20476) [node-telegram-bot-api] DeprecationWarning: In the future, content-type of files you send will default to "application/octet-stream". See https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md#sending-files for more information on how sending files has been improved and on how to disable this deprecation message altogether.
-(Use `node --trace-deprecation ...` to show where the warning was created)
+// TODO:(node:20476) [node-telegram-bot-api] DeprecationWarning: In the future, content-type of files you send will default to "application/octet-stream". See https://github.com/yagop/node-telegram-bot-api/blob/master/doc/usage.md#sending-files for more information on how sending files has been improved and on how to disable this deprecation message altogether.
 // TODO: DB backs our own custom backup tool
 // TODO: race case in values can write some code run parallel to check any in consistency. fatoor.
-// TODO:  
-
 // DONE: only admin can access this function
+// TODO: two requests with userNames, no other request can come if some one send parallel request.
+// TODO: picture kai sath caption
 
 Nice to do:
 
 { text: '🎥 Send Media to Users' }
-// TODO: Coding JS, And write calls at the end of the functions...
-// TODO: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
-// TODO: it should come from env
+// done: Coding JS, And write calls at the end of the functions...
+// done: ENHANCE SPEED TO REPLY / RUN MONGO LOCAL
+// done: it should come from env
 // TODO: optimize database read writes...
 
 Optional:
-// TODO: make env use varible todo by crypto millio
+// done: make env use varible todo by crypto millio
 // send once per day, bot.sendMessage(chatId, `Hi Admin`, pad); // TODO: optional 
 rem "tonweb": "^0.0.58",
     "tonweb-mnemonic": "^1.0.1" for ton
 
 Dont understand:
-// TODO: user.balance -> user.referralEarnings, user.sevenStartPoolEarnings, user.recycleEarnings,
 // TODO: if address is invalid tell users
 
 Make video to explain code... how to use bot, how to add fetaure? remove, update.
@@ -54,7 +51,7 @@ balance 0.0005
 0.0021 = 0.001995 admin + 0.000105 pool
 
 0.001995 + 0.0005
-= 0.002495 admin
+actual logically = 0.002495 admin , db balance: 0.002179
 
 
 
