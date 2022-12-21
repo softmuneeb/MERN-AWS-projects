@@ -327,6 +327,7 @@ const onMessage = async (msg, ctx) => {
       user.childPaying.length > 0
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
+    childPaying = user.child.length > 0 ? childPaying : '';
 
     bot.sendMessage(
       chatId,
@@ -334,8 +335,7 @@ const onMessage = async (msg, ctx) => {
 Deposited Funds ${user.depositedFunds} TON
 Your plan ${p.planName(user)}
 ${parent}
-${child}
-${childPaying}
+${child}${childPaying}
 Invite link: https://t.me/MLMS_bot?start=${user.userName}
 TON deposit address:
 \`${user.publicKey}\``,
@@ -614,7 +614,7 @@ const seedDB = async () => {
 
 // prod
 seedDB().then(() => bot.on('message', onMessage));
-console.log({aoa:1})
+console.log({ aoa: 1 });
 // dev
 // bot.on('message', onMessage);
 
