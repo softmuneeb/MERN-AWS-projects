@@ -137,6 +137,7 @@ Social Media & User Forums
 Connect with other users and get help and advice from our community on our social media accounts or user forums.
 `;
 const plans = `
+👶 BABY 5 TON
 ⭐️ START 25 TON
 🚶 WALK 50 TON 
 🏃 RUN 200 TON 
