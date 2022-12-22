@@ -5,13 +5,13 @@ Adil & Mehsim:
 // TODO: parallel. three test cases we made on paper 
 
 Critical:
-// TODO: 1. 1hr, withdrawal, minus the balance upon withdrawal
+// TODO: 1. 1hr, 5hr, withdrawal, minus the balance upon withdrawal, balance update code on old user comes again
 // TODO: 2. 3hr Super Star Pool, Levels Show, You are at Level 1, ...
 
 High:
-// TODO: 3. 🙏🏻 HELP, users ask admin some thing and admin can reply
-// TODO: 4. to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;
- 
+// TODO: 3. 2 hr 🙏🏻 HELP, users ask admin some thing and admin can reply
+// TODO: 4. 2 hr to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;
+
 //
 // done: Adil DB, Mongo, Change IP to specific addresses
 // done: writes calls at end, checking why users created auto, Coding improve just like, ....

@@ -345,10 +345,10 @@ const onMessage = async (msg, ctx) => {
     let withdrawWallet = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
     // TODO: get withdraw wallet from user
-    // if (withdrawWallet === undefined) {
-    //   bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
-    //   return;
-    // }
+    if (withdrawWallet === undefined) {
+      bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
+      return;
+    }
 
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);

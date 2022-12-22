@@ -3,7 +3,7 @@
 const tonMnemonic = require('tonweb-mnemonic');
 const TonWeb = require('tonweb');
 
-let { TonClient } = require('ton');
+let { TonClient, Wallet, Address } = require('ton');
 // TonClient = TonClient.TonClient;
 
 const apiKey = '85ab5bbbedd3e23b7932501fda014e2bd8d7b5d1c0a3d23ed668e46c99a6ea34';
@@ -75,6 +75,79 @@ async function transferFrom(mnemonic, toAddress, amount) {
   console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
+async function transferFrom2(secretKey, publicKey, toAddress, amount) {
+  const wallet = tonweb.wallet.create({ publicKey });
+  const r = await wallet.deploy();
+  console.log({ r, wallet: '' + wallet });
+
+  const address = await wallet.getAddress();
+  const nonBounceableAddress = address.toString(true, true, false);
+  console.log({ nonBounceableAddress });
+
+  const seqno = await wallet.methods.seqno().call();
+
+  await wallet.deploy(secretKey).send(); // deploy wallet to blockchain
+
+  const fee = await wallet.methods
+    .transfer({
+      secretKey: wallet.secretKey,
+      toAddress,
+      amount,
+      seqno,
+      payload: 'Hello',
+      sendMode: 3,
+    })
+    .estimateFee();
+
+  console.log({ fee: '' + fee });
+}
+async function transferFrom3() {
+  // mnemonic to key pair
+  const mnemonic = userMnemonic;
+
+  const mnemonicArray = mnemonic.split(' ');
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
+  console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
+
+  // list available wallet versions
+  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', { apiKey }));
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+
+  // instance of wallet V4 r2 (from the list printed above)
+  const WalletClass = tonweb.wallet.all['v4R2'];
+  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  console.log('seqno:', seqno);
+  await sleep(1500); // avoid throttling by toncenter.com
+
+  try {
+    await wallet.methods
+      .transfer({
+        secretKey: keyPair.secretKey,
+        toAddress: adminAddress,
+        amount: TonWeb.utils.toNano('0.1'), // 0.1 TON
+        seqno: seqno,
+        payload: 'Hello', // optional comment
+        sendMode: 3,
+      })
+      .send();
+  } catch (error) {
+    console.log(error);
+  }
+
+  // wait until confirmed
+  let currentSeqno = seqno;
+  while (currentSeqno == seqno) {
+    console.log('waiting for transaction to confirm...');
+    await sleep(1500); // avoid throttling by toncenter.com
+    currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  }
+  const address = await wallet.getAddress();
+  await sleep(1500); // avoid throttling by toncenter.com
+  const balance = await tonweb.getBalance(address);
+  console.log('balance:', TonWeb.utils.fromNano(balance));
+}
+
 async function getBalance(m) {
   const mnemonicArray = m.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
@@ -142,65 +215,183 @@ function toHexString(byteArray) {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const unitTest = async () => {
-  // publicKey();
-  // transferTxTon();
-  const [userAddress, userMnemonic] = [
-    'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
-    'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
-  ];
+const [userAddress, userMnemonic] = [
+  'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
+  'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
+];
+const [userAddress2, userMnemonic2] = [
+  'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
+  'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
+];
+const [adminAddress, adminMnemonic] = ['EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa', ''];
+
+const unitTest1 = async () => {
   const [bNano, b] = await getBalance(userMnemonic);
-
   console.log({ bNano, b });
-  const [adminAddress, adminMnemonic] = [
-    'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-    'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-  ];
-
   try {
-    await transferFrom(userMnemonic, adminAddress, bNano);
+    await transferFrom2(userMnemonic2, userAddress2, adminAddress, bNano);
   } catch (e) {
     console.log('error is:', e);
   }
 };
 
-// Create Client
 const unitTest2 = async () => {
+  // getTransactions
   const client = new TonClient({
     endpoint: 'https://toncenter.com/api/v2/jsonRPC',
+    apiKey,
   });
-
-  const [userAddress, userMnemonic] = [
-    'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
-    'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
-  ];
-  const [adminAddress, adminMnemonic] = [
-    'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-    'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
-  ];
-
   // Open Wallet
-  const wallet = await client.openWalletFromAddress({ source: userAddress });
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(userMnemonic2.split(' '));
+  const wallet = client.openWalletFromSecretKey({
+    workchain: -1,
+    secretKey: keyPair.secretKey,
+    type: 'org.ton.wallets.simple.r2',
+  });
   console.log(wallet);
 
-  // console.log('' + (await wallet.getBalance()));
-
+  // const a = await wallet.findActiveBySecretKey({
+  //   client,
+  //   workchain: -1,
+  //   secretKey: keyPair.secretKey,
+  // });
+  // console.log(a);
+  // const wallet = client.openWalletFromAddress({ source: userAddress2 });
+  // const wallet = Wallet.openByType(client, 0, keyPair.secretKey, 'org.ton.wallets.v4');
   // working
-  // const balance = '' + (await client.getBalance(userAddress));
-  // console.log(balance);
-
-  // Transferring coins
-  // let seqno = await client.getSeqNo();
-  // console.log({ seqno });
+  const balance = '' + (await client.getBalance(userAddress2));
+  console.log(balance);
+  let seqno = 1 + (await wallet.getSeqNo());
+  console.log({ seqno, a: 'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa'.length });
+  let to = Address.parseFriendly('EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa').address;
+  console.log({ to });
   try {
-    // await client.transfer({ to: adminAddress, amount: 10.0, seqno: 0, secretKey: userMnemonic });
+    Address;
+    // await wallet.transfer({ to });
+    await wallet.transfer({ to, value: 100, seqno, secretKey: keyPair.secretKey, bounce: false });
   } catch (e) {
     console.log('error is:', e);
   }
 };
 
-// unitTest2();
+const unitTest3 = async () => {
+  // mnemonic to key pair
+  const mnemonic = userMnemonic2;
+  const mnemonicArray = mnemonic.split(' ');
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
+  console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
 
+  // list available wallet versions
+  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+
+  // instance of wallet V4 r2 (from the list printed above)
+  const WalletClass = tonweb.wallet.all['v4R2'];
+  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  console.log('seqno:', seqno);
+  await sleep(1500); // avoid throttling by toncenter.com
+  const tx = await wallet.methods.transfer({
+    secretKey: keyPair.secretKey,
+    toAddress: adminAddress,
+    amount: TonWeb.utils.toNano('0.02'), // 0.02 TON
+    seqno: seqno,
+    payload: 'Hello', // optional comment
+    sendMode: 3,
+  });
+
+  const fee = await tx.estimateFee();
+
+  console.log(fee);
+  // console.log({ fee });
+  // console.log({ fee: '' + fee });
+
+  // await tx.send();
+
+  // wait until confirmed
+  // let currentSeqno = seqno;
+  // while (currentSeqno == seqno) {
+  //   console.log('waiting for transaction to confirm...');
+  //   await sleep(1500); // avoid throttling by toncenter.com
+  //   currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  // }
+  // const address = await wallet.getAddress();
+  // await sleep(1500); // avoid throttling by toncenter.com
+  // const balance = await tonweb.getBalance(address);
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
+};
+const unitTest4 = async () => {
+  // mnemonic to key pair
+  const mnemonic = userMnemonic2;
+  const mnemonicArray = mnemonic.split(' ');
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
+  console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
+
+  // list available wallet versions
+  const tonweb = new TonWeb();
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+
+  // instance of wallet V4 r2 (from the list printed above)
+  const WalletClass = tonweb.wallet.all['v4R2'];
+
+  let wallet = tonweb.wallet.create({ publicKey: keyPair.publicKey }); // create interface to wallet smart contract (wallet v3 by default)
+  // const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+
+  const deploy = wallet.deploy(keyPair.secretKey); // deploy method
+  const deployFee = await deploy.estimateFee(); // get estimate fee of deploy
+  console.log(deployFee);
+
+  await sleep(1500);
+  const deploySended = await deploy.send(); // deploy wallet contract to blockchain
+  console.log(deploySended);
+  return;
+
+  const deployQuery = await deploy.getQuery(); // get deploy query Cell
+  console.log(deployQuery);
+
+  const seqno = 10; //(await wallet.methods.seqno().call()) || 0;
+  console.log('seqno:', seqno);
+  await sleep(1500); // avoid throttling by toncenter.com
+
+  for (let i = 0; i < 50; i++) {
+    try {
+      const fee = await wallet.methods
+        .transfer({
+          secretKey: keyPair.secretKey,
+          toAddress: adminAddress,
+          amount: TonWeb.utils.toNano('0.02'), // 0.02 TON
+          seqno: seqno,
+          payload: 'Hello', // optional comment
+          sendMode: 3,
+        })
+        // .estimateFee();
+        .send();
+
+      await sleep(500); // avoid throttling by toncenter.com
+      console.log(fee);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  // wait until confirmed
+  // let currentSeqno = seqno;
+  // while (currentSeqno == seqno) {
+  //   console.log('waiting for transaction to confirm...');
+  //   await sleep(1500); // avoid throttling by toncenter.com
+  //   currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  // }
+  // const address = await wallet.getAddress();
+  // await sleep(1500); // avoid throttling by toncenter.com
+  // const balance = await tonweb.getBalance(address);
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
+};
+
+// unitTest4();
+// unitTest3();
+// unitTest1();
+// unitTest2();
+// transferFrom3();
 /*
 output:
 
@@ -224,3 +415,4 @@ module.exports = {
   publicKey,
   transferFrom,
 };
+//
