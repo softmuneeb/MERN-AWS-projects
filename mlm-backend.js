@@ -219,10 +219,7 @@ const [userAddress, userMnemonic] = [
   'EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS',
   'stage capital border write dress lend retire coconut motor farm core piece lunar source firm box start story similar live odor hill crucial cannon',
 ];
-const [userAddress2, userMnemonic2] = [
-  'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
-  'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
-];
+
 const [adminAddress, adminMnemonic] = ['EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa', ''];
 
 const unitTest1 = async () => {
@@ -320,71 +317,35 @@ const unitTest3 = async () => {
   // const balance = await tonweb.getBalance(address);
   // console.log('balance:', TonWeb.utils.fromNano(balance));
 };
+
+const [userAddress2, userMnemonic2] = [
+  'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
+  'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
+];
 const unitTest4 = async () => {
-  // mnemonic to key pair
   const mnemonic = userMnemonic2;
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
-  console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
-
-  // list available wallet versions
-  const tonweb = new TonWeb();
+  const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC', { apiKey }));
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  // simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+  let wallet = new tonweb.wallet.all.v3R2(tonweb.provider, { publicKey: keyPair.publicKey, wc: 0 });
 
-  // instance of wallet V4 r2 (from the list printed above)
-  const WalletClass = tonweb.wallet.all['v4R2'];
-
-  let wallet = tonweb.wallet.create({ publicKey: keyPair.publicKey }); // create interface to wallet smart contract (wallet v3 by default)
-  // const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-
-  const deploy = wallet.deploy(keyPair.secretKey); // deploy method
-  const deployFee = await deploy.estimateFee(); // get estimate fee of deploy
-  console.log(deployFee);
-
-  await sleep(1500);
-  const deploySended = await deploy.send(); // deploy wallet contract to blockchain
-  console.log(deploySended);
-  return;
-
-  const deployQuery = await deploy.getQuery(); // get deploy query Cell
-  console.log(deployQuery);
-
-  const seqno = 10; //(await wallet.methods.seqno().call()) || 0;
+  const seqno = (await wallet.methods.seqno().call()) || 0;
   console.log('seqno:', seqno);
   await sleep(1500); // avoid throttling by toncenter.com
 
-  for (let i = 0; i < 50; i++) {
-    try {
-      const fee = await wallet.methods
-        .transfer({
-          secretKey: keyPair.secretKey,
-          toAddress: adminAddress,
-          amount: TonWeb.utils.toNano('0.02'), // 0.02 TON
-          seqno: seqno,
-          payload: 'Hello', // optional comment
-          sendMode: 3,
-        })
-        // .estimateFee();
-        .send();
-
-      await sleep(500); // avoid throttling by toncenter.com
-      console.log(fee);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  // wait until confirmed
-  // let currentSeqno = seqno;
-  // while (currentSeqno == seqno) {
-  //   console.log('waiting for transaction to confirm...');
-  //   await sleep(1500); // avoid throttling by toncenter.com
-  //   currentSeqno = (await wallet.methods.seqno().call()) || 0;
-  // }
-  // const address = await wallet.getAddress();
-  // await sleep(1500); // avoid throttling by toncenter.com
-  // const balance = await tonweb.getBalance(address);
-  // console.log('balance:', TonWeb.utils.fromNano(balance));
+  const fee = await wallet.methods
+    .transfer({
+      secretKey: keyPair.secretKey,
+      toAddress: adminAddress,
+      amount: TonWeb.utils.toNano('0.02'), // 0.02 TON
+      seqno: seqno,
+      payload: 'Hello', // optional comment
+      sendMode: 3,
+    })
+    // .estimateFee();
+    .send();
 };
 
 // unitTest4();
@@ -416,3 +377,32 @@ module.exports = {
   transferFrom,
 };
 //
+
+
+  // const deploy = wallet.deploy(keyPair.secretKey); // deploy method
+  // const deployFee = await deploy.estimateFee(); // get estimate fee of deploy
+  // console.log(deployFee);
+  // await sleep(1500);
+  // try {
+  //   const deploySended = await deploy.send(); // deploy wallet contract to blockchain
+  // } catch (error) {
+  //   console.log(error);
+  // }
+  // const deployQuery = await deploy.getQuery(); // get deploy query Cell
+  // console.log(deployQuery);
+
+
+
+  // await sleep(500); // avoid throttling by toncenter.com
+
+  // wait until confirmed
+  // let currentSeqno = seqno;
+  // while (currentSeqno == seqno) {
+  //   console.log('waiting for transaction to confirm...');
+  //   await sleep(1500); // avoid throttling by toncenter.com
+  //   currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  // }
+  // const address = await wallet.getAddress();
+  // await sleep(1500); // avoid throttling by toncenter.com
+  // const balance = await tonweb.getBalance(address);
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
