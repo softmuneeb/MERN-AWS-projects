@@ -7,6 +7,7 @@ const keyboard = [
   ['💳 My Plan'], //
   ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
+  ['🚀 My Level'], //
   ['🙏🏻 Support', '💁‍♂️ Info'], //
   ['⭐️ Start'], //
   ['🖇 Referrals list'], //
@@ -52,6 +53,22 @@ const p = {
   WALK: 3, // 50 TON  WALK
   RUN: 4, // 200 TON RUN
   FLY: 5, // 500 TON FLY
+
+  getLevel: (u) => {
+    const l1 = u.level1ChildPaying;
+    const l2 = u.level2ChildPaying;
+    const l3 = u.level3ChildPaying;
+    const l4 = u.level4ChildPaying;
+    const l5 = u.level5ChildPaying;
+    let ans;
+    if (l1 >= 10 && l2 >= 50 && l3 >= 200 && l4 >= 500 && l5 >= 1000) ans = 5; //WONDER
+    else if (l1 >= 10 && l2 >= 50 && l3 >= 200 && l4 >= 500) ans = 4; //SUPER
+    else if (l1 >= 10 && l2 >= 50 && l3 >= 200) ans = 3; //SPIDER
+    else if (l1 >= 10 && l2 >= 50) ans = 2; //BAT
+    else if (l1 >= 10) ans = 1; // IRON MAN
+    else ans = 0;
+    return ans;
+  },
 
   getPlanNumber: ({ depositedFunds: d }) => {
     let ans; // plan
@@ -223,8 +240,11 @@ const onMessage = async (msg, ctx) => {
     return;
   }
 
-  let user = await readBook({ userName });
+  ///////////////////////////////
+  /////////  USER AUTH  /////////
+  ///////////////////////////////
 
+  let user = await readBook({ userName });
   // Old User
   if (exists(user)) {
     console.log('Old user');
@@ -265,7 +285,10 @@ const onMessage = async (msg, ctx) => {
   }
 
   console.log({ user, d: new Date() });
-  // return;
+
+  ///////////////////////////////
+  /////////  USER AUTH  /////////
+  ///////////////////////////////
 
   //
   //
@@ -292,6 +315,14 @@ const onMessage = async (msg, ctx) => {
     user = await readBook({ userName });
 
     bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
+  }
+  //
+  else if (text.includes('🚀 My Level')) {
+    bot.sendMessage(
+      chatId,
+      `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
+      pad,
+    );
   }
   //
   else if (text.includes('💳 My Plan')) {
@@ -335,8 +366,13 @@ const onMessage = async (msg, ctx) => {
       chatId,
       `${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
         user.depositedFunds
-      } TON\nDeposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
-      padCopyAble,
+      } TON`,
+      pad,
+    );
+    bot.sendMessage(
+      chatId,
+      `Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
+      pad,//copyable
     );
   }
   //
@@ -425,6 +461,36 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
+    const usersLevel1 = await readBooks({ level: 1 });
+    const usersLevel2 = await readBooks({ level: 2 });
+    const usersLevel3 = await readBooks({ level: 3 });
+    const usersLevel4 = await readBooks({ level: 4 });
+    const usersLevel5 = await readBooks({ level: 5 });
+
+    const usersOfSuperStarPoolLength =
+      usersLevel1.length + usersLevel2.length + usersLevel3.length + usersLevel4.length + usersLevel5.length;
+
+    if (usersOfSuperStarPoolLength === 0) {
+      bot.sendMessage(chatId, `There are no Super Star Pool Members`, pad);
+      return;
+    }
+
+    const pool = await readBook({ userName: SUPER_STAR_POOL });
+    if (pool.balance === 0) {
+      bot.sendMessage(chatId, `Not enough funds in Super Star Members in Pool`, pad);
+      return;
+    }
+
+    const rewardPerLevel1 = 0.3 * pool.balance; // 30%
+    const rewardPerUserPerLevel1 = rewardPerLevel1 / usersLevel1.length;
+
+    const rewardPerLevel2 = 0.2 * pool.balance; // 20%
+    const rewardPerLevel3 = 0.2 * pool.balance; // 20%
+    const rewardPerLevel4 = 0.2 * pool.balance; // 20%
+    const rewardPerLevel5 = 0.1 * pool.balance; // 10%x
+
+    let backToPoolTotal = 0;
+    await writeBook({ userName: SUPER_STAR_POOL }, { balance: 0 });
     bot.sendMessage(chatId, `Will send successfully send TON to pool members`, pad);
   }
   //
@@ -495,10 +561,20 @@ const deposit = async (user, depositedFunds, userName) => {
   }
 
   let userParent = await readBook({ userName: user.parent });
+  let userDepositedFirstTime = false;
   // START OR BIGGER PLAN
   if (!userParent.childPaying.includes(userName)) {
-    await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, userName] });
+    userDepositedFirstTime = true;
+
+    const childPayingLength = userParent.childPaying.length + 1; // 1 for userName
+    await writeBook(
+      { userName: userParent.userName },
+      { level1ChildPaying: userParent.level1ChildPaying + 1, childPaying: [...userParent.childPaying, userName] },
+    );
     // userParent = await readBook({ userName: user.parent });
+    if (childPayingLength >= 10) {
+      await writeBook({ userName: userParent.userName }, { level: 1, level1ChildPaying: 1 + user.level1ChildPaying });
+    }
   }
 
   // 1 to 3
@@ -531,7 +607,17 @@ const deposit = async (user, depositedFunds, userName) => {
   for (let level = 2; level <= 15 && userParent.parent; level++) {
     userParent = await readBook({ userName: userParent.parent });
     const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
-    console.log({ level, levelUnlocked });
+
+    if (level <= 5 && userDepositedFirstTime) {
+      const newUserParent = {};
+      newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + 1;
+      await writeBook({ userName: userParent.userName }, newUserParent);
+      userParent = await readBook({ userName: userParent.parent });
+      const newLevel = p.getLevel(userParent);
+      newLevel !== userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel }));
+    }
+
+    // reward 5% upto 15 levels
     if (level <= levelUnlocked) {
       remaining -= 5; // percent
       console.log({ remaining });

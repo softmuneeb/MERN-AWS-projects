@@ -1,6 +1,6 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = 'UserModel_91'; //+ Date.now();
+const dbName = 'UserModel_92'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
@@ -14,6 +14,30 @@ const UserSchema = new mongoose.Schema({
     default: null,
     unique: true,
     required: true,
+  },
+  level: {
+    type: Number,
+    default: 0,
+  },
+  level1ChildPaying: {
+    type: Number,
+    default: 0,
+  },
+  level2ChildPaying: {
+    type: Number,
+    default: 0,
+  },
+  level3ChildPaying: {
+    type: Number,
+    default: 0,
+  },
+  level4ChildPaying: {
+    type: Number,
+    default: 0,
+  },
+  level5ChildPaying: {
+    type: Number,
+    default: 0,
   },
   isIn7SponsorPool: {
     type: Number,
