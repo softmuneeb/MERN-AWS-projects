@@ -24,7 +24,7 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const admins = ['crypto_millio', 'GlobalTing', 'ADMIN', 'thinkmuneeb'];
+const admins = ['crypto_millio', 'GlobalTing', 'ADMIN',];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
   '5492194169',
