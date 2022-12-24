@@ -340,11 +340,12 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🚀 My Level')) {
-    bot.sendMessage(
-      chatId,
-      `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
-      pad,
-    );
+    bot.sendMessage(chatId, `Level: ${user.level}`, pad);
+    // bot.sendMessage(
+    //   chatId,
+    //   `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
+    //   pad,
+    // );
   }
   //
   else if (text.includes('🎒 My Package')) {
@@ -388,7 +389,7 @@ const onMessage = async (msg, ctx) => {
       chatId,
       `${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
         user.depositedFunds
-      } TON`,
+      } TON\nLevel: ${user.level}`,
       pad,
     );
     bot.sendMessage(
@@ -581,9 +582,28 @@ const onMessage = async (msg, ctx) => {
     console.log({ users });
     const totalUsers = users.length - 2; // 2 pools are used as users
 
+    const usersLevel1 = await readBooks({ level: 1 });
+    const usersLevel2 = await readBooks({ level: 2 });
+    const usersLevel3 = await readBooks({ level: 3 });
+    const usersLevel4 = await readBooks({ level: 4 });
+    const usersLevel5 = await readBooks({ level: 5 });
+
+    const usersL1 = usersLevel1.length;
+    const usersL2 = usersLevel2.length;
+    const usersL3 = usersLevel3.length;
+    const usersL4 = usersLevel4.length;
+    const usersL5 = usersLevel5.length;
+
     bot.sendMessage(
       chatId,
-      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON`,
+      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON
+
+Users Level 1: ${usersL1} 
+Users Level 2: ${usersL2} 
+Users Level 3: ${usersL3} 
+Users Level 4: ${usersL4} 
+Users Level 5: ${usersL5} 
+      `,
       pad,
     );
   }
