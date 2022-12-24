@@ -8,7 +8,7 @@ const keyboard = [
   ['💎 Wallet', '🚀 Upgrade'], //
   ['💳 Withdraw'], //
   ['🚀 My Level'], //
-  ['🙏🏻 Support', '💁‍♂️ Info'], //
+  ['🤖 Support', '💁‍♂️ Info'], //
   ['⭐️ Start'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
@@ -238,7 +238,7 @@ const onMessage = async (msg, ctx) => {
     return;
   }
   //
-  else if (text.includes('🙏🏻 Support')) {
+  else if (text.includes('🤖 Support')) {
     bot.sendMessage(chatId, help, pad);
     return;
   }
