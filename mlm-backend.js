@@ -49,7 +49,7 @@ async function transferFrom(mnemonic, toAddress, amount) {
     .transfer({
       secretKey: keyPair.secretKey,
       toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
-      amount: TonWeb.utils.toNano('1'), // 0.0006 TON
+      amount: TonWeb.utils.toNano('' + amount), // 0.0006 TON
       seqno: seqno,
       payload: 'MLM Bot', // optional comment
       sendMode: 3,
@@ -99,18 +99,6 @@ async function getBalance(m) {
   }
 }
 
-async function getBalance2(publicKey) {
-  const wallet = tonweb.wallet.create({ publicKey });
-  const address = await wallet.getAddress();
-  try {
-    const balance = await tonweb.getBalance(address);
-    return [balance, Number(TonWeb.utils.fromNano(balance))];
-  } catch (error) {
-    console.log('error: ' + error);
-    return [null, null];
-  }
-}
-
 async function mnemonicGenerate() {
   const toHexString = (byteArray) => {
     return Array.prototype.map
@@ -148,22 +136,26 @@ async function mnemonicGenerate() {
   return [await publicKey(m), m];
 }
 
-const [userAddress2, userMnemonic2] = [
-  'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
-  //
-  'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
-];
-const [adminAddress] = ['EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa', ''];
+// const [userAddress2, userMnemonic2] = [
+//   'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
+//   //
+//   'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
+// ];
+// const [adminAddress] = [
+//   'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
+//   //
+//   '',
+// ];
 
-const unitTest1 = async () => {
-  const [bNano, b] = await getBalance(userMnemonic2);
-  console.log({ bNano, b });
-  try {
-    await transferFrom(userMnemonic2, adminAddress, b);
-  } catch (e) {
-    console.log('error is:', e);
-  }
-};
+// const unitTest1 = async () => {
+//   const [bNano, b] = await getBalance(userMnemonic2);
+//   console.log({ bNano, b });
+//   try {
+//     await transferFrom(userMnemonic2, adminAddress, 1);
+//   } catch (e) {
+//     console.log('error is:', e);
+//   }
+// };
 
 // unitTest1();
 
