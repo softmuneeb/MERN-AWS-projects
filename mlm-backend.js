@@ -12,6 +12,16 @@ function isValidAddress(address) {
   return TonWeb.utils.Address.isValid(address);
 }
 
+async function publicKey(mnemonic) {
+  const mnemonicArray = mnemonic.split(' ');
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
+  const WalletClass = tonweb.wallet.all['v3R2'];
+  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  const address = (await wallet.getAddress()).toString(true, true, true);
+  return address;
+}
+
 async function getBalance(m) {
   const mnemonicArray = m.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
