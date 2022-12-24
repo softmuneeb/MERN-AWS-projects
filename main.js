@@ -54,6 +54,12 @@ const p = {
   RUN: 4, // 200 TON RUN
   FLY: 5, // 500 TON FLY
 
+  IRON_MAN: 10,
+  BAT_MAN: 50,
+  SPIDER_MAN: 200,
+  SUPER_MAN: 500,
+  WONDER_MAN: 1000,
+
   getLevel: (u) => {
     const l1 = u.level1ChildPaying;
     const l2 = u.level2ChildPaying;
@@ -61,11 +67,12 @@ const p = {
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
     let ans;
-    if (l1 >= 10 && l2 >= 50 && l3 >= 200 && l4 >= 500 && l5 >= 1000) ans = 5; //WONDER
-    else if (l1 >= 10 && l2 >= 50 && l3 >= 200 && l4 >= 500) ans = 4; //SUPER
-    else if (l1 >= 10 && l2 >= 50 && l3 >= 200) ans = 3; //SPIDER
-    else if (l1 >= 10 && l2 >= 50) ans = 2; //BAT
-    else if (l1 >= 10) ans = 1; // IRON MAN
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
+      ans = 5; //WONDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 4; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 3; //SPIDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 2; //BAT
+    else if (l1 >= p.IRON_MAN) ans = 1; // IRON MAN
     else ans = 0;
     return ans;
   },
@@ -177,9 +184,11 @@ const padSimple = {
 };
 const padAdmin = {
   reply_markup: {
+    // keyboard: [...adminKeyBoard, ...keyboard],
     keyboard: [...keyboard, ...adminKeyBoard],
   },
 };
+
 let pad = padSimple;
 let padCopyAble = {
   ...padSimple,
@@ -372,7 +381,7 @@ const onMessage = async (msg, ctx) => {
     bot.sendMessage(
       chatId,
       `Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
-      pad,//copyable
+      padCopyAble
     );
   }
   //
@@ -414,7 +423,7 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
-    const usersOf7Pool = await readBooks({ isIn7SponsorPool: IN_POOL });
+    const usersOf7Pool = await readBooks({ status7SponsorPool: IN_POOL });
     if (usersOf7Pool.length === 0) {
       bot.sendMessage(chatId, `There are no 7 Pool Members`, pad);
       return;
@@ -427,30 +436,30 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
-    let backToPoolTotal = 0;
+    let backToPool = 0;
     for (let i = 0; i < usersOf7Pool.length; i++) {
       const user = usersOf7Pool[i];
-      const reward = user.earnings7SponsorPool + rewardPerUser;
-      const maxReward = 2 * user.depositedFunds;
-      if (reward >= maxReward) {
-        const backToPool = reward - maxReward;
-        backToPoolTotal += backToPool;
+      const newEarnings = user.earnings7SponsorPool + rewardPerUser;
+      const maxEarnings = 2 * user.depositedFunds;
+      if (newEarnings >= maxEarnings) {
+        const excessAmount = newEarnings - maxEarnings;
+        backToPool += excessAmount;
         await writeBook(
           { userName },
           {
-            earnings7SponsorPool: maxReward,
-            isIn7SponsorPool: REMOVED_FROM_POOL,
+            earnings7SponsorPool: maxEarnings,
+            status7SponsorPool: REMOVED_FROM_POOL,
           },
         );
       } else {
-        await writeBook({ userName }, { earnings7SponsorPool: user.earnings7SponsorPool + reward });
+        await writeBook({ userName }, { earnings7SponsorPool: newEarnings });
       }
     }
 
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPoolTotal });
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPool });
     bot.sendMessage(
       chatId,
-      `Successfully sent ${pool.balance - backToPoolTotal} TON to pool members remaining is ${backToPoolTotal} TON`,
+      `Successfully sent ${pool.balance - backToPool} TON to pool members remaining is ${backToPool} TON`,
       pad,
     );
   }
@@ -467,8 +476,13 @@ const onMessage = async (msg, ctx) => {
     const usersLevel4 = await readBooks({ level: 4 });
     const usersLevel5 = await readBooks({ level: 5 });
 
-    const usersOfSuperStarPoolLength =
-      usersLevel1.length + usersLevel2.length + usersLevel3.length + usersLevel4.length + usersLevel5.length;
+    const usersL1 = usersLevel1.length;
+    const usersL2 = usersLevel2.length;
+    const usersL3 = usersLevel3.length;
+    const usersL4 = usersLevel4.length;
+    const usersL5 = usersLevel5.length;
+
+    const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
       bot.sendMessage(chatId, `There are no Super Star Pool Members`, pad);
@@ -481,17 +495,46 @@ const onMessage = async (msg, ctx) => {
       return;
     }
 
-    const rewardPerLevel1 = 0.3 * pool.balance; // 30%
-    const rewardPerUserPerLevel1 = rewardPerLevel1 / usersLevel1.length;
+    let rewardGiven = 0,
+      backToPool = 0;
+    if (usersL1 > 0) {
+      const rewardPerLevel1 = 0.3 * pool.balance; // 30%
+      rewardGiven += rewardPerLevel1;
+      const rewardPerUserPerLevel1 = rewardPerLevel1 / usersL1;
+      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel1, rewardPerUserPerLevel1);
+    }
+    if (usersL2 > 0) {
+      const rewardPerLevel2 = 0.2 * pool.balance; // 20%
+      rewardGiven += rewardPerLevel2;
+      const rewardPerUserPerLevel2 = rewardPerLevel2 / usersL2;
+      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel2, rewardPerUserPerLevel2);
+    }
+    if (usersL3 > 0) {
+      const rewardPerLevel3 = 0.2 * pool.balance; // 20%
+      rewardGiven += rewardPerLevel3;
+      const rewardPerUserPerLevel3 = rewardPerLevel3 / usersL3;
+      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel3, rewardPerUserPerLevel3);
+    }
+    if (usersL4 > 0) {
+      const rewardPerLevel4 = 0.2 * pool.balance; // 20%
+      rewardGiven += rewardPerLevel4;
+      const rewardPerUserPerLevel4 = rewardPerLevel4 / usersL4;
+      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel4, rewardPerUserPerLevel4);
+    }
+    if (usersL5 > 0) {
+      const rewardPerLevel5 = 0.1 * pool.balance; // 10%
+      rewardGiven += rewardPerLevel5;
+      const rewardPerUserPerLevel5 = rewardPerLevel5 / usersL5;
+      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel5, rewardPerUserPerLevel5);
+    }
 
-    const rewardPerLevel2 = 0.2 * pool.balance; // 20%
-    const rewardPerLevel3 = 0.2 * pool.balance; // 20%
-    const rewardPerLevel4 = 0.2 * pool.balance; // 20%
-    const rewardPerLevel5 = 0.1 * pool.balance; // 10%x
-
-    let backToPoolTotal = 0;
-    await writeBook({ userName: SUPER_STAR_POOL }, { balance: 0 });
-    bot.sendMessage(chatId, `Will send successfully send TON to pool members`, pad);
+    const poolRemaining = pool.balance - rewardGiven + backToPool;
+    await writeBook({ userName: SUPER_STAR_POOL }, { balance: poolRemaining });
+    bot.sendMessage(
+      chatId,
+      `Sent successfully sent ${rewardGiven} TON to pool members, remaining in Pool ${poolRemaining} TON`,
+      pad,
+    );
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
@@ -540,7 +583,37 @@ const onMessage = async (msg, ctx) => {
   }
 };
 
-// namaz pending and you are working = no barkat in this work
+const giveRewardEqually = async (users, rewardPerUser) => {
+  let backToPool = 0;
+
+  for (let i = 0; i < users.length; i++) {
+    const { userName, balanceOnEnteringSuperStarPool, earningsSuperStarPool, statusSuperStarPool } = users[i];
+
+    if (statusSuperStarPool === REMOVED_FROM_POOL) {
+      backToPool += rewardPerUser;
+      continue;
+    }
+
+    const maxEarnings = balanceOnEnteringSuperStarPool;
+    const newEarnings = earningsSuperStarPool + rewardPerUser;
+    if (newEarnings >= maxEarnings) {
+      const excessAmount = newEarnings - maxEarnings;
+      backToPool += excessAmount;
+      await writeBook(
+        { userName },
+        {
+          earningsSuperStarPool: maxEarnings,
+          statusSuperStarPool: REMOVED_FROM_POOL,
+        },
+      );
+    } else {
+      await writeBook({ userName }, { earningsSuperStarPool: newEarnings });
+    }
+  }
+
+  return backToPool;
+};
+
 const deposit = async (user, depositedFunds, userName) => {
   let admin = await readBook({ userName: adminUserName });
   // if (!user.parent) {
@@ -561,44 +634,47 @@ const deposit = async (user, depositedFunds, userName) => {
   }
 
   let userParent = await readBook({ userName: user.parent });
-  let userDepositedFirstTime = false;
-  // START OR BIGGER PLAN
-  if (!userParent.childPaying.includes(userName)) {
-    userDepositedFirstTime = true;
-
-    const childPayingLength = userParent.childPaying.length + 1; // 1 for userName
-    await writeBook(
-      { userName: userParent.userName },
-      { level1ChildPaying: userParent.level1ChildPaying + 1, childPaying: [...userParent.childPaying, userName] },
-    );
-    // userParent = await readBook({ userName: user.parent });
-    if (childPayingLength >= 10) {
-      await writeBook({ userName: userParent.userName }, { level: 1, level1ChildPaying: 1 + user.level1ChildPaying });
-    }
-  }
 
   // 1 to 3
   if (userParent.childPaying.length <= 1) {
-    await writeBook({ userName: user.parent }, { balance: userParent.balance + 10 * percent });
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
   else if (userParent.childPaying.length <= 2) {
-    await writeBook({ userName: user.parent }, { balance: userParent.balance + 15 * percent });
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 15 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent });
   }
 
   // 7 or more child paying
   else {
-    await writeBook({ userName: user.parent }, { balance: userParent.balance + 20 * percent });
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 20 * percent });
 
-    // add person to isIn7SponsorPool
-    if (user.isIn7SponsorPool === NOT_IN_POOL) {
-      await writeBook({ userName: user.parent }, { isIn7SponsorPool: IN_POOL });
+    // add person to status7SponsorPool
+    if (user.status7SponsorPool === NOT_IN_POOL) {
+      await writeBook({ userName: userParent.userName }, { status7SponsorPool: IN_POOL });
     }
+  }
+
+  // START OR BIGGER PLAN
+  let userDepositedFirstTime = false;
+  if (!userParent.childPaying.includes(userName)) {
+    userDepositedFirstTime = true;
+    await writeBook(
+      { userName: userParent.userName },
+      { level1ChildPaying: userParent.level1ChildPaying + 1, childPaying: [...userParent.childPaying, userName] },
+    );
+    userParent = await readBook({ userName: userParent.userName });
+
+    const newLevel = p.getLevel(userParent);
+    newLevel > userParent.level &&
+      (await writeBook(
+        { userName: userParent.userName },
+        { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance },
+      ));
   }
 
   let remaining = 100; // percent
@@ -608,16 +684,22 @@ const deposit = async (user, depositedFunds, userName) => {
     userParent = await readBook({ userName: userParent.parent });
     const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
 
+    // maintain data for Super Star Pool
     if (level <= 5 && userDepositedFirstTime) {
       const newUserParent = {};
       newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + 1;
       await writeBook({ userName: userParent.userName }, newUserParent);
       userParent = await readBook({ userName: userParent.parent });
+
       const newLevel = p.getLevel(userParent);
-      newLevel !== userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel }));
+      newLevel > userParent.level &&
+        (await writeBook(
+          { userName: userParent.userName },
+          { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance },
+        ));
     }
 
-    // reward 5% upto 15 levels
+    // deposit logic, reward 5% upto 15 levels
     if (level <= levelUnlocked) {
       remaining -= 5; // percent
       console.log({ remaining });

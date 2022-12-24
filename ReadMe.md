@@ -5,7 +5,7 @@ Adil & Mehsim:
 // TODO: parallel. three test cases we made on paper 
 
 Critical:
-// TODO: 1. 1hr, 5hr, withdrawal, minus the balance upon withdrawal, balance update code on old user comes again
+// TODO: 1. 1hr, 5hr, 1hr, withdrawal, minus the balance upon withdrawal, balance update code on old user comes again
 // TODO: 2. 3hr Super Star Pool, Levels Show, You are at Level 1, ...
 
 High:
@@ -27,8 +27,9 @@ High:
 // TODO: two requests with userNames, no other request can come if some one send parallel request.
 // TODO: picture kai sath caption
 // DONE: only admin can access this function
-
+// TODO: giveRewardEqually, and more, ..., should update all these balance in 1 query, for any reason, so if query fails, we are not in some in valid state
 Nice to do:
+// TODO: const childPayingLength = userParent.level1ChildPaying + 1; // did not saved at end thats why using + 1 again, OR read userParent again
 
 { text: '🎥 Send Media to Users' }
 // done: Coding JS, And write calls at the end of the functions...
