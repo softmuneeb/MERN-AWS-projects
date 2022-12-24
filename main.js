@@ -24,9 +24,9 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const admins = ['crypto_millio', 'thinkmuneeb', 'ADMIN'];
+const admins = ['crypto_millio', 'AiProTONnetwork', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
-  'crypto_millio',
+  'AiProTONnetwork',
   '5492194169',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
@@ -41,11 +41,11 @@ const REMOVED_FROM_POOL = 2;
 // moved some functions in an object because they depend on each other
 const p = {
   level0: 0.0, // < 5 TON ZERO
-  level1: 0.001, // 5 TON   BABY
-  level2: 0.002, // 25 TON  START
-  level3: 0.003, // 50 TON  WALK
-  level4: 0.004, // 200 TON RUN
-  level5: 0.005, // 500 TON FLY
+  level1: 1, // 5 TON   BABY
+  level2: 2, // 25 TON  START
+  level3: 3, // 50 TON  WALK
+  level4: 4, // 200 TON RUN
+  level5: 5, // 500 TON FLY
 
   ZERO: 0, // < 5 TON ZERO
   BABY: 1, // 5 TON   BABY
