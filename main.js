@@ -40,6 +40,10 @@ const REMOVED_FROM_POOL = 2;
 
 // moved some functions in an object because they depend on each other
 const p = {
+  REFERRERS_LIMIT_1: 1,//3, // 0 - 3 referrers 10% commission
+  REFERRERS_LIMIT_2: 2,//6, // 4 - 6 referrers 15% commission
+  // 7+ referrers 20% commission
+
   level0: 0.0, // < 5 TON ZERO
   level1: 1, // 5 TON   BABY
   level2: 2, // 25 TON  START
@@ -54,11 +58,11 @@ const p = {
   RUN: 4, // 200 TON RUN
   FLY: 5, // 500 TON FLY
 
-  IRON_MAN: 10,
-  BAT_MAN: 50,
-  SPIDER_MAN: 200,
-  SUPER_MAN: 500,
-  WONDER_MAN: 1000,
+  IRON_MAN: 2, //10, // LEVEL 1
+  BAT_MAN: 4, //50, // LEVEL 2
+  SPIDER_MAN: 6, //200, // LEVEL 3
+  SUPER_MAN: 8, //500, // LEVEL 4
+  WONDER_MAN: 10, //1000, // LEVEL 5
 
   getLevel: (u) => {
     const l1 = u.level1ChildPaying;
@@ -636,14 +640,14 @@ const deposit = async (user, depositedFunds, userName) => {
   let userParent = await readBook({ userName: user.parent });
 
   // 1 to 3
-  if (userParent.childPaying.length <= 1) {
+  if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
     await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 10 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
   }
 
   // 4 to 6
-  else if (userParent.childPaying.length <= 2) {
+  else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
     await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 15 * percent });
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent });
