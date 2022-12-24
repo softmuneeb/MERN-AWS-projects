@@ -24,7 +24,7 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
+const admins = ['crypto_millio', 'GlobalTing', 'ADMIN', 'thinkmuneeb'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
   '5492194169',
@@ -47,11 +47,17 @@ const p = {
   // 7+ referrers 20% commission
 
   level0: 0.0, // < 5 TON ZERO
-  level1: 1, // 5 TON   BABY
-  level2: 2, // 25 TON  START
-  level3: 3, // 50 TON  WALK
-  level4: 4, // 200 TON RUN
-  level5: 5, // 500 TON FLY
+  level1: 0.1, // 5 TON   BABY
+  level2: 0.12, // 25 TON  START
+  level3: 0.3, // 50 TON  WALK
+  level4: 0.4, // 200 TON RUN
+  level5: 0.5, // 500 TON FLY
+  // level0: 0.0, // < 5 TON ZERO
+  // level1: 1, // 5 TON   BABY
+  // level2: 2, // 25 TON  START
+  // level3: 3, // 50 TON  WALK
+  // level4: 4, // 200 TON RUN
+  // level5: 5, // 500 TON FLY
 
   ZERO: 0, // < 5 TON ZERO
   BABY: 1, // 5 TON   BABY
@@ -396,32 +402,30 @@ const onMessage = async (msg, ctx) => {
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    // if (withdraw === 0) {
-    //   bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
-    //   return;
-    // }
+    if (withdraw === 0) {
+      bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
+      return;
+    }
 
     const withdrawAmount = user.balance * withdraw * percentage;
-    // if (withdrawAmount < minWithdraw) {
-    //   bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
-    //   return;
-    // }
+    if (withdrawAmount < minWithdraw) {
+      bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
+      return;
+    }
 
     let withdrawWallet = text.split(' ')[1];
     if (!isValidAddress(text)) {
-      if (withdrawWallet === undefined) {
-        bot.sendMessage(chatId, 'Please send TON deposit address', pad);
-        return;
-      }
+      bot.sendMessage(chatId, 'Please send TON deposit address', pad);
+      return;
     }
 
     withdrawWallet = text;
 
-    // const recycleAmount = user.balance * recycle * percentage;
-    // bot.sendMessage(chatId, `Loading...`, pad);
-    // await giveRewardsRecycle(user, recycleAmount);
-    // await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
-    // await writeBook({ userName }, { balance: 0 });
+    const recycleAmount = user.balance * recycle * percentage;
+    bot.sendMessage(chatId, `Loading...`, pad);
+    await giveRewardsRecycle(user, recycleAmount);
+    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+    await writeBook({ userName }, { balance: 0 });
 
     bot.sendMessage(chatId, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
@@ -586,11 +590,11 @@ const onMessage = async (msg, ctx) => {
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
-      bot.sendMessage(chatId, `Hi Admin`, pad);
+      bot.sendMessage(chatId, `Hi Admin ${userName}`, pad);
       return;
     }
 
-    bot.sendMessage(chatId, info, pad);
+    bot.sendMessage(chatId, `Hi ${userName}`, pad);
   }
 };
 
@@ -641,6 +645,7 @@ const deposit = async (user, depositedFunds, userName) => {
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
   if (!user.parent || p.getPlanNumber(user) < p.START) {
     await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
+    console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
     return; //  <---------------------<
   }
 

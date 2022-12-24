@@ -1,0 +1,1016 @@
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.21,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:07:08 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.20388899
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{ bNano: '17323461', b: 0.017323461 }
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+{ seqno: 1 }
+{
+  fee: {
+    '@type': 'ok',
+    '@extra': '1671916082.3192172:10:0.4693775282086259'
+  }
+}
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.21,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:07:56 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.199290987
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{ bNano: '17323461', b: 0.017323461 }
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+{ seqno: 2 }
+{
+  fee: {
+    '@type': 'ok',
+    '@extra': '1671916115.857833:15:0.06638288982233875'
+  }
+}
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.21,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:08:30 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.063692985
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{ bNano: '17323461', b: 0.017323461 }
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+{ seqno: 3 }
+{
+  fee: {
+    '@type': 'ok',
+    '@extra': '1671916159.9930334:1:0.6694976191765084'
+  }
+}
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.21,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:09:13 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.059094983
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.21,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:09:30 GMT+0500 (Pakistan Standard Time)
+{ text: '⭐️ Start', userName: 'adilkh12', chatId: 5207150830 }
+Old user
+{ new: 0.13, old: 0 }
+giveRewards
+{ remainingSending: 80 }
+{
+  user: {
+    _id: new ObjectId("63a7685a836bcd07efffeaf0"),
+    chatId: '5207150830',
+    userName: 'adilkh12',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.13,
+    balance: 0,
+    publicKey: 'EQAByKIZN5H5KTrYLr1zNb1z_t8AqFT41Nv7Xli-T0zEY_7C',
+    mnemonic: 'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
+    parent: 'GlobalTing',
+    child: [],
+    childPaying: [],
+    date: 1671915212307,
+    __v: 0
+  },
+  d: 2022-12-24T21:09:47.180Z
+}
+{ text: '🕶 All Details', userName: 'AdilKhanG', chatId: 5729797630 }
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:10:03.693Z
+}
+{
+  text: '🖇 Referrals list',
+  userName: 'AdilKhanG',
+  chatId: 5729797630
+}
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:10:17.746Z
+}
+{
+  text: '🖇 Referrals list',
+  userName: 'AdilKhanG',
+  chatId: 5729797630
+}
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:10:42.078Z
+}
+{
+  text: '🔗 Invitation link',
+  userName: 'thinkmuneeb',
+  chatId: 1672843321
+}
+Old user
+{ new: 0, old: 0 }
+{
+  user: {
+    _id: new ObjectId("63a7632ee61883f8237b45ba"),
+    chatId: '1672843321',
+    userName: 'thinkmuneeb',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQAecPn-bnxQj9u2KFEYWqJ1SRnTyixJSOAtT8asQY4_zHHz',
+    mnemonic: 'goddess you blouse snack inherit video oval mixed boost prison embody actor funny ring abstract cigar paddle minor glue soul join sign tool grab',
+    parent: 'GlobalTing',
+    child: [ 'AdilKhanG' ],
+    childPaying: [],
+    date: 1671914248458,
+    __v: 0
+  },
+  d: 2022-12-24T21:10:53.332Z
+}
+{
+  text: '🖇 Referrals list',
+  userName: 'thinkmuneeb',
+  chatId: 1672843321
+}
+Old user
+{ new: 0, old: 0 }
+{
+  user: {
+    _id: new ObjectId("63a7632ee61883f8237b45ba"),
+    chatId: '1672843321',
+    userName: 'thinkmuneeb',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQAecPn-bnxQj9u2KFEYWqJ1SRnTyixJSOAtT8asQY4_zHHz',
+    mnemonic: 'goddess you blouse snack inherit video oval mixed boost prison embody actor funny ring abstract cigar paddle minor glue soul join sign tool grab',
+    parent: 'GlobalTing',
+    child: [ 'AdilKhanG' ],
+    childPaying: [],
+    date: 1671914248458,
+    __v: 0
+  },
+  d: 2022-12-24T21:10:59.160Z
+}
+{ text: '🕶 All Details', userName: 'AdilKhanG', chatId: 5729797630 }
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:11:38.203Z
+}
+{ text: '⭐️ Start', userName: 'AdilKhanG', chatId: 5729797630 }
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:11:50.011Z
+}
+{ text: '💎 Wallet', userName: 'AdilKhanG', chatId: 5729797630 }
+Old user
+{ new: 0.059094983, old: 0.21 }
+{
+  user: {
+    _id: new ObjectId("63a765243d93d168147c1abf"),
+    chatId: '5729797630',
+    userName: 'AdilKhanG',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.21,
+    balance: 0,
+    publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+    mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+    parent: 'thinkmuneeb',
+    child: [],
+    childPaying: [],
+    date: 1671914705067,
+    __v: 0
+  },
+  d: 2022-12-24T21:12:06.226Z
+}
+{ text: '🎒 My Package', userName: 'adilkh12', chatId: 5207150830 }
+Old user
+{ new: 0.13, old: 0.13 }
+{
+  user: {
+    _id: new ObjectId("63a7685a836bcd07efffeaf0"),
+    chatId: '5207150830',
+    userName: 'adilkh12',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0.13,
+    balance: 0,
+    publicKey: 'EQAByKIZN5H5KTrYLr1zNb1z_t8AqFT41Nv7Xli-T0zEY_7C',
+    mnemonic: 'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
+    parent: 'GlobalTing',
+    child: [],
+    childPaying: [],
+    date: 1671915212307,
+    __v: 0
+  },
+  d: 2022-12-24T21:12:27.105Z
+}
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:20:49 GMT+0500 (Pakistan Standard Time)
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:21:15 GMT+0500 (Pakistan Standard Time)
+{
+  text: '📊 System Stats',
+  userName: 'thinkmuneeb',
+  chatId: 1672843321
+}
+Old user
+{ new: 0, old: 0 }
+{
+  user: {
+    _id: new ObjectId("63a7632ee61883f8237b45ba"),
+    chatId: '1672843321',
+    userName: 'thinkmuneeb',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 0,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0,
+    publicKey: 'EQAecPn-bnxQj9u2KFEYWqJ1SRnTyixJSOAtT8asQY4_zHHz',
+    mnemonic: 'goddess you blouse snack inherit video oval mixed boost prison embody actor funny ring abstract cigar paddle minor glue soul join sign tool grab',
+    parent: 'GlobalTing',
+    child: [ 'AdilKhanG' ],
+    childPaying: [],
+    date: 1671914248458,
+    __v: 0
+  },
+  d: 2022-12-24T21:24:14.672Z
+}
+{
+  users: [
+    {
+      _id: new ObjectId("63a7223867214563ff3c3964"),
+      chatId: null,
+      userName: '7_SPONSOR_POOL',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 0,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0,
+      balance: 0.0065,
+      publicKey: null,
+      mnemonic: null,
+      parent: null,
+      child: [],
+      childPaying: [],
+      date: 1671897651593,
+      __v: 0
+    },
+    {
+      _id: new ObjectId("63a7223867214563ff3c3967"),
+      chatId: null,
+      userName: 'SUPER_STAR_POOL',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 0,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0,
+      balance: 0,
+      publicKey: null,
+      mnemonic: null,
+      parent: null,
+      child: [],
+      childPaying: [],
+      date: 1671897651593,
+      __v: 0
+    },
+    {
+      _id: new ObjectId("63a7223967214563ff3c396a"),
+      chatId: '5492194169',
+      userName: 'GlobalTing',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 1,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0,
+      balance: 0.314,
+      publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+      mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+      parent: null,
+      child: [Array],
+      childPaying: [Array],
+      date: 1671897651593,
+      __v: 0
+    },
+    {
+      _id: new ObjectId("63a7632ee61883f8237b45ba"),
+      chatId: '1672843321',
+      userName: 'thinkmuneeb',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 0,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0,
+      balance: 0,
+      publicKey: 'EQAecPn-bnxQj9u2KFEYWqJ1SRnTyixJSOAtT8asQY4_zHHz',
+      mnemonic: 'goddess you blouse snack inherit video oval mixed boost prison embody actor funny ring abstract cigar paddle minor glue soul join sign tool grab',
+      parent: 'GlobalTing',
+      child: [Array],
+      childPaying: [],
+      date: 1671914248458,
+      __v: 0
+    },
+    {
+      _id: new ObjectId("63a765243d93d168147c1abf"),
+      chatId: '5729797630',
+      userName: 'AdilKhanG',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 0,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0.21,
+      balance: 0,
+      publicKey: 'EQB89se1QGUjDfByZmN4FT7RnUTouklEV0YD9OSd95Ku9TWp',
+      mnemonic: 'joy stumble brick blur mother diesel frown lumber police antique spoil turn rude equip solution vacant move tank wing oppose banana teach shiver north',
+      parent: 'thinkmuneeb',
+      child: [],
+      childPaying: [],
+      date: 1671914705067,
+      __v: 0
+    },
+    {
+      _id: new ObjectId("63a7685a836bcd07efffeaf0"),
+      chatId: '5207150830',
+      userName: 'adilkh12',
+      status7SponsorPool: 0,
+      earnings7SponsorPool: 0,
+      statusSuperStarPool: 0,
+      earningsSuperStarPool: 0,
+      balanceOnEnteringSuperStarPool: 0,
+      level: 0,
+      level1ChildPaying: 0,
+      level2ChildPaying: 0,
+      level3ChildPaying: 0,
+      level4ChildPaying: 0,
+      level5ChildPaying: 0,
+      depositedFunds: 0.13,
+      balance: 0,
+      publicKey: 'EQAByKIZN5H5KTrYLr1zNb1z_t8AqFT41Nv7Xli-T0zEY_7C',
+      mnemonic: 'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
+      parent: 'GlobalTing',
+      child: [],
+      childPaying: [],
+      date: 1671915212307,
+      __v: 0
+    }
+  ]
+}
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:24:54 GMT+0500 (Pakistan Standard Time)
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:25:35 GMT+0500 (Pakistan Standard Time)
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:25:42 GMT+0500 (Pakistan Standard Time)
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:25:50 GMT+0500 (Pakistan Standard Time)
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{ bNano: '17323461', b: 0.017323461 }
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+{ seqno: 0 }
+{
+  fee: { '@type': 'ok', '@extra': '1671917163.958325:7:0.7341707939863886' }
+}
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:25:57 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.05288899
+[nodemon] restarting due to changes...
+[nodemon] starting `node main.js`
+{ bNano: '17323461', b: 0.017323461 }
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+{ seqno: 1 }
+{
+  fee: {
+    '@type': 'ok',
+    '@extra': '1671917211.6041925:10:0.5124279185684371'
+  }
+}
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+{
+  user: {
+    _id: new ObjectId("63a7223967214563ff3c396a"),
+    chatId: '5492194169',
+    userName: 'GlobalTing',
+    status7SponsorPool: 0,
+    earnings7SponsorPool: 0,
+    statusSuperStarPool: 0,
+    earningsSuperStarPool: 0,
+    balanceOnEnteringSuperStarPool: 0,
+    level: 0,
+    level1ChildPaying: 1,
+    level2ChildPaying: 0,
+    level3ChildPaying: 0,
+    level4ChildPaying: 0,
+    level5ChildPaying: 0,
+    depositedFunds: 0,
+    balance: 0.314,
+    publicKey: 'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
+    mnemonic: 'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+    parent: null,
+    child: [ 'thinkmuneeb', 'AdilKhanG', 'adilkh12' ],
+    childPaying: [ 'adilkh12' ],
+    date: 1671897651593,
+    __v: 0
+  }
+}
+db used second or more times
+Bot started Sun Dec 25 2022 02:26:45 GMT+0500 (Pakistan Standard Time)
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+waiting for transaction to confirm...
+balance: 0.027290987

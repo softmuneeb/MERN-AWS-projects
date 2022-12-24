@@ -133,16 +133,17 @@ const [adminAddress] = [
 ];
 
 const unitTest1 = async () => {
-  // const [bNano, b] = await getBalance(userMnemonic2);
-  // console.log({ bNano, b });
-  // try {
-  //   await transferFrom(userMnemonic2, 'adminAddress', 0.0001);
-  // } catch (e) {
-  //   console.log('error is:', e);
-  // }
-
-  const add = '' + TonWeb.utils.Address.isValid('adminAddress');
-  console.log({ add });
+  const [bNano, b] = await getBalance(userMnemonic2);
+  console.log({ bNano, b });
+  try {
+    await transferFrom(
+      'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
+      'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
+      0.02,
+    );
+  } catch (e) {
+    console.log('error is:', e);
+  }
 };
 
 // unitTest1();
