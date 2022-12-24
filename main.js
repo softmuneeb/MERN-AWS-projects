@@ -501,31 +501,31 @@ const onMessage = async (msg, ctx) => {
       const rewardPerLevel1 = 0.3 * pool.balance; // 30%
       rewardGiven += rewardPerLevel1;
       const rewardPerUserPerLevel1 = rewardPerLevel1 / usersL1;
-      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel1, rewardPerUserPerLevel1);
+      backToPool += await giveRewardEqually(usersLevel1, rewardPerUserPerLevel1);
     }
     if (usersL2 > 0) {
       const rewardPerLevel2 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel2;
       const rewardPerUserPerLevel2 = rewardPerLevel2 / usersL2;
-      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel2, rewardPerUserPerLevel2);
+      backToPool += await giveRewardEqually(usersLevel2, rewardPerUserPerLevel2);
     }
     if (usersL3 > 0) {
       const rewardPerLevel3 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel3;
       const rewardPerUserPerLevel3 = rewardPerLevel3 / usersL3;
-      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel3, rewardPerUserPerLevel3);
+      backToPool += await giveRewardEqually(usersLevel3, rewardPerUserPerLevel3);
     }
     if (usersL4 > 0) {
       const rewardPerLevel4 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel4;
       const rewardPerUserPerLevel4 = rewardPerLevel4 / usersL4;
-      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel4, rewardPerUserPerLevel4);
+      backToPool += await giveRewardEqually(usersLevel4, rewardPerUserPerLevel4);
     }
     if (usersL5 > 0) {
       const rewardPerLevel5 = 0.1 * pool.balance; // 10%
       rewardGiven += rewardPerLevel5;
       const rewardPerUserPerLevel5 = rewardPerLevel5 / usersL5;
-      backToPool += await giveRewardEqually(SUPER_STAR_POOL, usersLevel5, rewardPerUserPerLevel5);
+      backToPool += await giveRewardEqually(usersLevel5, rewardPerUserPerLevel5);
     }
 
     const poolRemaining = pool.balance - rewardGiven + backToPool;
