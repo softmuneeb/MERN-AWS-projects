@@ -176,7 +176,7 @@ const plans = `
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const { readBook, writeBook, readBooks } = require('./db');
-const { getBalance, mnemonicGenerate, transferFrom } = require('./mlm-backend');
+const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
 
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(token, { polling: true });
@@ -392,40 +392,38 @@ const onMessage = async (msg, ctx) => {
     );
   }
   //
-  else if (text.includes('💰 Withdraw')) {
-    // get referrer
-    let withdrawWallet = text.split(' ')[1];
-    // if referrer undefined then make defaultReferrer his referrer
-    // TODO: get withdraw wallet from user
-    if (withdrawWallet === undefined) {
-      bot.sendMessage(chatId, 'Please send valid TON deposit address', pad);
-      return;
-    }
-
+  else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    if (withdraw === 0) {
-      bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
-      return;
-    }
+    // if (withdraw === 0) {
+    //   bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
+    //   return;
+    // }
 
     const withdrawAmount = user.balance * withdraw * percentage;
-    if (withdrawAmount < minWithdraw) {
-      bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
-      return;
-    }
-    
-    const recycleAmount = user.balance * recycle * percentage;
-    await giveRewardsRecycle(user, recycleAmount);
-    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
-    await writeBook({ userName }, { balance: 0 });
+    // if (withdrawAmount < minWithdraw) {
+    //   bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
+    //   return;
+    // }
 
-    bot.sendMessage(
-      chatId,
-      `It will send ${withdraw}% ${user.balance * withdraw * percentage} TON to your wallet`,
-      pad,
-    );
+    let withdrawWallet = text.split(' ')[1];
+    if (!isValidAddress(text)) {
+      if (withdrawWallet === undefined) {
+        bot.sendMessage(chatId, 'Please send TON deposit address', pad);
+        return;
+      }
+    }
+
+    withdrawWallet = text;
+
+    // const recycleAmount = user.balance * recycle * percentage;
+    // bot.sendMessage(chatId, `Loading...`, pad);
+    // await giveRewardsRecycle(user, recycleAmount);
+    // await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+    // await writeBook({ userName }, { balance: 0 });
+
+    bot.sendMessage(chatId, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
   //
   //

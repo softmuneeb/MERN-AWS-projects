@@ -8,67 +8,8 @@ const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function publicKey(mnemonic) {
-  const mnemonicArray = mnemonic.split(' ');
-  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
-
-  // console.log('secret key:', Buffer.from(keyPair.secretKey).toString('hex'));
-  // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
-
-  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
-
-  const WalletClass = tonweb.wallet.all['v3R2'];
-  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-  const seqno = (await wallet.methods.seqno().call()) || 0;
-  // console.log('seqno:', seqno);
-
-  const address = (await wallet.getAddress()).toString(true, true, true);
-  // console.log({ address });
-
-  return address;
-  // ['simpleR1', 'simpleR2', 'simpleR3', 'v2R1', 'v2R2', 'v3R1', 'v3R2', 'v4R1', 'v4R2'].map(async (v) => {
-  //   const WalletClass = tonweb.wallet.all[v];
-  //   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-  //   const seqno = (await wallet.methods.seqno().call()) || 0;
-  //   console.log('seqno:', seqno);
-
-  //   const address = (await wallet.getAddress()).toString(true, true, true);
-
-  //   console.log({ v, address });
-  // });
-}
-
-async function transferFrom(mnemonic, toAddress, amount) {
-  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
-  const WalletClass = tonweb.wallet.all['v3R2'];
-  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
-  const seqno = (await wallet.methods.seqno().call()) || 0;
-  console.log({ seqno });
-  const fee = await wallet.methods
-    .transfer({
-      secretKey: keyPair.secretKey,
-      toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
-      amount: TonWeb.utils.toNano('' + amount), // 0.0006 TON
-      seqno: seqno,
-      payload: 'MLM Bot', // optional comment
-      sendMode: 3,
-    })
-    // .estimateFee();
-    .send();
-
-  // return;
-
-  console.log({ fee });
-  let currentSeqno = seqno;
-  while (currentSeqno == seqno) {
-    console.log('waiting for transaction to confirm...');
-    await sleep(1500); // avoid throttling by toncenter.com
-    currentSeqno = (await wallet.methods.seqno().call()) || 0;
-  }
-  const address = await wallet.getAddress();
-  const balance = await tonweb.getBalance(address);
-  console.log('balance:', TonWeb.utils.fromNano(balance));
+function isValidAddress(address) {
+  return TonWeb.utils.Address.isValid(address);
 }
 
 async function getBalance(m) {
@@ -136,32 +77,70 @@ async function mnemonicGenerate() {
   return [await publicKey(m), m];
 }
 
-// const [userAddress2, userMnemonic2] = [
-//   'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
-//   //
-//   'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
-// ];
-// const [adminAddress] = [
-//   'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
-//   //
-//   '',
-// ];
+async function transferFrom(mnemonic, toAddress, amount) {
+  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
+  const WalletClass = tonweb.wallet.all['v3R2'];
+  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
+  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  const seqno = (await wallet.methods.seqno().call()) || 0;
+  console.log({ seqno });
+  const fee = await wallet.methods
+    .transfer({
+      secretKey: keyPair.secretKey,
+      toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
+      amount: TonWeb.utils.toNano('' + amount), // 0.0006 TON
+      seqno: seqno,
+      payload: 'MLM Bot', // optional comment
+      sendMode: 3,
+    })
+    // .estimateFee();
+    .send();
 
-// const unitTest1 = async () => {
-//   const [bNano, b] = await getBalance(userMnemonic2);
-//   console.log({ bNano, b });
-//   try {
-//     await transferFrom(userMnemonic2, adminAddress, 1);
-//   } catch (e) {
-//     console.log('error is:', e);
-//   }
-// };
+  // return;
+
+  console.log({ fee });
+  let currentSeqno = seqno;
+  while (currentSeqno == seqno) {
+    console.log('waiting for transaction to confirm...');
+    await sleep(1500); // avoid throttling by toncenter.com
+    currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  }
+  const address = await wallet.getAddress();
+  const balance = await tonweb.getBalance(address);
+  console.log('balance:', TonWeb.utils.fromNano(balance));
+}
+
+const [userAddress2, userMnemonic2] = [
+  'EQAsby8THtByrEum-YfD6FjTAFvausrxmbTK0Zox50l76wG2',
+  //
+  'mercy buffalo rotate airport sample earth program elevator steel repair member march explain another destroy ancient embark school thank happy clean supply work second',
+];
+
+const [adminAddress] = [
+  'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
+  //
+  '',
+];
+
+const unitTest1 = async () => {
+  // const [bNano, b] = await getBalance(userMnemonic2);
+  // console.log({ bNano, b });
+  // try {
+  //   await transferFrom(userMnemonic2, 'adminAddress', 0.0001);
+  // } catch (e) {
+  //   console.log('error is:', e);
+  // }
+
+  const add = '' + TonWeb.utils.Address.isValid('adminAddress');
+  console.log({ add });
+};
 
 // unitTest1();
 
 module.exports = {
-  getBalance,
-  mnemonicGenerate,
   publicKey,
+  getBalance,
   transferFrom,
+  isValidAddress,
+  mnemonicGenerate,
 };
