@@ -46,12 +46,12 @@ const p = {
   REFERRERS_LIMIT_2: 2, //6, // 4 - 6 referrers 15% commission
   // 7+ referrers 20% commission
 
-  level0: 0.0, // < 5 TON ZERO
-  level1: 0.1, // 5 TON   BABY
-  level2: 0.12, // 25 TON  START
-  level3: 0.3, // 50 TON  WALK
-  level4: 0.4, // 200 TON RUN
-  level5: 0.5, // 500 TON FLY
+  level0: 0, // < 5 TON ZERO
+  level1: 1, // 5 TON   BABY
+  level2: 2, // 25 TON  START
+  level3: 3, // 50 TON  WALK
+  level4: 4, // 200 TON RUN
+  level5: 5, // 500 TON FLY
   // level0: 0.0, // < 5 TON ZERO
   // level1: 1, // 5 TON   BABY
   // level2: 2, // 25 TON  START
@@ -332,7 +332,7 @@ const onMessage = async (msg, ctx) => {
     }
 
     await deposit(user, user.balance * 0.7, userName); // 70% used in plan upgrade, distributed in referrals, admin
-    await recycle(user, user.balance * 0.3); // 30% distributed in referrals, admin
+    await recycleRewards(user, user.balance * 0.3); // 30% distributed in referrals, admin
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
@@ -400,7 +400,7 @@ const onMessage = async (msg, ctx) => {
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
     const percentage = 1 / 100;
-    const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
+    const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
       bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
@@ -423,7 +423,7 @@ const onMessage = async (msg, ctx) => {
 
     const recycleAmount = user.balance * recycle * percentage;
     bot.sendMessage(chatId, `Loading...`, pad);
-    await giveRewardsRecycle(user, recycleAmount);
+    await recycleRewards(user, recycleAmount);
     await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
     await writeBook({ userName }, { balance: 0 });
 
@@ -688,6 +688,7 @@ const deposit = async (user, depositedFunds, userName) => {
     );
     userParent = await readBook({ userName: userParent.userName });
 
+    console.log({ userParent, wasError: 'can not read value of undefined' });
     const newLevel = p.getLevel(userParent);
     newLevel > userParent.level &&
       (await writeBook(
@@ -734,7 +735,7 @@ const deposit = async (user, depositedFunds, userName) => {
   await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
 };
 
-const recycle = async (user, depositedFunds) => {
+const recycleRewards = async (user, depositedFunds) => {
   if (!user.parent) {
     bot.sendMessage(user.chatId, `Admin can not recycle`);
     return;
@@ -750,7 +751,7 @@ const recycle = async (user, depositedFunds) => {
   // give reward till level 15
   for (let level = 1; level <= 15 && userParent.parent; level++) {
     userParent = await readBook({ userName: userParent.parent });
-    const reward = p.getRecycleRewardLevelPercentage(userParent.depositedFunds);
+    const reward = p.getRecycleRewardLevelPercentage(userParent);
     remaining -= reward;
     console.log({ remaining });
     await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
@@ -805,3 +806,12 @@ const seedDB = async () => {
 };
 
 seedDB().then(() => bot.on('message', onMessage));
+
+/*
+writeBook(
+  { userName: 'AdilKhanG' },
+  {
+    depositedFunds: 0,
+  },
+).then(() => console.log('ok'));
+*/

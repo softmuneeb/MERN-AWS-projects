@@ -1,6 +1,6 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = 'UserModel_93'; //+ Date.now();
+const dbName = 'UserModel_96'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 
@@ -8,8 +8,8 @@ const UserSchema = new mongoose.Schema({
   chatId: {
     type: String,
     default: null,
-    unique: true,
-    required: true,
+    // unique: true,
+    // required: true,
   },
   userName: {
     type: String,
