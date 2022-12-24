@@ -3,10 +3,10 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
-  ['💳 Plans'], //
-  ['💳 My Plan'], //
-  ['💎 Wallet', '🚀 Upgrade'], //
-  ['💳 Withdraw'], //
+  ['💼 Plan Packages'], //
+  ['🎒 My Package'], //
+  ['💎 Wallet', '🕹 Upgrade'], //
+  ['💰 Withdraw'], //
   ['🚀 My Level'], //
   ['🤖 Support', '💁‍♂️ Info'], //
   ['⭐️ Start'], //
@@ -248,7 +248,7 @@ const onMessage = async (msg, ctx) => {
     return;
   }
   //
-  else if (text.includes('💳 Plans')) {
+  else if (text.includes('💼 Plan Packages')) {
     bot.sendMessage(chatId, plans, pad);
     return;
   }
@@ -312,7 +312,7 @@ const onMessage = async (msg, ctx) => {
     bot.sendMessage(chatId, `${userName}\nDeposited ${user.depositedFunds} TON\nPlan ${p.planName(user)}`, pad);
   }
   //
-  else if (text.includes('🚀 Upgrade')) {
+  else if (text.includes('🕹 Upgrade')) {
     if (!exists(user)) {
       bot.sendMessage(chatId, 'Invalid user', pad);
       return;
@@ -338,7 +338,7 @@ const onMessage = async (msg, ctx) => {
     );
   }
   //
-  else if (text.includes('💳 My Plan')) {
+  else if (text.includes('🎒 My Package')) {
     bot.sendMessage(chatId, `Plan: ${p.planName(user)}`, pad);
   }
   //
@@ -389,7 +389,7 @@ const onMessage = async (msg, ctx) => {
     );
   }
   //
-  else if (text.includes('💳 Withdraw')) {
+  else if (text.includes('💰 Withdraw')) {
     // get referrer
     let withdrawWallet = text.split(' ')[1];
     // if referrer undefined then make defaultReferrer his referrer
