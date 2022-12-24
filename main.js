@@ -40,8 +40,8 @@ const REMOVED_FROM_POOL = 2;
 
 // moved some functions in an object because they depend on each other
 const p = {
-  REFERRERS_LIMIT_1: 1,//3, // 0 - 3 referrers 10% commission
-  REFERRERS_LIMIT_2: 2,//6, // 4 - 6 referrers 15% commission
+  REFERRERS_LIMIT_1: 1, //3, // 0 - 3 referrers 10% commission
+  REFERRERS_LIMIT_2: 2, //6, // 4 - 6 referrers 15% commission
   // 7+ referrers 20% commission
 
   level0: 0.0, // < 5 TON ZERO
@@ -193,11 +193,6 @@ const padAdmin = {
   },
 };
 
-let pad = padSimple;
-let padCopyAble = {
-  ...padSimple,
-  parse_mode: 'Markdown',
-};
 let botName;
 
 // on telegram message
@@ -208,6 +203,11 @@ const onMessage = async (msg, ctx) => {
 
   // console.log({ msg, ctx }); // for dev
   // console.log({ text });
+  let pad = padSimple;
+  let padCopyAble = {
+    ...padSimple,
+    parse_mode: 'Markdown',
+  };
   if (admins.includes(userName)) {
     pad = padAdmin;
     padCopyAble = {
@@ -385,7 +385,7 @@ const onMessage = async (msg, ctx) => {
     bot.sendMessage(
       chatId,
       `Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
-      padCopyAble
+      padCopyAble,
     );
   }
   //
