@@ -24,9 +24,9 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const admins = ['crypto_millio', 'AiProTONnetwork', 'ADMIN'];
+const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
-  'AiProTONnetwork',
+  'GlobalTing',
   '5492194169',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
