@@ -11,11 +11,11 @@ Critical:
 High:
 // TODO: 3. 2 hr 🙏🏻 HELP, users ask admin some thing and admin can reply
 // TODO: 4. 2 hr to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;
+// TODO: userName -> chatId where needed
 
 //
 // done: Adil DB, Mongo, Change IP to specific addresses
 // done: writes calls at end, checking why users created auto, Coding improve just like, ....
-// done: test it saparately also... 0.05 TON tx fee, 0.2 TON -> 0.1 TON (after tx fee cut)
 // TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
 // TODO: if users go to 1000, or Millions then any problem in loop?...
 // TODO: add in DB that TON left from system
@@ -617,3 +617,21 @@ make bal 0
 
 // unit testing, testing single functions
 // console.log(p.planName({depositedFunds: (6*0.0005)}));
+
+
+/*
+output:
+
+public key: 49f50bb94c5fb463534a9d0df0d8e39bcb93109589daf65197e9151c3777402f
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+address: EQAC824gsw8OZLoMV6_nr4nkxaEQFlbzoiHHOWIYY81eM5rQ
+seqno: 8
+balance: 0.000099975
+
+14 dec 2022
+public key: 93b00b63b2b4e32cff00ed0321a4eef3decf2065e87bb57bf8fa8789b4294b48
+wallet versions: simpleR1,simpleR2,simpleR3,v2R1,v2R2,v3R1,v3R2,v4R1,v4R2
+address: EQDaESDKNtySUnifpWndqyLSlYBaydMWlt1zjEaaewHqjMHS
+seqno: 0
+{ bNano: '100496150', b: '0.10049615' }
+*/

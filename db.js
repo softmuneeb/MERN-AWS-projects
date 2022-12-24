@@ -8,6 +8,8 @@ const UserSchema = new mongoose.Schema({
   chatId: {
     type: String,
     default: null,
+    unique: true,
+    required: true,
   },
   userName: {
     type: String,
