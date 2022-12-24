@@ -38,6 +38,8 @@ const IN_POOL = 1;
 const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
 
+const minWithdraw = 0.1; //TON
+
 // moved some functions in an object because they depend on each other
 const p = {
   REFERRERS_LIMIT_1: 1, //3, // 0 - 3 referrers 10% commission
@@ -403,15 +405,21 @@ const onMessage = async (msg, ctx) => {
     const percentage = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user.depositedFunds);
 
-    // TODO: test local transferFrom then push
-    // await transferFrom(adminMnemonic, withdrawWallet, user.balance * withdraw * percentage);
-    // await giveRewardsRecycle(user, user.balance * recycle * percentage);
-    // await writeBook({ userName }, { balance: 0 });
-
     if (withdraw === 0) {
       bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
       return;
     }
+
+    const withdrawAmount = user.balance * withdraw * percentage;
+    if (withdrawAmount < minWithdraw) {
+      bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
+      return;
+    }
+    
+    const recycleAmount = user.balance * recycle * percentage;
+    await giveRewardsRecycle(user, recycleAmount);
+    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+    await writeBook({ userName }, { balance: 0 });
 
     bot.sendMessage(
       chatId,
