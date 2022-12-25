@@ -524,9 +524,9 @@ const onMessage = async (msg, ctx) => {
     );
   }
   //
-  else if (text.includes('About TON')) {
-    bot.sendMessage(chatId, `https://ton.org/`, pad);
-  }
+  // else if (text.includes('About TON')) {
+  //   bot.sendMessage(chatId, `https://ton.org/`, pad);
+  // }
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
     const percentage = 1 / 100;
