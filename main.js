@@ -14,8 +14,9 @@ const keyboard = [
   ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
-  ['🕶 All Details'],
-  ['📈 Marketing Plan'] //
+  ['🕶 All Details'],//
+  ['📈 Marketing Plan']//
+  ['About TON'] //
 ];
 
 const adminKeyBoard = [
@@ -142,7 +143,7 @@ const p = {
     else if (d >= p.level4) ans = '🏃 RUN'; // 200 TON RUN
     else if (d >= p.level3) ans = '🚶 WALK'; // 50 TON  WALK
     else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
-    else if (d >= p.level1) ans = '👶 BABY';
+    else if (d >= p.level1) ans = '👼 BABY';
     else ans = '👎 NONE';
     return ans;
   },
@@ -175,11 +176,20 @@ Social Media & User Forums
 Connect with other users and get help and advice from our community on our social media accounts or user forums.
 `;
 const plans = `
-👶 BABY 5 TON
+Choose Your Package To Earn TON From The AiProTON Community Network ,
+The More Your Contribute The More You Earn & Even You Start With The Minimum & Upgrade It Later From Your Earnings.
+
+Following The Packages - 
+
+👼 BABY 5 TON
 ⭐️ START 25 TON
 🚶 WALK 50 TON 
 🏃 RUN 200 TON 
 ✈️ FLY 500 TON
+
+Deposit TON Amount of Any Value In Your AiProTON Deposit Wallet &
+Whatever The Amount Value You Deposit , Your Pack Value Will Be According That. You Can Upgrade Any Time.
+To Know The Features Of Packs Follow , Marketing Plan Features Tab.
 `;
 
 const features = `
@@ -481,7 +491,7 @@ const onMessage = async (msg, ctx) => {
   else if (text.includes('💎 Wallet')) {
     bot.sendMessage(
       chatId,
-      `Earnings: ${user.balance}\nDeposited: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.\n Your TON Earnings: ${user.balance}\nYour Deposited TON: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
       padCopyAble,
     );
   }
@@ -512,6 +522,10 @@ const onMessage = async (msg, ctx) => {
       `Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
+  }
+  //
+  else if (text.includes('About TON')) {
+    bot.sendMessage(chatId, `https://ton.org/`, pad);
   }
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
