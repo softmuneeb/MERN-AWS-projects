@@ -9,7 +9,9 @@ const keyboard = [
   ['💰 Withdraw'], //
   ['🚀 My Level'], //
   ['🤖 Support', '💁‍♂️ Info'], //
-  ['⭐️ Start'], //
+  ['⭐️ Start'],//
+  ['💡 Rules For Community'],//
+  ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
   ['🕶 All Details'], //
@@ -179,6 +181,49 @@ const plans = `
 ✈️ FLY 500 TON
 `;
 
+const features = `
+100% Distribution Of Revenue In Community & System.
+
+Upto 20% Direct Income.
+
+Upto 100000 TON Reward From Community.
+
+Easy Upgrade & Auto Income Generation.
+
+Self Team Working Income.
+
+Global Team Working Benefits.
+
+Global Team Working Rewards
+
+And..
+
+Even All Can Start With Just 5 Ton , No Risk, No Liability , Work & Earn.
+
+Unlimited  From Global And Your Network.
+
+Just Signup with the link of Any Sponsor from AiProTON Community Network.
+`;
+
+const rules = `
+Let’s Learn The Rules For The Community.
+
+Package – The Bigger Your Contribution, The Bigger Your  Earnings.
+
+Withdraw – From Any Pack Activation in Your Team You Get Instant Incentives In Your Wallet From There You Can Withdraw Your Total Amount as Per Package Withdraw Rule.
+
+Recycle – For Auto Acceleration to The System Belongs To Every Withdraw Their is Certain Amount for RECYCLE, Which Gives You Again Commissions & You Enjoy Again The benefits, And This Cycle Continues in Loop.
+
+Upgrade – The Bigger Your Contribution, The Bigger Benefits You will reap, But No Worry You Can Start Just From Very Beginning, Even Small Pack or Even Just Registration Pack , Earn , Upgrade & Grow Your Benefits , No Compulsion for Bigger Amount. Just Start From Very Small. Even just 5 Ton.
+
+And This Help to Community Also, As Your Team Start From Very Little, Your Team Will Not Face any Risk and As They Earn ,They Upgrade, You Reap Again Benefits From The entire Network.. It’s Amazing.
+
+Yes More Here…
+Community Rewards, You Can Earn upto 100000 $ Reward Not Just From Your Network but also from the Community & Its All Start from 5 TON & With Your Growing Team….
+
+So , Are You Excited To Earn & Grow With amazing opportunity . So Be Ready with Your Telegram ID & Your TON Wallet. Let’s Start.
+`;
+
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const { readBook, writeBook, readBooks } = require('./db');
@@ -259,6 +304,16 @@ const onMessage = async (msg, ctx) => {
   //
   else if (text.includes('💼 Plan Packages')) {
     bot.sendMessage(chatId, plans, pad);
+    return;
+  }
+  //
+  else if (text.includes('📡 AiProTON Features')) {
+    bot.sendMessage(chatId, features, pad);
+    return;
+  }
+  //
+  else if (text.includes('💡 Rules For Community')) {
+    bot.sendMessage(chatId, rules, pad);
     return;
   }
 
@@ -373,7 +428,8 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, `Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
+    bot.sendMessage(chatId, `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
+    Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
   }
   //
   else if (text.includes('🕶 All Details')) {
