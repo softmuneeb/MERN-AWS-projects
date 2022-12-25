@@ -14,7 +14,8 @@ const keyboard = [
   ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
-  ['🕶 All Details'], //
+  ['🕶 All Details'],
+  ['📈 Marketing Plan'] //
 ];
 
 const adminKeyBoard = [
@@ -224,6 +225,60 @@ Community Rewards, You Can Earn upto 100000 $ Reward Not Just From Your Network 
 So , Are You Excited To Earn & Grow With amazing opportunity . So Be Ready with Your Telegram ID & Your TON Wallet. Let’s Start.
 `;
 
+const market = `
+You Can Start With 25 TON or other Options, Like 100, 200 or 500 TON.
+
+As you Signup There Are lot of Incomes to Get From The Network you create.
+
+1st You Get Direct Income from Your Network.
+
+From Sponsoring 1,2,3 You Get 10% , From Sponsoring 4,5,6,
+You Get 15% and 7th and above Sponsoring You Get 20% From every Direct Sponsoring.
+
+From All Income You Have Three Way –
+WITHDRAW / UPGRADE / RECYCLE
+
+WITHDRAW Rule - 
+
+START – 40 % Withdraw – 60% Recycle
+WALK- 50% Withdraw – 50% Recycle 
+RUN- 60% Withdraw – 40% Recycle 
+FLY- 70% Withdraw – 30% Recycle 
+
+You can Register With 5 TON as Baby pack, Where From Upto 6 Level You can Earn, and Use Your 100% Earnings in Upgrade. After START PACK , you can follow the same system.
+
+Recycle Means – The Balance Payout Value TON again Distribute As Recycle Plan.
+
+YOU can UPGRADE Your PACK to get high benefit on basis.
+70% UPGRADE – 30% Recycle.
+
+So, This System create Income In Loop. Every Time You Get Income From Your Team.
+
+TEAM INCOME –
+
+When In Your Network , Any Pack Activate ,
+
+You Eligible  10% To 20% Direct As Direct Income From Level One , And Form Level Two to Level 15 You Get , 5% TON from Every joiner in Your Network community in 15 level. 
+
+Level Eligibility As Your Pack, Like If You On  Baby or Start Pack – You Get This Income From upto 6 Level.
+
+If You On Walk Pack – you Get This Income Upto 9 Level. 
+On Run Pack – You Get This Income upto 12 Level and
+On Fly Pack – you Get This Income From All 15 Level. 
+
+You Can upgrade any time as you convenient. 
+
+RECYCLE – All recycle Distribution in 15 levels , As per pack , if You are Baby ( Registration pack) than 1% , if you on Start – 2% , If You on Walk – 3% , If You On Run – 4% , and if you on FLY pack , you get 5% on Each level from each RECYLE Activity.
+
+Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 Levels.
+
+& Whatever Skipped Balance Either Small pack or bigger pack , left skipped balance from Direct Joining Will Go To 7 Sponsor Club and Skipped balance from recycle will GO To REWARD CLUB from every recycle entry from the globe. And this provide you , From 2x To 5x Global Rewards. an also upto 100000 TON REWARDS and revenue from Your Network as well as  From the Global Community.
+
+5 TON First Time And 10%  is used As Service provider Fee ,  Network  AI Program  & Chain Fees setup By AI ProTONnetwork.
+
+So, It’s Time Join With The Link & Start Earning TON From Global Network, Without Any Liability, & follow The Telegram Channel Network To Know More Updates.
+`;
+
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const { readBook, writeBook, readBooks } = require('./db');
@@ -315,6 +370,10 @@ const onMessage = async (msg, ctx) => {
   else if (text.includes('💡 Rules For Community')) {
     bot.sendMessage(chatId, rules, pad);
     return;
+  }
+  //
+  else if (text.includes('📈 Marketing Plan')) {
+    bot.sendMessage(chatId, market, pad);
   }
 
   ///////////////////////////////
@@ -429,7 +488,7 @@ const onMessage = async (msg, ctx) => {
   //
   else if (text.includes('🔗 Invitation link')) {
     bot.sendMessage(chatId, `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
-    Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
+  Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
   }
   //
   else if (text.includes('🕶 All Details')) {
