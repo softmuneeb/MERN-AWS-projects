@@ -154,25 +154,7 @@ Youtube www.ebay.com
 Blog www.walmart.com
 `;
 const help = `
-Help & Support
-
-Welcome to the Help & Support section of our website. Here, you'll find resources and information to assist you in using our site and its features.
-
-Knowledge Base
-
-Our knowledge base is a searchable database of answers to commonly asked questions and issues. Simply type a keyword or phrase into the search field to find helpful articles and solutions.
-
-Tutorials & User Guides
-
-Looking for step-by-step instructions on how to use a specific feature on our site? Our tutorials and user guides provide detailed instructions and helpful tips to help you get the most out of our site.
-
-Contact Us
-
-If you have a question or issue that isn't addressed in our knowledge base, don't hesitate to contact us. You can reach us by phone or email, or use our online contact form to send us a message.
-
-Social Media & User Forums
-
-Connect with other users and get help and advice from our community on our social media accounts or user forums.
+Please write your message here! We will send this message to admin he will get back to you.
 `;
 const plans = `
 Choose Your Package To Earn TON From The AiProTON Community Network ,
@@ -311,11 +293,18 @@ const padAdmin = {
 };
 
 let botName;
+let HELP_STATUS = {};
 
 // on telegram message
 const onMessage = async (msg, ctx) => {
-  const { text } = msg;
   const chatId = msg.chat.id;
+
+  if (HELP_STATUS[chatId] === 1) {
+    HELP_STATUS[chatId] = 0;
+    bot.forwardMessage(adminChatId, chatId, msg.message_id);
+  }
+
+  const { text } = msg;
   const userName = msg.chat.username;
 
   // console.log({ msg, ctx }); // for dev
@@ -358,6 +347,7 @@ const onMessage = async (msg, ctx) => {
   //
   else if (text.includes('🤖 Support')) {
     bot.sendMessage(chatId, help, pad);
+    HELP_STATUS[chatId] = 1;
     return;
   }
   //
