@@ -13,7 +13,7 @@ const keyboard = [
   ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
-  ['🕶 All Details'], //
+  ['My Dashboard'], //
   ['📈 Marketing Plan'], //
   ['About TON'], //
 ];
@@ -94,6 +94,23 @@ const p = {
     return ans;
   },
 
+  getLevelName: (u) => {
+    const l1 = u.level1ChildPaying;
+    const l2 = u.level2ChildPaying;
+    const l3 = u.level3ChildPaying;
+    const l4 = u.level4ChildPaying;
+    const l5 = u.level5ChildPaying;
+    let ans;
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
+      ans = 'WONDER MAN'; //WONDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 'SUPER MAN'; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 'SPIDER MAN'; //SPIDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 'BAT MAN'; //BAT
+    else if (l1 >= p.IRON_MAN) ans = 'IRON MAN'; // IRON MAN
+    else ans = 'NOT QUALIFIED';
+    return ans;
+  },
+
   getPlanNumber: ({ depositedFunds: d }) => {
     let ans; // plan
     if (d >= p.level5) ans = 5; // 500 TON FLY
@@ -156,7 +173,7 @@ Youtube www.ebay.com
 Blog www.walmart.com
 `;
 const help = `
-Please write your message here! We will send this message to admin he will get back to you.
+Please write your message here! We will send this message to Support he will get back to you.
 `;
 const plans = `
 Choose Your Package To Earn TON From The AiProTON Community Network ,
@@ -470,7 +487,7 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🎒 My Package')) {
-    bot.sendMessage(chatId, `Plan: ${p.planName(user)}`, pad);
+    bot.sendMessage(chatId, `Dear TON User\nYour Current Plan Is - Plan name: ${p.planName(user)}\n Upgrade To Get More Benefits`, pad);
   }
   //
   else if (text.includes('🖇 Referrals list')) {
@@ -496,12 +513,14 @@ const onMessage = async (msg, ctx) => {
   else if (text.includes('🔗 Invitation link')) {
     bot.sendMessage(
       chatId,
-      `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!\nCopy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
+      `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
+      
+      Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
   }
   //
-  else if (text.includes('🕶 All Details')) {
+  else if (text.includes('My Dashboard')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
@@ -509,19 +528,58 @@ const onMessage = async (msg, ctx) => {
         ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
+    let { status7SponsorPool } = user;
+    status7SponsorPool = status7SponsorPool === IN_POOL ? "Qualified" : "Not Qualify";
+
+    let usersOf7PoolLength;
+    let newBalanceCanBe;
+    const usersOf7Pool = await readBooks({ status7SponsorPool: IN_POOL });
+    if (usersOf7Pool.length === 0) {
+      usersOf7PoolLength = 1;
+    }
+    
+    const pool = await readBook({ userName: _7_SPONSOR_POOL });
+    const rewardPerUser = pool.balance / usersOf7PoolLength;
+    const newEarnings = user.earnings7SponsorPool + rewardPerUser;
+    const maxEarnings = 2 * user.depositedFunds;
+    if (newEarnings >= maxEarnings)
+    { newBalanceCanBe = maxEarnings }
+    else { newBalanceCanBe = newEarnings }
+
+    const percent = 1 / 100;
+    const [withdraw,] = p.getWithdrawRecyclePercentage(user);
+    const withdrawAmount = user.balance * withdraw * percent;
 
     bot.sendMessage(
       chatId,
-      `${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
-        user.depositedFunds
-      } TON\nLevel: ${user.level}`,
+      `
+My User Name – ${userName}
+My Sponsor Name – ${user.parent}
+My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
+My Current Pack ( TON Value ) – Pack Name ${p.planName(user)}
+My Total Earning – TON VALUE ${user.balance}
+My Total Withdraw – TON VALUE ${withdrawAmount}
+My All Direct – ${child}
+My Direct Sponsored – ${user.childPaying.length}
+My 7 Sponsor Club – ${status7SponsorPool} (REWARD ${user.balance - newBalanceCanBe} TON)
+My Current REWARD RANK – ${p.getLevelName(user)}
+My Network Team – Level-1 (${user.level1ChildPaying})
+                  Level-2 (${user.level2ChildPaying})
+                  Level-3 (${user.level3ChildPaying})
+                  Level-4 (${user.level4ChildPaying}) 
+                  Level-5 (${user.level5ChildPaying})
+`,
       pad,
     );
-    bot.sendMessage(
-      chatId,
-      `Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
-      padCopyAble,
-    );
+    // bot.sendMessage(
+    //   chatId,
+    //   `
+    //   ${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
+    //     user.depositedFunds
+    //   } TON\nLevel: ${user.level}
+    //   Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
+    //   padCopyAble,
+    // );
   }
   //
   else if (text.includes('About TON')) {
