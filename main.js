@@ -496,8 +496,7 @@ const onMessage = async (msg, ctx) => {
   else if (text.includes('🔗 Invitation link')) {
     bot.sendMessage(
       chatId,
-      `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
-Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
+      `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!\nCopy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
   }
