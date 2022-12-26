@@ -57,6 +57,7 @@ const p = {
   level3: 3, // 50 TON  WALK
   level4: 4, // 200 TON RUN
   level5: 5, // 500 TON FLY
+
   // level0: 0.0, // < 5 TON ZERO
   // level1: 1, // 5 TON   BABY
   // level2: 2, // 25 TON  START
@@ -163,6 +164,17 @@ const p = {
     else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = '👼 BABY';
     else ans = '👎 NONE';
+    return ans;
+  },
+
+  planValue: ({ depositedFunds: d }) => {
+    let ans; // plan
+    if (d >= p.level5) ans = p.level5; // 500 TON FLY
+    else if (d >= p.level4) ans = p.level4; // 200 TON RUN
+    else if (d >= p.level3) ans = p.level3; // 50 TON  WALK
+    else if (d >= p.level2) ans = p.level2; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level1) ans = p.level1;
+    else ans = p.level0;
     return ans;
   },
 };
@@ -556,18 +568,19 @@ const onMessage = async (msg, ctx) => {
 My User Name – ${userName}
 My Sponsor Name – ${user.parent}
 My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
-My Current Pack ( TON Value ) – Pack Name ${p.planName(user)}
-My Total Earning – TON VALUE ${user.balance}
-My Total Withdraw – TON VALUE ${withdrawAmount}
+My Current Pack (${p.planValue(user)} TON) – Pack Name ${p.planName(user)}
+My Total Earning – ${user.balance} TON
+My Total Withdraw – ${withdrawAmount} TON 
 My All Direct – ${child}
 My Direct Sponsored – ${user.childPaying.length}
 My 7 Sponsor Club – ${status7SponsorPool} (REWARD ${user.balance - newBalanceCanBe} TON)
 My Current REWARD RANK – ${p.getLevelName(user)}
-My Network Team – Level-1 (${user.level1ChildPaying})
-                  Level-2 (${user.level2ChildPaying})
-                  Level-3 (${user.level3ChildPaying})
-                  Level-4 (${user.level4ChildPaying}) 
-                  Level-5 (${user.level5ChildPaying})
+My Network Team –
+    Level-1 (${user.level1ChildPaying})
+    Level-2 (${user.level2ChildPaying})
+    Level-3 (${user.level3ChildPaying})
+    Level-4 (${user.level4ChildPaying})
+    Level-5 (${user.level5ChildPaying})
 `,
       pad,
     );
