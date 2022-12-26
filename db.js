@@ -134,7 +134,6 @@ const writeBook = async (user, newUserState) => {
 };
 // Driver Code
 (async () => {
-  // await User.deleteMany({}); /// TODO: destructive line MUST DELETE BEFORE LAUNCH...
   // let r;
   // r = await User.create({ userName: 'Jean-Luc Picard' });
   // console.log({ r });

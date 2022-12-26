@@ -1,4 +1,3 @@
-/// TODO: destructive line MUST DELETE BEFORE LAUNCH...  await User.deleteMany({});
 // explanation / plan in readme file
 
 // ===============This section if for crypto millio
