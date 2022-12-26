@@ -510,7 +510,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   else if (text.includes('🎒 My Package')) {
     const upgradeMessage =  p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
    
-    bot.sendMessage(chatId, `Dear TON User\nYour Current Plan Is - Plan name: ${p.planName(user)}\n${upgradeMessage}`, pad);
+    bot.sendMessage(chatId, `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`, pad);
   }
   //
   else if (text.includes('🖇 Referrals list')) {
@@ -528,7 +528,13 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   else if (text.includes('💎 Wallet')) {
     bot.sendMessage(
       chatId,
-      `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.\n Your TON Earnings: ${user.balance}\nYour Deposited TON: ${user.depositedFunds} TON\nDeposit Address:\n\`${user.publicKey}\``,
+      `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.
+      
+Your TON Earnings: ${user.balance}
+
+Your Deposited TON: ${user.depositedFunds} TON
+
+Deposit Address:\n\`${user.publicKey}\``,
       padCopyAble,
     );
   }
@@ -584,7 +590,7 @@ My Total Earning – ${user.balance} TON
 My Total Withdraw – ${withdrawAmount} TON 
 My All Direct – ${child}
 My Direct Sponsored – ${user.childPaying.length}
-My 7 Sponsor Club – ${status7SponsorPool} (REWARD ${user.balance - newBalanceCanBe} TON)
+My 7 Sponsor Club – ${status7SponsorPool} 
 My Current REWARD RANK – ${p.getLevelName(user)}
 My Network Team –
     Level-1 (${user.level1ChildPaying})
@@ -595,6 +601,7 @@ My Network Team –
 `,
       pad,
     );
+    // (REWARD ${user.balance - newBalanceCanBe} TON) 
     // bot.sendMessage(
     //   chatId,
     //   `
