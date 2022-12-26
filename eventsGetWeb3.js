@@ -25,4 +25,4 @@ const events = await sc.getPastEvents('Transfer', {
   },
 });
 
-console.log({ events: events.length });
+console.log({ events: events[0].returnValues });
