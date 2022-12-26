@@ -525,9 +525,9 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
     );
   }
   //
-  // else if (text.includes('About TON')) {
-  //   bot.sendMessage(chatId, `https://ton.org/`, pad);
-  // }
+  else if (text.includes('About TON')) {
+    bot.sendMessage(chatId, `https://ton.org/`, pad);
+  }
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
     const percent = 1 / 100;
