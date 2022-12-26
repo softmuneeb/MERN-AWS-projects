@@ -5,7 +5,8 @@ const keyboard = [
   ['💼 Plan Packages'], //
   ['🎒 My Package'], //
   ['💎 Wallet', '🕹 Upgrade'], //
-  ['💰 Withdraw'], //
+  ['💰 Withdraw'],//
+  ['💸 Income Statement'], //
   ['🚀 My Level'], //
   ['🤖 Support', '💁‍♂️ Info'], //
   ['⭐️ Start'], //
@@ -521,12 +522,16 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     );
   }
   //
+  else if (text.includes('💸 Income Statement')) {
+     
+  }
+  
   else if (text.includes('🖇 Referrals list')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
-        ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
+        ? 'Your Active Direct Referrals: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
