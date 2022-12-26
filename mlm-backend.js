@@ -22,31 +22,22 @@ async function publicKey(mnemonic) {
   return address;
 }
 
-async function getBalance(m) {
-  const mnemonicArray = m.split(' ');
-  const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
-  // console.log('public key:', Buffer.from(keyPair.publicKey).toString('hex'));
-
-  // list available wallet versions
-  // const tonweb = new TonWeb(new TonWeb.HttpProvider('https://toncenter.com/api/v2/jsonRPC'));
-  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
-
-  // ['simpleR1', simpleR2, simpleR3, v2R1, v2R2, v3R1, v3R2, v4R1, v4R2];
-  // instance of wallet V4 r2 (from the list printed above)
-  const WalletClass = tonweb.wallet.all['v3R2'];
-
-  const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-  const address = await wallet.getAddress();
-  // console.log('address:', address.toString(true, true, true));
-  // const seqno = (await wallet.methods.seqno().call()) || 0;
-  // console.log('seqno:', seqno);
-  let balance;
+async function getBalance(address) {
   try {
-    balance = await tonweb.getBalance(address);
+    let balance = await tonweb.getBalance(address);
     return [balance, Number(TonWeb.utils.fromNano(balance))];
   } catch (error) {
     console.log('error: ' + error);
     return [null, null];
+  }
+}
+async function getTransactions(address) {
+  try {
+    let tx = await tonweb.getTransactions(address);
+    return tx;
+  } catch (error) {
+    console.log('error: ' + error);
+    return null;
   }
 }
 
@@ -87,37 +78,41 @@ async function mnemonicGenerate() {
   return [await publicKey(m), m];
 }
 
-async function transferFrom(mnemonic, toAddress, amount) {
+async function transferFrom(mnemonic, toAddress, amount, errorFunc) {
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
   const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
   console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
   const seqno = (await wallet.methods.seqno().call()) || 0;
   console.log({ seqno });
-  const fee = await wallet.methods
-    .transfer({
-      secretKey: keyPair.secretKey,
-      toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
-      amount: TonWeb.utils.toNano('' + amount), // 0.0006 TON
-      seqno: seqno,
-      payload: 'MLM Bot', // optional comment
-      sendMode: 3,
-    })
-    // .estimateFee();
-    .send();
 
-  // return;
-
-  console.log({ fee });
-  let currentSeqno = seqno;
-  while (currentSeqno == seqno) {
-    console.log('waiting for transaction to confirm...');
-    await sleep(1500); // avoid throttling by toncenter.com
-    currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  try {
+    const fee = await wallet.methods
+      .transfer({
+        secretKey: keyPair.secretKey,
+        toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
+        amount: TonWeb.utils.toNano('' + amount.toFixed(7)), // 7 decimal places only
+        seqno: seqno,
+        sendMode: 3,
+        // payload: 'MLM Bot', // optional comment // may it saves gas
+      })
+      // .estimateFee();
+      .send();
+    console.log({ fee });
+  } catch (e) {
+    errorFunc && errorFunc(e);
+    console.log(e);
   }
-  const address = await wallet.getAddress();
-  const balance = await tonweb.getBalance(address);
-  console.log('balance:', TonWeb.utils.fromNano(balance));
+
+  // let currentSeqno = seqno;
+  // while (currentSeqno == seqno) {
+  //   console.log('waiting for transaction to confirm...');
+  //   await sleep(1500); // avoid throttling by toncenter.com
+  //   currentSeqno = (await wallet.methods.seqno().call()) || 0;
+  // }
+  // const address = await wallet.getAddress();
+  // const balance = await tonweb.getBalance(address);
+  // console.log('balance:', TonWeb.utils.fromNano(balance));
 }
 
 const [userAddress2, userMnemonic2] = [
@@ -135,18 +130,38 @@ const [adminAddress] = [
 const unitTest1 = async () => {
   const [bNano, b] = await getBalance(userMnemonic2);
   console.log({ bNano, b });
+
+  await transferFrom(
+    'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
+    'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
+    0.02,
+    transferError,
+  );
+};
+
+const transferError = (e) => {
   try {
-    await transferFrom(
-      'great topic chat dry message fragile dinner morning vibrant cream hungry eight borrow north lounge pool involve firm harbor voice upper win mansion anger',
-      'EQBj6GeJxGbXyA5Uu-LzQKs3HxBn7iXcMOXQh4sVtto3awPa',
-      0.02,
-    );
-  } catch (e) {
-    console.log('error is:', e);
+    console.log(`1, ${JSON.stringify(e)}`);
+  } catch (error) {
+    console.log(`2, ${e}`);
   }
 };
 
+const unitTest2 = async () => {
+  let tx = await getTransactions(adminAddress);
+  console.log(JSON.stringify(tx));
+};
+const unitTest3 = async () => {
+  console.log('aoa');
+  console.log(22 / 7);
+  let n = 22 / 7;
+  console.log('' + TonWeb.utils.toNano('' + n.toFixed(7)));
+  // Number(TonWeb.utils.fromNano(22 / 7));
+};
+
 // unitTest1();
+// unitTest2();
+// unitTest3();
 
 module.exports = {
   publicKey,

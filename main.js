@@ -27,6 +27,7 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
+const devChatId = '1672843321'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
@@ -41,7 +42,8 @@ const IN_POOL = 1;
 const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
 
-const minWithdraw = 0.1; //TON
+const MIN_WITHDRAW = 0.1; //TON
+const MIN_DEPOSIT = 1; // TON
 
 // moved some functions in an object because they depend on each other
 const p = {
@@ -310,6 +312,12 @@ const onMessage = async (msg, ctx) => {
 
   // console.log({ msg, ctx }); // for dev
   // console.log({ text });
+
+  if (!userName) {
+    bot.sendMessage(chatId, 'Please add your user name in telegram settings');
+    return;
+  }
+
   let pad = padSimple;
   let padCopyAble = {
     ...padSimple,
@@ -384,13 +392,12 @@ const onMessage = async (msg, ctx) => {
   // Old User
   if (exists(user)) {
     console.log('Old user');
-    let [, depositedFunds] = await getBalance(user.mnemonic);
+    let [, depositedFunds] = await getBalance(user.publicKey);
     console.log({ new: depositedFunds, old: user.depositedFunds });
 
-    if (depositedFunds && depositedFunds > user.depositedFunds) {
+    if (depositedFunds && depositedFunds > MIN_DEPOSIT) {
       console.log('giveRewards');
-      const newDeposit = depositedFunds - user.depositedFunds;
-      await deposit(user, newDeposit, userName);
+      await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
     }
   }
@@ -532,12 +539,12 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
     }
 
     const withdrawAmount = user.balance * withdraw * percent;
-    if (withdrawAmount < minWithdraw) {
-      bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
+    if (withdrawAmount < MIN_WITHDRAW) {
+      bot.sendMessage(chatId, `Minimum withdraw is ${MIN_WITHDRAW} TON`, pad);
       return;
     }
 
-    const [, adminBalance] = await getBalance(adminMnemonic);
+    const [, adminBalance] = await getBalance(adminAddress);
     if (adminBalance < withdrawAmount) {
       bot.sendMessage(chatId, `Please ask admin to open the withdraw`, pad);
       bot.sendMessage(adminChatId, `A user is asking for withdraw: ${userName}`, pad);
@@ -555,7 +562,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
     const recycleAmount = user.balance * recycle * percent;
     bot.sendMessage(chatId, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
-    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
     await writeBook({ userName }, { balance: 0 });
 
     bot.sendMessage(chatId, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
@@ -689,7 +696,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       return;
     }
 
-    const users = await readBooks({ balance: { $gte: minWithdraw } });
+    const users = await readBooks({ balance: { $gte: MIN_WITHDRAW } });
     const withdrawWallet = 'abcd';
 
     const percent = 1 / 100;
@@ -700,7 +707,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       const recycleAmount = user.balance * recycle * percent;
 
       await recycleRewards(user, recycleAmount);
-      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
       await writeBook({ userName }, { balance: 0 });
 
       bot.sendMessage(chatId, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
@@ -801,7 +808,7 @@ const deposit = async (user, depositedFunds, userName) => {
   let admin = await readBook({ userName: adminUserName });
 
   await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
-  await transferFrom(user.mnemonic, adminAddress, depositedFunds - 0.06); // txFee 0.06
+  await transferFrom(user.mnemonic, adminAddress, depositedFunds - 0.06, transferError); // txFee 0.06
   user = await readBook({ userName });
 
   const percent = depositedFunds / 100;
@@ -898,6 +905,14 @@ const deposit = async (user, depositedFunds, userName) => {
 
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
+};
+
+const transferError = (e) => {
+  try {
+    bot.sendMessage(devChatId, `1, ${JSON.stringify(e)}`);
+  } catch (error) {
+    bot.sendMessage(devChatId, `2, ${e}`);
+  }
 };
 
 const recycleRewards = async (user, depositedFunds) => {
