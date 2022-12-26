@@ -9,14 +9,14 @@ const keyboard = [
   ['💰 Withdraw'], //
   ['🚀 My Level'], //
   ['🤖 Support', '💁‍♂️ Info'], //
-  ['⭐️ Start'],//
-  ['💡 Rules For Community'],//
+  ['⭐️ Start'], //
+  ['💡 Rules For Community'], //
   ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
   ['🔗 Invitation link'], //
-  ['🕶 All Details'],//
-  ['📈 Marketing Plan']//
-  ['About TON'] //
+  ['🕶 All Details'], //
+  ['📈 Marketing Plan'], //
+  ['About TON'], //
 ];
 
 const adminKeyBoard = [
@@ -28,7 +28,7 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const admins = ['crypto_millio', 'GlobalTing', 'ADMIN',];
+const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
   '5492194169',
@@ -278,7 +278,7 @@ On Fly Pack – you Get This Income From All 15 Level.
 
 You Can upgrade any time as you convenient. 
 
-RECYCLE – All recycle Distribution in 15 levels , As per pack , if You are Baby ( Registration pack) than 1% , if you on Start – 2% , If You on Walk – 3% , If You On Run – 4% , and if you on FLY pack , you get 5% on Each level from each RECYLE Activity.
+RECYCLE – All recycle Distribution in 15 levels , As per pack , if You are Baby ( Registration pack) than 1% , if you on Start – 2% , If You on Walk – 3% , If You On Run – 4% , and if you on FLY pack , you get 5% on Each level from each RECYCLE Activity.
 
 Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 Levels.
 
@@ -497,8 +497,12 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🔗 Invitation link')) {
-    bot.sendMessage(chatId, `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
-  Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``, padCopyAble);
+    bot.sendMessage(
+      chatId,
+      `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
+Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
+      padCopyAble,
+    );
   }
   //
   else if (text.includes('🕶 All Details')) {
