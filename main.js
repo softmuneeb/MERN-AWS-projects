@@ -8,7 +8,7 @@ const keyboard = [
   ['💰 Withdraw'],//
   ['💸 Income Statement'], //
   ['🚀 My Level'], //
-  ['🤖 Support', '💁‍♂️ Info'], //
+  ['🤖 Support', '💁‍♂️ AiProTON Community Features & Info'], //
   ['⭐️ Start'], //
   ['💡 Rules For Community'], //
   ['📡 AiProTON Features'], //
@@ -181,9 +181,18 @@ const p = {
 };
 
 const info = `
-Website www.amazon.com
-Youtube www.ebay.com
-Blog www.walmart.com
+Just Start With 5 TON or above and Get An Opportunity To Earn Unlimited TON From Your and Global Network Power Without Any Liability  . Let’s Know How To Do It.
+
+Just Open Your Telegram App. If You Already Registered Check Your Account Is Working With Current Mobile number Or If Not You Can Operate Same Account with new number or create new account in telegram.
+It’s as simple step as become a Telegram Active User.
+
+Now, Do You Know, Telegram itself have  a Active Wallet For Your Crypto Transaction with TON Network.
+Yes, Now You can create your TON Wallet from @wallet
+
+Make Your TON Wallet.
+
+Now You have active Wallet of TON , You can send receive TON to any User on Telegram or TON Wallet.
+Do You Want to Collect TON From Global Community without creating any Liability ..It’s The Magical Plan With AiProTON Network
 `;
 const help = `
 Please write your message here! We will send this message to Support he will get back to you.
@@ -390,7 +399,7 @@ const onMessage = async (msg, ctx) => {
     return;
   }
   //
-  else if (text.includes('💁‍♂️ Info')) {
+  else if (text.includes('💁‍♂️ AiProTON Community Features & Info')) {
     bot.sendMessage(chatId, info, pad);
     return;
   }
