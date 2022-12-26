@@ -532,7 +532,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
   // }
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
-    const percentage = 1 / 100;
+    const percent = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
@@ -540,7 +540,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       return;
     }
 
-    const withdrawAmount = user.balance * withdraw * percentage;
+    const withdrawAmount = user.balance * withdraw * percent;
     if (withdrawAmount < minWithdraw) {
       bot.sendMessage(chatId, `Minimum withdraw is ${minWithdraw} TON`, pad);
       return;
@@ -561,7 +561,7 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
 
     withdrawWallet = text;
 
-    const recycleAmount = user.balance * recycle * percentage;
+    const recycleAmount = user.balance * recycle * percent;
     bot.sendMessage(chatId, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
     await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
@@ -697,7 +697,25 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       bot.sendMessage(chatId, `Only admins can access this function`, pad);
       return;
     }
-    bot.sendMessage(chatId, 'Will force Withdraw All Users', pad);
+
+    const users = await readBooks({ balance: { $gte: minWithdraw } });
+    const withdrawWallet = 'abcd';
+
+    const percent = 1 / 100;
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
+      const withdrawAmount = user.balance * withdraw * percent;
+      const recycleAmount = user.balance * recycle * percent;
+
+      await recycleRewards(user, recycleAmount);
+      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+      await writeBook({ userName }, { balance: 0 });
+
+      bot.sendMessage(chatId, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
+    }
+
+    bot.sendMessage(chatId, 'Success Force Withdraw All Users', pad);
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
