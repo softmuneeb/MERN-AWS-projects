@@ -468,7 +468,9 @@ const onMessage = async (msg, ctx) => {
   // Deposited ${user.depositedFunds} TON
   // PUBLIC FUNCTIONS
   if (text.includes('/start') || text.includes('⭐️ Start')) {
-    bot.sendMessage(chatId, `Hello${userName}\nWelcome To AiProTON Network\nYour Sponsor Is ${user.parent}\nYour Referral Link Is \`https://t.me/${botName}?start=${userName}\`
+    bot.sendMessage(
+      chatId,
+      `Hello${userName}\nWelcome To AiProTON Network\nYour Sponsor Is ${user.parent}\nYour Referral Link Is \`https://t.me/${botName}?start=${userName}\`
     
 You Have Invited ${user.childPaying.length}
     
@@ -477,7 +479,9 @@ offers a variety of features, tools, and services to users on the TON crypto-cur
 This Community platform offers  full-featured Telegram wallet application that allows users to store, send, and receive TON coins and tokens.
 As Telegram Network Itself Have more Than 700 Million Community Across The Globe & TON Network Is Going To Be The Best Crypto Ever In Crypto Industry.
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
-    `, pad);
+    `,
+      pad,
+    );
   }
   //
   else if (text.includes('🕹 Upgrade')) {
@@ -508,9 +512,13 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   }
   //
   else if (text.includes('🎒 My Package')) {
-    const upgradeMessage =  p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
-   
-    bot.sendMessage(chatId, `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`, pad);
+    const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
+
+    bot.sendMessage(
+      chatId,
+      `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
+      pad,
+    );
   }
   //
   else if (text.includes('🖇 Referrals list')) {
@@ -529,8 +537,10 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     bot.sendMessage(
       chatId,
       `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.
-      
-Your TON Earnings: ${user.balance}
+
+Your TON Earnings Available: ${user.balance}
+
+Your TON Earnings in History: ${user.totalEarnings}
 
 Your Deposited TON: ${user.depositedFunds} TON
 
@@ -558,7 +568,7 @@ Deposit Address:\n\`${user.publicKey}\``,
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
     let { status7SponsorPool } = user;
-    status7SponsorPool = status7SponsorPool === IN_POOL ? "Qualified" : "Not Qualify";
+    status7SponsorPool = status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
 
     let usersOf7PoolLength;
     let newBalanceCanBe;
@@ -566,17 +576,19 @@ Deposit Address:\n\`${user.publicKey}\``,
     if (usersOf7Pool.length === 0) {
       usersOf7PoolLength = 1;
     }
-    
+
     const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7PoolLength;
     const newEarnings = user.earnings7SponsorPool + rewardPerUser;
     const maxEarnings = 2 * user.depositedFunds;
-    if (newEarnings >= maxEarnings)
-    { newBalanceCanBe = maxEarnings }
-    else { newBalanceCanBe = newEarnings }
+    if (newEarnings >= maxEarnings) {
+      newBalanceCanBe = maxEarnings;
+    } else {
+      newBalanceCanBe = newEarnings;
+    }
 
     const percent = 1 / 100;
-    const [withdraw,] = p.getWithdrawRecyclePercentage(user);
+    const [withdraw] = p.getWithdrawRecyclePercentage(user);
     const withdrawAmount = user.balance * withdraw * percent;
 
     bot.sendMessage(
@@ -586,7 +598,8 @@ My User Name – ${userName}
 My Sponsor Name – ${user.parent}
 My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
 My Current Pack (${p.planValue(user)} TON) – Pack Name ${p.planName(user)}
-My Total Earning – ${user.balance} TON
+My Total Earning Available – ${user.balance} TON
+My Total Earning in History – ${user.totalEarnings} TON
 My Total Withdraw – ${withdrawAmount} TON 
 My All Direct – ${child}
 My Direct Sponsored – ${user.childPaying.length}
@@ -601,7 +614,7 @@ My Network Team –
 `,
       pad,
     );
-    // (REWARD ${user.balance - newBalanceCanBe} TON) 
+    // (REWARD ${user.balance - newBalanceCanBe} TON)
     // bot.sendMessage(
     //   chatId,
     //   `
@@ -839,7 +852,7 @@ My Network Team –
 
     bot.sendMessage(
       chatId,
-      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings: ${admin.balance} TON\n7 SPONSOR POOL: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL: ${_SUPER_STAR_POOL.balance} TON
+      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings Available: ${admin.balance} TON\nAdmin Earnings History: ${admin.totalEarnings} TON\n7 SPONSOR POOL AVAILABLE: ${__7_SPONSOR_POOL.balance} TON\n7 SPONSOR POOL HISTORY: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL AVAILABLE: ${_SUPER_STAR_POOL.balance} TON\nSUPER STAR POOL HISTORY: ${_SUPER_STAR_POOL.balance} TON
 
 Users Level 1: ${usersL1} 
 Users Level 2: ${usersL2} 
@@ -904,7 +917,10 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
   if (!user.parent || p.getPlanNumber(user) < p.START) {
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent });
+    await writeBook(
+      { userName: adminUserName },
+      { balance: admin.balance + 100 * percent, totalEarnings: admin.totalEarnings + 100 * percent },
+    );
     console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
     return; //  <---------------------<
   }
@@ -913,21 +929,45 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // 1 to 3
   if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 10 * percent });
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent });
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      { balance: userParent.balance + 10 * percent, totalEarnings: userParent.totalEarnings + 10 * percent },
+    );
+    await writeBook(
+      { userName: adminUserName },
+      { balance: admin.balance + 5 * percent, totalEarnings: admin.totalEarnings + 5 * percent },
+    );
+    await writeBook(
+      { userName: _7_SPONSOR_POOL },
+      { balance: pool.balance + 5 * percent, totalEarnings: pool.totalEarnings + 5 * percent },
+    );
   }
 
   // 4 to 6
   else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 15 * percent });
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + 2.5 * percent });
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      { balance: userParent.balance + 15 * percent, totalEarnings: userParent.totalEarnings + 15 * percent },
+    );
+    await writeBook(
+      { userName: adminUserName },
+      {
+        balance: admin.balance + 2.5 * percent,
+        totalEarnings: admin.totalEarnings + 2.5 * percent,
+      },
+    );
+    await writeBook(
+      { userName: _7_SPONSOR_POOL },
+      { balance: pool.balance + 2.5 * percent, totalEarnings: pool.totalEarnings + 2.5 * percent },
+    );
   }
 
   // 7 or more child paying
   else {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 20 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      { balance: userParent.balance + 20 * percent, totalEarnings: userParent.totalEarnings + 20 * percent },
+    );
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
@@ -986,13 +1026,22 @@ const deposit = async (user, depositedFunds, userName) => {
     if (level <= levelUnlocked) {
       remaining -= 5; // percent
       console.log({ remaining });
-      await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 5 * percent });
+      await writeBook(
+        { userName: userParent.userName },
+        {
+          balance: userParent.balance + 5 * percent,
+          totalEarnings: userParent.totalEarnings + 5 * percent,
+        },
+      );
       bot.sendMessage(userParent.chatId, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
   }
 
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent });
+  await writeBook(
+    { userName: adminUserName },
+    { balance: admin.balance + remaining * percent, totalEarnings: admin.totalEarnings + remaining * percent },
+  );
 };
 
 const transferError = (e) => {
@@ -1028,7 +1077,13 @@ const recycleRewards = async (user, depositedFunds) => {
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
   await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
-  await writeBook({ userName: SUPER_STAR_POOL }, { balance: pool.balance + 0.5 * remaining * percent }); // 50% of remaining
+  await writeBook(
+    { userName: SUPER_STAR_POOL },
+    {
+      balance: pool.balance + 0.5 * remaining * percent,
+      totalEarnings: pool.totalEarnings + 0.5 * remaining * percent,
+    },
+  ); // 50% of remaining
 };
 
 const sendToAllUsers = async (method, msg) => {

@@ -74,6 +74,11 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  totalEarnings: {
+    // referral earnings
+    type: Number,
+    default: 0,
+  },
   publicKey: {
     type: String,
     default: null,
