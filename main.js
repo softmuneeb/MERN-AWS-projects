@@ -302,6 +302,7 @@ const onMessage = async (msg, ctx) => {
   if (HELP_STATUS[chatId] === 1) {
     HELP_STATUS[chatId] = 0;
     bot.forwardMessage(adminChatId, chatId, msg.message_id);
+    return;
   }
 
   const { text } = msg;
