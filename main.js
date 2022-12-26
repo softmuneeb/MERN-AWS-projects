@@ -546,6 +546,13 @@ Copy & Share Your Invite link: \`https://t.me/${botName}?start=${userName}\``,
       return;
     }
 
+    const [, adminBalance] = await getBalance(adminMnemonic);
+    if (adminBalance < withdrawAmount) {
+      bot.sendMessage(chatId, `Please ask admin to open the withdraw`, pad);
+      bot.sendMessage(adminChatId, `A user is asking for withdraw: ${userName}`, pad);
+      return;
+    }
+
     let withdrawWallet = text.split(' ')[1];
     if (!isValidAddress(text)) {
       bot.sendMessage(chatId, 'Please send TON deposit address', pad);
@@ -783,12 +790,9 @@ const giveRewardEqually = async (users, rewardPerUser) => {
 
 const deposit = async (user, depositedFunds, userName) => {
   let admin = await readBook({ userName: adminUserName });
-  // if (!user.parent) {
-  //   await writeBook({ userName: adminUserName }, { balance: admin.balance + depositedFunds });
-  //   return; //  <---------------------<
-  // }
 
-  await writeBook({ userName: user.userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
+  await transferFrom(user.mnemonic, adminAddress, depositedFunds - 0.06); // txFee 0.06
   user = await readBook({ userName });
 
   const percent = depositedFunds / 100;

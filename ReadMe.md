@@ -10,10 +10,11 @@ Critical:
 
 High:
 // TODO: 3. 2 hr 🙏🏻 HELP, users ask admin some thing and admin can reply
-// TODO: 4. 2 hr to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions;
+// TODO: 4. 2 hr to wei from wei, tonweb, ton to from nano, save string in db, use big number or whateveri n doc for calcualtions; first test saparate 22/7 => 3.1415926537..., round down at the calc end, ...
 // TODO: userName -> chatId where needed
 
-//
+// TODO: depositedFunds - 0.06); // txFee 0.06, estimate fee, then minus from sending amount
+
 // done: Adil DB, Mongo, Change IP to specific addresses
 // done: writes calls at end, checking why users created auto, Coding improve just like, ....
 // TODO: script to regularly calculate funds inside system vs funds on blockchain !!!!
@@ -28,6 +29,7 @@ High:
 // TODO: picture kai sath caption
 // DONE: only admin can access this function
 // TODO: giveRewardEqually, and more, ..., should update all these balance in 1 query, for any reason, so if query fails, we are not in some in valid state
+
 Nice to do:
 // TODO: const childPayingLength = userParent.level1ChildPaying + 1; // did not saved at end thats why using + 1 again, OR read userParent again
 

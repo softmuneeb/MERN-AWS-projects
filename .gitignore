@@ -8,3 +8,4 @@ images
 backup
 sample/test.js
 package-lock.json
+yarn.lock
