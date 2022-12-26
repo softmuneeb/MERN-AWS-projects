@@ -17,13 +17,12 @@ const chainId = await web3.eth.getChainId();
 console.log({ chainId });
 
 const userWallet = '0xA79eeA896bE753FF0499Fdb6Cc8ed21FF79ABDb3';
-const nftIds = [];
-try {
-  for (let i = 0; i < 10; i++) {
-    const nftId = await sc.methods.tokenOfOwnerByIndex(userWallet, i).call();
-    console.log({ nftId });
-    nftIds.push(nftId);
-  }
-} catch (e) {}
+const events = await sc.getPastEvents('Transfer', {
+  fromBlock: 0,
+  toBlock: 'latest',
+  filter: {
+    _to: userWallet,
+  },
+});
 
-console.log({ nftIds });
+console.log({ events: events.length });
