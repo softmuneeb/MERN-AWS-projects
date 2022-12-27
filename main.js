@@ -536,7 +536,11 @@ Level-5 (${user.level5ChildPaying})`, pad);
   }
   //
   else if (text.includes('💸 Income Statement')) {
-     
+    bot.sendMessage(chatId,
+`Your TON Earnings Available: ${user.balance}
+
+Total TON Earnings in History: ${user.totalEarnings}
+`, pad);
   }
   
   else if (text.includes('🖇 Referrals list')) {
@@ -558,7 +562,7 @@ Level-5 (${user.level5ChildPaying})`, pad);
 
 Your TON Earnings Available: ${user.balance}
 
-Your TON Earnings in History: ${user.totalEarnings}
+Total TON Earnings in History: ${user.totalEarnings}
 
 Your Deposited TON: ${user.depositedFunds} TON
 
