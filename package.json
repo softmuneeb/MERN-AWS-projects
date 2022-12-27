@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "dependencies install": "npm i",
-    "start": "node eventsGetWeb3.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node stress-test.js",
+    "test": "Error: no test specified"
   },
   "repository": {
     "type": "git",
