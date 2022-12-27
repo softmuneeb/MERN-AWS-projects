@@ -2,21 +2,20 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
+  ['⭐️ Home'],//
+  ['My Dashboard'], //
   ['💼 Plan Packages'], //
   ['🎒 My Package'], //
+  ['🔗 Invitation link'], //
   ['💎 Wallet', '🕹 Upgrade'], //
   ['💰 Withdraw'],//
   ['💸 Income Statement'], //
-  ['🚀 My Level'], //
-  ['🤖 Support', '💁‍♂️ Basic Info'], //
-  ['⭐️ Home'], //
-  ['💡 Rules For Community'], //
-  ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
-  ['🔗 Invitation link'], //
-  ['My Dashboard'], //
+  ['🚀 Super Star Club'], //
+  ['💡 Rules For Community', '💁‍♂️ Basic Info'], //
+  ['📡 AiProTON Features'], //
   ['📈 Marketing Plan'], //
-  ['About TON'], //
+  ['About TON', '🤖 Support'] //
 ];
 
 const adminKeyBoard = [
@@ -512,7 +511,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
   }
   //
-  else if (text.includes('🚀 My Level')) {
+  else if (text.includes('🚀 Super Star Club')) {
     bot.sendMessage(chatId, `Level: ${user.level}`, pad);
     // bot.sendMessage(
     //   chatId,
