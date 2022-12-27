@@ -617,16 +617,27 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
       chatId,
       `
 My User Name – ${userName}
+
 My Sponsor Name – ${user.parent}
+
 My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
-My Current Pack (${p.planValue(user)} TON) – Pack Name ${p.planName(user)}
+
+My Current Pack (${p.planValue(user)} TON) – ${p.planName(user)}
+
 My Total Earning Available – ${user.balance} TON
+
 My Total Earning in History – ${user.totalEarnings} TON
-My Total Withdraw – ${withdrawAmount} TON 
+
+My Total Withdraw – ${withdrawAmount} TON
+
 My All Direct – ${child}
+
 My Direct Sponsored – ${user.childPaying.length}
-My 7 Sponsor Club – ${status7SponsorPool} 
+
+My 7 Sponsor Club – ${status7SponsorPool}
+
 My Current REWARD RANK – ${p.getLevelName(user)}
+
 My Network Team –
     Level-1 (${user.level1ChildPaying})
     Level-2 (${user.level2ChildPaying})
