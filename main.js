@@ -27,11 +27,11 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const devChatId = '1672843321'; // for error messages
+const devChatId = '5492194169'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
-  '5492194169',
+  '5946842435',
   'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
   'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
 ];
