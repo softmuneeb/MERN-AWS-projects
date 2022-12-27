@@ -483,14 +483,22 @@ const onMessage = async (msg, ctx) => {
   if (text.includes('/start') || text.includes('⭐️ Home')) {
     bot.sendMessage(
       chatId,
-      `Hello${userName}\nWelcome To AiProTON Network\nYour Sponsor Is ${user.parent}\nYour Referral Link Is \`https://t.me/${botName}?start=${userName}\`
+      `Hello${userName}
+      
+Welcome To AiProTON Network
+
+Your Sponsor Is ${user.parent}
+
+Your Referral Link Is \`https://t.me/${botName}?start=${userName}\`
     
 You Have Invited ${user.childPaying.length}
     
 AiProTON Network is a Telegram-based Artificial Intelligence program that
 offers a variety of features, tools, and services to users on the TON crypto-currency network.
 This Community platform offers  full-featured Telegram wallet application that allows users to store, send, and receive TON coins and tokens.
+
 As Telegram Network Itself Have more Than 700 Million Community Across The Globe & TON Network Is Going To Be The Best Crypto Ever In Crypto Industry.
+
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     `,
       padCopyAble,
