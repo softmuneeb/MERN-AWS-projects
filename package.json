@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/muneebsoftblock/js-code-lab-1#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "web3": "^1.7.4"
   },
   "type": "module"
