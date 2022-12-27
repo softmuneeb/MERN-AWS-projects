@@ -489,7 +489,7 @@ This Community platform offers  full-featured Telegram wallet application that a
 As Telegram Network Itself Have more Than 700 Million Community Across The Globe & TON Network Is Going To Be The Best Crypto Ever In Crypto Industry.
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     `,
-      pad,
+      padCopyAble,
     );
   }
   //
@@ -512,7 +512,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   }
   //
   else if (text.includes('🚀 Super Star Club')) {
-    bot.sendMessage(chatId, `Level: ${getLevelName(user)}
+    bot.sendMessage(chatId, `Level: ${p.getLevelName(user)}
 Level-1 (${user.level1ChildPaying})
 Level-2 (${user.level2ChildPaying})
 Level-3 (${user.level3ChildPaying})
@@ -630,7 +630,7 @@ My Network Team –
     Level-4 (${user.level4ChildPaying})
     Level-5 (${user.level5ChildPaying})
 `,
-      pad,
+      padCopyAble,
     );
     // (REWARD ${user.balance - newBalanceCanBe} TON)
     // bot.sendMessage(
