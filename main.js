@@ -483,14 +483,22 @@ const onMessage = async (msg, ctx) => {
   if (text.includes('/start') || text.includes('⭐️ Home')) {
     bot.sendMessage(
       chatId,
-      `Hello${userName}\nWelcome To AiProTON Network\nYour Sponsor Is ${user.parent}\nYour Referral Link Is \`https://t.me/${botName}?start=${userName}\`
+      `Hello ${userName}
+      
+Welcome To AiProTON Network
+
+Your Sponsor Is ${user.parent}
+
+Your Referral Link Is \`https://t.me/${botName}?start=${userName}\`
     
 You Have Invited ${user.childPaying.length}
     
 AiProTON Network is a Telegram-based Artificial Intelligence program that
 offers a variety of features, tools, and services to users on the TON crypto-currency network.
 This Community platform offers  full-featured Telegram wallet application that allows users to store, send, and receive TON coins and tokens.
+
 As Telegram Network Itself Have more Than 700 Million Community Across The Globe & TON Network Is Going To Be The Best Crypto Ever In Crypto Industry.
+
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     `,
       padCopyAble,
@@ -621,16 +629,27 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
       chatId,
       `
 My User Name – ${userName}
+
 My Sponsor Name – ${user.parent}
+
 My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
-My Current Pack (${p.planValue(user)} TON) – Pack Name ${p.planName(user)}
+
+My Current Pack (${p.planValue(user)} TON) – ${p.planName(user)}
+
 My Total Earning Available – ${user.balance} TON
+
 My Total Earning in History – ${user.totalEarnings} TON
-My Total Withdraw – ${withdrawAmount} TON 
+
+My Total Withdraw – ${withdrawAmount} TON
+
 My All Direct – ${child}
+
 My Direct Sponsored – ${user.childPaying.length}
-My 7 Sponsor Club – ${status7SponsorPool} 
+
+My 7 Sponsor Club – ${status7SponsorPool}
+
 My Current REWARD RANK – ${p.getLevelName(user)}
+
 My Network Team –
     Level-1 (${user.level1ChildPaying})
     Level-2 (${user.level2ChildPaying})
