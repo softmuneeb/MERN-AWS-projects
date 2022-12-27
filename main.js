@@ -27,7 +27,7 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
-const devChatId = '5492194169'; // for error messages
+const devChatId = '5207150830'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
