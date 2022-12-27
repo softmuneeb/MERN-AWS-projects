@@ -30,7 +30,6 @@ import Web3 from 'web3';
 import dotenv from 'dotenv';
 dotenv.config();
 const MINTER_PRIVATE_KEY = process.env.MINTER_PRIVATE_KEY;
-console.log({ MINTER_PRIVATE_KEY });
 const web3 = new Web3(networkLink);
 const sc = new web3.eth.Contract(factoryAbi, factoryAddress);
 
@@ -50,9 +49,9 @@ try {
     `${e} (${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId--})`,
   );
 }
-try {
-  const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
-  console.log({ networkLink, transactionHash });
-} catch (e) {
-  console.log(e + '');
-}
+// try {
+//   const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
+//   console.log({ networkLink, transactionHash });
+// } catch (e) {
+//   console.log(e + '');
+// }

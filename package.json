@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dependencies install": "npm i",
+    "dependencies install": "yarn",
     "start": "node stress-test.js",
     "test": "Error: no test specified"
   },
