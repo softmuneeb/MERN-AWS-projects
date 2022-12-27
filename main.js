@@ -512,7 +512,12 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   }
   //
   else if (text.includes('🚀 Super Star Club')) {
-    bot.sendMessage(chatId, `Level: ${user.level}`, pad);
+    bot.sendMessage(chatId, `Level: ${getLevelName(user)}
+Level-1 (${user.level1ChildPaying})
+Level-2 (${user.level2ChildPaying})
+Level-3 (${user.level3ChildPaying})
+Level-4 (${user.level4ChildPaying})
+Level-5 (${user.level5ChildPaying})`, pad);
     // bot.sendMessage(
     //   chatId,
     //   `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
@@ -567,7 +572,7 @@ Deposit Address:\n\`${user.publicKey}\``,
       chatId,
       `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
       
-      Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=${userName}\``,
+Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=${userName}\``,
       padCopyAble,
     );
   }
