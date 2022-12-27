@@ -8,8 +8,8 @@ const keyboard = [
   ['💰 Withdraw'],//
   ['💸 Income Statement'], //
   ['🚀 My Level'], //
-  ['🤖 Support', '💁‍♂️ AiProTON Community Features & Info'], //
-  ['⭐️ Start'], //
+  ['🤖 Support', '💁‍♂️ Basic Info'], //
+  ['⭐️ Home'], //
   ['💡 Rules For Community'], //
   ['📡 AiProTON Features'], //
   ['🖇 Referrals list'], //
@@ -399,7 +399,7 @@ const onMessage = async (msg, ctx) => {
     return;
   }
   //
-  else if (text.includes('💁‍♂️ AiProTON Community Features & Info')) {
+  else if (text.includes('💁‍♂️ Basic Info')) {
     bot.sendMessage(chatId, info, pad);
     return;
   }
@@ -477,7 +477,7 @@ const onMessage = async (msg, ctx) => {
   //Plan ${p.planName(user)}
   // Deposited ${user.depositedFunds} TON
   // PUBLIC FUNCTIONS
-  if (text.includes('/start') || text.includes('⭐️ Start')) {
+  if (text.includes('/start') || text.includes('⭐️ Home')) {
     bot.sendMessage(
       chatId,
       `Hello${userName}\nWelcome To AiProTON Network\nYour Sponsor Is ${user.parent}\nYour Referral Link Is \`https://t.me/${botName}?start=${userName}\`
