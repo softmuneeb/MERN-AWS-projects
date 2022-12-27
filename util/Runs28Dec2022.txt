@@ -4,6 +4,8 @@ Possible errors during mint NFT:
 * code: -3200, 'insufficient funds for gas * price + value', (sol: check balance is more than 1 MATIC, add matic to wallet)
 * { code: -32000, message: 'execution reverted' } NFT address was wrong, When I made it correct the error gone
 * { code: -32603, message: 'Internal error' } TODO: this one gives no info, came after a successful mint
+* transactionHash error { code: -32000, message: 'INTERNAL_ERROR: queued sub-pool is full' }
+* internet off, Error: getaddrinfo ENOTFOUND matic-mumbai.chainstacklabs.com (sol: hit any api to see if internet works)
 
 possible errors during transfer:
 * ? ? access denied for mint ??

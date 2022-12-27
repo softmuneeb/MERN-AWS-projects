@@ -1,0 +1,698 @@
+mzk@mzk js-code-lab-1 % node "/Users/mzk/Desktop/js-code-lab-1/stress-test.js"
+Start
+{
+  count: 2,
+  tokenId: 1000019,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 1,
+  tokenId: 1000018,
+  estimatedGas: 61213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 3,
+  tokenId: 1000020,
+  estimatedGas: 61213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 4,
+  tokenId: 1000021,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 5,
+  tokenId: 1000022,
+  estimatedGas: 80213,
+  gasPrice: '61.305893584 GWEI'
+}
+{
+  count: 6,
+  tokenId: 1000023,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 7,
+  tokenId: 1000024,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 8,
+  tokenId: 1000025,
+  estimatedGas: 80213,
+  gasPrice: '61.305893584 GWEI'
+}
+{
+  count: 9,
+  tokenId: 1000026,
+  estimatedGas: 80213,
+  gasPrice: '62.848882518 GWEI'
+}
+{
+  count: 10,
+  tokenId: 1000027,
+  estimatedGas: 80213,
+  gasPrice: '62.848882518 GWEI'
+}
+{
+  count: 11,
+  tokenId: 1000028,
+  estimatedGas: 80213,
+  gasPrice: '61.305893584 GWEI'
+}
+{
+  count: 12,
+  tokenId: 1000029,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000023) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 2,
+  tokenId: 1000019,
+  explore: 'https://polygonscan.com/tx/0x10ff0809ca42659a7ab62dbab0ee8e9dfa8a3b3bdd75d64d7f29c0b5294ba320'
+}
+{
+  count: 13,
+  tokenId: 1000030,
+  estimatedGas: 80213,
+  gasPrice: '61.305893584 GWEI'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000024) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 14,
+  tokenId: 1000031,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000025) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 15,
+  tokenId: 1000032,
+  estimatedGas: 61213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 16,
+  tokenId: 1000033,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 1,
+  tokenId: 1000018,
+  explore: 'https://polygonscan.com/tx/0x3e59ef2cac605db1ef9e1792faedd38d8fc24f79a9f43906b93912fd7677c9ac'
+}
+{
+  count: 4,
+  tokenId: 1000021,
+  explore: 'https://polygonscan.com/tx/0x6cf1380668c295417c332391225bf1d17a3fdecda9c74ec3959f7650bc01ff8a'
+}
+{
+  count: 3,
+  tokenId: 1000020,
+  explore: 'https://polygonscan.com/tx/0x21e289588def2e2d7d32c4bae6bfe83299cf2332ce4b57d76b5ce7e31b8960a6'
+}
+{
+  count: 18,
+  tokenId: 1000035,
+  estimatedGas: 97263,
+  gasPrice: '61.305893584 GWEI'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000028) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 20,
+  tokenId: 1000037,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 19,
+  tokenId: 1000036,
+  estimatedGas: 61213,
+  gasPrice: '62.848882518 GWEI'
+}
+{
+  count: 21,
+  tokenId: 1000038,
+  estimatedGas: 80213,
+  gasPrice: '62.848882518 GWEI'
+}
+{
+  count: 5,
+  tokenId: 1000022,
+  explore: 'https://polygonscan.com/tx/0xeaf0fe9752b95de34514247cfb1017b54d523b30ad77d9c7775034f783366a75'
+}
+{
+  count: 22,
+  tokenId: 1000039,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 23,
+  tokenId: 1000040,
+  estimatedGas: 80213,
+  gasPrice: '62.848882518 GWEI'
+}
+{
+  count: 24,
+  tokenId: 1000041,
+  estimatedGas: 80213,
+  gasPrice: '61.853791707 GWEI'
+}
+{
+  count: 25,
+  tokenId: 1000042,
+  estimatedGas: 97263,
+  gasPrice: '61.305893584 GWEI'
+}
+{
+  count: 26,
+  tokenId: 1000043,
+  estimatedGas: 61213,
+  gasPrice: '61.305893584 GWEI'
+}
+{
+  count: 27,
+  tokenId: 1000044,
+  estimatedGas: 80213,
+  gasPrice: '62.848882518 GWEI'
+}
+^C
+mzk@mzk js-code-lab-1 % node "/Users/mzk/Desktop/js-code-lab-1/stress-test.js"
+Start
+{
+  count: 2,
+  tokenId: 1000045,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x0b8981850b1ec2a529da159c305bd783175b54a6957f188f10bde97dcef43f2e'
+}
+{
+  count: 3,
+  tokenId: 1000046,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x350dbb5d022a9442a8c19743dee99ce62d376e0b3d8b978df92ee1be58997415'
+}
+{
+  count: 4,
+  tokenId: 1000047,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x4c9c49b5980c29c75f6ce7c2086a69afe7976f2d1f7a02cd7e8d51fbe41c9bac'
+}
+{
+  count: 1,
+  tokenId: 1000044,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0xd75d8f8c0178c698077dde97be063126bf5eaac44f9502d0d7b11c2952ed40a0'
+}
+{
+  count: 6,
+  tokenId: 1000049,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xa79a761735d8248a85552aedcb84063371c478e9579811360f12870ea0d8392c'
+}
+{
+  count: 5,
+  tokenId: 1000048,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xfb3ab25e6c77a970c61c3644a04bd6b513c9d541fedbe9f7d8633058fbf95c7f'
+}
+{
+  count: 7,
+  tokenId: 1000050,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xe828c41958dd9f016e091ecd8e44e20b82c3f8399a4215adeec8d0cc5f842501'
+}
+{
+  count: 9,
+  tokenId: 1000052,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x43050d5067617548eae068ab6708031a19160c67e3a217f26ceb8a99d40374be'
+}
+{
+  count: 8,
+  tokenId: 1000051,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xf689f3278f473f8537a605e85138885f37b75b532a094c6d476da43c1a7fac15'
+}
+{
+  count: 13,
+  tokenId: 1000056,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0x7122413793b11fbf7c796ccb34cca3dc437a73d380d0ca6f63574ab19cdfb543'
+}
+{
+  count: 12,
+  tokenId: 1000055,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xf267f7e114714cd06350f56623d11094edebac118e823747a8b650df5ea05aa7'
+}
+{
+  count: 11,
+  tokenId: 1000054,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x8220517c708f997b09c9af0d36d5a74508cef67f642bd3658e5ca1b60e04c670'
+}
+{
+  count: 10,
+  tokenId: 1000053,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xbe6c0ab20c3392a9cb28bd06fb3980975a8fb3f9e3ed9243da451a6fa3f4e61c'
+}
+{
+  count: 15,
+  tokenId: 1000058,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x0693f2445f044b73d5126db113d541f865804523d8bf8038b6a2f3667d56fdd1'
+}
+{
+  count: 14,
+  tokenId: 1000057,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xe64d7efa9526c3d92a9b084de8961640d2a40cfee2c3300e0417c1ed62684812'
+}
+{
+  count: 16,
+  tokenId: 1000059,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xa4532df7bd2b1655e80ea0c243344edd46f8f28f378c5a81f4e2f686a2ce3369'
+}
+{
+  count: 19,
+  tokenId: 1000062,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x679dc3f7e29acc62e9086974038f7afdfd7ce14bcf8a2891a87f176119ccb48c'
+}
+{
+  count: 18,
+  tokenId: 1000061,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xaff0e62af4a923a41bc2de7f980fee2eb3965ee6c554213da308536a6dd139ca'
+}
+{
+  count: 17,
+  tokenId: 1000060,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xd7a527af08350e7f46feeb19d91ccad04cb32de2ea05db7361b45dd34032d65f'
+}
+{
+  count: 20,
+  tokenId: 1000063,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xd5d4f4e14044739127519616f0548214f942d81bdcee6b5901e64e1cba7ab99d'
+}
+{
+  count: 21,
+  tokenId: 1000064,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xe42ba879bf8fa27bcc4945587821a3f919573cc1695a26e8d56554faa71191b6'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000069) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 22,
+  tokenId: 1000065,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x88acd5976c3c5c2a2b5ea6972c7121a78eb6ca4003078f21756ed77c9e59442f'
+}
+{
+  count: 24,
+  tokenId: 1000067,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xb98c2bf1fb8a197b9a39ec8c45137b900ec2338549c1f72e14e0a7ed13f7177d'
+}
+{
+  count: 23,
+  tokenId: 1000066,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x25bddfe6b1b9a69897df83f128883e68182443e33bfc83d761c201266e88114e'
+}
+{
+  count: 25,
+  tokenId: 1000068,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0x21d46c45779c80d0ae6657bdc0025efecdb4825e5e963af9a429a7391046363c'
+}
+{
+  count: 27,
+  tokenId: 1000070,
+  estimatedGas: 97207,
+  explore: 'https://polygonscan.com/tx/0xa6260837adaba52e4ca0cad5af0ba7185898597e3f255886e5c8fb9b91aef9a4'
+}
+{
+  count: 30,
+  tokenId: 1000073,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x7968c8adc2b8e896ab427e79c5ef1af76ab177ad068606348817ae6d4e86ce83'
+}
+{
+  count: 28,
+  tokenId: 1000071,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x2a113354b5a1334b94704f0eee1dcfc4db263b3a1ddcd7a09ba73fffdc4a1bc1'
+}
+{
+  count: 31,
+  tokenId: 1000074,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x4ad1d45eafe6d541b87d1d21be43b949bcf407ad26af22123bb11d7d01359824'
+}
+{
+  count: 29,
+  tokenId: 1000072,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x68cf650f36c3d494f04c3804ed6022d4cd45eef733dfb07aa7306ca076790b99'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000075) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 33,
+  tokenId: 1000076,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x15488e41276e5d682ea0091137e10c587cb9a901984305ca7be46e93209981ee'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000077) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000078) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 37,
+  tokenId: 1000080,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x19a5e41b0172dac5d3da663fa3ad7a8584bc107dd660cba0919eb10c5ab15c5f'
+}
+{
+  count: 36,
+  tokenId: 1000079,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x104eff45dd4eab7b43a790d038c17ff1dffc8efe9bf2dc03c3d9adccdd5a6990'
+}
+{
+  count: 38,
+  tokenId: 1000081,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0xd2e750eaa98fe5456707b76d2dfeb749536e0d93a911c8d9d74760b395689def'
+}
+{
+  count: 41,
+  tokenId: 1000084,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x4c5f4877e47264ae0619a63936e024acfc6b0ca5964323dcf72e163bb60c62bc'
+}
+{
+  count: 39,
+  tokenId: 1000082,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x240c629eac57c8691c0a0197a2fb85bad6fafb12826ae459a8c847804e6093b9'
+}
+{
+  count: 43,
+  tokenId: 1000086,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x895e7cb79f74df6311d4c1cbe9e22f5851f4d3e5e3cb46d8f6b975cc176fb7ed'
+}
+{
+  count: 40,
+  tokenId: 1000083,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x77f87c15d8ab2d7cde978d885fe0f7ce0d808f7fd4f2a4c08f22825082c9492a'
+}
+{
+  count: 44,
+  tokenId: 1000087,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xba7cce3e0f6ff361afddd9af05805be9aece911175790efa545758c143f82ac9'
+}
+{
+  count: 42,
+  tokenId: 1000085,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x9bf63f64f9951adaf4bb2db9e0de2f40e6a1f16b2dfc3d82a4c6bbd86553c8c2'
+}
+{
+  count: 45,
+  tokenId: 1000088,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x32e5bea1fb679f6edddb91e1265006a33c0f1a4be809a1715a66e4e9edbee7af'
+}
+{
+  count: 46,
+  tokenId: 1000089,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xeb62077ed7b708083e68440e5275ee2a60c2ebb1a7a80e9cf2d5954eddd9bebd'
+}
+{
+  count: 48,
+  tokenId: 1000091,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x5493684e69c5c5ee2b3b8db6c2d92bcabcaf5677a9d0a360222b48372d10b7a7'
+}
+{
+  count: 47,
+  tokenId: 1000090,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x63f4fb8fc51432545b1afeb7f6ead8b426c2fcbabe727a1fcf0078d062a631eb'
+}
+{
+  count: 50,
+  tokenId: 1000093,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xffb22b6588782b2a6a70fb17ad569837a6d41e9f066847ea1a47630f021b9fe9'
+}
+{
+  count: 49,
+  tokenId: 1000092,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0xcbab4ffa57a74433ec939086ce1a2ea2c0cdbef0824eef77c7c7c566ace4cce9'
+}
+{
+  count: 51,
+  tokenId: 1000094,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x6d892772f195f4a9b83a61c215a35d52f52d90c1e5664f8b662f95dd8c53d967'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000099) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 52,
+  tokenId: 1000095,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xd4071496373e4281e3614bc0acbc93091a90cea4869706138c02aa6cd57242ec'
+}
+{
+  count: 53,
+  tokenId: 1000096,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x116c1278cbf156285c65b5aa4bb6bdeb23661da023d87d08add34270fd6c28e0'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000104) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 54,
+  tokenId: 1000097,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xc01e47dca1d4b8320cf03bb012365eb76dcb136710f93210d8aa06213240dfaf'
+}
+{
+  count: 55,
+  tokenId: 1000098,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xfbeecb3058fa2fc6230c8d7cc9298923bac8a38bfccade1a5c80ce38f4a3fcc7'
+}
+{
+  count: 59,
+  tokenId: 1000102,
+  estimatedGas: 61213,
+  explore: 'https://polygonscan.com/tx/0x3c5cec6f66361a5feb75c072c5d56faa3e2a61d1f35dc8cb0c8d2352b01b760b'
+}
+{
+  count: 58,
+  tokenId: 1000101,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x3e9b69de33bab996fec03afdb4f416dcd3d868b05d301074048e49d0e0f6844e'
+}
+{
+  count: 60,
+  tokenId: 1000103,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x41ead5426f6c32130e2a516728aaaee4e0c87898bbeb02d943f908592b8b7fe1'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000108) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 57,
+  tokenId: 1000100,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x7840ec8ced1c1f35964ae20c5b1132fb7738ecd3034450a966aa9739152b404c'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000109) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 63,
+  tokenId: 1000106,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x5c8fc3b7c80280b185e2e65a6c30a4d7399c3021a24633e085cb255bcc855583'
+}
+{
+  count: 62,
+  tokenId: 1000105,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x2f85560b469020792926cb9ef9728e9911a54713ddfa5c547e460714fc4c09ad'
+}
+{
+  count: 64,
+  tokenId: 1000107,
+  estimatedGas: 78263,
+  explore: 'https://polygonscan.com/tx/0xeec223b4279c3070ad322c4ef444bc81a1a5a12513ea62fade9e524d14dbe6de'
+}
+{
+  count: 68,
+  tokenId: 1000111,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xcf49129fdbafb976980c84310d5714c3551c92754f3e5b674ed615e659842215'
+}
+{
+  count: 67,
+  tokenId: 1000110,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x1d0824a11418577d2dc0cf493d185e42f855bd5a18d37d430ac9cdaee84179c6'
+}
+{
+  count: 70,
+  tokenId: 1000113,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xc76389d0048c2542bcda3f0a34cee457697abeed35db57d90a4dba8a6a4b71e5'
+}
+{
+  count: 69,
+  tokenId: 1000112,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xe53ab56eca983c7508fe466b5f1fac15d7d2cecac8cb561e059cd985c2bc22d8'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000120) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000121) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 71,
+  tokenId: 1000114,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xbf0a7e84f0118cbb01757c67c287158f2bb70fdf6ee57cdb133ca86215ddead2'
+}
+{
+  count: 73,
+  tokenId: 1000116,
+  estimatedGas: 78263,
+  explore: 'https://polygonscan.com/tx/0xcdcb7a6e72b7da0288f4dfec6766eb050e15ec92cb061ef7a2b0036e94c7d24d'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000123) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 72,
+  tokenId: 1000115,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x089a62e9df3cbaaa445a9d1e60aec029d4d47214f2ed47ed7f74fd67fd57c91c'
+}
+{
+  count: 76,
+  tokenId: 1000119,
+  estimatedGas: 78263,
+  explore: 'https://polygonscan.com/tx/0x5aed7cb3288deed01754369edfeef78b323ab29738497d91e238c030840e6162'
+}
+{
+  count: 74,
+  tokenId: 1000117,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x714d72c36cf8ec2c224525bdddd9a32c6b52ea65b4745088a12c7635ace55679'
+}
+{
+  count: 75,
+  tokenId: 1000118,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x03d26e962162f9f2b371a473da0c772433f70894aa89ae29cfaeed69f98cd005'
+}
+{
+  count: 79,
+  tokenId: 1000122,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x7e36185630f6deb01fba682ac1a3fe970e1d570e3df0c12c1b2a833d2ef3e760'
+}
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000129) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 81,
+  tokenId: 1000124,
+  estimatedGas: 78263,
+  explore: 'https://polygonscan.com/tx/0x555e9dbef0ce1b20ecc7b74f16a62c3c6718f77382a03aa497ac7253c18db0e7'
+}
+{
+  count: 82,
+  tokenId: 1000125,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x282e488ea66ddd19e9ecb09808e1a70332e7e35571e94889eb754599c404cd11'
+}
+{
+  count: 83,
+  tokenId: 1000126,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xc0256c58b5231d5941eb451ff200b0702d16273b6b6c08dd1fc2e9b8fcadfd55'
+}
+{
+  count: 85,
+  tokenId: 1000128,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0xb85acadc91319649baafa6dc506a6c576b0bf33e211d34b6671eb72a85a77fbd'
+}
+{
+  count: 84,
+  tokenId: 1000127,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0x019130f70c32b345697c98bd10e71c2c35681feeaacf2e38454911cf1c537cd2'
+}
+{
+  count: 87,
+  tokenId: 1000130,
+  estimatedGas: 80213,
+  explore: 'https://polygonscan.com/tx/0x16cf8cdab7c5deaff6d9204162c25c7da2d2185134055665b13db94c88b80b9d'
+}
+{
+  count: 89,
+  tokenId: 1000132,
+  estimatedGas: 97263,
+  explore: 'https://polygonscan.com/tx/0xd0ef966e49a17647a05f2b510f62a18987d433458b7b9c17445304812a9e7a13'
+}
+{
+  count: 88,
+  tokenId: 1000131,
+  estimatedGas: 78263,
+  explore: 'https://polygonscan.com/tx/0x111ce1d57b9d91fcc91ba08cd198d7607869ad67a9518a34dbc93d64e228d4ee'
+}
+^C
+mzk@mzk js-code-lab-1 % 
