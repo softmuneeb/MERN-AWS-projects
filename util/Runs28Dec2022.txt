@@ -1,6 +1,18 @@
+Possible errors during mint NFT:
+* Error: execution reverted: already minted (sol: check nft.exists(tokenId) before minting)
+* access denied for mint (sol: get access from admin, TODO: how to have a read function to get this info?)
+* code: -3200, 'insufficient funds for gas * price + value', (sol: check balance is more than 1 MATIC, add matic to wallet)
+* { code: -32000, message: 'execution reverted' } NFT address was wrong, When I made it correct the error gone
+* { code: -32603, message: 'Internal error' } TODO: this one gives no info, came after a successful mint
+
+possible errors during transfer:
+* ? ? access denied for mint ??
+
+
+////// TESTNET
 node stress-test.js
 { gasPrice: '1.500000016 GWEI' }
-{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }, actual 95000 gas
 {
   explorer: 'https://mumbai.polygonscan.com',
   transactionHash: '0x497f0a09daa2a1964cf321d25a1d2509bb96f0464559ca72876c239315d169b3'
@@ -11,3 +23,224 @@ node stress-test.js
 Error: execution reverted: already minted
 0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000e616c7265616479206d696e746564000000000000000000000000000000000000
 (https://mumbai.polygonscan.com).sc(0x731d55cd90762c02535ff410427dd280a1b74397).methods.mint(nftAddress 0xBE0d479710274735Ebd361E90e56E0604a879700, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000002)
+
+
+
+
+////// MAINNET
+1 { code: -32000, message: 'insufficient funds for gas * price + value' }
+2 [object Object]
+3 (https://mumbai.polygonscan.com).sc(0x731d55cd90762c02535ff410427dd280a1b74397).methods.mint(nftAddress 0xBE0d479710274735Ebd361E90e56E0604a879700, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000636)
+
+node "/Users/mzk/Desktop/js-code-lab-1/stress-test.js"
+Start
+{ count: 1, tokenId: 1000001, gasPrice: '53.033458756 GWEI' }
+{ count: 2, tokenId: 1000002, gasPrice: '53.033458756 GWEI' }
+1 { code: -32603, message: 'Internal error' }
+2 [object Object]
+3 (https://polygonscan.com).sc(0x4F08873580939bA69794DA22169057847AC2B87c).methods.mint(nftAddress 0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b, userAddress 0xA827c2964536668D9d2ce10962392c328af4c131, tokenId 1000002) from: 0x246aaa7c567dcb3c9db635bb848242d25e8694ca
+{
+  count: 2,
+  tokenId: 1000001,
+  explore: 'https://polygonscan.com/tx/0x77234633741c40693eecf7473ae2ca8559f846af2ea03fc7b91f9bf5d927a7e3'
+}
+stress-test.js"
+Start
+{
+  count: 1,
+  tokenId: 1000008,
+  estimatedGas: 61213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 2,
+  tokenId: 1000009,
+  estimatedGas: 80213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 3,
+  tokenId: 1000010,
+  estimatedGas: 80213,
+  gasPrice: '58.644483951 GWEI'
+}
+{
+  count: 4,
+  tokenId: 1000011,
+  estimatedGas: 80213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 5,
+  tokenId: 1000012,
+  estimatedGas: 80213,
+  gasPrice: '58.644483951 GWEI'
+}
+{
+  count: 6,
+  tokenId: 1000013,
+  estimatedGas: 97263,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 8,
+  tokenId: 1000015,
+  estimatedGas: 61213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 7,
+  tokenId: 1000014,
+  estimatedGas: 61213,
+  gasPrice: '58.644483951 GWEI'
+}
+{
+  count: 9,
+  tokenId: 1000016,
+  estimatedGas: 61213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 10,
+  tokenId: 1000017,
+  estimatedGas: 61213,
+  gasPrice: '59.501671594 GWEI'
+}
+{
+  count: 3,
+  tokenId: 1000010,
+  explore: 'https://polygonscan.com/tx/0x93adaee7a821d816f19d9d18c30b6031ba8d5ee1e8c71197db2c7acf0209e3b5'
+}
+{
+  count: 1,
+  tokenId: 1000008,
+  explore: 'https://polygonscan.com/tx/0x2aba1ba1b3f4de9b2b0748780f1836921596a2563b70d8d1416f93a24f324f8c'
+}
+{
+  count: 4,
+  tokenId: 1000011,
+  explore: 'https://polygonscan.com/tx/0x7c1478ce3e903726bafcd7c695fe9df1044e9b431bca061d8225119b36803427'
+}
+{
+  count: 2,
+  tokenId: 1000009,
+  explore: 'https://polygonscan.com/tx/0xbd390182e811327bf6793694c78e2c313a5db7239d45825275f5c7351a905e04'
+}
+{
+  count: 6,
+  tokenId: 1000013,
+  explore: 'https://polygonscan.com/tx/0x4f71f95ea4d6c9208f8fdf314bbe141675a9ff7cdabeb8d9f7e0f7dac59fd6f3'
+}
+{
+  count: 5,
+  tokenId: 1000012,
+  explore: 'https://polygonscan.com/tx/0xd6834db2654a59267e067f7bf498334e815950702ca71348fa96afb326393f85'
+}
+{
+  count: 8,
+  tokenId: 1000015,
+  explore: 'https://polygonscan.com/tx/0x38773576a1bccbf69c68309eb904c2f13185c2450c4744646f6a3a3b5447e0af'
+}
+{
+  count: 10,
+  tokenId: 1000017,
+  explore: 'https://polygonscan.com/tx/0x19492df0b3794a50bb4682cc0f17f70b07e7d64f6011165a2c695eec7fd8faf7'
+}
+{
+  count: 7,
+  tokenId: 1000014,
+  explore: 'https://polygonscan.com/tx/0x5a5d93853ce05446ff6a8e20eb2d36d4565bfae39eedbc8aa4e79ea61eef9507'
+}
+{
+  count: 9,
+  tokenId: 1000016,
+  explore: 'https://polygonscan.com/tx/0x23d470de50321a69dd80f1ae1b5624f8d26f0723e7bac20d8451888771643824'
+}
+
+
+
+////// TESTNET
+stress-test.js"
+{ gasPrice: '30 GWEI' }
+{ gasPrice: '30 GWEI' }
+{ gasPrice: '30 GWEI' }
+{ gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }
+{
+  explore: 'https://mumbai.polygonscan.com/tx/0x0b278f2c91338eebd217ce598a0546e1189b3736379546ffa49e9e6385f8253e'
+}
+{
+  explore: 'https://mumbai.polygonscan.com/tx/0xc792fa0e1ca9b462accf5a27e08ba8c3de79ef43821c43ba7b49b15c0d879641'
+}
+{
+  explore: 'https://mumbai.polygonscan.com/tx/0x1b8c6e7651a8023f9394a0b45358380764a1c478b8f690036bab7b7e3f13f756'
+}
+{
+  explore: 'https://mumbai.polygonscan.com/tx/0xd9cb6f1d915bc8679ca9064a457a5ecaaf0b3ea7279f52e10ff37c32c89e869f'
+}
+
+
+stress-test.js"
+{ tokenId: 1000010, gasPrice: '30 GWEI' }
+{ tokenId: 1000011, gasPrice: '30 GWEI' }
+{ tokenId: 1000009, gasPrice: '30 GWEI' }
+{ tokenId: 1000013, gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }
+{ tokenId: 1000012, gasPrice: '30 GWEI' }
+{ tokenId: 1000014, gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ tokenId: 1000015, gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ estimatedGas: 77701 }
+{ tokenId: 1000016, gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ tokenId: 1000017, gasPrice: '30 GWEI' }
+{ tokenId: 1000018, gasPrice: '30 GWEI' }
+{ estimatedGas: 77701 }
+{ estimatedGas: 94751 }
+{ estimatedGas: 94751 }
+{ estimatedGas: 94751 }
+{
+  tokenId: 1000010,
+  explore: 'https://mumbai.polygonscan.com/tx/0x7474eaa3b4ca23c4ce260b3795b54c9eda1256d7d298844f52d81b48595f8f86'
+}
+{
+  tokenId: 1000012,
+  explore: 'https://mumbai.polygonscan.com/tx/0x560fc0d6e7fe70e52c8fde4a98726160bb61f4e9ad41b364ca95474079f6c73f'
+}
+{
+  tokenId: 1000009,
+  explore: 'https://mumbai.polygonscan.com/tx/0x73b0547543f80831ea05f33a570f3c30733631fea7d88c451adc018e497ba3d3'
+}
+{
+  tokenId: 1000011,
+  explore: 'https://mumbai.polygonscan.com/tx/0x9aaad4ba2b3d68a10b5cfc9f6b3a191ce483622c9e6dd35244b33b45889c6b2b'
+}
+{
+  tokenId: 1000014,
+  explore: 'https://mumbai.polygonscan.com/tx/0xb13e20eac8f3552711d734028f2eecabef895628cc5556ade82b32cf0901a3ca'
+}
+{
+  tokenId: 1000017,
+  explore: 'https://mumbai.polygonscan.com/tx/0x2a7ebe31a1f77551cd21c7a49943abd762fc37ea61af16fc5bc67e88cc699d0d'
+}
+{
+  tokenId: 1000015,
+  explore: 'https://mumbai.polygonscan.com/tx/0x6cc7d07408c69c85318d29b1b333a352a39b3aa084447b95c9b42e6931d1084d'
+}
+{
+  tokenId: 1000013,
+  explore: 'https://mumbai.polygonscan.com/tx/0x32dd4efb5283f9d045268bb30ba3c454e827e8d6193487fdc7066fb9d8ce0834'
+}
+{
+  tokenId: 1000018,
+  explore: 'https://mumbai.polygonscan.com/tx/0xbbb718d37f9a4800b70e62196a6df522b70bebcc0dd22d5f6d20267aa6e06781'
+}
+{
+  tokenId: 1000016,
+  explore: 'https://mumbai.polygonscan.com/tx/0xad5f7d3e6c08d7c4cea08cf4423e1f74f80e82b900c54f499b2b9d5b72824b7e'
+}
