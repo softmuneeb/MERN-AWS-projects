@@ -3,11 +3,11 @@
 // ===============This section if for crypto millio
 const keyboard = [
   ['⭐️ Home'],//
-  ['My Dashboard'], //
+  ['🎛 My Dashbaord'], //
   ['💼 Plan Packages'], //
   ['🎒 My Package'], //
   ['🔗 Invitation link'], //
-  ['💎 Wallet', '🕹 Upgrade'], //
+  ['💵 My Wallet', '🕹 Upgrade'], //
   ['💰 Withdraw'],//
   ['💸 Income Statement'], //
   ['🖇 Referrals list'], //
@@ -15,7 +15,7 @@ const keyboard = [
   ['💡 Rules For Community', '💁‍♂️ Basic Info'], //
   ['📡 AiProTON Features'], //
   ['📈 Marketing Plan'], //
-  ['About TON', '🤖 Support'] //
+  ['💎 TON Ecosystem', '🤖 Support'] //
 ];
 
 const adminKeyBoard = [
@@ -567,7 +567,7 @@ Total TON Earnings in History: ${user.totalEarnings}
     bot.sendMessage(chatId, `${parent}${child}${childPaying}`, pad);
   }
   //
-  else if (text.includes('💎 Wallet')) {
+  else if (text.includes('💵 My Wallet')) {
     bot.sendMessage(
       chatId,
       `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.
@@ -593,7 +593,7 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
     );
   }
   //
-  else if (text.includes('My Dashboard')) {
+  else if (text.includes('🎛 My Dashbaord')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
@@ -671,7 +671,7 @@ My Network Team –
     // );
   }
   //
-  else if (text.includes('About TON')) {
+  else if (text.includes('💎 TON Ecosystem')) {
     bot.sendMessage(chatId, `https://ton.org/`, pad);
   }
   //
