@@ -134,7 +134,11 @@ const p = {
     return ans;
   },
 
-  getWithdrawRecyclePercentage: ({ depositedFunds: d }) => {
+  getWithdrawRecyclePercentage: (u) => {
+    if (!u.parent) return [100, 0];
+
+    const d = u.depositedFunds
+
     let ans; // plan
     if (d >= p.level5) ans = [70, 30];
     else if (d >= p.level4) ans = [60, 40];
@@ -1086,8 +1090,9 @@ const transferError = (e) => {
 };
 
 const recycleRewards = async (user, depositedFunds) => {
+  if (depositedFunds === 0) return;
   if (!user.parent) {
-    bot.sendMessage(user.chatId, `Admin can not recycle`);
+    // bot.sendMessage(user.chatId, `Admin can not recycle`);
     return;
   }
 
