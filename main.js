@@ -932,6 +932,7 @@ const giveRewardEqually = async (users, rewardPerUser) => {
 };
 
 const deposit = async (user, depositedFunds, userName) => {
+  if (!user.parent) return;
   let admin = await readBook({ userName: adminUserName });
 
   await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
