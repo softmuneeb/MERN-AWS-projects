@@ -7,10 +7,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // CONFIG MAINNET
-const tokenIdsStart = 1003102 + 501 + 300;
-const tokenIdsStop = 1003102 + 501 + 300 + 1000; // 100 nfts, delay 0.5 sec between each mint
-const key = process.env.TREASURY_KEY_MAIN;
-const from = process.env.TREASURY_WALLET_MAIN;
+const tokenIdsStart = 1003102 + 501 + 300 + 2000;
+const tokenIdsStop = 1003102 + 501 + 300 + 2000 + 1; // 100 nfts, delay 0.5 sec between each mint
+// const key = process.env.TREASURY_KEY_MAIN;
+// const from = process.env.TREASURY_WALLET_MAIN;
 const explorer = 'https://polygonscan.com';
 const networkLink = 'https://polygon-rpc.com';
 const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
@@ -40,11 +40,12 @@ import Web3 from 'web3';
 import wallet from '@truffle/hdwallet-provider';
 
 const ethereum = new wallet({
-  privateKeys: [key],
+  mnemonic: 'model close ring pear raccoon dress battle riot antenna pond spice mom',
+  // privateKeys: [key],
   providerOrUrl: networkLink,
   pollingInterval: 86400 * 20 * 1000, // sync every 20 days
 });
-
+const from = ethereum.getAddress(0);
 const web3 = new Web3(ethereum);
 const sc = new web3.eth.Contract(factoryAbi, factoryAddress);
 let imPure = 0;
