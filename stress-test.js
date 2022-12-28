@@ -2,13 +2,13 @@
 
 // Now I have some experience, I should start mentoring programming
 // and life overall. Communicate about Quran for who fears Allah.
-
+// TODO CODE
 import dotenv from 'dotenv';
 dotenv.config();
 
 // CONFIG MAINNET
-const tokenIdsStart = 1003102 + 501 + 300;
-const tokenIdsStop = 1003102 + 501 + 300 + 1000; // 100 nfts, delay 0.5 sec between each mint
+const tokenIdsStart = 1004924;
+const tokenIdsStop = 1004924 + 20; // 100 nfts, delay 0.5 sec between each mint
 const key = process.env.TREASURY_KEY_MAIN;
 const from = process.env.TREASURY_WALLET_MAIN;
 const explorer = 'https://polygonscan.com';
@@ -47,91 +47,57 @@ const ethereum = new wallet({
 
 const web3 = new Web3(ethereum);
 const sc = new web3.eth.Contract(factoryAbi, factoryAddress);
-let imPure = 0;
+let count = 0;
 
-const mint = async (tokenId, imPure) => {
-  // READ BLOCKCHAIN
-  let gasPrice = await getGasPrice(web3);
-  const mint = sc.methods.mint(nftAddress, userAddress, tokenId);
-  try {
-    await mint.estimateGas({ from });
-  } catch (e) {
-    console.log('estimate error');
-
-    if ((e + '').includes('Error: execution reverted: already minted')) {
-      console.log({ tokenId, count: imPure, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
-    }
-    // console.log('1', { count: imPure }, e);
-    console.log('2', { count: imPure }, e + '');
-    // console.log(
-    //   '3',
-    //   `(${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId}) from: ${from}`,
-    // );
-    return;
-  }
-
-  let wasError = false;
-  // WRITE BLOCKCHAIN
-  for (let i = 0; i < 10; i++) {
-    try {
-      const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
+const mintMe = (mint, tokenId, gasPrice, count) => {
+  let txSentBeforeTime = parseInt(Date.now() / 1000),
+    txHashTime,
+    txConfirmTime;
+  mint
+    .send({ from, gas: '200000', gasPrice }, (error, transactionHash) => {
+      // console.log({ count, tokenId, error, transactionHash, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+    })
+    .on('error', (e) => {
+      console.log('error:', e, e + '', { count, tokenId, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+    })
+    .on('transactionHash', function (transactionHash) {
+      txHashTime = parseInt(Date.now() / 1000);
       console.log({
-        count: imPure,
-        date: '' + new Date(),
+        newMinted: true,
+        count,
         tokenId,
+        transactionHash,
         explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`,
-        // explore: `${explorer}/tx/${transactionHash}`,
       });
-      wasError = false;
-      break;
-    } catch (e) {
-      if (e && e.message && e.message.includes('insufficient funds for gas * price + value')) {
-        console.log({ tokenId, count: imPure, err: e.message });
-        return;
-      } else if ((e + '').includes('Error: Failed to check for transaction receipt:')) {
-        console.log({ tokenId, count: imPure, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`, err: e + '' });
-        return;
-      } else if ((e + '').includes('Error: Transaction has been reverted by the EVM:')) {
-        // This error should not come, ..., because I will explain later...
-        // hint: Error: Failed to check for transaction receipt: means Error: Transaction has been reverted by the EVM:
-        console.log({ problem: 1, tokenId, count: imPure, err: e + '' });
-        return;
-      } else if (
-        e &&
-        e.message &&
-        (e.message.includes('replacement transaction underpriced') || e.message.includes('nonce too low'))
-      ) {
-        gasPrice = await getGasPrice(web3, 0.1 * i);
-        continue;
-      }
-      //
-      // else if (e && e.message === 'Internal error') {
-      //   console.log({ tokenId, err: e.message });
-      //   wasError = false;
-      // } else if (e && e.message === 'INTERNAL_ERROR: queued sub-pool is full') {
-      //   console.log({ tokenId, err: e.message });
-      //   wasError = false;
-      // }
+    })
+    .on('receipt', function (receipt) {
+      // console.log('receipt', { count, tokenId, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+    })
+    .on('confirmation', function (confirmationNumber, receipt) {
+      txConfirmTime = parseInt(Date.now() / 1000);
+      confirmationNumber === 1 && console.log({ tokenId, txSentBeforeTime, txHashTime, txConfirmTime });
+      //   console.log('confirmation', { count, tokenId, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+    })
+    .then(function (data) {
+      // console.log({ data, count, tokenId, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+    })
+    .catch((e) => error(e, tokenId));
+};
 
-      const sleepTime = Math.pow(2, i);
-      console.log(`tx error so trying again after sleep of seconds: ${sleepTime}`);
-      console.log('1', { count: imPure }, e);
-      console.log('2', e + '');
-      await sleep(1000 * sleepTime);
+const error = (e, tokenId) => {
+  console.log({ alreadyMinted: true, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+  // console.log('1', e);
+  // console.log('2', e + '');
+};
 
-      wasError = true;
-    }
-  }
-
-  if (wasError) {
-    console.log('transactionHash error after 10 tries');
-    console.log('1', { count: imPure }, e);
-    console.log('2', e + '');
-    console.log(
-      '3',
-      `(${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId}) from: ${from}`,
-    );
-  }
+const mint = async (tokenId, count) => {
+  const mint = sc.methods.mint(nftAddress, userAddress, tokenId);
+  mint
+    .estimateGas({ from })
+    .then(() => {
+      getGasPrice(web3).then((gasPrice) => mintMe(mint, tokenId, gasPrice, count));
+    })
+    .catch((e) => error(e, tokenId));
 };
 
 export const getGasPrice = async (web3, percentageMore = 0) => {
@@ -148,7 +114,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 console.log(`Start ${new Date()}`);
 for (let tokenId = tokenIdsStart; tokenId < tokenIdsStop; tokenId++) {
-  mint(tokenId, ++imPure);
+  mint(tokenId, ++count);
   await sleep(delayInMints);
 
   if (tokenId % 100 === 0) {
@@ -174,3 +140,81 @@ console.log(`Stop ${new Date()}`);
     console.log(newContractInstance.options.address) // instance with the new contract address
 });
 */
+
+// console.log({
+//   count,
+//   date: '' + new Date(),
+//   tokenId,
+//   explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`,
+//   // explore: `${explorer}/tx/${transactionHash}`,
+// });
+// console.log('estimate error');
+
+// if ((e + '').includes('Error: execution reverted: already minted')) {
+//   console.log({ tokenId, count, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+// }
+// // console.log('1', { count }, e);
+// console.log('2', { count }, e + '');
+// console.log(
+//   '3',
+//   `(${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId}) from: ${from}`,
+// );
+
+// let wasError = false;
+// // WRITE BLOCKCHAIN
+//     const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
+//     console.log({
+//       count,
+//       date: '' + new Date(),
+//       tokenId,
+//       explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`,
+//       // explore: `${explorer}/tx/${transactionHash}`,
+//     });
+// wasError = false;
+// break;
+// if (e && e.message && e.message.includes('insufficient funds for gas * price + value')) {
+//   console.log({ tokenId, count, err: e.message });
+//   return;
+// } else if ((e + '').includes('Error: Failed to check for transaction receipt:')) {
+//   console.log({ tokenId, count, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`, err: e + '' });
+//   return;
+// } else if ((e + '').includes('Error: Transaction has been reverted by the EVM:')) {
+//   // This error should not come, ..., because I will explain later...
+//   // hint: Error: Failed to check for transaction receipt: means Error: Transaction has been reverted by the EVM:
+//   console.log({ problem: 1, tokenId, count, err: e + '' });
+//   return;
+// } else if (
+//   e &&
+//   e.message &&
+//   (e.message.includes('replacement transaction underpriced') || e.message.includes('nonce too low'))
+// ) {
+//   gasPrice = await getGasPrice(web3, 0.1 * i);
+//   continue;
+// }
+//
+// else if (e && e.message === 'Internal error') {
+//   console.log({ tokenId, err: e.message });
+//   wasError = false;
+// } else if (e && e.message === 'INTERNAL_ERROR: queued sub-pool is full') {
+//   console.log({ tokenId, err: e.message });
+//   wasError = false;
+// }
+
+// const sleepTime = Math.pow(2, i);
+// console.log(`tx error so trying again after sleep of seconds: ${sleepTime}`);
+// console.log('1', { count }, e);
+// console.log('2', e + '');
+// await sleep(1000 * sleepTime);
+
+// wasError = true;
+// }
+
+// if (wasError) {
+//   console.log('transactionHash error after 10 tries');
+//   console.log('1', { count }, e);
+//   console.log('2', e + '');
+//   console.log(
+//     '3',
+//     `(${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId}) from: ${from}`,
+//   );
+// }
