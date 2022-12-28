@@ -6,10 +6,38 @@ Possible errors during mint NFT:
 * { code: -32603, message: 'Internal error' } TODO: this one gives no info, came after a successful mint
 * transactionHash error { code: -32000, message: 'INTERNAL_ERROR: queued sub-pool is full' }
 * internet off, Error: getaddrinfo ENOTFOUND matic-mumbai.chainstacklabs.com (sol: hit any api to see if internet works)
+Came after long time of successful transactions:
+* { code: -32000, message: 'replacement transaction underpriced' }
+* { code: -32000, message: 'nonce too low' }
+* { code: -32000, message: 'INTERNAL_ERROR: nonce too low' }
+* invalid chainID, 1347 (expected 137) { code: -32000, message: 'rpc error: code = Unknown desc = loading txs from DB: err: rlp parse transaction: invalid chainID, 1347 (expected 137), rlp: f86e0785094ac095fb82520894123456f6ed06f81eb1edc6fcce34414e2c21fe5c88956a0c4270aa053180820aaaa02a2590e63fd0b156f50c20ff65865402029fd8832f8a03955291f020a8404622a016377e9ffbcece7644a4bc7fbec33082e995427485bc51b614859579fe998e8a' }
 
 possible errors during transfer:
-* ? ? access denied for mint ??
+* ?? access denied for mint ??
 
+1 { count: 281 } Error: socket hang up
+{
+  "originalError": {
+    "code": "ECONNRESET"
+  }
+}
+    at Object._fireError (/Users/mzk/Desktop/js-code-lab-1/node_modules/web3-utils/lib/index.js:49:17)
+    at sendTxCallback (/Users/mzk/Desktop/js-code-lab-1/node_modules/web3-core-method/lib/index.js:553:30)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/web3-core-requestmanager/lib/index.js:297:20
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/web3-provider-engine/index.js:232:9
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/once.js:12:16
+    at replenish (/Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/eachOfLimit.js:61:25)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/eachOfLimit.js:71:9
+    at eachLimit (/Users/mzk/Desktop/js-code-lab-1/node_modules/async/eachLimit.js:43:36)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/doLimit.js:9:16
+    at end (/Users/mzk/Desktop/js-code-lab-1/node_modules/web3-provider-engine/index.js:211:5)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/once.js:12:16
+    at next (/Users/mzk/Desktop/js-code-lab-1/node_modules/async/waterfall.js:21:29)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/onlyOnce.js:12:16
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/once.js:12:16
+    at next (/Users/mzk/Desktop/js-code-lab-1/node_modules/async/waterfall.js:21:29)
+    at /Users/mzk/Desktop/js-code-lab-1/node_modules/async/internal/onlyOnce.js:12:16
+2 Error: socket hang up
 
 ////// TESTNET
 node stress-test.js
