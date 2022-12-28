@@ -376,16 +376,18 @@ const onMessage = async (msg, ctx) => {
 
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
+    // bot.forwardMessage(adminChatId, chatId, msg.message_id);
+    await sendToAllUsers('forwardMessage', msg.message_id);
 
-    if (msg.document) {
-      await sendToAllUsers('sendDocument', msg.document.file_id);
-    } //
-    else if (msg.photo) {
-      await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
-    } //
-    else if (msg.text) {
-      await sendToAllUsers('sendMessage', msg.text);
-    }
+    // if (msg.document) {
+    //   await sendToAllUsers('sendDocument', msg.document.file_id);
+    // } //
+    // else if (msg.photo) {
+    //   await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
+    // } //
+    // else if (msg.text) {
+    //   await sendToAllUsers('sendMessage', msg.text);
+    // }
 
     bot.sendMessage(chatId, 'Sending... to all users', pad);
     return;
@@ -1138,11 +1140,21 @@ const sendToAllUsers = async (method, msg) => {
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    user.chatId && bot[method](user.chatId, msg);
+    user.chatId && bot[method](adminChatId, user.chatId, msg);
   }
 
   // bot.sendMessage(chatId, 'Sending... to all users', pad);
 };
+// const sendToAllUsers = async (method, msg) => {
+//   let users = await readBooks({});
+
+//   for (let i = 0; i < users.length; i++) {
+//     const user = users[i];
+//     user.chatId && bot[method](user.chatId, msg);
+//   }
+
+//   // bot.sendMessage(chatId, 'Sending... to all users', pad);
+// };
 
 const exists = (user) => {
   return user !== undefined;
