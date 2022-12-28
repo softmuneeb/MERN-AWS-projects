@@ -32,12 +32,12 @@ require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const pbkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
-// 5946842435
+
 const devChatId = '5207150830'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
-  '5492194169',
+  '5946842435',
   pbkey,
   key
 ];
@@ -352,7 +352,7 @@ const onMessage = async (msg, ctx) => {
 
   if (HELP_STATUS[chatId] === 1) {
     HELP_STATUS[chatId] = 0;
-    bot.forwardMessage(adminChatId, chatId, msg.message_id);
+    bot.forwardMessage("5745083820", chatId, msg.message_id);
     return;
   }
 
