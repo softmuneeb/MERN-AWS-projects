@@ -15,7 +15,8 @@ const keyboard = [
   ['💡 Rules For Community', '💁‍♂️ Basic Info'], //
   ['📡 AiProTON Features'], //
   ['📈 Marketing Plan'], //
-  ['💎 TON Ecosystem', '🤖 Support'] //
+  ['💎 TON Ecosystem', '🤖 Support'],//
+  ['TON Coinmarketcap'], ['TON Exchanges']//
 ];
 
 const adminKeyBoard = [
@@ -673,6 +674,14 @@ My Network Team –
   //
   else if (text.includes('💎 TON Ecosystem')) {
     bot.sendMessage(chatId, `https://ton.org/`, pad);
+  }
+  //
+  else if (text.includes('TON Coinmarketcap')) {
+    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/`, pad);
+  }
+  //
+  else if (text.includes('TON Exchanges')) {
+    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
   }
   //
   else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
