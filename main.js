@@ -319,7 +319,7 @@ require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const { readBook, writeBook, readBooks } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
-
+// const key = process.env.adminMnemonic;
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(token, { polling: true });
 
