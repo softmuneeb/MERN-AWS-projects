@@ -32,12 +32,12 @@ require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const pbkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
-
+// 5946842435
 const devChatId = '5207150830'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
-  '5946842435',
+  '5492194169',
   pbkey,
   key
 ];
