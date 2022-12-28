@@ -2,20 +2,21 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
-  ['⭐️ Home'],//
-  ['🎛 My Dashbaord'], //
-  ['💼 Plan Packages'], //
-  ['🎒 My Package'], //
-  ['🔗 Invitation link'], //
-  ['💵 My Wallet', '🕹 Upgrade'], //
-  ['💰 Withdraw'],//
-  ['💸 Income Statement'], //
-  ['🖇 Referrals list'], //
-  ['🚀 Super Star Club'], //
-  ['💡 Rules For Community', '💁‍♂️ Basic Info'], //
-  ['📡 AiProTON Features'], //
-  ['📈 Marketing Plan'], //
-  ['💎 TON Ecosystem', '🤖 Support'] //
+  ['⭐️ Home (Дом)'],//
+  ['🎛 My Dashbaord (щиток приборов)'], //
+  ['💼 Plan Packages (Пакет планов)'], //
+  ['🎒 My Package (Mой пакет)'], //
+  ['🔗 Invitation link (Пригласительная ссылка)'], //
+  ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
+  ['💰 Withdraw (Отзывать)'],//
+  ['💸 Income Statement (Справка о доходах)'], //
+  ['🖇 Referrals list (Прямое направление)'], //
+  ['🚀 Super Star Club (Суперзвездный клуб)'], //
+  ['💡 Rules For Community (Правила для сообщества)', '💁‍♂️ Basic Info (Основная информация)'], //
+  ['📡 AiProTON Features (Особенности АйПроТОН)'], //
+  ['📈 Marketing Plan (Маркетинговый план)'], //
+  ['💎 TON Ecosystem (Экосистема ТОН)', '🤖 Support (Поддерживать)'],//
+  ['TON Coinmarketcap'], ['TON Exchanges (ТОН биржи)']//
 ];
 
 const adminKeyBoard = [
@@ -27,14 +28,22 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
+require('dotenv').config();
+const token = process.env.BOT_TOKEN;
+const pbkey = process.env.ADMIN_ADDRESS;
+const key = process.env.ADMIN_MNEMONIC;
+
 const devChatId = '5207150830'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
   'GlobalTing',
   '5946842435',
-  'EQAUBDH8lrpWuO88cxudGbwO2KCcTJrwBcAfwVcyXlfEOo-x',
-  'camp hard goose quiz crew van inner tent leopard make student around hero nation garbage task swim series enlist rude skull mass grace wheel',
+  pbkey,
+  key
 ];
+
+
+
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
 
@@ -314,11 +323,9 @@ Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 Levels.
 So, It’s Time Join With The Link & Start Earning TON From Global Network, Without Any Liability, & follow The Telegram Channel Network To Know More Updates.
 `;
 
-require('dotenv').config();
-const token = process.env.BOT_TOKEN;
+
 const { readBook, writeBook, readBooks } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
-
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(token, { polling: true });
 
@@ -398,33 +405,33 @@ const onMessage = async (msg, ctx) => {
     return;
   }
   //
-  else if (text.includes('🤖 Support')) {
+  else if (text.includes('🤖 Support (Поддерживать)')) {
     bot.sendMessage(chatId, help, pad);
     HELP_STATUS[chatId] = 1;
     return;
   }
   //
-  else if (text.includes('💁‍♂️ Basic Info')) {
+  else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
     bot.sendMessage(chatId, info, pad);
     return;
   }
   //
-  else if (text.includes('💼 Plan Packages')) {
+  else if (text.includes('💼 Plan Packages (Пакет планов)')) {
     bot.sendMessage(chatId, plans, pad);
     return;
   }
   //
-  else if (text.includes('📡 AiProTON Features')) {
+  else if (text.includes('📡 AiProTON Features (Особенности АйПроТОН)')) {
     bot.sendMessage(chatId, features, pad);
     return;
   }
   //
-  else if (text.includes('💡 Rules For Community')) {
+  else if (text.includes('💡 Rules For Community (Правила для сообщества)')) {
     bot.sendMessage(chatId, rules, pad);
     return;
   }
   //
-  else if (text.includes('📈 Marketing Plan')) {
+  else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
     bot.sendMessage(chatId, market, pad);
   }
 
@@ -482,7 +489,7 @@ const onMessage = async (msg, ctx) => {
   //Plan ${p.planName(user)}
   // Deposited ${user.depositedFunds} TON
   // PUBLIC FUNCTIONS
-  if (text.includes('/start') || text.includes('⭐️ Home')) {
+  if (text.includes('/start') || text.includes('⭐️ Home (Дом)')) {
     bot.sendMessage(
       chatId,
       `Hello ${userName}
@@ -507,7 +514,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     );
   }
   //
-  else if (text.includes('🕹 Upgrade')) {
+  else if (text.includes('🕹 Upgrade (Обновление)')) {
     if (!exists(user)) {
       bot.sendMessage(chatId, 'Invalid user', pad);
       return;
@@ -525,7 +532,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
   }
   //
-  else if (text.includes('🚀 Super Star Club')) {
+  else if (text.includes('🚀 Super Star Club (Суперзвездный клуб)')) {
     bot.sendMessage(chatId, `Level: ${p.getLevelName(user)}
 Level-1 (${user.level1ChildPaying})
 Level-2 (${user.level2ChildPaying})
@@ -539,7 +546,7 @@ Level-5 (${user.level5ChildPaying})`, pad);
     // );
   }
   //
-  else if (text.includes('🎒 My Package')) {
+  else if (text.includes('🎒 My Package (Mой пакет)')) {
     const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
 
     bot.sendMessage(
@@ -549,7 +556,7 @@ Level-5 (${user.level5ChildPaying})`, pad);
     );
   }
   //
-  else if (text.includes('💸 Income Statement')) {
+  else if (text.includes('💸 Income Statement (Справка о доходах)')) {
     bot.sendMessage(chatId,
 `Your TON Earnings Available: ${user.balance}
 
@@ -557,7 +564,7 @@ Total TON Earnings in History: ${user.totalEarnings}
 `, pad);
   }
   
-  else if (text.includes('🖇 Referrals list')) {
+  else if (text.includes('🖇 Referrals list (Прямое направление)')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
@@ -569,7 +576,7 @@ Total TON Earnings in History: ${user.totalEarnings}
     bot.sendMessage(chatId, `${parent}${child}${childPaying}`, pad);
   }
   //
-  else if (text.includes('💵 My Wallet')) {
+  else if (text.includes('💵 My Wallet (Мой бумажник)')) {
     bot.sendMessage(
       chatId,
       `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.
@@ -585,7 +592,7 @@ Deposit Address:\n\`${user.publicKey}\``,
     );
   }
   //
-  else if (text.includes('🔗 Invitation link')) {
+  else if (text.includes('🔗 Invitation link (Пригласительная ссылка)')) {
     bot.sendMessage(
       chatId,
       `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
@@ -595,7 +602,7 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
     );
   }
   //
-  else if (text.includes('🎛 My Dashbaord')) {
+  else if (text.includes('🎛 My Dashbaord (щиток приборов)')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
@@ -673,11 +680,19 @@ My Network Team –
     // );
   }
   //
-  else if (text.includes('💎 TON Ecosystem')) {
+  else if (text.includes('💎 TON Ecosystem (Экосистема ТОН)')) {
     bot.sendMessage(chatId, `https://ton.org/`, pad);
   }
   //
-  else if (text.includes('💰 Withdraw') || isValidAddress(text)) {
+  else if (text.includes('TON Coinmarketcap')) {
+    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/`, pad);
+  }
+  //
+  else if (text.includes('TON Exchanges (ТОН биржи)')) {
+    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
+  }
+  //
+  else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
     const percent = 1 / 100;
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
