@@ -7,25 +7,25 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // CONFIG MAINNET
-// const tokenIdsStart = 1000791;
-// const tokenIdsStop = 1000791 + 10; // 120 * 0.5 = 120 per minute * 0.5 minutes
-// const key = process.env.TREASURY_KEY_MAIN;
-// const from = process.env.TREASURY_WALLET_MAIN;
-// const explorer = 'https://polygonscan.com';
-// const networkLink = 'https://polygon-rpc.com';
-// const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
-// const factoryAddress = '0x4F08873580939bA69794DA22169057847AC2B87c';
+const tokenIdsStart = 1000901;
+const tokenIdsStop = 1000901 + 100; // 100 nfts, delay 0.5 sec between each mint
+const key = process.env.TREASURY_KEY_MAIN;
+const from = process.env.TREASURY_WALLET_MAIN;
+const explorer = 'https://polygonscan.com';
+const networkLink = 'https://polygon-rpc.com';
+const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
+const factoryAddress = '0x4F08873580939bA69794DA22169057847AC2B87c';
 
 // CONFIG TESTNET
 // TODO: Check max stress
-const tokenIdsStart = 1000455;
-const tokenIdsStop = 1000455 + 100; // 100 nfts, delay 0.5 sec between each mint
-const key = process.env.TREASURY_KEY_TEST;
-const from = process.env.TREASURY_WALLET_TEST;
-const explorer = 'https://mumbai.polygonscan.com';
-const networkLink = 'https://matic-mumbai.chainstacklabs.com';
-const nftAddress = '0xBE0d479710274735Ebd361E90e56E0604a879700';
-const factoryAddress = '0x731d55cd90762c02535ff410427dd280a1b74397';
+// const tokenIdsStart = 1000555;
+// const tokenIdsStop = 1000555 + 100; // 100 nfts, delay 0.5 sec between each mint
+// const key = process.env.TREASURY_KEY_TEST;
+// const from = process.env.TREASURY_WALLET_TEST;
+// const explorer = 'https://mumbai.polygonscan.com';
+// const networkLink = 'https://matic-mumbai.chainstacklabs.com';
+// const nftAddress = '0xBE0d479710274735Ebd361E90e56E0604a879700';
+// const factoryAddress = '0x731d55cd90762c02535ff410427dd280a1b74397';
 
 // COMMON CONFIG
 const delayInMints = 500; // ms TODO: 250 means 500 because some time is took by blockchain
@@ -53,10 +53,8 @@ const mint = async (tokenId, imPure) => {
   // READ BLOCKCHAIN
   const gasPrice = await getGasPrice(web3);
   const mint = sc.methods.mint(nftAddress, userAddress, tokenId);
-  let estimatedGas;
   try {
-    estimatedGas = await mint.estimateGas({ from });
-    // console.log({ count: imPure, tokenId, estimatedGas, gasPrice: web3.utils.fromWei(gasPrice, 'gwei') + ' GWEI' });
+    await mint.estimateGas({ from });
   } catch (e) {
     console.log('estimate error');
     console.log('1', { count: imPure }, e);
@@ -73,7 +71,7 @@ const mint = async (tokenId, imPure) => {
   for (let i = 0; i < 10; i++) {
     try {
       const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
-      console.log({ count: imPure, tokenId, estimatedGas, explore: `${explorer}/tx/${transactionHash}` });
+      console.log({ count: imPure, tokenId, explore: `${explorer}/tx/${transactionHash}` });
       wasError = false;
       break;
     } catch (e) {
