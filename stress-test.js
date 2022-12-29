@@ -44,9 +44,6 @@ const SERVICE_WALLETS_MNEMONIC = process.env.SERVICE_WALLETS_MNEMONIC;
 const SERVICE_WALLETS_OFFSET = Number(process.env.SERVICE_WALLETS_OFFSET);
 const SERVICE_WALLETS_LENGTH = Number(process.env.SERVICE_WALLETS_LENGTH);
 
-console.log(SERVICE_WALLETS_OFFSET);
-console.log(SERVICE_WALLETS_LENGTH);
-
 let count = 0;
 
 const mint = async (tokenId, count) => {
