@@ -3,6 +3,8 @@
 // Now I have some experience, I should start mentoring programming
 // and life overall. Communicate about Quran for who fears Allah.
 
+// TODO: Check max stress
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -10,18 +12,21 @@ dotenv.config();
 const tokenIdsStart = 1005914;
 const tokenIdsStop = 1005914 + 10;
 const explorer = 'https://polygonscan.com';
-const networkLink = 'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl';
+const networkLinks = [
+  'https://polygon-rpc.com',
+  'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl',
+];
 const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
 const factoryAddress = '0x4F08873580939bA69794DA22169057847AC2B87c';
 
 // CONFIG TESTNET
-// TODO: Check max stress
 // const tokenIdsStart = 1000955;
-// const tokenIdsStop = 1000955 + 500; // 100 nfts, delay 0.5 sec between each mint
-// const key = process.env.TREASURY_KEY_TEST;
-// const from = process.env.TREASURY_WALLET_TEST;
+// const tokenIdsStop = 1000955 + 1; // 100 nfts, delay 0.5 sec between each mint
 // const explorer = 'https://mumbai.polygonscan.com';
-// const networkLink = 'https://matic-mumbai.chainstacklabs.com';
+// const networkLinks = [
+//   'https://matic-mumbai.chainstacklabs.com',
+//   'https://polygon-mumbai.g.alchemy.com/v2/7Z8zNuwkBgQBi2m-0EmPF483gGtaY1iE',
+// ];
 // const nftAddress = '0xBE0d479710274735Ebd361E90e56E0604a879700';
 // const factoryAddress = '0x731d55cd90762c02535ff410427dd280a1b74397';
 
@@ -35,23 +40,29 @@ const factoryAbi = JSON.parse(
 // CODE
 import Web3 from 'web3';
 import wallet from '@truffle/hdwallet-provider';
-const accountsTotal = process.env.SERVICE_WALLETS_MNEMONIC;
+const SERVICE_WALLETS_MNEMONIC = process.env.SERVICE_WALLETS_MNEMONIC;
 const SERVICE_WALLETS_OFFSET = Number(process.env.SERVICE_WALLETS_OFFSET);
 const SERVICE_WALLETS_LENGTH = Number(process.env.SERVICE_WALLETS_LENGTH);
 
 console.log(SERVICE_WALLETS_OFFSET);
 console.log(SERVICE_WALLETS_LENGTH);
-const ethereum = new wallet({
-  mnemonic: process.env.SERVICE_WALLETS_MNEMONIC,
-  providerOrUrl: networkLink,
-  pollingInterval: 86400 * 20 * 1000, // sync every 20 days
-});
-const from = ethereum.getAddress(0);
-const web3 = new Web3(ethereum);
-const sc = new web3.eth.Contract(factoryAbi, factoryAddress);
-let imPure = 0;
 
-const mint = async (tokenId, imPure) => {
+let count = 0;
+
+const mint = async (tokenId, count) => {
+  const networkLinkNumber = tokenId % networkLinks.length;
+  const ethereum = new wallet({
+    mnemonic: SERVICE_WALLETS_MNEMONIC,
+    providerOrUrl: networkLinks[networkLinkNumber],
+    pollingInterval: 86400 * 20 * 1000, // sync every 20 days
+  });
+  const accountNumber = SERVICE_WALLETS_OFFSET + (tokenId % SERVICE_WALLETS_LENGTH);
+  console.log({ accountNumber });
+  const from = ethereum.getAddress(accountNumber);
+  console.log({ from });
+  const web3 = new Web3(ethereum);
+  const sc = new web3.eth.Contract(factoryAbi, factoryAddress);
+
   // READ BLOCKCHAIN
   let gasPrice = await getGasPrice(web3);
   const mint = sc.methods.mint(nftAddress, userAddress, tokenId);
@@ -61,10 +72,10 @@ const mint = async (tokenId, imPure) => {
     console.log('estimate error');
 
     if ((e + '').includes('Error: execution reverted: already minted')) {
-      console.log({ tokenId, count: imPure, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
+      console.log({ tokenId, count, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}` });
     }
-    // console.log('1', { count: imPure }, e);
-    console.log('2', { count: imPure }, e + '');
+    // console.log('1', { count }, e);
+    console.log('2', { count }, e + '');
     // console.log(
     //   '3',
     //   `(${explorer}).sc(${factoryAddress}).methods.mint(nftAddress ${nftAddress}, userAddress ${userAddress}, tokenId ${tokenId}) from: ${from}`,
@@ -78,7 +89,7 @@ const mint = async (tokenId, imPure) => {
     try {
       const { transactionHash } = await mint.send({ from, gas: '200000', gasPrice });
       console.log({
-        count: imPure,
+        count,
         date: '' + new Date(),
         tokenId,
         explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`,
@@ -88,15 +99,15 @@ const mint = async (tokenId, imPure) => {
       break;
     } catch (e) {
       if (e && e.message && e.message.includes('insufficient funds for gas * price + value')) {
-        console.log({ tokenId, count: imPure, err: e.message });
+        console.log({ tokenId, count, err: e.message });
         return;
       } else if ((e + '').includes('Error: Failed to check for transaction receipt:')) {
-        console.log({ tokenId, count: imPure, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`, err: e + '' });
+        console.log({ tokenId, count, explore: `${explorer}/token/${nftAddress}/?a=${tokenId}`, err: e + '' });
         return;
       } else if ((e + '').includes('Error: Transaction has been reverted by the EVM:')) {
         // This error should not come, ..., because I will explain later...
         // hint: Error: Failed to check for transaction receipt: means Error: Transaction has been reverted by the EVM:
-        console.log({ problem: 1, tokenId, count: imPure, err: e + '' });
+        console.log({ problem: 1, tokenId, count, err: e + '' });
         return;
       } else if (
         e &&
@@ -117,7 +128,7 @@ const mint = async (tokenId, imPure) => {
 
       const sleepTime = Math.pow(2, i);
       console.log(`tx error so trying again after sleep of seconds: ${sleepTime}`);
-      console.log('1', { count: imPure }, e);
+      console.log('1', { count }, e);
       console.log('2', e + '');
       await sleep(1000 * sleepTime);
 
@@ -127,7 +138,7 @@ const mint = async (tokenId, imPure) => {
 
   if (wasError) {
     console.log('transactionHash error after 10 tries');
-    console.log('1', { count: imPure }, e);
+    console.log('1', { count }, e);
     console.log('2', e + '');
     console.log(
       '3',
@@ -150,7 +161,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 console.log(`Start ${new Date()}`);
 for (let tokenId = tokenIdsStart; tokenId < tokenIdsStop; tokenId++) {
-  mint(tokenId, ++imPure);
+  mint(tokenId, ++count);
   await sleep(delayInMints);
 
   if (tokenId % 100 === 0) {
