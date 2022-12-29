@@ -1,7 +1,3 @@
-WHATSAPP ME +923348438939
-CAN NOT UNDERSTAND CODE?
-
-Adil & Mehsim:
 // TODO: account statement
 // TODO: parallel. three test cases we made on paper 
 
@@ -544,7 +540,6 @@ seqno: 0
 
   console.log('parents start:');
   console.log({ i: 1, userParent: userParent.userName });
-    // TODO: can not understand code? whatsapp me +923348438939
     // give reward on level 6, 9, 12, 15
     console.log({ i: level, userParent: userParent.userName });
   console.log('parents end:');

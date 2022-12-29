@@ -15,7 +15,7 @@ const keyboard = [
   ['💡 Rules For Community (Правила для сообщества)', '💁‍♂️ Basic Info (Основная информация)'], //
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
   ['📈 Marketing Plan (Маркетинговый план)'], //
-  ['💎 TON Ecosystem (Экосистема ТОН)', '🤖 Support (Поддерживать)'],//
+  ['💎 TON Ecosystem (Экосистема ТОН)'], ['🤖 Support (Поддерживать)'],//
   ['TON Coinmarketcap'], ['TON Exchanges (ТОН биржи)']//
 ];
 
