@@ -384,7 +384,7 @@ const onMessage = async (msg, ctx) => {
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
     // bot.forwardMessage(adminChatId, chatId, msg.message_id);
-    await sendToAllUsers('forwardMessage', msg.message_id);
+    await sendToAllUsers(msg);
 
     // if (msg.document) {
     //   await sendToAllUsers('sendDocument', msg.document.file_id);
@@ -1150,26 +1150,13 @@ const recycleRewards = async (user, depositedFunds) => {
   ); // 50% of remaining
 };
 
-const sendToAllUsers = async (method, msg) => {
+const sendToAllUsers = async (msg) => {
   let users = await readBooks({});
-
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    user.chatId && bot[method](adminChatId, user.chatId, msg);
+    user.chatId && bot.forwardMessage(user.chatId, adminChatId, msg.message_id);
   }
-
-  // bot.sendMessage(chatId, 'Sending... to all users', pad);
 };
-// const sendToAllUsers = async (method, msg) => {
-//   let users = await readBooks({});
-
-//   for (let i = 0; i < users.length; i++) {
-//     const user = users[i];
-//     user.chatId && bot[method](user.chatId, msg);
-//   }
-
-//   // bot.sendMessage(chatId, 'Sending... to all users', pad);
-// };
 
 const exists = (user) => {
   return user !== undefined;
