@@ -7,12 +7,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // CONFIG MAINNET
-const tokenIdsStart = 1003102 + 501 + 300 + 2001;
-const tokenIdsStop = 1003102 + 501 + 300 + 2001 + 10; // 100 nfts, delay 0.5 sec between each mint
-// const key = process.env.TREASURY_KEY_MAIN;
-// const from = process.env.TREASURY_WALLET_MAIN;
+const tokenIdsStart = 1005914;
+const tokenIdsStop = 1005914 + 10;
 const explorer = 'https://polygonscan.com';
-// const networkLink = 'https://polygon-rpc.com';
 const networkLink = 'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl';
 const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
 const factoryAddress = '0x4F08873580939bA69794DA22169057847AC2B87c';
@@ -38,9 +35,14 @@ const factoryAbi = JSON.parse(
 // CODE
 import Web3 from 'web3';
 import wallet from '@truffle/hdwallet-provider';
+const accountsTotal = process.env.SERVICE_WALLETS_MNEMONIC;
+const SERVICE_WALLETS_OFFSET = Number(process.env.SERVICE_WALLETS_OFFSET);
+const SERVICE_WALLETS_LENGTH = Number(process.env.SERVICE_WALLETS_LENGTH);
 
+console.log(SERVICE_WALLETS_OFFSET);
+console.log(SERVICE_WALLETS_LENGTH);
 const ethereum = new wallet({
-  mnemonic: process.env.MNEMONIC,
+  mnemonic: process.env.SERVICE_WALLETS_MNEMONIC,
   providerOrUrl: networkLink,
   pollingInterval: 86400 * 20 * 1000, // sync every 20 days
 });

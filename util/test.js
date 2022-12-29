@@ -1,10 +1,5 @@
-const arr = ['one', 'two', 'onE', 'one', 'two', 'three'];
+let tokenIds = [14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28];
 
-const count = {};
-
-arr.forEach((element) => {
-  count[element] = (count[element] || 0) + 1;
-});
-
-// 👇️ {one: 3, two: 2, three: 1}
-console.log(count);
+for (let i = 0; i < 100; i++) {
+  console.log(i % 10);
+}
