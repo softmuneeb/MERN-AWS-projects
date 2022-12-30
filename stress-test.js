@@ -1,8 +1,8 @@
 // Mint 6000 NFT per hour, Minting NFT Stress Test.
 // Now I have some experience, I should start mentoring programming, and life overall. Communicate about Quran for who fears Allah.
 // CONFIG MAINNET
-const tokenIdsStart = 1005924 + 100;
-const tokenIdsStop = 1005924 + 100 + 250;
+const tokenIdsStart = 1006272;
+const tokenIdsStop = 1006272 + 10;
 const explorer = 'https://polygonscan.com';
 const networkLinks = [
   'https://polygon-rpc.com',
