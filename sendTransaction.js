@@ -49,8 +49,9 @@ export const sendTransaction = async ({
   let gasPrice = await getGasPrice(web3);
   for (let i = 0; i < 10; i++) {
     try {
-      transactionHash = (await func.send({ from, gas: '200000', gasPrice, nonce })).transactionHash;
-      nonce++;
+      transactionHash = nonce
+        ? (await func.send({ from, gas: '200000', gasPrice, nonce })).transactionHash
+        : (await func.send({ from, gas: '200000', gasPrice })).transactionHash;
       console.log({
         date: '' + new Date(),
         detail: `${method}: ${parametersNames} ${parameters}`,
