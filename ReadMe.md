@@ -1,4 +1,5 @@
 65,000 transactions per second in polygon??
+TODO: nonce issue not come, ..., solution https://betterprogramming.pub/sending-web3-transactions-in-node-js-nonce-hell-f3ba82edbf3d
 
 // TODO: publish a+b npm, then this method on npm, send many web3 ethereum based chain tx in short time with no errors
 // TODO: Check max stress
@@ -6,7 +7,6 @@
   // standards, erc721, exploreToken: `${explorer}/token/${address}/?a=${tokenId}`, tell about your standards to get more customized experince, more benifits, ...
 TODO: remo console logs, return tx has on mint, ..., how values are getting in erc20 transfer? see in ui code.
 TODO: createAccessList() save gas in sending tx, optimized...
-TODO: nonce issue solution https://betterprogramming.pub/sending-web3-transactions-in-node-js-nonce-hell-f3ba82edbf3d
 TODO:
 // Create transaction
 const deploy = async () => {
