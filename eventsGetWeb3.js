@@ -12,7 +12,7 @@ const sc = new web3.eth.Contract(scAbi, scAddress);
 
 const gasPrice = await web3.eth.getGasPrice();
 
-console.log({ gasPrice });
+console.log({ gasPrice: 9007199254740991 });
 console.log({ gasPrice: parseInt(parseInt(gasPrice) * 1.1 * (1 + 0.1)) });
 console.log({ gasPrice: web3.utils.fromWei(gasPrice, 'gwei') + ' GWEI' });
 
