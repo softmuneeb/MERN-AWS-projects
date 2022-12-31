@@ -21,6 +21,10 @@ console.log({
   chainId,
   chainId2: chainId === 80001,
 });
+web3.eth.getTransactionCount('0x74a845ADC5A0487887Ccc6437cCA2Ee2E5Ee8a8B').then(console.log); //nft
+web3.eth.getTransactionCount('0x4f08873580939ba69794da22169057847ac2b87c').then(console.log); //nft factory
+web3.eth.getTransactionCount('0xd8ee3e8e84798125ec820336380c3aa83dd6923d').then(console.log); //ali
+web3.eth.getTransactionCount('0x246aaa7c567dcb3c9db635bb848242d25e8694ca').then(console.log); //user
 // const events = await sc.getPastEvents('Transfer', {
 //   fromBlock: 36912137,
 //   toBlock: 36926021,
