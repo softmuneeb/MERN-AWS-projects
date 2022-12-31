@@ -48,6 +48,7 @@ const mint = async (tokenId, count) => {
     providerOrUrl: networkLinks[networkLinkNumber],
     pollingInterval: 86400 * 20 * 1000, // sync every 20 days
   });
+
   const accountNumber = SERVICE_WALLETS_OFFSET + (tokenId % SERVICE_WALLETS_LENGTH);
   const web3 = new Web3(ethereum);
 
@@ -64,31 +65,17 @@ const mint = async (tokenId, count) => {
   });
 };
 
-console.log(`Start ${new Date()}`);
-for (let tokenId = tokenIdsStart; tokenId < tokenIdsStop; tokenId++) {
-  mint(tokenId, ++count);
-  await sleep(delayInMs);
+const driver = async () => {
+  console.log(`Start ${new Date()}`);
+  for (let tokenId = tokenIdsStart; tokenId < tokenIdsStop; tokenId++) {
+    mint(tokenId, ++count);
+    await sleep(delayInMs);
 
-  if (tokenId % 100 === 0) {
-    console.log('Waiting 10 seconds... Cool Down...');
-    await sleep(10000); // every 100 wait 10 seconds cool down
+    if (tokenId % 100 === 0) {
+      console.log('Waiting 10 seconds... Cool Down...');
+      await sleep(10000); // every 100 tx, wait 10 seconds cool down
+    }
   }
-}
-// console.log(`Stop ${new Date()}`);
+};
 
-/*
-.send({
-    from: '0x1234567890123456789012345678901234567891',
-    gas: 1500000,
-    gasPrice: '30000000000000'
-}, function(error, transactionHash){ ... })
-.on('error', function(error){ ... })
-.on('transactionHash', function(transactionHash){ ... })
-.on('receipt', function(receipt){
-   console.log(receipt.contractAddress) // contains the new contract address
-})
-.on('confirmation', function(confirmationNumber, receipt){ ... })
-.then(function(newContractInstance){
-    console.log(newContractInstance.options.address) // instance with the new contract address
-});
-*/
+// driver()
