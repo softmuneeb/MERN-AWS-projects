@@ -9,7 +9,7 @@ const keyboard = [
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
   ['💰 Withdraw (Отзывать)'],//
-  ['💰 Reward Club'],//
+  ['💰 Reward Club (Клуб вознаграждений)'],//
   ['💸 Income Statement (Справка о доходах)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
