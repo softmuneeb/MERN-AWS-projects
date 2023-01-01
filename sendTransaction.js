@@ -18,14 +18,14 @@ export const sendTransaction = async ({
       return '30000000000'; // 30 gwei, gwei = 9 zeros
     }
     const gasPrice = await web3.eth.getGasPrice();
-    const g = parseInt(parseInt(gasPrice) * 1.1 * (1 + percentageMore));
+    const g = parseInt(Number(gasPrice) * (1 + percentageMore));
     return g;
   };
   const errorInResendErrors = (errorMsg, resendTxOnErrors) => {
     let errorFound = false;
     for (let i = 0; i < resendTxOnErrors.length; i++) {
       if (errorMsg.includes(resendTxOnErrors[i])) {
-        errorFound = true;
+        errorFound = resendTxOnErrors[i];
         break;
       }
     }
@@ -35,66 +35,92 @@ export const sendTransaction = async ({
   const sc = new web3.eth.Contract(abi, address);
   const func = sc.methods[method](...parameters);
   const from = (await web3.eth.getAccounts())[accountNumber];
+  let errorMsg = null;
   try {
     await func.estimateGas({ from });
   } catch (e) {
-    const msg = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
-    console.log(msg, `${method}: ${parametersNames} ${parameters}`);
+    errorMsg = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
+    console.log(`estimateGasErr, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`);
     return;
   }
   let nonce = null;
   let transactionHash = null;
-  let errorMsg = null;
   let wasError = true;
   let gasPrice = await getGasPrice(web3);
-  for (let i = 0; i < 10; i++) {
+  console.log({ gasPrice });
+  const retryTimes = 10;
+
+  const options = { from, gas: '200000', maxFeePerGas: gasPrice, maxPriorityFeePerGas: '30000000000' };
+  for (let i = 0; i < retryTimes; i++) {
     try {
+      console.log(`${new Date()} __TAG ${parameters} before`);
       transactionHash = nonce
-        ? (await func.send({ from, gas: '200000', gasPrice, nonce })).transactionHash
-        : (await func.send({ from, gas: '200000', gasPrice })).transactionHash;
+        ? (await func.send({ ...options, nonce })).transactionHash
+        : (await func.send({ ...options })).transactionHash;
+      console.log(`${new Date()} __TAG ${parameters} after`);
       console.log({
         date: '' + new Date(),
-        detail: `${method}: ${parametersNames} ${parameters}`,
+        detail: `${method}: ${parametersNames} ${parameters}, from ${from}`,
         exploreTx: `${explorer}/tx/${transactionHash}`,
       });
       wasError = false;
       break;
     } catch (e) {
       errorMsg = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
-      console.log(errorMsg, `${method}: ${parametersNames} ${parameters}`);
+      const error = errorInResendErrors(errorMsg, resendTxOnErrors);
+
       if (errorMsg.includes('replacement transaction underpriced')) {
-        gasPrice = await getGasPrice(web3, 0.1 * i);
-        console.log('try again with higher gas price', gasPrice);
+        const gasPriceOld = '' + gasPrice;
+        gasPrice = (await getGasPrice(web3)) + '' + i;
         const sleepTime = Math.pow(2, i);
-        console.log(`tx error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}`);
+        console.log(
+          `replacement transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+        );
+        await sleep(1000 * sleepTime);
+      }
+      if (errorMsg.includes('transaction underpriced')) {
+        const gasPriceOld = '' + gasPrice;
+        gasPrice = (await getGasPrice(web3)) + '' + i;
+        const sleepTime = Math.pow(2, i);
+        console.log(
+          `transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+        );
         await sleep(1000 * sleepTime);
       } else if (errorMsg.includes('Error: ETIMEDOUT')) {
         const sleepTime = Math.pow(2, i + 1);
         console.log(
-          `tx ETIMEDOUT error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}`,
+          `ETIMEDOUT error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
         );
         await sleep(1000 * sleepTime);
       } else if (errorMsg.includes('nonce too low')) {
+        const nonceWas = '' + nonce;
         nonce = await web3.eth.getTransactionCount(from);
         nonce++;
-        console.log('try again with nonce', nonce);
         const sleepTime = Math.pow(2, i);
-        console.log(`tx error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}`);
+        console.log(
+          `nonce too low, wait ${sleepTime} s, nonce: ${nonceWas} -> ${nonce}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+        );
         await sleep(1000 * sleepTime);
-      } else if (errorInResendErrors(errorMsg, resendTxOnErrors)) {
+      } else if (error) {
         const sleepTime = Math.pow(2, i);
-        console.log(`tx error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}`);
+        console.log(
+          `${error}, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+        );
         await sleep(1000 * sleepTime);
       } else {
-        console.log('returning due to error', errorMsg);
+        console.log(
+          `DO NOT RETRY TX ON THIS ERROR, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+        );
+        wasError = false;
         break;
       }
     }
   }
 
   if (wasError) {
-    console.log('transactionHash error after 10 tries');
-    console.log(errorMsg, `${method}: ${parametersNames} ${parameters}`);
+    console.log(
+      `please handle the error correctly, transaction sending error after ${retryTimes} retries, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
+    );
     return { error: true, errorMsg };
   }
 

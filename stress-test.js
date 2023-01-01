@@ -1,8 +1,8 @@
 // Mint 6000 NFT per hour, Minting NFT Stress Test.
 // Now I have some experience, I should start mentoring programming, and life overall. Communicate about Quran for who fears Allah.
 // CONFIG MAINNET
-const tokenIdsStart = 1006272;
-const tokenIdsStop = 1006272 + 10;
+const tokenIdsStart = 1007800;
+const tokenIdsStop = 1007900;
 const explorer = 'https://polygonscan.com';
 const networkLinks = [
   'https://polygon-rpc.com',
@@ -51,7 +51,6 @@ const mint = async (tokenId, count) => {
 
   const accountNumber = SERVICE_WALLETS_OFFSET + (tokenId % SERVICE_WALLETS_LENGTH);
   const web3 = new Web3(ethereum);
-
   await sendTransaction({
     web3,
     abi: factoryAbi,
@@ -61,8 +60,17 @@ const mint = async (tokenId, count) => {
     explorer,
     parameters: [nftAddress, userAddress, tokenId],
     parametersNames: ['nftAddress', 'userAddress', 'tokenId'],
-    resendTxOnErrors: ['Internal error', 'INTERNAL_ERROR: queued sub-pool is full', 'Too Many Requests'],
+    resendTxOnErrors: [
+      'Internal error',
+      'INTERNAL_ERROR: queued sub-pool is full',
+      'Too Many Requests',
+      'ESOCKETTIMEDOUT',
+    ],
   });
+
+  // TODO:
+  // try transfer NFT sendTransaction()
+  // try transfer ERC20 sendTransaction()
 };
 
 const driver = async () => {
@@ -71,11 +79,11 @@ const driver = async () => {
     mint(tokenId, ++count);
     await sleep(delayInMs);
 
-    if (tokenId % 100 === 0) {
-      console.log('Waiting 10 seconds... Cool Down...');
-      await sleep(10000); // every 100 tx, wait 10 seconds cool down
-    }
+    // if (tokenId % 100 === 0) {
+    //   console.log('Waiting 10 seconds... Cool Down...');
+    //   await sleep(10000); // every 100 tx, wait 10 seconds cool down
+    // }
   }
 };
 
-// driver()
+driver();

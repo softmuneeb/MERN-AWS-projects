@@ -1,0 +1,40 @@
+
+const unitTest1 = async () => {
+  const networkLinkNumber = 0;
+  const ethereum = new wallet({
+    mnemonic: SERVICE_WALLETS_MNEMONIC,
+    providerOrUrl: networkLinks[networkLinkNumber],
+    pollingInterval: 86400 * 20 * 1000, // sync every 20 days
+  });
+
+  const accountNumber = 0;
+  const from = ethereum.getAddress(accountNumber);
+  const web3 = new Web3(ethereum);
+
+  const receiver = '0x218dcc8588dfacc9598c2f7a5598b229d8745ba2';
+  const amount = '2000';
+  const receiver2 = '0x0aB76937a02fF406a6C1677A41b9B0B117Ad1eF5';
+  const amount2 = '1000';
+
+  const batch = web3.BatchRequest();
+  batch.add(web3.eth.sendTransaction({ from, to: receiver, value: amount }));
+  batch.add(web3.eth.sendTransaction({ from, to: receiver2, value: amount2 }));
+
+  batch.add(web3.eth.sendTransaction({ from, to: receiver, value: amount }));
+  batch.add(web3.eth.sendTransaction({ from, to: receiver2, value: amount2 }));
+
+  batch.execute();
+};
+unitTest1();
+
+
+
+
+
+
+
+
+const tip = Number(await web3.eth.getMaxPriorityFeePerGas());
+const block = await web3.eth.getBlock('pending');
+const baseFee = Number(block.baseFeePerGas);
+const max = tip + baseFee - 1; // less than the sum

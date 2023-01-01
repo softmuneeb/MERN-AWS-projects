@@ -1,4 +1,17 @@
 65,000 transactions per second in polygon??
+
+can we get 100 in 1 sec in our pool ? try own node ? 
+
+
+TODO: ask senior or detailed devs:
+some transaction underpriced, wait 1 s, gasPrice: 39247204924 -> 392472049240, mint: nftAddress,userAddress,tokenId = 1007515, from 
+some transaction underpriced, wait 2 s, gasPrice: 392472049240 -> 392472049241, mint: nftAddress,userAddress,tokenId = 1007515, from 
+
+3 h
+TODO: ETH 12 sec per block, TPS max min in last 10,000 blocks ? 120000 s = 33.3 h
+TODO: Matic 2 sec per block, TPS max min in last 10,000 blocks ? 20000 s = 5.5 h
+
+TODO: check last 10
 TODO: nonce issue not come, ..., solution https://betterprogramming.pub/sending-web3-transactions-in-node-js-nonce-hell-f3ba82edbf3d
 
 // TODO: publish a+b npm, then this method on npm, send many web3 ethereum based chain tx in short time with no errors
@@ -37,10 +50,12 @@ export interface TransactionConfig {
     value?: number | string | BN;
     gas?: number | string;
     gasPrice?: number | string | BN;
+
     maxPriorityFeePerGas?: number | string | BN;
     maxFeePerGas?: number | string | BN;
-    data?: string;
     nonce?: number;
+
+    data?: string;
     chainId?: number;
     common?: Common;
     chain?: string;
