@@ -38,3 +38,68 @@ const tip = Number(await web3.eth.getMaxPriorityFeePerGas());
 const block = await web3.eth.getBlock('pending');
 const baseFee = Number(block.baseFeePerGas);
 const max = tip + baseFee - 1; // less than the sum
+
+
+    // TODO: MATIC balance of treasury should be more than 0.1 MATIC
+    const maticBalance = await web3.eth.getBalance(TREASURY_WALLET_ADDRESS);
+    const toUse = web3.utils.toWei('0.1', 'ether');
+    if (BigNumber(maticBalance).isLessThan(toUse)) {
+      return {
+        id,
+        visibility,
+        token_id: metaId,
+        status: STATUS_FAILED,
+        log: 'MATIC balance of treasury should be more than 0.1 MATIC',
+        wallet_address: userWallet,
+        character_type: characterType,
+        nft_address: NFT_FACTORY_ADDRESS,
+      };
+    }
+
+
+    const checkCode = async (web3_2) => {
+  const from2 = (await web3_2.eth.getAccounts())[1];
+  const metaId = 1010000;
+  const ALI_TO_SEND_ON_MINT = '5';
+  const TREASURY_WALLET_ADDRESS = '0xa08c7cda8015280b32452647fe66e19746b23d59';
+  const wallet_address = '0x246aaa7c567dcb3c9db635bb848242d25e8694ca';
+
+  const ali = new web3_2.eth.Contract(aliAbi, aliAddress);
+  const nft = new web3_2.eth.Contract(nftAbi, nftAddress);
+  const nftFactory = new web3_2.eth.Contract(factoryAbi, factoryAddress);
+
+  // ALI balance of admin should be more than 5 MATIC
+  const aliBalance = await ali.methods.balanceOf(TREASURY_WALLET_ADDRESS).call();
+  const toSend = web3_2.utils.toWei(ALI_TO_SEND_ON_MINT, 'ether');
+  if (BigNumber(aliBalance).isLessThan(toSend)) {
+    return {
+      token_id: metaId,
+      log: 'ALI balance is less in treasury',
+      wallet_address,
+      nft_address: factoryAddress,
+    };
+  }
+
+  // Character Already Minted
+  const exists = await nft.methods.exists(metaId).call();
+  if (exists) {
+    return {
+      token_id: metaId,
+      log: `NFT already minted ${metaId}`,
+      wallet_address,
+      nft_address: factoryAddress,
+    };
+  }
+
+  // Minter Has Authority
+  const minterRole = '65536';
+  const authority = await nftFactory.methods.isOperatorInRole(from2, minterRole).call();
+  if (!authority) {
+    return {
+      token_id: metaId,
+      log: `No Access to mint: ${from2}`,
+      wallet_address,
+      nft_address: factoryAddress,
+    };
+  }
+};
