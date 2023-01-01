@@ -9,12 +9,13 @@ const keyboard = [
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
   ['💰 Withdraw (Отзывать)'],//
+  ['💰 Reward Club'],//
   ['💸 Income Statement (Справка о доходах)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💡 Rules For Community (Правила для сообщества)', '💁‍♂️ Basic Info (Основная информация)'], //
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
-  ['📈 Marketing Plan (Маркетинговый план)'], //
+  ['📈 Marketing Plan (Маркетинговый план)'],//
   ['💎 TON Ecosystem (Экосистема ТОН)'], ['🤖 Support (Поддерживать)'],//
   ['TON Coinmarketcap'], ['TON Exchanges (ТОН биржи)']//
 ];
@@ -270,58 +271,156 @@ So , Are You Excited To Earn & Grow With amazing opportunity . So Be Ready with 
 `;
 
 const market = `
-You Can Start With 25 TON or other Options, Like 100, 200 or 500 TON.
+Contribution Packages –
 
-As you Signup There Are lot of Incomes to Get From The Network you create.
+25 TON – START PACK 
+               – Upto 6 Level Team Income
+            – Withdraw  40 % - Recycle 60%
+
+100 TON – WALK PACK 
+                – Upto 9 Level Team Income 
+            – Withdraw 50 % - Recycle 50%
+
+200 TON – RUN PACK 
+                – Upto 12 Level Team Income 
+            – Withdraw 60 % - Recycle 40%
+
+500 TON – START PACK
+               – Upto 15 Level Team Income
+           –  Withdraw 70 % - Recycle 30%
+
+Before Start Any Pack , 
+5 TON (BABY PACK) as registration Mandatory To START. 
+
+Best Thing, You Can Start The Journey With Only 
+Baby Pack (5 TON)  Also, 
+
+Whereas From Your Earnings You can UPGRADE Your START Pack from The Earnings & Enjoy The Journey To Earn TON From Your Network. After START Pack All Functions Work Same As The Community Rules. 
+
+Choose Your Contribution Level To Start & Become the Part Of The Journey To Earn TON From Your & Global Network.
+
+Direct INCOME 
+( Direct Income From Activation Start & Above Packs )
 
 1st You Get Direct Income from Your Network.
+From Sponsoring 1,2,3 You Get 10% , 
+From Sponsoring 4,5,6, You Get 15% 
+and 7th and above Sponsoring You Get 20% 
+From every Direct Sponsoring.
 
-From Sponsoring 1,2,3 You Get 10% , From Sponsoring 4,5,6,
-You Get 15% and 7th and above Sponsoring You Get 20% From every Direct Sponsoring.
+For All Earned Income, 
+You Have Three Options – WITHDRAW / UPGRADE / RECYCLE
 
-From All Income You Have Three Way –
-WITHDRAW / UPGRADE / RECYCLE
+WITHDRAW RULE
 
-WITHDRAW Rule - 
+START Pack  (25 TON) 
+– 40 % Withdraw – 60% Recycle
 
-START – 40 % Withdraw – 60% Recycle
-WALK- 50% Withdraw – 50% Recycle 
-RUN- 60% Withdraw – 40% Recycle 
-FLY- 70% Withdraw – 30% Recycle 
+WALK Pack  (100 TON)
+ - 50% Withdraw – 50% Recycle 
 
-You can Register With 5 TON as Baby pack, Where From Upto 6 Level You can Earn, and Use Your 100% Earnings in Upgrade. After START PACK , you can follow the same system.
+RUN Pack  (200 TON ) 
+- 60% Withdraw – 40% Recycle 
 
-Recycle Means – The Balance Payout Value TON again Distribute As Recycle Plan.
+FLY Pack (500 TON) - 
+70% Withdraw – 30% Recycle 
+
+Before Start Any Pack , 
+5 TON (BABY PACK) as registration Mandatory To START. 
+
+BABY Pack (5 TON) – 100% Used To Upgrade For ACTIVATION .
+
+Best Thing, You Can Start The Journey With Only
+Baby Pack (5 TON)  Also, Whereas From Your Earnings You can UPGRADE Your START Pack from The Earnings & Enjoy The Journey To Earn TON From Your Network. After START Pack All Functions Work Same As The Community Rules. 
+
+Recycle Means –
+The Balance Payout ( From Withdraw in Your Team) That Value TON again Distribute As Recycle Plan In All 15 Level Generations Uplines To Create A Loop Income.
 
 YOU can UPGRADE Your PACK to get high benefit on basis.
 70% UPGRADE – 30% Recycle.
-
 So, This System create Income In Loop. Every Time You Get Income From Your Team.
 
 TEAM INCOME –
 
-When In Your Network , Any Pack Activate ,
+When In Your Network , 
+Any Pack Activate ( START TO FLY) ,
+You Get Income From 15 Levels Depth.
 
-You Eligible  10% To 20% Direct As Direct Income From Level One , And Form Level Two to Level 15 You Get , 5% TON from Every joiner in Your Network community in 15 level. 
+Level – 1 – 10% To 20% Direct 
+              ( First 3 Direct – 10% , 
+               From 4th To 6th Direct – 15%,
+           b7th & Above 20% Every Direct. ) 
 
-Level Eligibility As Your Pack, Like If You On  Baby or Start Pack – You Get This Income From upto 6 Level.
+Level – 2 – 5% 
+Level – 3 – 5% 
+Level – 4 – 5% 
+Level – 5 – 5% 
+Level – 6 – 5% 
+Level – 7 – 5% 
+Level – 8 – 5% 
+Level – 9 – 5% 
+Level – 10 – 5% 
+Level – 11 – 5% 
+Level – 12 – 5% 
+Level – 13 – 5% 
+Level – 14 – 5% 
+Level – 15 – 5% 
 
-If You On Walk Pack – you Get This Income Upto 9 Level. 
-On Run Pack – You Get This Income upto 12 Level and
-On Fly Pack – you Get This Income From All 15 Level. 
+Level Eligibility As Your Pack, 
+Like If You On  BABY or START Pack
+– You Get This Income From upto 6 Level.
+
+If You On WALK Pack – you Get This Income Upto 9 Level. 
+
+On RUN Pack – You Get This Income upto 12 Level and
+
+On FLY Pack – you Get This Income From All 15 Level. 
 
 You Can upgrade any time as you convenient. 
 
-RECYCLE – All recycle Distribution in 15 levels , As per pack , if You are Baby ( Registration pack) than 1% , if you on Start – 2% , If You on Walk – 3% , If You On Run – 4% , and if you on FLY pack , you get 5% on Each level from each RECYCLE Activity.
+RECYCLE –
+All recycle Distribution in 15 levels , As per pack ,
+if You are Baby ( Registration pack) than 1% , 
+if you on Start – 2% ,
+If You on Walk – 3% , 
+If You On Run – 4% , 
+if you on FLY pack you get 5% on Each level from each 
+RECYLE Activity. 
 
 Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 Levels.
 
-& Whatever Skipped Balance Either Small pack or bigger pack , left skipped balance from Direct Joining Will Go To 7 Sponsor Club and Skipped balance from recycle will GO To REWARD CLUB from every recycle entry from the globe. And this provide you , From 2x To 5x Global Rewards. an also upto 100000 TON REWARDS and revenue from Your Network as well as  From the Global Community.
+RECYLE INCOME ( From 15 Levels In Your Network )from Any Recycled TON
 
-5 TON First Time And 10%  is used As Service provider Fee ,  Network  AI Program  & Chain Fees setup By AI ProTONnetwork.
+BABY Pack – 1% x  From Any 1 To 15 Level 
+         
+START Pack – 2% x  From Any 1 To 15 Level
 
-So, It’s Time Join With The Link & Start Earning TON From Global Network, Without Any Liability, & follow The Telegram Channel Network To Know More Updates.
+WALK Pack – 3% x  From Any 1 To 15 Level
+
+RUN Pack – 4% x  From Any 1 To 15 Level
+
+FLY Pack – 5% x  From Any 1 To 15 Level 
+
+....for more Get Click REWARD TAB
 `;
+
+// const reclub = `
+// MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
+
+// So Every TON Counts For The Community Earnings. 
+
+// Skipped Balance Either Small pack or bigger pack , 
+
+// left skipped balance GO To REWARD CLUB from every recycle entry from the globe. And this provide you , from 200 TON to 100000 TON Global Rewards .
+
+// Achieve Once In Your Network & Earn From The Global Revenue . Every Joining Counts For Your REWARD.
+
+// Community Services , Ai Program , TON Chain Transaction , Promotions & Other Network Fee & Support , System Use 5 TON First Time From Every User & 10%  From Every Activation for All Services & Support.
+
+// Let’s  Join  The Transparent & Amazing Opportunity With The Link Of Your Invitee , Start Earning TON From Global Network, Without Any Liability.
+
+// To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON
+// `;
 
 
 const { readBook, writeBook, readBooks } = require('./db');
@@ -687,6 +786,26 @@ My Network Team –
   else if (text.includes('TON Coinmarketcap')) {
     bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/`, pad);
   }
+  //
+  else if (text.includes('💰 Reward Club (Клуб вознаграждений)')) {
+    bot.sendMessage(
+      chatId,
+`MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
+
+So Every TON Counts For The Community Earnings. 
+
+Skipped Balance Either Small pack or bigger pack , 
+
+left skipped balance GO To REWARD CLUB from every recycle entry from the globe. And this provide you , from 200 TON to 100000 TON Global Rewards .
+
+Achieve Once In Your Network & Earn From The Global Revenue . Every Joining Counts For Your REWARD.
+
+Community Services , Ai Program , TON Chain Transaction , Promotions & Other Network Fee & Support , System Use 5 TON First Time From Every User & 10%  From Every Activation for All Services & Support.
+
+Let’s  Join  The Transparent & Amazing Opportunity With The Link Of Your Invitee , Start Earning TON From Global Network, Without Any Liability.
+
+To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
+  } 
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
     bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
