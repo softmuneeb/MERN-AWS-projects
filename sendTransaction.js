@@ -36,33 +36,31 @@ export const sendTransaction = async ({
   const func = sc.methods[method](...parameters);
   const from = (await web3.eth.getAccounts())[accountNumber];
   let errorMsg = null;
+  let logs = `Logs of, ${method}: ${parametersNames} ${parameters}, from ${from}\n`;
   try {
     await func.estimateGas({ from });
   } catch (e) {
     errorMsg = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
-    console.log(`estimateGasErr, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`);
-    return;
+    logs += `estimateGasErr, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}\n`;
+
+    const error = errorInResendErrors(errorMsg, resendTxOnErrors);
+    if (!error) return { error: true, errorMsg };
   }
   let nonce = null;
   let transactionHash = null;
   let wasError = true;
-  let gasPrice = await getGasPrice(web3);
-  console.log({ gasPrice });
+  let gasPrice = '40000000000';
   const retryTimes = 10;
 
-  const options = { from, gas: '200000', maxFeePerGas: gasPrice, maxPriorityFeePerGas: '30000000000' };
   for (let i = 0; i < retryTimes; i++) {
+    const options = { from, gas: '200000', maxFeePerGas: gasPrice, maxPriorityFeePerGas: '30000000000' };
     try {
-      console.log(`${new Date()} __TAG ${parameters} before`);
       transactionHash = nonce
         ? (await func.send({ ...options, nonce })).transactionHash
         : (await func.send({ ...options })).transactionHash;
-      console.log(`${new Date()} __TAG ${parameters} after`);
-      console.log({
-        date: '' + new Date(),
-        detail: `${method}: ${parametersNames} ${parameters}, from ${from}`,
-        exploreTx: `${explorer}/tx/${transactionHash}`,
-      });
+      logs += `date: ${
+        '' + new Date()
+      }, detail: ${method}: ${parametersNames} ${parameters}, from ${from}, exploreTx: ${explorer}/tx/${transactionHash}\n`;
       wasError = false;
       break;
     } catch (e) {
@@ -73,64 +71,50 @@ export const sendTransaction = async ({
         const gasPriceOld = '' + gasPrice;
         gasPrice = (await getGasPrice(web3)) + '' + i;
         const sleepTime = Math.pow(2, i);
-        console.log(
-          `replacement transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
+        logs += `replacement transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}\n`;
         await sleep(1000 * sleepTime);
       }
       if (errorMsg.includes('transaction underpriced')) {
         const gasPriceOld = '' + gasPrice;
         gasPrice = (await getGasPrice(web3)) + '' + i;
         const sleepTime = Math.pow(2, i);
-        console.log(
-          `transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
+        logs += `transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         await sleep(1000 * sleepTime);
       } else if (errorMsg.includes('Error: ETIMEDOUT')) {
         const sleepTime = Math.pow(2, i + 1);
-        console.log(
-          `ETIMEDOUT error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
+        logs += `ETIMEDOUT error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         await sleep(1000 * sleepTime);
       } else if (errorMsg.includes('nonce too low')) {
         const nonceWas = '' + nonce;
         nonce = await web3.eth.getTransactionCount(from);
         nonce++;
         const sleepTime = Math.pow(2, i);
-        console.log(
-          `nonce too low, wait ${sleepTime} s, nonce: ${nonceWas} -> ${nonce}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
+        logs += `nonce too low, wait ${sleepTime} s, nonce: ${nonceWas} -> ${nonce}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         await sleep(1000 * sleepTime);
       } else if (error) {
         const sleepTime = Math.pow(2, i);
-        console.log(
-          `${error}, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
+        logs += `${error}, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
+        errorMsg = error;
         await sleep(1000 * sleepTime);
       } else {
-        console.log(
-          `DO NOT RETRY TX ON THIS ERROR, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-        );
-        wasError = false;
+        logs += `DO NOT RETRY TX ON THIS ERROR, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         break;
       }
     }
   }
 
   if (wasError) {
-    console.log(
-      `please handle the error correctly, transaction sending error after ${retryTimes} retries, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`,
-    );
-    return { error: true, errorMsg };
+    logs += `please handle the error correctly, transaction sending error after ${retryTimes} retries, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
+    return { error: true, errorMsg, logs };
   }
 
-  return { error: false, transactionHash };
+  return { error: false, transactionHash, logs };
 };
 
 // '[object Object]';
 // const msg = e + '' === '[object Object]' ? e.message : (e + '').split('\n')[0];
-// console.log('estimate error, 1', typeof e, JSON.stringify(e) === {}, e);
-// console.log('2', typeof (e + ''), e + '', (e + '').includes('Error: execution reverted: already minted'));
+// // console.log('estimate error, 1', typeof e, JSON.stringify(e) === {}, e);
+// // console.log('2', typeof (e + ''), e + '', (e + '').includes('Error: execution reverted: already minted'));
 // const msg = e + '' === '[object Object]' ? e.message : (e + '').split('\n')[0];
-// console.log('estimate error, 1', typeof e, JSON.stringify(e) === {}, e);
-// console.log('2', typeof (e + ''), e + '', (e + '').includes('Error: execution reverted: already minted'));
+// // console.log('estimate error, 1', typeof e, JSON.stringify(e) === {}, e);
+// // console.log('2', typeof (e + ''), e + '', (e + '').includes('Error: execution reverted: already minted'));

@@ -1,12 +1,12 @@
 // Mint 6000 NFT per hour, Minting NFT Stress Test.
 // Now I have some experience, I should start mentoring programming, and life overall. Communicate about Quran for who fears Allah.
 // CONFIG MAINNET
-const tokenIdsStart = 1007800;
-const tokenIdsStop = 1007900;
+const tokenIdsStart = 1009000;
+const tokenIdsStop = 1009010;
 const explorer = 'https://polygonscan.com';
 const networkLinks = [
   'https://polygon-rpc.com',
-  'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl',
 ];
 const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
 const factoryAddress = '0x4F08873580939bA69794DA22169057847AC2B87c';
@@ -32,26 +32,30 @@ const factoryAbi = JSON.parse(
 // CODE
 import Web3 from 'web3';
 import wallet from '@truffle/hdwallet-provider';
-import { sendTransaction, sleep } from './sendTransaction.js';
+import dns from 'dns';
 import dotenv from 'dotenv';
 dotenv.config();
+
+import { sendTransaction, sleep } from './sendTransaction.js';
+import { balances } from './balances.js';
+const TREASURY_KEY_MAIN = process.env.TREASURY_KEY_MAIN;
 const SERVICE_WALLETS_MNEMONIC = process.env.SERVICE_WALLETS_MNEMONIC;
 const SERVICE_WALLETS_OFFSET = Number(process.env.SERVICE_WALLETS_OFFSET);
 const SERVICE_WALLETS_LENGTH = Number(process.env.SERVICE_WALLETS_LENGTH);
 let count = 0; // nonce
 
 const mint = async (tokenId, count) => {
-  // const networkLinkNumber = tokenId % networkLinks.length;
-  const networkLinkNumber = 0;
+  const networkLinkNumber = tokenId % networkLinks.length;
   const ethereum = new wallet({
+    numberOfAddresses: 100,
     mnemonic: SERVICE_WALLETS_MNEMONIC,
     providerOrUrl: networkLinks[networkLinkNumber],
-    pollingInterval: 86400 * 20 * 1000, // sync every 20 days
+    pollingInterval: 86400 * 20 * 1000, // this lines saves extra calls to infura or rpc end point
   });
 
   const accountNumber = SERVICE_WALLETS_OFFSET + (tokenId % SERVICE_WALLETS_LENGTH);
   const web3 = new Web3(ethereum);
-  await sendTransaction({
+  const tx = await sendTransaction({
     web3,
     abi: factoryAbi,
     accountNumber,
@@ -67,23 +71,28 @@ const mint = async (tokenId, count) => {
       'ESOCKETTIMEDOUT',
     ],
   });
+  console.log({ tx });
 
   // TODO:
   // try transfer NFT sendTransaction()
   // try transfer ERC20 sendTransaction()
 };
 
-const driver = async () => {
+const stressTest = async () => {
   console.log(`Start ${new Date()}`);
   for (let tokenId = tokenIdsStart; tokenId < tokenIdsStop; tokenId++) {
     mint(tokenId, ++count);
     await sleep(delayInMs);
-
-    // if (tokenId % 100 === 0) {
-    //   console.log('Waiting 10 seconds... Cool Down...');
-    //   await sleep(10000); // every 100 tx, wait 10 seconds cool down
-    // }
   }
 };
 
-driver();
+dns.resolve('www.google.com', function (err) {
+  if (err) {
+    console.log('No connection');
+    return;
+  }
+  console.log('Connected');
+
+  stressTest();
+  // balances();
+});
