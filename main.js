@@ -9,7 +9,7 @@ const keyboard = [
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
   ['💰 Withdraw (Отзывать)'],//
-  ['💰 Reward Club (Клуб вознаграждений)'],//
+  ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'],//
   ['💸 Income Statement (Справка о доходах)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
@@ -17,7 +17,7 @@ const keyboard = [
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
   ['📈 Marketing Plan (Маркетинговый план)'],//
   ['💎 TON Ecosystem (Экосистема ТОН)'], ['🤖 Support (Поддерживать)'],//
-  ['TON Coinmarketcap'], ['TON Exchanges (ТОН биржи)']//
+  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'], ['TON Exchanges (ТОН биржи)']//
 ];
 
 const adminKeyBoard = [
@@ -783,11 +783,11 @@ My Network Team –
     bot.sendMessage(chatId, `https://ton.org/`, pad);
   }
   //
-  else if (text.includes('TON Coinmarketcap')) {
+  else if (text.includes('TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)')) {
     bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/`, pad);
   }
   //
-  else if (text.includes('💰 Reward Club (Клуб вознаграждений)')) {
+  else if (text.includes('💰 REWARD (ВОЗНАГРАЖДЕНИЕ)')) {
     bot.sendMessage(
       chatId,
 `MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
