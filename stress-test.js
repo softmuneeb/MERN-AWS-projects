@@ -1,12 +1,64 @@
 // Mint 6000 NFT per hour, Minting NFT Stress Test.
 // Now I have some experience, I should start mentoring programming, and life overall. Communicate about Quran for who fears Allah.
 // CONFIG MAINNET
-const tokenIdsStart = 1009000;
-const tokenIdsStop = 1009001;
+const tokenIdsStart = 1010740;
+const tokenIdsStop = 1010760;
 const explorer = 'https://polygonscan.com';
 const networkLinks = [
+  // good
   'https://polygon-rpc.com',
+
+  // not ok
+  // 'https://polygon-mainnet.infura.io/v3/c0e01888c271419b9d6143a53dadfa3c',
+  // 'https://polygon-mainnet.infura.io/v3/b82130cb740742668ad1d26050002771',
+  // 'https://polygon-mainnet.infura.io/v3/cc62a24519e64419978a9642e07fdbb8',
+
+  // good
+  // 'https://thrumming-solitary-research.matic.discover.quiknode.pro/c4278dc6bf2ac18ed66af30a3f5778929825dc0b',
+
+  // good
   // 'https://polygon-mainnet.g.alchemy.com/v2/bLCZUf_rd7Y1TyyTWzRVtKP5rF9QCorl',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/MX0ucyj4Zeob66yr-ec5ustM9gBtM2-N',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/ozj1C35UMIX3F7updfI8pBZBdnGrTw5b',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/tmYL8FjXWF7YQntdcujqQugfcXUyPkQh',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/7zYBPSmUWpfwef3V1q7jReNs2kXmC6Tf',
+
+  // 'https://polygon-mainnet.g.alchemy.com/v2/BwyFUbE5fsjbpmwl4-oUs8LVGX2hn2b0',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8QffwImoKI7fhPazbaMM-JJTaQeFYz30',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/S7Bc_lpZzpVT_FhlrW1pxM7QP8iOKI9L',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/aiy9vuOgYbFCdr4iv--jfcD33cstvruA',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8GqTvd1ss10hkFfBJ_UtJwI-JWg1JqZE',
+
+  // 'https://polygon-mainnet.g.alchemy.com/v2/ssNEBMzrKyyS_QdT0iiRBbJ_6qilhxW9',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/3_RQOTzsXiyYpzPoDnlDN_BUHaK1kb2s',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/5zMzn-frLvYPYf5O247aq4DlIhvD5fAJ',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/nLAoJqlfEPpxmw4WIuk0ilgCRYecDMow',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8UTehh1MQyi6TDCKgDewPrbfcJGVMf01',
+
+  // 'https://polygon-mainnet.g.alchemy.com/v2/QbhOH1IcMCkFgQxEUnlzrqAzfrD5ZvLR',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/92zU8Pqqe8rD8TFu_bAM5jTmV3XRxpq5',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/TTMKI1XthbUFDu_3K6eJLCNQEnQ7T8P4',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/GBkLm0DrhvUDMDGc27cFIflcY70Op-C_',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/GKANcxd3WkUeSxRyZtInurvBtMcIBUjd',
+
+  // 'https://polygon-mainnet.g.alchemy.com/v2/lfDV1E18v4F82v08j34HbrjaoG0WNfkF',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/AnffSxXIAT9e6tT7nt4ZlzqlLw5sgXBK',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/rtL5cIua3H5S5BodKB-3OjmAzGvmQaN9',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/9vHwI0kFmR3pKEHazZVS5vPIFlyGL8k9',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8XsmsLMe7toxVkRlmBvIURmWS_zXZ3kx',
+
+  // moiz
+  // 'https://polygon-mainnet.g.alchemy.com/v2/lfDV1E18v4F82v08j34HbrjaoG0WNfkF',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/AnffSxXIAT9e6tT7nt4ZlzqlLw5sgXBK',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/rtL5cIua3H5S5BodKB-3OjmAzGvmQaN9',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/9vHwI0kFmR3pKEHazZVS5vPIFlyGL8k9',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8XsmsLMe7toxVkRlmBvIURmWS_zXZ3kx',
+
+  // 'https://polygon-mainnet.g.alchemy.com/v2/B13QHpMA5oyi9hDDXnOKzyFcM3-AcwBp',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/9U9QpDbltjwE63IrG33DU4CZUoSPino8',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/6mStCd9n_1W8T4p1K_n39eV4k7HK3u60',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/3h5xFY9HPlKal58vJZKLY3mNCps7fd5W',
+  // 'https://polygon-mainnet.g.alchemy.com/v2/8XsmsLMe7toxVkRlmBvIURmWS_zXZ3kx',
 ];
 const aliAddress = '0xD8EE3E8E84798125eC820336380C3aa83DD6923D';
 const nftAddress = '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b';
