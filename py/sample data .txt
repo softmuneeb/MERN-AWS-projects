@@ -1,0 +1,10 @@
+python3 get-transfer-events-ali-and-nft.py
+
+transfer event data python:
+[AttributeDict({‘args’: AttributeDict({‘_from’: ‘0x55e25807e5599366262c6505B990Dd3F62d1b762’, ‘_to’: ‘0xa286ae2E1A0e199Bd89731efDb2d6162e23825b9’, ‘_tokenId’: 3396}), ‘event’: ‘Transfer’, ‘logIndex’: 229, ‘transactionIndex’: 54, ‘transactionHash’: HexBytes(‘0xf91e94e5dde0d43ef224260ae4884bfed698e8d0b3e911d2012b52d904074425’), ‘address’: ‘0x74a845ADC5A0487887Ccc6437cCA2Ee2E5Ee8a8B’, ‘blockHash’: HexBytes(‘0x0f598609a68b2f1520e0ac310bff5e30c22ac703340f0274c96e6c0f1195b368’), ‘blockNumber’: 37639776})]
+{‘_from’: ‘0x55e25807e5599366262c6505B990Dd3F62d1b762’, ‘_to’: ‘0xa286ae2E1A0e199Bd89731efDb2d6162e23825b9’, ‘_tokenId’: 3396}
+
+
+Muneeb Zubair Khan
+for ALI transfer event data:
+AttributeDict({‘args’: AttributeDict({‘from’: ‘0x55e25807e5599366262c6505B990Dd3F62d1b762’, ‘to’: ‘0xa286ae2E1A0e199Bd89731efDb2d6162e23825b9’, ‘value’: 3000000000000000000}), ‘event’: ‘Transfer’, ‘logIndex’: 378, ‘transactionIndex’: 64, ‘transactionHash’: HexBytes(‘0xee710be8fcaf5e1fc70e5d1f09afdb38f8daceb82479c932849425acb0e3a6bd’), ‘address’: ‘0xD8EE3E8E84798125eC820336380C3aa83DD6923D’, ‘blockHash’: HexBytes(‘0x7bd467cf15620f5e7c8c2cab88b99be46805a036706854041708bd2ff90fbb24’), ‘blockNumber’: 37640420})
