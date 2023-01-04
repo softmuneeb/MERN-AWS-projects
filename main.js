@@ -2,22 +2,25 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
-  ['⭐️ Home (Дом)'],//
+  ['⭐️ Home (Дом)'], //
+  ['🔠 Language'], //
   ['🎛 My Dashbaord (щиток приборов)'], //
   ['💼 Plan Packages (Пакет планов)'], //
   ['🎒 My Package (Mой пакет)'], //
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
-  ['💰 Withdraw (Отзывать)'],//
-  ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'],//
+  ['💰 Withdraw (Отзывать)'], //
+  ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
   ['💸 Income Statement (Справка о доходах)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💡 Rules For Community (Правила для сообщества)', '💁‍♂️ Basic Info (Основная информация)'], //
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
-  ['📈 Marketing Plan (Маркетинговый план)'],//
-  ['💎 TON Ecosystem (Экосистема ТОН)'], ['🤖 Support (Поддерживать)'],//
-  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'], ['TON Exchanges (ТОН биржи)']//
+  ['📈 Marketing Plan (Маркетинговый план)'], //
+  ['💎 TON Ecosystem (Экосистема ТОН)'],
+  ['🤖 Support (Поддерживать)'], //
+  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'],
+  ['TON Exchanges (ТОН биржи)'], //
 ];
 
 const adminKeyBoard = [
@@ -36,14 +39,7 @@ const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
-  'GlobalTing',
-  '5946842435',
-  pbkey,
-  key
-];
-
-
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -95,8 +91,7 @@ const p = {
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
-      ans = 5; //WONDER
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 5; //WONDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 4; //SUPER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 3; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 2; //BAT
@@ -112,8 +107,7 @@ const p = {
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
-      ans = 'WONDER MAN'; //WONDER
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 'WONDER MAN'; //WONDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 'SUPER MAN'; //SUPER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 'SPIDER MAN'; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 'BAT MAN'; //BAT
@@ -147,7 +141,7 @@ const p = {
   getWithdrawRecyclePercentage: (u) => {
     if (!u.parent) return [100, 0];
 
-    const d = u.depositedFunds
+    const d = u.depositedFunds;
 
     let ans; // plan
     if (d >= p.level5) ans = [70, 30];
@@ -407,9 +401,9 @@ FLY Pack – 5% x  From Any 1 To 15 Level
 // const reclub = `
 // MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
 
-// So Every TON Counts For The Community Earnings. 
+// So Every TON Counts For The Community Earnings.
 
-// Skipped Balance Either Small pack or bigger pack , 
+// Skipped Balance Either Small pack or bigger pack ,
 
 // left skipped balance GO To REWARD CLUB from every recycle entry from the globe. And this provide you , from 200 TON to 100000 TON Global Rewards .
 
@@ -422,10 +416,11 @@ FLY Pack – 5% x  From Any 1 To 15 Level
 // To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON
 // `;
 
-
 const { readBook, writeBook, readBooks } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
 const TelegramBot = require('node-telegram-bot-api');
+const translate = require('translate-google');
+
 const bot = new TelegramBot(token, { polling: true });
 
 let SEND_MEDIA = 0;
@@ -441,28 +436,36 @@ const padAdmin = {
     keyboard: [...keyboard, ...adminKeyBoard],
   },
 };
+const padLanguage = {
+  reply_markup: {
+    keyboard: [['🇺🇸 English'], ['🇷🇺 Russian']],
+  },
+};
 
 let botName;
 let HELP_STATUS = {};
+let LANGUAGE_STATUS = {};
+const acceptedLanguages = { '🇺🇸 English': 'English', '🇷🇺 Russian': 'Russian' };
 
 // on telegram message
 const onMessage = async (msg, ctx) => {
   const chatId = msg.chat.id;
+  const { text } = msg;
 
   if (HELP_STATUS[chatId] === 1) {
     HELP_STATUS[chatId] = 0;
-    bot.forwardMessage("5745083820", chatId, msg.message_id);
+
+    bot.forwardMessage('5745083820', chatId, msg.message_id);
     return;
   }
 
-  const { text } = msg;
   const userName = msg.chat.username;
 
   // console.log({ msg, ctx }); // for dev
   // console.log({ text });
 
   if (!userName) {
-    bot.sendMessage(chatId, 'Please add your user name in telegram settings');
+    botSendMessage(chatId, 'Please add your user name in telegram settings');
     return;
   }
 
@@ -478,60 +481,6 @@ const onMessage = async (msg, ctx) => {
       ...padAdmin,
       parse_mode: 'Markdown',
     };
-  }
-
-  if (admins.includes(userName) && SEND_MEDIA === 1) {
-    SEND_MEDIA = 0;
-    // bot.forwardMessage(adminChatId, chatId, msg.message_id);
-    await sendToAllUsers(msg);
-
-    // if (msg.document) {
-    //   await sendToAllUsers('sendDocument', msg.document.file_id);
-    // } //
-    // else if (msg.photo) {
-    //   await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
-    // } //
-    // else if (msg.text) {
-    //   await sendToAllUsers('sendMessage', msg.text);
-    // }
-
-    bot.sendMessage(chatId, 'Sending... to all users', pad);
-    return;
-  }
-
-  if (!text || text === undefined) {
-    bot.sendMessage(chatId, 'Please send only text', pad);
-    return;
-  }
-  //
-  else if (text.includes('🤖 Support (Поддерживать)')) {
-    bot.sendMessage(chatId, help, pad);
-    HELP_STATUS[chatId] = 1;
-    return;
-  }
-  //
-  else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
-    bot.sendMessage(chatId, info, pad);
-    return;
-  }
-  //
-  else if (text.includes('💼 Plan Packages (Пакет планов)')) {
-    bot.sendMessage(chatId, plans, pad);
-    return;
-  }
-  //
-  else if (text.includes('📡 AiProTON Features (Особенности АйПроТОН)')) {
-    bot.sendMessage(chatId, features, pad);
-    return;
-  }
-  //
-  else if (text.includes('💡 Rules For Community (Правила для сообщества)')) {
-    bot.sendMessage(chatId, rules, pad);
-    return;
-  }
-  //
-  else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
-    bot.sendMessage(chatId, market, pad);
   }
 
   ///////////////////////////////
@@ -573,8 +522,8 @@ const onMessage = async (msg, ctx) => {
     await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
-    bot.sendMessage(chatId, 'You are invited by ' + parent.userName, pad);
-    bot.sendMessage(parent.chatId, 'You invited ' + userName, pad);
+    botSendMessage(user, 'You are invited by ' + parent.userName, pad);
+    botSendMessage(parent, 'You invited ' + userName, pad);
   }
 
   console.log({ user, d: new Date() });
@@ -583,15 +532,86 @@ const onMessage = async (msg, ctx) => {
   /////////  USER AUTH  /////////
   ///////////////////////////////
 
+  if (LANGUAGE_STATUS[chatId] === 1) {
+    LANGUAGE_STATUS[chatId] = 0;
+
+    if (acceptedLanguages[text]) {
+      await writeBook({ userName }, { language: acceptedLanguages[text] });
+      botSendMessage(user, `Language changed to ${text} successfully`, pad);
+    } else {
+      botSendMessage(user, 'Please give correct language', pad);
+    }
+
+    return;
+  }
+
+  if (admins.includes(userName) && SEND_MEDIA === 1) {
+    SEND_MEDIA = 0;
+    // bot.forwardMessage(adminChatId, chatId, msg.message_id);
+    await sendToAllUsers(msg);
+
+    // if (msg.document) {
+    //   await sendToAllUsers('sendDocument', msg.document.file_id);
+    // } //
+    // else if (msg.photo) {
+    //   await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
+    // } //
+    // else if (msg.text) {
+    //   await sendToAllUsers('sendMessage', msg.text);
+    // }
+
+    botSendMessage(user, 'Sending... to all users', pad);
+    return;
+  }
+
+  if (!text || text === undefined) {
+    botSendMessage(user, 'Please send only text', pad);
+    return;
+  }
+  //
+  else if (text.includes('🤖 Support (Поддерживать)')) {
+    botSendMessage(user, help, pad);
+    HELP_STATUS[chatId] = 1;
+    return;
+  }
+  //
+  else if (text.includes('🔠 Language')) {
+    botSendMessage(user, 'Please select language', padLanguage);
+    LANGUAGE_STATUS[chatId] = 1;
+    return;
+  }
+  //
+  else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
+    botSendMessage(user, info, pad);
+    return;
+  }
+  //
+  else if (text.includes('💼 Plan Packages (Пакет планов)')) {
+    botSendMessage(user, plans, pad);
+    return;
+  }
+  //
+  else if (text.includes('📡 AiProTON Features (Особенности АйПроТОН)')) {
+    botSendMessage(user, features, pad);
+    return;
+  }
+  //
+  else if (text.includes('💡 Rules For Community (Правила для сообщества)')) {
+    botSendMessage(user, rules, pad);
+    return;
+  }
+  //
+  else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
+    botSendMessage(user, market, pad);
+  }
+
   //
   //
   //Plan ${p.planName(user)}
   // Deposited ${user.depositedFunds} TON
   // PUBLIC FUNCTIONS
   if (text.includes('/start') || text.includes('⭐️ Home (Дом)')) {
-    bot.sendMessage(
-      chatId,
-      `Hello ${userName}
+    const textReply = `Hello ${userName}
       
 Welcome To AiProTON Network
 
@@ -608,18 +628,18 @@ This Community platform offers  full-featured Telegram wallet application that a
 As Telegram Network Itself Have more Than 700 Million Community Across The Globe & TON Network Is Going To Be The Best Crypto Ever In Crypto Industry.
 
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
-    `,
-      padCopyAble,
-    );
+`;
+
+    botSendMessage(user, textReply, padCopyAble);
   }
   //
   else if (text.includes('🕹 Upgrade (Обновление)')) {
     if (!exists(user)) {
-      bot.sendMessage(chatId, 'Invalid user', pad);
+      botSendMessage(user, 'Invalid user', pad);
       return;
     }
     if (user.balance === 0) {
-      bot.sendMessage(chatId, 'Low balance to upgrade', pad);
+      botSendMessage(user, 'Low balance to upgrade', pad);
       return;
     }
 
@@ -628,17 +648,19 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
-    bot.sendMessage(chatId, 'Upgraded your package is ' + p.planName(user), pad);
+    botSendMessage(user, 'Upgraded your package is ' + p.planName(user), pad);
   }
   //
   else if (text.includes('🚀 Super Star Club (Суперзвездный клуб)')) {
-    bot.sendMessage(chatId, `Level: ${p.getLevelName(user)}
+    const replyText = `Level: ${p.getLevelName(user)}
 Level-1 (${user.level1ChildPaying})
 Level-2 (${user.level2ChildPaying})
 Level-3 (${user.level3ChildPaying})
 Level-4 (${user.level4ChildPaying})
-Level-5 (${user.level5ChildPaying})`, pad);
-    // bot.sendMessage(
+Level-5 (${user.level5ChildPaying})`;
+
+    botSendMessage(user, replyText, pad);
+    // botSendMessage(
     //   chatId,
     //   `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
     //   pad,
@@ -647,37 +669,30 @@ Level-5 (${user.level5ChildPaying})`, pad);
   //
   else if (text.includes('🎒 My Package (Mой пакет)')) {
     const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
-
-    bot.sendMessage(
-      chatId,
-      `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
-      pad,
-    );
+    botSendMessage(user, `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`, pad);
   }
   //
   else if (text.includes('💸 Income Statement (Справка о доходах)')) {
-    bot.sendMessage(chatId,
-`Your TON Earnings Available: ${user.balance}
+    botSendMessage(
+      user,
+      `Your TON Earnings Available: ${user.balance}
 
 Total TON Earnings in History: ${user.totalEarnings}
-`, pad);
-  }
-  
-  else if (text.includes('🖇 Referrals list (Прямое направление)')) {
+`,
+      pad,
+    );
+  } else if (text.includes('🖇 Referrals list (Прямое направление)')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
-    let childPaying =
-      user.childPaying.length > 0
-        ? 'Your Active Direct Referrals: ' + user.childPaying + '\n'
-        : 'You invited no people who deposited funds\n';
+    let childPaying = user.childPaying.length > 0 ? 'Your Active Direct Referrals: ' + user.childPaying + '\n' : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
-    bot.sendMessage(chatId, `${parent}${child}${childPaying}`, pad);
+    botSendMessage(user, `${parent}${child}${childPaying}`, pad);
   }
   //
   else if (text.includes('💵 My Wallet (Мой бумажник)')) {
-    bot.sendMessage(
-      chatId,
+    botSendMessage(
+      user,
       `Here You Can Deposit Your TON For Your Pack Activation , What Amount You Deposit , You Will Get The Benefit According That Pack Value . Deposit TON Here From Your TON WALLET.
 
 Your TON Earnings Available: ${user.balance}
@@ -692,8 +707,8 @@ Deposit Address:\n\`${user.publicKey}\``,
   }
   //
   else if (text.includes('🔗 Invitation link (Пригласительная ссылка)')) {
-    bot.sendMessage(
-      chatId,
+    botSendMessage(
+      user,
       `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
       
 Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=${userName}\``,
@@ -704,10 +719,7 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
   else if (text.includes('🎛 My Dashbaord (щиток приборов)')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
-    let childPaying =
-      user.childPaying.length > 0
-        ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
-        : 'You invited no people who deposited funds\n';
+    let childPaying = user.childPaying.length > 0 ? 'You invited and they have deposited in system: ' + user.childPaying + '\n' : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
     let { status7SponsorPool } = user;
     status7SponsorPool = status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
@@ -733,8 +745,8 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
     const [withdraw] = p.getWithdrawRecyclePercentage(user);
     const withdrawAmount = user.balance * withdraw * percent;
 
-    bot.sendMessage(
-      chatId,
+    botSendMessage(
+      user,
       `
 My User Name – ${userName}
 
@@ -768,7 +780,7 @@ My Network Team –
       padCopyAble,
     );
     // (REWARD ${user.balance - newBalanceCanBe} TON)
-    // bot.sendMessage(
+    // botSendMessage(
     //   chatId,
     //   `
     //   ${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
@@ -780,17 +792,17 @@ My Network Team –
   }
   //
   else if (text.includes('💎 TON Ecosystem (Экосистема ТОН)')) {
-    bot.sendMessage(chatId, `https://ton.org/`, pad);
+    botSendMessage(user, `https://ton.org/`, pad);
   }
   //
   else if (text.includes('TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)')) {
-    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/`, pad);
   }
   //
   else if (text.includes('💰 REWARD (ВОЗНАГРАЖДЕНИЕ)')) {
-    bot.sendMessage(
-      chatId,
-`MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
+    botSendMessage(
+      user,
+      `MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
 
 So Every TON Counts For The Community Earnings. 
 
@@ -804,11 +816,13 @@ Community Services , Ai Program , TON Chain Transaction , Promotions & Other Net
 
 Let’s  Join  The Transparent & Amazing Opportunity With The Link Of Your Invitee , Start Earning TON From Global Network, Without Any Liability.
 
-To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
-  } 
+To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
+      pad,
+    );
+  }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
-    bot.sendMessage(chatId, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
   }
   //
   else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
@@ -816,58 +830,59 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      bot.sendMessage(chatId, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
+      botSendMessage(user, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
       return;
     }
 
     const withdrawAmount = user.balance * withdraw * percent;
     if (withdrawAmount < MIN_WITHDRAW) {
-      bot.sendMessage(chatId, `Minimum withdraw is ${MIN_WITHDRAW} TON`, pad);
+      botSendMessage(user, `Minimum withdraw is ${MIN_WITHDRAW} TON`, pad);
       return;
     }
 
     const [, adminBalance] = await getBalance(adminAddress);
     if (adminBalance < withdrawAmount) {
-      bot.sendMessage(chatId, `Please ask admin to open the withdraw`, pad);
-      bot.sendMessage(adminChatId, `A user is asking for withdraw: ${userName}`, pad);
+      botSendMessage(user, `Please ask admin to open the withdraw`, pad);
+      const admin = await readBook({ userName: adminUserName });
+      botSendMessage(admin, `A user is asking for withdraw: ${userName}`, pad);
       return;
     }
 
     let withdrawWallet = text.split(' ')[1];
     if (!isValidAddress(text)) {
-      bot.sendMessage(chatId, 'Please send TON deposit address', pad);
+      botSendMessage(user, 'Please send TON deposit address', pad);
       return;
     }
 
     withdrawWallet = text;
 
     const recycleAmount = user.balance * recycle * percent;
-    bot.sendMessage(chatId, `Loading...`, pad);
+    botSendMessage(user, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
     await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
     await writeBook({ userName }, { balance: 0 });
 
-    bot.sendMessage(chatId, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
+    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
   //
   //
   // ADMIN FUNCTIONS
   else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`, pad);
       return;
     }
 
     const usersOf7Pool = await readBooks({ status7SponsorPool: IN_POOL });
     if (usersOf7Pool.length === 0) {
-      bot.sendMessage(chatId, `There are no 7 Pool Members`, pad);
+      botSendMessage(user, `There are no 7 Pool Members`, pad);
       return;
     }
 
     const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7Pool.length;
     if (rewardPerUser === 0) {
-      bot.sendMessage(chatId, `Not enough funds in 7 Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in 7 Members in Pool`, pad);
       return;
     }
 
@@ -892,16 +907,12 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
     }
 
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPool });
-    bot.sendMessage(
-      chatId,
-      `Successfully sent ${pool.balance - backToPool} TON to pool members remaining is ${backToPool} TON`,
-      pad,
-    );
+    botSendMessage(user, `Successfully sent ${pool.balance - backToPool} TON to pool members remaining is ${backToPool} TON`, pad);
   }
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`, pad);
       return;
     }
 
@@ -920,13 +931,13 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
     const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
-      bot.sendMessage(chatId, `There are no Super Star Pool Members`, pad);
+      botSendMessage(user, `There are no Super Star Pool Members`, pad);
       return;
     }
 
     const pool = await readBook({ userName: SUPER_STAR_POOL });
     if (pool.balance === 0) {
-      bot.sendMessage(chatId, `Not enough funds in Super Star Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in Super Star Members in Pool`, pad);
       return;
     }
 
@@ -965,16 +976,12 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
 
     const poolRemaining = pool.balance - rewardGiven + backToPool;
     await writeBook({ userName: SUPER_STAR_POOL }, { balance: poolRemaining });
-    bot.sendMessage(
-      chatId,
-      `Sent successfully sent ${rewardGiven} TON to pool members, remaining in Pool ${poolRemaining} TON`,
-      pad,
-    );
+    botSendMessage(user, `Sent successfully sent ${rewardGiven} TON to pool members, remaining in Pool ${poolRemaining} TON`, pad);
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`, pad);
       return;
     }
 
@@ -992,24 +999,24 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
       await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
       await writeBook({ userName }, { balance: 0 });
 
-      bot.sendMessage(chatId, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
+      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
     }
 
-    bot.sendMessage(chatId, 'Success Force Withdraw All Users', pad);
+    botSendMessage(user, 'Success Force Withdraw All Users', pad);
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`, pad);
       return;
     }
     SEND_MEDIA = 1;
-    bot.sendMessage(chatId, '🎥 Please send text / image / video here to send to all users', pad);
+    botSendMessage(user, '🎥 Please send text / image / video here to send to all users', pad);
   }
   //
   else if (text.includes('📊 System Stats')) {
     if (!admins.includes(userName)) {
-      bot.sendMessage(chatId, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`, pad);
       return;
     }
     let admin = await readBook({ userName: adminUserName });
@@ -1031,8 +1038,8 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`, pad);
     const usersL4 = usersLevel4.length;
     const usersL5 = usersLevel5.length;
 
-    bot.sendMessage(
-      chatId,
+    botSendMessage(
+      user,
       `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings Available: ${admin.balance} TON\nAdmin Earnings History: ${admin.totalEarnings} TON\n7 SPONSOR POOL AVAILABLE: ${__7_SPONSOR_POOL.balance} TON\n7 SPONSOR POOL HISTORY: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL AVAILABLE: ${_SUPER_STAR_POOL.balance} TON\nSUPER STAR POOL HISTORY: ${_SUPER_STAR_POOL.balance} TON
 
 Users Level 1: ${usersL1} 
@@ -1047,11 +1054,11 @@ Users Level 5: ${usersL5}
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
-      bot.sendMessage(chatId, `Hi Admin ${userName}`, pad);
+      botSendMessage(user, `Hi Admin ${userName}`, pad);
       return;
     }
 
-    bot.sendMessage(chatId, `Hi ${userName}`, pad);
+    botSendMessage(user, `Hi ${userName}`, pad);
   }
 };
 
@@ -1099,10 +1106,7 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
   if (!user.parent || p.getPlanNumber(user) < p.START) {
-    await writeBook(
-      { userName: adminUserName },
-      { balance: admin.balance + 100 * percent, totalEarnings: admin.totalEarnings + 100 * percent },
-    );
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent, totalEarnings: admin.totalEarnings + 100 * percent });
     console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
     return; //  <---------------------<
   }
@@ -1111,26 +1115,14 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // 1 to 3
   if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
-    await writeBook(
-      { userName: userParent.userName },
-      { balance: userParent.balance + 10 * percent, totalEarnings: userParent.totalEarnings + 10 * percent },
-    );
-    await writeBook(
-      { userName: adminUserName },
-      { balance: admin.balance + 5 * percent, totalEarnings: admin.totalEarnings + 5 * percent },
-    );
-    await writeBook(
-      { userName: _7_SPONSOR_POOL },
-      { balance: pool.balance + 5 * percent, totalEarnings: pool.totalEarnings + 5 * percent },
-    );
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 10 * percent, totalEarnings: userParent.totalEarnings + 10 * percent });
+    await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent, totalEarnings: admin.totalEarnings + 5 * percent });
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent, totalEarnings: pool.totalEarnings + 5 * percent });
   }
 
   // 4 to 6
   else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
-    await writeBook(
-      { userName: userParent.userName },
-      { balance: userParent.balance + 15 * percent, totalEarnings: userParent.totalEarnings + 15 * percent },
-    );
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 15 * percent, totalEarnings: userParent.totalEarnings + 15 * percent });
     await writeBook(
       { userName: adminUserName },
       {
@@ -1138,18 +1130,12 @@ const deposit = async (user, depositedFunds, userName) => {
         totalEarnings: admin.totalEarnings + 2.5 * percent,
       },
     );
-    await writeBook(
-      { userName: _7_SPONSOR_POOL },
-      { balance: pool.balance + 2.5 * percent, totalEarnings: pool.totalEarnings + 2.5 * percent },
-    );
+    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent, totalEarnings: pool.totalEarnings + 2.5 * percent });
   }
 
   // 7 or more child paying
   else {
-    await writeBook(
-      { userName: userParent.userName },
-      { balance: userParent.balance + 20 * percent, totalEarnings: userParent.totalEarnings + 20 * percent },
-    );
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 20 * percent, totalEarnings: userParent.totalEarnings + 20 * percent });
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
@@ -1172,11 +1158,7 @@ const deposit = async (user, depositedFunds, userName) => {
 
     console.log({ userParent, wasError: 'can not read value of undefined' });
     const newLevel = p.getLevel(userParent);
-    newLevel > userParent.level &&
-      (await writeBook(
-        { userName: userParent.userName },
-        { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance },
-      ));
+    newLevel > userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance }));
   }
 
   let remaining = 100; // percent
@@ -1215,29 +1197,26 @@ const deposit = async (user, depositedFunds, userName) => {
           totalEarnings: userParent.totalEarnings + 5 * percent,
         },
       );
-      bot.sendMessage(userParent.chatId, `You have earned ${5 * percent} TON from deposit of ${userName}`);
+      botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
   }
 
   console.log({ remainingSending: remaining });
-  await writeBook(
-    { userName: adminUserName },
-    { balance: admin.balance + remaining * percent, totalEarnings: admin.totalEarnings + remaining * percent },
-  );
+  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent, totalEarnings: admin.totalEarnings + remaining * percent });
 };
 
 const transferError = (e) => {
   try {
-    bot.sendMessage(devChatId, `1, ${JSON.stringify(e)}`);
+    botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
   } catch (error) {
-    bot.sendMessage(devChatId, `2, ${e}`);
+    botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
   }
 };
 
 const recycleRewards = async (user, depositedFunds) => {
   if (depositedFunds === 0) return;
   if (!user.parent) {
-    // bot.sendMessage(user.chatId, `Admin can not recycle`);
+    // botSendMessage(user.chatId, `Admin can not recycle`);
     return;
   }
 
@@ -1306,6 +1285,18 @@ const seedDB = async () => {
     console.log('db used second or more times');
   }
   console.log('Bot started ' + new Date());
+};
+
+const botSendMessage = (user, msg, pad) => {
+  // if (!pad) pad = padSimple;
+
+  translate(msg, { to: user.language })
+    .then((translation) => {
+      bot.sendMessage(user.chatId, translation, pad);
+    })
+    .catch((err) => {
+      bot.sendMessage(user.chatId, msg, pad);
+    });
 };
 
 seedDB().then(() => bot.on('message', onMessage));

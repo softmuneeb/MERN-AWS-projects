@@ -83,6 +83,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
+  language: {
+    type: String,
+    default: 'english',
+  },
   mnemonic: {
     type: String,
     default: null,
