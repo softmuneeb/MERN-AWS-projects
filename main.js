@@ -438,14 +438,14 @@ const padAdmin = {
 };
 const padLanguage = {
   reply_markup: {
-    keyboard: [['🇺🇸 English'], ['🇷🇺 Russian']],
+    keyboard: [['🇺🇸 English'], ['🇷🇺 Russian'], ['🇰🇷 Korean'], ['🇪🇸 Spanish'], ['🇻🇳 Vietnamese'], ['🇨🇳 Chinese Simplified']],
   },
 };
 
 let botName;
 let HELP_STATUS = {};
 let LANGUAGE_STATUS = {};
-const acceptedLanguages = { '🇺🇸 English': 'English', '🇷🇺 Russian': 'Russian' };
+const acceptedLanguages = { '🇺🇸 English': 'English', '🇷🇺 Russian': 'Russian','🇰🇷 Korean': 'Korean', '🇪🇸 Spanish': 'Spanish', '🇻🇳 Vietnamese': 'Vietnamese', '🇨🇳 Chinese Simplified': 'Chinese Simplified'};
 
 // on telegram message
 const onMessage = async (msg, ctx) => {

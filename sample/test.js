@@ -6,7 +6,7 @@ const tranObj = {
   d: [true, 'true', 'hi', { a: 'hello', b: ['world'] }],
 };
 
-translate(tranObj, { to: 'English', except: ['a'] })
+translate(tranObj, { to: 'Chinese Simplified', except: ['a'] })
   .then((res) => {
     console.log(res);
   })
