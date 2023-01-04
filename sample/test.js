@@ -1,2 +1,13 @@
-0 / 0;
-console.log(0/0);
+const translate = require('translate-google')
+const tranObj = {
+  a: 1,
+  b: '1',
+  c: "hello",
+  d: [true, 'true', 'hi', { a: 'hello', b: ['world']}],
+}
+
+translate(tranObj, {to: 'russian', except:['a']}).then(res => {
+    console.log(res)
+}).catch(err => {
+    console.error(err)
+})
