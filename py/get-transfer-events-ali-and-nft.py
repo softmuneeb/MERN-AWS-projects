@@ -12,9 +12,13 @@ nft_abi_path = 'nft_abi.json'
 nft_address = Web3.toChecksumAddress(
     '0x74a845adc5a0487887ccc6437cca2ee2e5ee8a8b')
 
-rpc = 'wss://polygon-mainnet.g.alchemy.com/v2/7zYBPSmUWpfwef3V1q7jReNs2kXmC6Tf'
+wallet_address = Web3.toChecksumAddress(
+    '0xEDB280bE19ABd046692DdF7Ad700CB8139AD2B78')
 
-web3 = Web3(Web3.WebsocketProvider(rpc))
+wss_rpc = 'wss://polygon-mainnet.g.alchemy.com/v2/7zYBPSmUWpfwef3V1q7jReNs2kXmC6Tf'
+rpc = 'https://polygon-rpc.com/'
+
+web3 = Web3(Web3.HTTPProvider(rpc))
 
 with open(ali_abi_path) as f:
     ali_abi = json.load(f)
@@ -27,6 +31,7 @@ ali = web3.eth.contract(address=ali_address, abi=ali_abi)
 
 print('nft total supply:')
 print(nft.functions.totalSupply().call())
+print(nft.functions.balanceOf(wallet_address).call())
 
 
 async def log_loop(event_filter):
@@ -44,3 +49,4 @@ try:
     loop.run_until_complete(asyncio.gather(log_loop(nft_transfer_event)))
 finally:
     loop.close()
+    
