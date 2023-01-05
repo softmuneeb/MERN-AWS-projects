@@ -78,11 +78,29 @@ const p = {
   RUN: 4, // 200 TON RUN
   FLY: 5, // 500 TON FLY
 
-  IRON_MAN: 2, //10, // LEVEL 1
-  BAT_MAN: 4, //50, // LEVEL 2
-  SPIDER_MAN: 6, //200, // LEVEL 3
-  SUPER_MAN: 8, //500, // LEVEL 4
-  WONDER_MAN: 10, //1000, // LEVEL 5
+  // IRON_MAN: 1, // LEVEL 1
+  // BAT_MAN: 2, // LEVEL 2
+  // SPIDER_MAN: 3, // LEVEL 3
+  // SUPER_MAN: 4, // LEVEL 4
+  // WONDER_MAN: 5, // LEVEL 5
+  // AVATAR_MAN: 6, // LEVEL 6
+
+  IRON_MAN: 1_000, // LEVEL 1
+  BAT_MAN: 3_000, // LEVEL 2
+  SPIDER_MAN: 10_000, // LEVEL 3
+  SUPER_MAN: 20_000, // LEVEL 4
+  WONDER_MAN: 30_000, // LEVEL 5
+  AVATAR_MAN: 500_000, // LEVEL 6
+
+  levelMaxEarnings: {
+    0: 0,
+    1: 200,
+    2: 500,
+    3: 1000,
+    4: 2500,
+    5: 5000,
+    6: 25000,
+  },
 
   getLevel: (u) => {
     const l1 = u.level1ChildPaying;
@@ -90,8 +108,10 @@ const p = {
     const l3 = u.level3ChildPaying;
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
+    const l6 = u.level6ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 5; //WONDER
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN && l6 >= p.AVATAR_MAN) ans = 6; //AVATAR MAN
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 5; //WONDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 4; //SUPER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 3; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 2; //BAT
@@ -106,8 +126,10 @@ const p = {
     const l3 = u.level3ChildPaying;
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
+    const l6 = u.level6ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 'WONDER MAN'; //WONDER
+    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN && l6 >= p.AVATAR_MAN) ans = 'AVATAR MAN'; //AVATAR MAN
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 'WONDER MAN'; //WONDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 'SUPER MAN'; //SUPER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 'SPIDER MAN'; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 'BAT MAN'; //BAT
@@ -445,7 +467,14 @@ const padLanguage = {
 let botName;
 let HELP_STATUS = {};
 let LANGUAGE_STATUS = {};
-const acceptedLanguages = { '🇺🇸 English': 'English', '🇷🇺 Russian': 'Russian','🇰🇷 Korean': 'Korean', '🇪🇸 Spanish': 'Spanish', '🇻🇳 Vietnamese': 'Vietnamese', '🇨🇳 Chinese Simplified': 'Chinese Simplified'};
+const acceptedLanguages = {
+  '🇺🇸 English': 'English',
+  '🇷🇺 Russian': 'Russian',
+  '🇰🇷 Korean': 'Korean',
+  '🇪🇸 Spanish': 'Spanish',
+  '🇻🇳 Vietnamese': 'Vietnamese',
+  '🇨🇳 Chinese Simplified': 'Chinese Simplified',
+};
 
 // on telegram message
 const onMessage = async (msg, ctx) => {
@@ -1066,23 +1095,22 @@ const giveRewardEqually = async (users, rewardPerUser) => {
   let backToPool = 0;
 
   for (let i = 0; i < users.length; i++) {
-    const { userName, balanceOnEnteringSuperStarPool, earningsSuperStarPool, statusSuperStarPool } = users[i];
+    const user = users[i];
+    const { userName, earningsSuperStarPool } = user;
 
-    if (statusSuperStarPool === REMOVED_FROM_POOL) {
-      backToPool += rewardPerUser;
-      continue;
-    }
+    const userLevel = p.getLevel(user);
+    const userMaxEarnings = p.levelMaxEarnings[userLevel];
 
-    const maxEarnings = balanceOnEnteringSuperStarPool;
+    console.log({ userLevel, maxEarnings: userMaxEarnings, forDebug: true });
+
     const newEarnings = earningsSuperStarPool + rewardPerUser;
-    if (newEarnings >= maxEarnings) {
-      const excessAmount = newEarnings - maxEarnings;
+    if (newEarnings >= userMaxEarnings) {
+      const excessAmount = newEarnings - userMaxEarnings;
       backToPool += excessAmount;
       await writeBook(
         { userName },
         {
-          earningsSuperStarPool: maxEarnings,
-          statusSuperStarPool: REMOVED_FROM_POOL,
+          earningsSuperStarPool: userMaxEarnings,
         },
       );
     } else {
@@ -1150,7 +1178,7 @@ const deposit = async (user, depositedFunds, userName) => {
     await writeBook(
       { userName: userParent.userName },
       {
-        level1ChildPaying: userParent.level1ChildPaying + 1,
+        level1ChildPaying: userParent.level1ChildPaying + depositedFunds,
         childPaying: [...userParent.childPaying, userName],
       },
     );
@@ -1171,7 +1199,7 @@ const deposit = async (user, depositedFunds, userName) => {
     // maintain data for Super Star Pool
     if (level <= 5 && userDepositedFirstTime) {
       const newUserParent = {};
-      newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + 1;
+      newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + depositedFunds;
       await writeBook({ userName: userParent.userName }, newUserParent);
       userParent = await readBook({ userName: userParent.parent });
 

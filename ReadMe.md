@@ -1,3 +1,11 @@
+Now:
+
+// TODO: user can withdraw his 7pool superPool earnings, also add to historyEarnings
+// TODO: Must Achieve Any Four Level, its auto thing? why written?
+
+
+===================================
+Later:
 // TODO: account statement
 // TODO: parallel. three test cases we made on paper 
 

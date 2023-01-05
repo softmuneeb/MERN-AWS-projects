@@ -63,6 +63,10 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  level6ChildPaying: {
+    type: Number,
+    default: 0,
+  },
 
   depositedFunds: {
     // decides plan of user is START, WALK, RUN or FLY
