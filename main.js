@@ -686,7 +686,9 @@ Level-5 (${user.level5ChildPaying})`;
   else if (text.includes('💸 Income Statement (Справка о доходах)')) {
     botSendMessage(
       user,
-      `Your TON Earnings Available: ${user.balance}
+      `Your TON Referral Earnings Available: ${user.balance}
+Your Earnings Super Star Pool: ${user.earningsSuperStarPool}
+Your Earnings 7 Sponsor Pool: ${user.earnings7SponsorPool}
 
 Total TON Earnings in History: ${user.totalEarnings}
 `,
@@ -845,9 +847,9 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
       return;
     }
 
-    const withdrawAmount = user.balance * withdraw * percent;
+    const withdrawAmount = (user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool) * withdraw * percent;
     if (withdrawAmount < MIN_WITHDRAW) {
-      botSendMessage(user, `Minimum withdraw is ${MIN_WITHDRAW} TON`, pad);
+      botSendMessage(user, `Can not withdraw. Your Referral Earnings + Pool Earnings are less than ${MIN_WITHDRAW} TON`, pad);
       return;
     }
 
@@ -871,7 +873,7 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     botSendMessage(user, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
     await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
-    await writeBook({ userName }, { balance: 0 });
+    await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
 
     botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
@@ -900,20 +902,23 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     let backToPool = 0;
     for (let i = 0; i < usersOf7Pool.length; i++) {
       const user = usersOf7Pool[i];
+      const { totalEarnings } = user;
       const newEarnings = user.earnings7SponsorPool + rewardPerUser;
       const maxEarnings = 2 * user.depositedFunds;
       if (newEarnings >= maxEarnings) {
         const excessAmount = newEarnings - maxEarnings;
+        const givenAmount = maxEarnings - user.earnings7SponsorPool;
         backToPool += excessAmount;
         await writeBook(
           { userName },
           {
             earnings7SponsorPool: maxEarnings,
             status7SponsorPool: REMOVED_FROM_POOL,
+            totalEarnings: totalEarnings + givenAmount,
           },
         );
       } else {
-        await writeBook({ userName }, { earnings7SponsorPool: newEarnings });
+        await writeBook({ userName }, { earnings7SponsorPool: newEarnings, totalEarnings: totalEarnings + rewardPerUser });
       }
     }
 
@@ -1078,7 +1083,7 @@ const giveRewardEqually = async (users, rewardPerUser) => {
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    const { userName, earningsSuperStarPool } = user;
+    const { userName, earningsSuperStarPool, totalEarnings } = user;
 
     const userLevel = p.getLevel(user);
     const userMaxEarnings = p.levelMaxEarnings[userLevel];
@@ -1088,15 +1093,17 @@ const giveRewardEqually = async (users, rewardPerUser) => {
     const newEarnings = earningsSuperStarPool + rewardPerUser;
     if (newEarnings >= userMaxEarnings) {
       const excessAmount = newEarnings - userMaxEarnings;
+      const givenAmount = userMaxEarnings - earningsSuperStarPool;
       backToPool += excessAmount;
       await writeBook(
         { userName },
         {
           earningsSuperStarPool: userMaxEarnings,
+          totalEarnings: totalEarnings + givenAmount,
         },
       );
     } else {
-      await writeBook({ userName }, { earningsSuperStarPool: newEarnings });
+      await writeBook({ userName }, { earningsSuperStarPool: newEarnings, totalEarnings: totalEarnings + rewardPerUser });
     }
   }
 
