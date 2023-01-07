@@ -14,7 +14,10 @@ const keyboard = [
   ['💸 Income Statement (Справка о доходах)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
-  ['💡 Rules For Community (Правила для сообщества)', '💁‍♂️ Basic Info (Основная информация)'], //
+  [
+    '💡 Rules For Community (Правила для сообщества)',
+    '💁‍♂️ Basic Info (Основная информация)',
+  ], //
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
   ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💎 TON Ecosystem (Экосистема ТОН)'],
@@ -39,7 +42,12 @@ const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
+  'GlobalTing',
+  '5946842435',
+  pbkey,
+  key,
+];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -71,12 +79,12 @@ const p = {
   // level4: 4, // 200 TON RUN
   // level5: 5, // 500 TON FLY
 
-  ZERO: 0, // < 5 TON ZERO
-  BABY: 1, // 5 TON   BABY
-  START: 2, // 25 TON  START
-  WALK: 3, // 50 TON  WALK
-  RUN: 4, // 200 TON RUN
-  FLY: 5, // 500 TON FLY
+  ZERO: 0,
+  BABY: 1,
+  START: 2,
+  WALK: 3,
+  RUN: 4,
+  FLY: 5,
 
   // IRON_MAN: 1, // LEVEL 1
   // BAT_MAN: 2, // LEVEL 2
@@ -102,7 +110,7 @@ const p = {
     6: 25000,
   },
 
-  getLevel: (u) => {
+  getLevel: u => {
     const l1 = u.level1ChildPaying;
     const l2 = u.level2ChildPaying;
     const l3 = u.level3ChildPaying;
@@ -110,17 +118,39 @@ const p = {
     const l5 = u.level5ChildPaying;
     const l6 = u.level6ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN && l6 >= p.AVATAR_MAN) ans = 6; //AVATAR MAN
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 5; //WONDER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 4; //SUPER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 3; //SPIDER
+    if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN &&
+      l5 >= p.WONDER_MAN &&
+      l6 >= p.AVATAR_MAN
+    )
+      ans = 6; //AVATAR MAN
+    else if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN &&
+      l5 >= p.WONDER_MAN
+    )
+      ans = 5; //WONDER
+    else if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN
+    )
+      ans = 4; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN)
+      ans = 3; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 2; //BAT
     else if (l1 >= p.IRON_MAN) ans = 1; // IRON MAN
     else ans = 0;
     return ans;
   },
 
-  getLevelName: (u) => {
+  getLevelName: u => {
     const l1 = u.level1ChildPaying;
     const l2 = u.level2ChildPaying;
     const l3 = u.level3ChildPaying;
@@ -128,10 +158,32 @@ const p = {
     const l5 = u.level5ChildPaying;
     const l6 = u.level6ChildPaying;
     let ans;
-    if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN && l6 >= p.AVATAR_MAN) ans = 'AVATAR MAN'; //AVATAR MAN
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN) ans = 'WONDER MAN'; //WONDER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 'SUPER MAN'; //SUPER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 'SPIDER MAN'; //SPIDER
+    if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN &&
+      l5 >= p.WONDER_MAN &&
+      l6 >= p.AVATAR_MAN
+    )
+      ans = 'AVATAR MAN'; //AVATAR MAN
+    else if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN &&
+      l5 >= p.WONDER_MAN
+    )
+      ans = 'WONDER MAN'; //WONDER
+    else if (
+      l1 >= p.IRON_MAN &&
+      l2 >= p.BAT_MAN &&
+      l3 >= p.SPIDER_MAN &&
+      l4 >= p.SUPER_MAN
+    )
+      ans = 'SUPER MAN'; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN)
+      ans = 'SPIDER MAN'; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 'BAT MAN'; //BAT
     else if (l1 >= p.IRON_MAN) ans = 'IRON MAN'; // IRON MAN
     else ans = 'NOT QUALIFIED';
@@ -160,7 +212,7 @@ const p = {
     return ans;
   },
 
-  getWithdrawRecyclePercentage: (u) => {
+  getWithdrawRecyclePercentage: u => {
     if (!u.parent) return [100, 0];
 
     const d = u.depositedFunds;
@@ -191,7 +243,8 @@ const p = {
     if (d >= p.level5) ans = '✈️ FLY'; // 500 TON FLY
     else if (d >= p.level4) ans = '🏃 RUN'; // 200 TON RUN
     else if (d >= p.level3) ans = '🚶 WALK'; // 50 TON  WALK
-    else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level2)
+      ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = '👼 BABY';
     else ans = '👎 NONE';
     return ans;
@@ -202,7 +255,8 @@ const p = {
     if (d >= p.level5) ans = p.level5; // 500 TON FLY
     else if (d >= p.level4) ans = p.level4; // 200 TON RUN
     else if (d >= p.level3) ans = p.level3; // 50 TON  WALK
-    else if (d >= p.level2) ans = p.level2; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level2)
+      ans = p.level2; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = p.level1;
     else ans = p.level0;
     return ans;
@@ -289,29 +343,25 @@ So , Are You Excited To Earn & Grow With amazing opportunity . So Be Ready with 
 const market = `
 Contribution Packages –
 
+5 TON - BABY PACK
+           - Upto 6 Level Team Income
+           - Withdraw 50% - Recycle 50%
+
 25 TON – START PACK 
-               – Upto 6 Level Team Income
-            – Withdraw  40 % - Recycle 60%
+               – Upto 6 Level Team Income
+            – Withdraw  60 % - Recycle 40%
 
 100 TON – WALK PACK 
-                – Upto 9 Level Team Income 
-            – Withdraw 50 % - Recycle 50%
+                – Upto 9 Level Team Income 
+            – Withdraw 70 % - Recycle 30%
 
 200 TON – RUN PACK 
-                – Upto 12 Level Team Income 
-            – Withdraw 60 % - Recycle 40%
+                – Upto 12 Level Team Income 
+            – Withdraw 80 % - Recycle 20%
 
 500 TON – START PACK
-               – Upto 15 Level Team Income
-           –  Withdraw 70 % - Recycle 30%
-
-Before Start Any Pack , 
-5 TON (BABY PACK) as registration Mandatory To START. 
-
-Best Thing, You Can Start The Journey With Only 
-Baby Pack (5 TON)  Also, 
-
-Whereas From Your Earnings You can UPGRADE Your START Pack from The Earnings & Enjoy The Journey To Earn TON From Your Network. After START Pack All Functions Work Same As The Community Rules. 
+               – Upto 15 Level Team Income
+           –  Withdraw 90 % - Recycle 10% 
 
 Choose Your Contribution Level To Start & Become the Part Of The Journey To Earn TON From Your & Global Network.
 
@@ -321,40 +371,35 @@ Direct INCOME
 1st You Get Direct Income from Your Network.
 From Sponsoring 1,2,3 You Get 10% , 
 From Sponsoring 4,5,6, You Get 15% 
-and 7th and above Sponsoring You Get 20% 
-From every Direct Sponsoring.
+and 7th and above Sponsoring You Get 20% From every Direct Sponsoring.
 
 For All Earned Income, 
 You Have Three Options – WITHDRAW / UPGRADE / RECYCLE
 
 WITHDRAW RULE
 
+BABY Pack ( 5 TON)
+ - 50% Withdraw - 50% Recycle
+
 START Pack  (25 TON) 
-– 40 % Withdraw – 60% Recycle
+– 60 % Withdraw – 40% Recycle
 
 WALK Pack  (100 TON)
- - 50% Withdraw – 50% Recycle 
+- 70% Withdraw – 30% Recycle 
 
 RUN Pack  (200 TON ) 
-- 60% Withdraw – 40% Recycle 
+- 80% Withdraw – 20% Recycle 
 
 FLY Pack (500 TON) - 
-70% Withdraw – 30% Recycle 
-
-Before Start Any Pack , 
-5 TON (BABY PACK) as registration Mandatory To START. 
-
-BABY Pack (5 TON) – 100% Used To Upgrade For ACTIVATION .
-
-Best Thing, You Can Start The Journey With Only
-Baby Pack (5 TON)  Also, Whereas From Your Earnings You can UPGRADE Your START Pack from The Earnings & Enjoy The Journey To Earn TON From Your Network. After START Pack All Functions Work Same As The Community Rules. 
+90% Withdraw – 10% Recycle 
 
 Recycle Means –
 The Balance Payout ( From Withdraw in Your Team) That Value TON again Distribute As Recycle Plan In All 15 Level Generations Uplines To Create A Loop Income.
 
 YOU can UPGRADE Your PACK to get high benefit on basis.
-70% UPGRADE – 30% Recycle.
-So, This System create Income In Loop. Every Time You Get Income From Your Team.
+100% UPGRADE – From Available Income
+
+So, This System create Income In Loop. Every Time You Get Income From Your Team as They Upgrade.
 
 TEAM INCOME –
 
@@ -365,7 +410,7 @@ You Get Income From 15 Levels Depth.
 Level – 1 – 10% To 20% Direct 
               ( First 3 Direct – 10% , 
                From 4th To 6th Direct – 15%,
-           b7th & Above 20% Every Direct. ) 
+           b7th & Above 20% Every Direct. ) 
 
 Level – 2 – 5% 
 Level – 3 – 5% 
@@ -383,7 +428,9 @@ Level – 14 – 5%
 Level – 15 – 5% 
 
 Level Eligibility As Your Pack, 
-Like If You On  BABY or START Pack
+Like If You On 
+
+BABY or START Pack
 – You Get This Income From upto 6 Level.
 
 If You On WALK Pack – you Get This Income Upto 9 Level. 
@@ -403,25 +450,20 @@ If You On Run – 4% ,
 if you on FLY pack you get 5% on Each level from each 
 RECYLE Activity. 
 
-Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 Levels.
+Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 LevelS & Rest Skiped Balance Use In REWARDS
 
-RECYLE INCOME ( From 15 Levels In Your Network )from Any Recycled TON
+100% Distribution 
 
-BABY Pack – 1% x  From Any 1 To 15 Level 
-         
-START Pack – 2% x  From Any 1 To 15 Level
-
-WALK Pack – 3% x  From Any 1 To 15 Level
-
-RUN Pack – 4% x  From Any 1 To 15 Level
-
-FLY Pack – 5% x  From Any 1 To 15 Level 
-
-....for more Get Click REWARD TAB
+....To Know About REWARDS ...  Click REWARD TAB
 `;
 
 const { readBook, writeBook, readBooks } = require('./db');
-const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
+const {
+  getBalance,
+  mnemonicGenerate,
+  transferFrom,
+  isValidAddress,
+} = require('./mlm-backend');
 const TelegramBot = require('node-telegram-bot-api');
 const translate = require('translate-google');
 
@@ -442,7 +484,14 @@ const padAdmin = {
 };
 const padLanguage = {
   reply_markup: {
-    keyboard: [['🇺🇸 English'], ['🇷🇺 Russian'], ['🇰🇷 Korean'], ['🇪🇸 Spanish'], ['🇻🇳 Vietnamese'], ['🇨🇳 Chinese Simplified']],
+    keyboard: [
+      ['🇺🇸 English'],
+      ['🇷🇺 Russian'],
+      ['🇰🇷 Korean'],
+      ['🇪🇸 Spanish'],
+      ['🇻🇳 Vietnamese'],
+      ['🇨🇳 Chinese Simplified'],
+    ],
   },
 };
 
@@ -530,8 +579,14 @@ const onMessage = async (msg, ctx) => {
 
     // create and save wallet, make referrer chain
     const [publicKey, mnemonic] = await mnemonicGenerate();
-    await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
-    await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
+    await writeBook(
+      { userName },
+      { parent: parent.userName, userName, chatId, publicKey, mnemonic },
+    );
+    await writeBook(
+      { userName: parent.userName },
+      { child: [...parent.child, userName] },
+    );
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
     botSendMessage(user, 'You are invited by ' + parent.userName, pad);
     botSendMessage(parent, 'You invited ' + userName, pad);
@@ -679,8 +734,15 @@ Level-5 (${user.level5ChildPaying})`;
   }
   //
   else if (text.includes('🎒 My Package (Mой пакет)')) {
-    const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
-    botSendMessage(user, `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`, pad);
+    const upgradeMessage =
+      p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
+    botSendMessage(
+      user,
+      `Dear TON User\nYour Current Plan Is - ${p.planName(
+        user,
+      )} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
+      pad,
+    );
   }
   //
   else if (text.includes('💸 Income Statement (Справка о доходах)')) {
@@ -693,9 +755,17 @@ Total TON Earnings in History: ${user.totalEarnings}
       pad,
     );
   } else if (text.includes('🖇 Referrals list (Прямое направление)')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
-    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
-    let childPaying = user.childPaying.length > 0 ? 'Your Active Direct Referrals: ' + user.childPaying + '\n' : 'You invited no people who deposited funds\n';
+    let parent = user.parent
+      ? 'You are invited by ' + user.parent + '\n'
+      : 'Hi Admin\n';
+    let child =
+      user.child.length > 0
+        ? 'You invited ' + user.child + '\n'
+        : 'You invited none\n';
+    let childPaying =
+      user.childPaying.length > 0
+        ? 'Your Active Direct Referrals: ' + user.childPaying + '\n'
+        : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
     botSendMessage(user, `${parent}${child}${childPaying}`, pad);
@@ -728,12 +798,23 @@ Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=$
   }
   //
   else if (text.includes('🎛 My Dashbaord (щиток приборов)')) {
-    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
-    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
-    let childPaying = user.childPaying.length > 0 ? 'You invited and they have deposited in system: ' + user.childPaying + '\n' : 'You invited no people who deposited funds\n';
+    let parent = user.parent
+      ? 'You are invited by ' + user.parent + '\n'
+      : 'Hi Admin\n';
+    let child =
+      user.child.length > 0
+        ? 'You invited ' + user.child + '\n'
+        : 'You invited none\n';
+    let childPaying =
+      user.childPaying.length > 0
+        ? 'You invited and they have deposited in system: ' +
+          user.childPaying +
+          '\n'
+        : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
     let { status7SponsorPool } = user;
-    status7SponsorPool = status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
+    status7SponsorPool =
+      status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
 
     let usersOf7PoolLength;
     let newBalanceCanBe;
@@ -815,25 +896,48 @@ My Network Team –
       user,
       `MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
 
-So Every TON Counts For The Community Earnings. 
+So Every TON Globally Counts For The Community Reward Earnings. 
 
-Skipped Balance Either Small pack or bigger pack , 
+Level    -TON Business - Reward Upto
 
-left skipped balance GO To REWARD CLUB from every recycle entry from the globe. And this provide you , from 200 TON to 100000 TON Global Rewards .
+L1       -  1,000 TON       -  100 TON
+L2       -  3,000 TON       -  300 TON
+L3       - 10,000 TON      - 1,000 TON
+L4       - 20,000 TON      - 2,500 TON
+L5       - 40,000 TON      - 5,000 TON
+
+L6
+To     - 5,00,000 TON    - 25,000 TON
+L15
+
+( Before Achive 6th Reward.. Any Above 4 Level Must Be Achived)
+
+Skipped Non-Distributed Balance from Recycled TON Go To REWARD Club
+And Distribute Among Achievers
+Upto 25000 TON Global Rewards .
 
 Achieve Once In Your Network & Earn From The Global Revenue . Every Joining Counts For Your REWARD.
 
-Community Services , Ai Program , TON Chain Transaction , Promotions & Other Network Fee & Support , System Use 5 TON First Time From Every User & 10%  From Every Activation for All Services & Support.
+Community Services , Ai Program , TON Chain Transaction , Promotions & Other Network Fee & Support , System Use 10% From  All Activations .
+
+0% Withdraw fee ( Nil )
 
 Let’s  Join  The Transparent & Amazing Opportunity With The Link Of Your Invitee , Start Earning TON From Global Network, Without Any Liability.
 
-To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
+To Get Latest Updates , Follow The Official Telegram Channel 
+
+@AiPROTON      
+      `,
       pad,
     );
   }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
-    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
+    botSendMessage(
+      user,
+      `https://coinmarketcap.com/currencies/toncoin/markets/`,
+      pad,
+    );
   }
   //
   else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
@@ -841,7 +945,11 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      botSendMessage(user, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
+      botSendMessage(
+        user,
+        `You must be in ⭐️ START or a bigger plan to withdraw`,
+        pad,
+      );
       return;
     }
 
@@ -870,10 +978,19 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
-    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
+    await transferFrom(
+      adminMnemonic,
+      withdrawWallet,
+      withdrawAmount,
+      transferError,
+    );
     await writeBook({ userName }, { balance: 0 });
 
-    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
+    botSendMessage(
+      user,
+      `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`,
+      pad,
+    );
   }
   //
   //
@@ -918,7 +1035,13 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     }
 
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPool });
-    botSendMessage(user, `Successfully sent ${pool.balance - backToPool} TON to pool members remaining is ${backToPool} TON`, pad);
+    botSendMessage(
+      user,
+      `Successfully sent ${
+        pool.balance - backToPool
+      } TON to pool members remaining is ${backToPool} TON`,
+      pad,
+    );
   }
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
@@ -939,7 +1062,8 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     const usersL4 = usersLevel4.length;
     const usersL5 = usersLevel5.length;
 
-    const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
+    const usersOfSuperStarPoolLength =
+      usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
       botSendMessage(user, `There are no Super Star Pool Members`, pad);
@@ -948,7 +1072,11 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
 
     const pool = await readBook({ userName: SUPER_STAR_POOL });
     if (pool.balance === 0) {
-      botSendMessage(user, `Not enough funds in Super Star Members in Pool`, pad);
+      botSendMessage(
+        user,
+        `Not enough funds in Super Star Members in Pool`,
+        pad,
+      );
       return;
     }
 
@@ -958,36 +1086,55 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
       const rewardPerLevel1 = 0.3 * pool.balance; // 30%
       rewardGiven += rewardPerLevel1;
       const rewardPerUserPerLevel1 = rewardPerLevel1 / usersL1;
-      backToPool += await giveRewardEqually(usersLevel1, rewardPerUserPerLevel1);
+      backToPool += await giveRewardEqually(
+        usersLevel1,
+        rewardPerUserPerLevel1,
+      );
     }
     if (usersL2 > 0) {
       const rewardPerLevel2 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel2;
       const rewardPerUserPerLevel2 = rewardPerLevel2 / usersL2;
-      backToPool += await giveRewardEqually(usersLevel2, rewardPerUserPerLevel2);
+      backToPool += await giveRewardEqually(
+        usersLevel2,
+        rewardPerUserPerLevel2,
+      );
     }
     if (usersL3 > 0) {
       const rewardPerLevel3 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel3;
       const rewardPerUserPerLevel3 = rewardPerLevel3 / usersL3;
-      backToPool += await giveRewardEqually(usersLevel3, rewardPerUserPerLevel3);
+      backToPool += await giveRewardEqually(
+        usersLevel3,
+        rewardPerUserPerLevel3,
+      );
     }
     if (usersL4 > 0) {
       const rewardPerLevel4 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel4;
       const rewardPerUserPerLevel4 = rewardPerLevel4 / usersL4;
-      backToPool += await giveRewardEqually(usersLevel4, rewardPerUserPerLevel4);
+      backToPool += await giveRewardEqually(
+        usersLevel4,
+        rewardPerUserPerLevel4,
+      );
     }
     if (usersL5 > 0) {
       const rewardPerLevel5 = 0.1 * pool.balance; // 10%
       rewardGiven += rewardPerLevel5;
       const rewardPerUserPerLevel5 = rewardPerLevel5 / usersL5;
-      backToPool += await giveRewardEqually(usersLevel5, rewardPerUserPerLevel5);
+      backToPool += await giveRewardEqually(
+        usersLevel5,
+        rewardPerUserPerLevel5,
+      );
     }
 
     const poolRemaining = pool.balance - rewardGiven + backToPool;
     await writeBook({ userName: SUPER_STAR_POOL }, { balance: poolRemaining });
-    botSendMessage(user, `Sent successfully sent ${rewardGiven} TON to pool members, remaining in Pool ${poolRemaining} TON`, pad);
+    botSendMessage(
+      user,
+      `Sent successfully sent ${rewardGiven} TON to pool members, remaining in Pool ${poolRemaining} TON`,
+      pad,
+    );
   }
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
@@ -1007,10 +1154,19 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
       const recycleAmount = user.balance * recycle * percent;
 
       await recycleRewards(user, recycleAmount);
-      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
+      await transferFrom(
+        adminMnemonic,
+        withdrawWallet,
+        withdrawAmount,
+        transferError,
+      );
       await writeBook({ userName }, { balance: 0 });
 
-      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
+      botSendMessage(
+        user,
+        `Withdraw done for ${i}/${users.length}, ${user.userName}`,
+        pad,
+      );
     }
 
     botSendMessage(user, 'Success Force Withdraw All Users', pad);
@@ -1022,7 +1178,11 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
       return;
     }
     SEND_MEDIA = 1;
-    botSendMessage(user, '🎥 Please send text / image / video here to send to all users', pad);
+    botSendMessage(
+      user,
+      '🎥 Please send text / image / video here to send to all users',
+      pad,
+    );
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -1107,8 +1267,16 @@ const deposit = async (user, depositedFunds, userName) => {
   if (!user.parent) return;
   let admin = await readBook({ userName: adminUserName });
 
-  await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
-  await transferFrom(user.mnemonic, adminAddress, depositedFunds - 0.06, transferError); // txFee 0.06
+  await writeBook(
+    { userName },
+    { depositedFunds: user.depositedFunds + depositedFunds },
+  );
+  await transferFrom(
+    user.mnemonic,
+    adminAddress,
+    depositedFunds - 0.06,
+    transferError,
+  ); // txFee 0.06
   user = await readBook({ userName });
 
   const percent = depositedFunds / 100;
@@ -1116,8 +1284,19 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
   if (!user.parent || p.getPlanNumber(user) < p.START) {
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + 100 * percent, totalEarnings: admin.totalEarnings + 100 * percent });
-    console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
+    await writeBook(
+      { userName: adminUserName },
+      {
+        balance: admin.balance + 100 * percent,
+        totalEarnings: admin.totalEarnings + 100 * percent,
+      },
+    );
+    console.log(
+      'returning from here, p.getPlanNumber(user)',
+      p.getPlanNumber(user),
+      'user.parent',
+      user.parent,
+    );
     return; //  <---------------------<
   }
 
@@ -1125,14 +1304,38 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // 1 to 3
   if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 10 * percent, totalEarnings: userParent.totalEarnings + 10 * percent });
-    await writeBook({ userName: adminUserName }, { balance: admin.balance + 5 * percent, totalEarnings: admin.totalEarnings + 5 * percent });
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 5 * percent, totalEarnings: pool.totalEarnings + 5 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      {
+        balance: userParent.balance + 10 * percent,
+        totalEarnings: userParent.totalEarnings + 10 * percent,
+      },
+    );
+    await writeBook(
+      { userName: adminUserName },
+      {
+        balance: admin.balance + 5 * percent,
+        totalEarnings: admin.totalEarnings + 5 * percent,
+      },
+    );
+    await writeBook(
+      { userName: _7_SPONSOR_POOL },
+      {
+        balance: pool.balance + 5 * percent,
+        totalEarnings: pool.totalEarnings + 5 * percent,
+      },
+    );
   }
 
   // 4 to 6
   else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 15 * percent, totalEarnings: userParent.totalEarnings + 15 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      {
+        balance: userParent.balance + 15 * percent,
+        totalEarnings: userParent.totalEarnings + 15 * percent,
+      },
+    );
     await writeBook(
       { userName: adminUserName },
       {
@@ -1140,16 +1343,31 @@ const deposit = async (user, depositedFunds, userName) => {
         totalEarnings: admin.totalEarnings + 2.5 * percent,
       },
     );
-    await writeBook({ userName: _7_SPONSOR_POOL }, { balance: pool.balance + 2.5 * percent, totalEarnings: pool.totalEarnings + 2.5 * percent });
+    await writeBook(
+      { userName: _7_SPONSOR_POOL },
+      {
+        balance: pool.balance + 2.5 * percent,
+        totalEarnings: pool.totalEarnings + 2.5 * percent,
+      },
+    );
   }
 
   // 7 or more child paying
   else {
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + 20 * percent, totalEarnings: userParent.totalEarnings + 20 * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      {
+        balance: userParent.balance + 20 * percent,
+        totalEarnings: userParent.totalEarnings + 20 * percent,
+      },
+    );
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
-      await writeBook({ userName: userParent.userName }, { status7SponsorPool: IN_POOL });
+      await writeBook(
+        { userName: userParent.userName },
+        { status7SponsorPool: IN_POOL },
+      );
     }
   }
 
@@ -1168,7 +1386,11 @@ const deposit = async (user, depositedFunds, userName) => {
 
     console.log({ userParent, wasError: 'can not read value of undefined' });
     const newLevel = p.getLevel(userParent);
-    newLevel > userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance }));
+    newLevel > userParent.level &&
+      (await writeBook(
+        { userName: userParent.userName },
+        { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance },
+      ));
   }
 
   let remaining = 100; // percent
@@ -1181,7 +1403,8 @@ const deposit = async (user, depositedFunds, userName) => {
     // maintain data for Super Star Pool
     if (level <= 5 && userDepositedFirstTime) {
       const newUserParent = {};
-      newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + depositedFunds;
+      newUserParent[`level${level}ChildPaying`] =
+        userParent[`level${level}ChildPaying`] + depositedFunds;
       await writeBook({ userName: userParent.userName }, newUserParent);
       userParent = await readBook({ userName: userParent.parent });
 
@@ -1207,17 +1430,29 @@ const deposit = async (user, depositedFunds, userName) => {
           totalEarnings: userParent.totalEarnings + 5 * percent,
         },
       );
-      botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
+      botSendMessage(
+        userParent,
+        `You have earned ${5 * percent} TON from deposit of ${userName}`,
+      );
     }
   }
 
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + remaining * percent, totalEarnings: admin.totalEarnings + remaining * percent });
+  await writeBook(
+    { userName: adminUserName },
+    {
+      balance: admin.balance + remaining * percent,
+      totalEarnings: admin.totalEarnings + remaining * percent,
+    },
+  );
 };
 
-const transferError = (e) => {
+const transferError = e => {
   try {
-    botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
+    botSendMessage(
+      { chatId: devChatId, language: 'english' },
+      `1, ${JSON.stringify(e)}`,
+    );
   } catch (error) {
     botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
   }
@@ -1243,12 +1478,18 @@ const recycleRewards = async (user, depositedFunds) => {
     const reward = p.getRecycleRewardLevelPercentage(userParent);
     remaining -= reward;
     console.log({ remaining });
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
+    await writeBook(
+      { userName: userParent.userName },
+      { balance: userParent.balance + reward * percent },
+    );
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
+  await writeBook(
+    { userName: adminUserName },
+    { balance: admin.balance + 0.5 * remaining * percent },
+  ); // 50% of remaining
   await writeBook(
     { userName: SUPER_STAR_POOL },
     {
@@ -1258,7 +1499,7 @@ const recycleRewards = async (user, depositedFunds) => {
   ); // 50% of remaining
 };
 
-const sendToAllUsers = async (msg) => {
+const sendToAllUsers = async msg => {
   let users = await readBooks({});
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
@@ -1266,7 +1507,7 @@ const sendToAllUsers = async (msg) => {
   }
 };
 
-const exists = (user) => {
+const exists = user => {
   return user !== undefined;
 };
 
@@ -1301,10 +1542,10 @@ const botSendMessage = (user, msg, pad) => {
   // if (!pad) pad = padSimple;
 
   translate(msg, { to: user.language })
-    .then((translation) => {
+    .then(translation => {
       bot.sendMessage(user.chatId, translation, pad);
     })
-    .catch((err) => {
+    .catch(err => {
       bot.sendMessage(user.chatId, msg, pad);
     });
 };
