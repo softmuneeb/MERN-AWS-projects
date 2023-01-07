@@ -843,7 +843,7 @@ To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON`,
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      botSendMessage(user, `You must be in ⭐️ START or a bigger plan to withdraw`, pad);
+      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`, pad);
       return;
     }
 
