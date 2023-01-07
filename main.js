@@ -654,8 +654,8 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
       return;
     }
 
-    await deposit(user, user.balance * 0.7, userName); // 70% used in plan upgrade, distributed in referrals, admin
-    await recycleRewards(user, user.balance * 0.3); // 30% distributed in referrals, admin
+    await deposit(user, user.balance * 1.0, userName); // 100% used in plan upgrade, distributed in referrals, admin
+    // await recycleRewards(user, user.balance * 0.0); // 0% distributed in referrals, admin
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
