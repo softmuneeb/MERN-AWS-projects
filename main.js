@@ -38,7 +38,7 @@ const pbkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
-const admins = ['crypto_millio', 'GlobalTing', 'ADMIN'];
+const admins = ['GlobalTing', 'ADMIN'];
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
@@ -166,11 +166,11 @@ const p = {
     const d = u.depositedFunds;
 
     let ans; // plan
-    if (d >= p.level5) ans = [70, 30];
-    else if (d >= p.level4) ans = [60, 40];
-    else if (d >= p.level3) ans = [50, 50];
-    else if (d >= p.level2) ans = [40, 60];
-    else if (d >= p.level1) ans = [0, 0];
+    if (d >= p.level5) ans = [90, 10];
+    else if (d >= p.level4) ans = [80, 20];
+    else if (d >= p.level3) ans = [70, 30];
+    else if (d >= p.level2) ans = [60, 40];
+    else if (d >= p.level1) ans = [50, 50];
     else ans = [0, 0];
     return ans;
   },
@@ -181,7 +181,7 @@ const p = {
     else if (d >= p.level4) ans = 4;
     else if (d >= p.level3) ans = 3;
     else if (d >= p.level2) ans = 2;
-    else if (d >= p.level1) ans = 0;
+    else if (d >= p.level1) ans = 1;
     else ans = 0;
     return ans;
   },
@@ -419,24 +419,6 @@ FLY Pack – 5% x  From Any 1 To 15 Level
 
 ....for more Get Click REWARD TAB
 `;
-
-// const reclub = `
-// MAGICAL POINT – Whatever The Distribution As Per Level, The Balance Value Count As SKIPPED BALANCE & Used In REWARD CLUB .
-
-// So Every TON Counts For The Community Earnings.
-
-// Skipped Balance Either Small pack or bigger pack ,
-
-// left skipped balance GO To REWARD CLUB from every recycle entry from the globe. And this provide you , from 200 TON to 100000 TON Global Rewards .
-
-// Achieve Once In Your Network & Earn From The Global Revenue . Every Joining Counts For Your REWARD.
-
-// Community Services , Ai Program , TON Chain Transaction , Promotions & Other Network Fee & Support , System Use 5 TON First Time From Every User & 10%  From Every Activation for All Services & Support.
-
-// Let’s  Join  The Transparent & Amazing Opportunity With The Link Of Your Invitee , Start Earning TON From Global Network, Without Any Liability.
-
-// To Get Latest Updates , Follow The Official Telegram Channel  @AiPROTON
-// `;
 
 const { readBook, writeBook, readBooks } = require('./db');
 const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
