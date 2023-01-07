@@ -79,7 +79,7 @@ const UserSchema = new mongoose.Schema({
     default: 0,
   },
   totalEarnings: {
-    // referral earnings
+    // referral earnings + pool earnings total in history
     type: Number,
     default: 0,
   },
