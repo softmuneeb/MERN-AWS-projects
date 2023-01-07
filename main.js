@@ -947,7 +947,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     if (withdraw === 0) {
       botSendMessage(
         user,
-        `You must be in ⭐️ START or a bigger plan to withdraw`,
+        `You must be in 👼 BABY or a bigger plan to withdraw`,
         pad,
       );
       return;
@@ -955,7 +955,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     const withdrawAmount = user.balance * withdraw * percent;
     if (withdrawAmount < MIN_WITHDRAW) {
-      botSendMessage(user, `Minimum withdraw is ${MIN_WITHDRAW} TON`, pad);
+      botSendMessage(user, `Can not withdraw. Your Referral Earnings + Pool Earnings are less than ${MIN_WITHDRAW} TON`, pad);
       return;
     }
 
@@ -997,7 +997,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   // ADMIN FUNCTIONS
   else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admin can access this function`, pad);
       return;
     }
 
@@ -1017,16 +1017,19 @@ To Get Latest Updates , Follow The Official Telegram Channel
     let backToPool = 0;
     for (let i = 0; i < usersOf7Pool.length; i++) {
       const user = usersOf7Pool[i];
+      const { totalEarnings } = user;
       const newEarnings = user.earnings7SponsorPool + rewardPerUser;
       const maxEarnings = 2 * user.depositedFunds;
       if (newEarnings >= maxEarnings) {
         const excessAmount = newEarnings - maxEarnings;
+        const givenAmount = maxEarnings - user.earnings7SponsorPool;
         backToPool += excessAmount;
         await writeBook(
           { userName },
           {
             earnings7SponsorPool: maxEarnings,
             status7SponsorPool: REMOVED_FROM_POOL,
+            totalEarnings: totalEarnings + givenAmount,
           },
         );
       } else {
@@ -1238,7 +1241,7 @@ const giveRewardEqually = async (users, rewardPerUser) => {
 
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    const { userName, earningsSuperStarPool } = user;
+    const { userName, earningsSuperStarPool, totalEarnings } = user;
 
     const userLevel = p.getLevel(user);
     const userMaxEarnings = p.levelMaxEarnings[userLevel];
@@ -1248,15 +1251,17 @@ const giveRewardEqually = async (users, rewardPerUser) => {
     const newEarnings = earningsSuperStarPool + rewardPerUser;
     if (newEarnings >= userMaxEarnings) {
       const excessAmount = newEarnings - userMaxEarnings;
+      const givenAmount = userMaxEarnings - earningsSuperStarPool;
       backToPool += excessAmount;
       await writeBook(
         { userName },
         {
           earningsSuperStarPool: userMaxEarnings,
+          totalEarnings: totalEarnings + givenAmount,
         },
       );
     } else {
-      await writeBook({ userName }, { earningsSuperStarPool: newEarnings });
+      await writeBook({ userName }, { earningsSuperStarPool: newEarnings, totalEarnings: totalEarnings + rewardPerUser });
     }
   }
 
@@ -1447,7 +1452,7 @@ const deposit = async (user, depositedFunds, userName) => {
   );
 };
 
-const transferError = e => {
+const transferError = (e) => {
   try {
     botSendMessage(
       { chatId: devChatId, language: 'english' },
@@ -1499,7 +1504,7 @@ const recycleRewards = async (user, depositedFunds) => {
   ); // 50% of remaining
 };
 
-const sendToAllUsers = async msg => {
+const sendToAllUsers = async (msg) => {
   let users = await readBooks({});
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
@@ -1507,7 +1512,7 @@ const sendToAllUsers = async msg => {
   }
 };
 
-const exists = user => {
+const exists = (user) => {
   return user !== undefined;
 };
 
@@ -1542,10 +1547,10 @@ const botSendMessage = (user, msg, pad) => {
   // if (!pad) pad = padSimple;
 
   translate(msg, { to: user.language })
-    .then(translation => {
+    .then((translation) => {
       bot.sendMessage(user.chatId, translation, pad);
     })
-    .catch(err => {
+    .catch((err) => {
       bot.sendMessage(user.chatId, msg, pad);
     });
 };
