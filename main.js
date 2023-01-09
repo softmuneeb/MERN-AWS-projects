@@ -609,17 +609,17 @@ const onMessage = async (msg, ctx) => {
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
     // bot.forwardMessage(adminChatId, chatId, msg.message_id);
-    await sendToAllUsers(msg);
+    // await sendToAllUsers(msg);
 
-    // if (msg.document) {
-    //   await sendToAllUsers('sendDocument', msg.document.file_id);
-    // } //
-    // else if (msg.photo) {
-    //   await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
-    // } //
-    // else if (msg.text) {
-    //   await sendToAllUsers('sendMessage', msg.text);
-    // }
+    if (msg.document) {
+      await sendToAllUsers('sendDocument', msg.document.file_id);
+    } //
+    else if (msg.photo) {
+      await sendToAllUsers('sendPhoto', msg.photo[0].file_id);
+    } //
+    else if (msg.text) {
+      await sendToAllUsers('sendMessage', msg.text);
+    }
 
     botSendMessage(user, 'Sending... to all users', pad);
     return;
@@ -940,7 +940,11 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     const withdrawAmount = user.balance * withdraw * percent;
     if (withdrawAmount < MIN_WITHDRAW) {
-      botSendMessage(user, `Can not withdraw. Your Referral Earnings + Pool Earnings are less than ${MIN_WITHDRAW} TON`, pad);
+      botSendMessage(
+        user,
+        `Can not withdraw. Your Referral Earnings + Pool Earnings are less than ${MIN_WITHDRAW} TON`,
+        pad,
+      );
       return;
     }
 
@@ -1246,7 +1250,13 @@ const giveRewardEqually = async (users, rewardPerUser) => {
         },
       );
     } else {
-      await writeBook({ userName }, { earningsSuperStarPool: newEarnings, totalEarnings: totalEarnings + rewardPerUser });
+      await writeBook(
+        { userName },
+        {
+          earningsSuperStarPool: newEarnings,
+          totalEarnings: totalEarnings + rewardPerUser,
+        },
+      );
     }
   }
 
@@ -1437,7 +1447,7 @@ const deposit = async (user, depositedFunds, userName) => {
   );
 };
 
-const transferError = (e) => {
+const transferError = e => {
   try {
     botSendMessage(
       { chatId: devChatId, language: 'english' },
@@ -1489,15 +1499,24 @@ const recycleRewards = async (user, depositedFunds) => {
   ); // 50% of remaining
 };
 
-const sendToAllUsers = async (msg) => {
+const sendToAllUsers = async (func, data) => {
   let users = await readBooks({});
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    user.chatId && bot.forwardMessage(user.chatId, adminChatId, msg.message_id);
+    console.log(user.chatId === null, user.chatId == null, user.chatId, user.userName);
+    user.chatId && bot[func](user.chatId, data, pad);
   }
 };
 
-const exists = (user) => {
+// const forwardToAllUsers = async msg => {
+//   let users = await readBooks({});
+//   for (let i = 0; i < users.length; i++) {
+//     const user = users[i];
+//     user.chatId && bot.forwardMessage(user.chatId, adminChatId, msg.message_id);
+//   }
+// };
+
+const exists = user => {
   return user !== undefined;
 };
 
@@ -1531,16 +1550,16 @@ const seedDB = async () => {
 const botSendMessage = (user, msg, pad) => {
   // if (!pad) pad = padSimple;
 
-  if (user.language.toLowerCase() === 'english'){
+  if (user.language.toLowerCase() === 'english') {
     bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     return;
   }
 
   translate(msg, { to: user.language })
-    .then((translation) => {
+    .then(translation => {
       bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
     })
-    .catch((err) => {
+    .catch(err => {
       bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
 };
