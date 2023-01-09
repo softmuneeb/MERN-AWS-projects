@@ -475,13 +475,16 @@ const padSimple = {
   reply_markup: {
     keyboard,
   },
+  parse_mode: 'HTML',
 };
 const padAdmin = {
   reply_markup: {
-    // keyboard: [...adminKeyBoard, ...keyboard],
     keyboard: [...keyboard, ...adminKeyBoard],
   },
+  parse_mode: 'HTML',
 };
+let pad;
+
 const padLanguage = {
   reply_markup: {
     keyboard: [
@@ -528,19 +531,11 @@ const onMessage = async (msg, ctx) => {
     botSendMessage(chatId, 'Please add your user name in telegram settings');
     return;
   }
-
-  let pad = padSimple;
-  let padCopyAble = {
-    ...padSimple,
-    parse_mode: 'Markdown',
-  };
   console.log({ text, userName, chatId }); // for dev
+
+  pad = padSimple;
   if (admins.includes(userName)) {
     pad = padAdmin;
-    padCopyAble = {
-      ...padAdmin,
-      parse_mode: 'Markdown',
-    };
   }
 
   ///////////////////////////////
@@ -683,7 +678,7 @@ Welcome To AiProTON Network
 
 Your Sponsor Is ${user.parent}
 
-Your Referral Link Is \`https://t.me/${botName}?start=${userName}\`
+Your Referral Link Is <code>https://t.me/${botName}?start=${userName}</code>
     
 You Have Invited ${user.childPaying.length}
     
@@ -696,7 +691,7 @@ As Telegram Network Itself Have more Than 700 Million Community Across The Globe
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
 `;
 
-    botSendMessage(user, textReply, padCopyAble);
+    botSendMessage(user, textReply, pad);
   }
   //
   else if (text.includes('🕹 Upgrade (Обновление)')) {
@@ -782,8 +777,8 @@ Total TON Earnings in History: ${user.totalEarnings}
 
 Your Deposited TON: ${user.depositedFunds} TON
 
-Deposit Address:\n\`${user.publicKey}\``,
-      padCopyAble,
+Deposit Address:\n<code>${user.publicKey}</code>`,
+      pad,
     );
   }
   //
@@ -792,8 +787,8 @@ Deposit Address:\n\`${user.publicKey}\``,
       user,
       `If you're looking to grow your AiProTON Network, this is your referral link. Share it with prospects and earn rewards for every person you referral activation. With this link, you can easily keep track of your referrals and see how much your network has grown. So start sharing and growing your network today!
       
-Your Invite Link Is Below, Copy & Share It -\n \`https://t.me/${botName}?start=${userName}\``,
-      padCopyAble,
+Your Invite Link Is Below, Copy & Share It -\n <code>https://t.me/${botName}?start=${userName}</code>`,
+      pad,
     );
   }
   //
@@ -844,7 +839,7 @@ My User Name – ${userName}
 
 My Sponsor Name – ${user.parent}
 
-My Referral Link –  \`https://t.me/${botName}?start=${userName}\`
+My Referral Link –  <code>https://t.me/${botName}?start=${userName}</code>
 
 My Current Pack (${p.planValue(user)} TON) – ${p.planName(user)}
 
@@ -869,18 +864,8 @@ My Network Team –
     Level-4 (${user.level4ChildPaying})
     Level-5 (${user.level5ChildPaying})
 `,
-      padCopyAble,
+      pad,
     );
-    // (REWARD ${user.balance - newBalanceCanBe} TON)
-    // botSendMessage(
-    //   chatId,
-    //   `
-    //   ${parent}${child}${childPaying}\nPlan: ${p.planName(user)}\nEarnings: ${user.balance}\nDeposited: ${
-    //     user.depositedFunds
-    //   } TON\nLevel: ${user.level}
-    //   Deposit Address:\n\`${user.publicKey}\`\nInvite link: \`https://t.me/${botName}?start=${userName}\``,
-    //   padCopyAble,
-    // );
   }
   //
   else if (text.includes('💎 TON Ecosystem (Экосистема ТОН)')) {
@@ -1546,12 +1531,17 @@ const seedDB = async () => {
 const botSendMessage = (user, msg, pad) => {
   // if (!pad) pad = padSimple;
 
+  if (user.language.toLowerCase() === 'english'){
+    bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
+    return;
+  }
+
   translate(msg, { to: user.language })
     .then((translation) => {
-      bot.sendMessage(user.chatId, translation, pad);
+      bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
     })
     .catch((err) => {
-      bot.sendMessage(user.chatId, msg, pad);
+      bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
 };
 
