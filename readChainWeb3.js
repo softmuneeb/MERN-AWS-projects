@@ -3,8 +3,8 @@ import Web3 from 'web3';
 const networkLink = 'https://cloudflare-eth.com/';
 const web3 = new Web3(networkLink);
 
-const pair_BOXA_ETH = '0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11';
-const pair_USD_ETH = '0x02BeA4499aaC742578b9b4CcFDFE4036B4E02Ed0';
+const pair_USD_ETH = '0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11';
+const pair_BOXA_ETH = '0x02BeA4499aaC742578b9b4CcFDFE4036B4E02Ed0';
 
 // Code
 const getPrice = async (web3, pairAddress) => {
