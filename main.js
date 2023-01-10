@@ -2,27 +2,27 @@
 
 // ===============This section if for crypto millio
 const keyboard = [
-  ['⭐️ Home (Дом)'], //
   ['🔠 Language'], //
-  ['🎛 My Dashbaord (щиток приборов)'], //
-  ['💼 Plan Packages (Пакет планов)'], //
-  ['🎒 My Package (Mой пакет)'], //
-  ['🔗 Invitation link (Пригласительная ссылка)'], //
-  ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
-  ['💰 Withdraw (Отзывать)'], //
+  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'],
+  ['💎 TON Ecosystem (Экосистема ТОН)'],
+  ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
-  ['💸 Income Statement (Справка о доходах)'], //
+  ['💼 Plan Packages (Пакет планов)'], //
+  ['🎛 My Dashbaord (щиток приборов)'], //
+  ['⭐️ Home (Дом)'], //
+  ['🔗 Invitation link (Пригласительная ссылка)'], //
+  ['🎒 My Package (Mой пакет)'], //
+  ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
   ['🖇 Referrals list (Прямое направление)'], //
+  ['💰 Withdraw (Отзывать)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
+  ['💸 Income Statement (Справка о доходах)'], //
   [
     '💡 Rules For Community (Правила для сообщества)',
     '💁‍♂️ Basic Info (Основная информация)',
   ], //
   ['📡 AiProTON Features (Особенности АйПроТОН)'], //
-  ['📈 Marketing Plan (Маркетинговый план)'], //
-  ['💎 TON Ecosystem (Экосистема ТОН)'],
   ['🤖 Support (Поддерживать)'], //
-  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'],
   ['TON Exchanges (ТОН биржи)'], //
 ];
 
@@ -192,11 +192,11 @@ const p = {
 
   getPlanNumber: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = 5; // 500 TON FLY
-    else if (d >= p.level4) ans = 4; // 200 TON RUN
-    else if (d >= p.level3) ans = 3; // 50 TON  WALK
-    else if (d >= p.level2) ans = 2; // 25 TON  START --- withdraw starts here
-    else if (d >= p.level1) ans = 1;
+    if (d >= p.level5) ans = 500; // 500 TON FLY
+    else if (d >= p.level4) ans = 200; // 200 TON RUN
+    else if (d >= p.level3) ans = 100; // 50 TON  WALK
+    else if (d >= p.level2) ans = 25; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level1) ans = 5; // 5 TON BABY
     else ans = 0;
     return ans;
   },
