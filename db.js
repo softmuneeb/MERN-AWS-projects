@@ -40,8 +40,8 @@ const writeBook = async (user, newUserState) => {
   const userName = 'Muneeb';
   await writeBook({ userName }, { balance: '11' });
 
-  // const user = await readBook({ userName });
-  // console.log({ user });
+  const user = await readBook({ userName });
+  console.log({ user });
 })();
 
 module.exports = { readBook, writeBook };
