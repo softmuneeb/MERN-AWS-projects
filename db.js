@@ -8,8 +8,6 @@ const UserSchema = new mongoose.Schema({
   userName: {
     type: String,
     default: null,
-    unique: true,
-    required: true,
   },
   balance: {
     type: Number,
