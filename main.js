@@ -3,7 +3,7 @@
 // ===============This section if for crypto millio
 const keyboard = [
   ['🔠 Language'], //
-  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)'],
+  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)','TON Exchanges (ТОН биржи)'],
   ['💎 TON Ecosystem (Экосистема ТОН)'],
   ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
@@ -12,18 +12,14 @@ const keyboard = [
   ['⭐️ Home (Дом)'], //
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['🎒 My Package (Mой пакет)'], //
-  ['💵 My Wallet (Мой бумажник)', '🕹 Upgrade (Обновление)'], //
+  ['💵 My Wallet (Мой бумажник)'], //
+  ['💰 Withdraw (Отзывать)','🕹 Upgrade (Обновление)'], //
   ['🖇 Referrals list (Прямое направление)'], //
-  ['💰 Withdraw (Отзывать)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💸 Income Statement (Справка о доходах)'], //
-  [
-    '💡 Rules For Community (Правила для сообщества)',
-    '💁‍♂️ Basic Info (Основная информация)',
-  ], //
-  ['📡 AiProTON Features (Особенности АйПроТОН)'], //
-  ['🤖 Support (Поддерживать)'], //
-  ['TON Exchanges (ТОН биржи)'], //
+  ['💡 Rules For Community (Правила для сообщества)'],
+  ['📡 AiProTON Features (Особенности АйПроТОН)','💁‍♂️ Basic Info (Основная информация)'], //
+  ['🤖 Support (Поддерживать)']//
 ];
 
 const adminKeyBoard = [
@@ -156,7 +152,7 @@ const p = {
     const l3 = u.level3ChildPaying;
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
-    const l6 = u.level6ChildPaying;
+    const l6 = u.level6ChildPaying; 
     let ans;
     if (
       l1 >= p.IRON_MAN &&
@@ -714,11 +710,12 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
   //
   else if (text.includes('🚀 Super Star Club (Суперзвездный клуб)')) {
     const replyText = `Level: ${p.getLevelName(user)}
-Level-1 (${user.level1ChildPaying})
-Level-2 (${user.level2ChildPaying})
-Level-3 (${user.level3ChildPaying})
-Level-4 (${user.level4ChildPaying})
-Level-5 (${user.level5ChildPaying})`;
+Level-1    (${user.level1ChildPaying})
+Level-2    (${user.level2ChildPaying})
+Level-3    (${user.level3ChildPaying})
+Level-4    (${user.level4ChildPaying})
+Level-5    (${user.level5ChildPaying})
+Level 6-15 (${user.level6ChildPaying})`;
 
     botSendMessage(user, replyText, pad);
     // botSendMessage(
@@ -858,11 +855,12 @@ My 7 Sponsor Club – ${status7SponsorPool}
 My Current REWARD RANK – ${p.getLevelName(user)}
 
 My Network Team –
-    Level-1 (${user.level1ChildPaying})
-    Level-2 (${user.level2ChildPaying})
-    Level-3 (${user.level3ChildPaying})
-    Level-4 (${user.level4ChildPaying})
-    Level-5 (${user.level5ChildPaying})
+Level-1    (${user.level1ChildPaying})
+Level-2    (${user.level2ChildPaying})
+Level-3    (${user.level3ChildPaying})
+Level-4    (${user.level4ChildPaying})
+Level-5    (${user.level5ChildPaying})
+Level 6-15 (${user.level6ChildPaying})
 `,
       pad,
     );
