@@ -47,6 +47,8 @@ const depositFunds = async (userName, depositAmount) => {
   return true;
 };
 
+/*
+
 (async () => {
   const userName = 'Muneeb1';
   const depositAmount = 10;
@@ -56,4 +58,6 @@ const depositFunds = async (userName, depositAmount) => {
   else console.log('Deposit Failed, User not found in system');
 })();
 
-module.exports = { readBook, writeBook };
+*/
+
+module.exports = { readBook, depositFunds };
