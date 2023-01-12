@@ -150,6 +150,18 @@ const writeBook = async (user, newUserState) => {
     // console.log({ responseUpdate, newUserState });
   }
 };
+
+const depositFundsEth = async (userName, depositAmount) => {
+  const user = await readBook({ userName });
+  if (!user) return false;
+
+  await writeBook(
+    { userName },
+    { depositedFundsEth: user.depositedFundsEth + depositAmount },
+  );
+  return true;
+};
+
 // Driver Code
 (async () => {
   // let r;
@@ -172,4 +184,4 @@ const writeBook = async (user, newUserState) => {
   // console.log({ user });
 })();
 
-module.exports = { readBook, writeBook, readBooks };
+module.exports = { readBook, writeBook, readBooks, depositFundsEth };
