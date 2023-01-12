@@ -64,27 +64,31 @@ export const sendTransaction = async ({
       wasError = false;
       break;
     } catch (e) {
-      errorMsg = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
-      const error = errorInResendErrors(errorMsg, resendTxOnErrors);
+      // TODO: run and see logs
+      // benifit was that all logs at one place
+      // nuqsan same error repeats
+      const errorMsgCurrent = (e + '').includes('object') ? e.message : (e + '').split('\n')[0];
+      errorMsg += errorMsgCurrent;
+      const error = errorInResendErrors(errorMsgCurrent, resendTxOnErrors);
 
-      if (errorMsg.includes('replacement transaction underpriced')) {
+      if (errorMsgCurrent.includes('replacement transaction underpriced')) {
         const gasPriceOld = '' + gasPrice;
         gasPrice = (await getGasPrice(web3)) + '' + i;
         const sleepTime = Math.pow(2, i);
         logs += `replacement transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}\n`;
         await sleep(1000 * sleepTime);
       }
-      if (errorMsg.includes('transaction underpriced')) {
+      if (errorMsgCurrent.includes('transaction underpriced')) {
         const gasPriceOld = '' + gasPrice;
         gasPrice = (await getGasPrice(web3)) + '' + i;
         const sleepTime = Math.pow(2, i);
         logs += `transaction underpriced, wait ${sleepTime} s, gasPrice: ${gasPriceOld} -> ${gasPrice}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         await sleep(1000 * sleepTime);
-      } else if (errorMsg.includes('Error: ETIMEDOUT')) {
+      } else if (errorMsgCurrent.includes('Error: ETIMEDOUT')) {
         const sleepTime = Math.pow(2, i + 1);
         logs += `ETIMEDOUT error, try after wait of seconds: ${sleepTime}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         await sleep(1000 * sleepTime);
-      } else if (errorMsg.includes('nonce too low')) {
+      } else if (errorMsgCurrent.includes('nonce too low')) {
         const nonceWas = '' + nonce;
         nonce = await web3.eth.getTransactionCount(from);
         nonce++;
@@ -97,7 +101,7 @@ export const sendTransaction = async ({
         errorMsg = error;
         await sleep(1000 * sleepTime);
       } else {
-        logs += `DO NOT RETRY TX ON THIS ERROR, ${errorMsg}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
+        logs += `DO NOT RETRY TX ON THIS ERROR, ${errorMsgCurrent}, ${method}: ${parametersNames} ${parameters}, from ${from}`;
         break;
       }
     }
