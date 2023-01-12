@@ -18,6 +18,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
 
+  depositedFundsEth: {
+    type: Number,
+    default: 0, // 0 not added to pool, 1 added to pool, 2 removed from pool and he can not enter again
+  },
+
   status7SponsorPool: {
     type: Number,
     default: 0, // 0 not added to pool, 1 added to pool, 2 removed from pool and he can not enter again

