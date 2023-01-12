@@ -9,13 +9,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  balance: {
+  depositedFundsEth: {
     type: Number,
     default: 0,
-  },
-  age: {
-    type: Number,
-    default: 12,
   },
 });
 const User = new mongoose.model(dbName, UserSchema);
@@ -40,12 +36,24 @@ const writeBook = async (user, newUserState) => {
   await User.updateOne(user, newUserState);
 };
 
-(async () => {
-  const userName = 'Muneeb';
-  await writeBook({ userName }, { balance: 13 });
-
+const depositFunds = async (userName, depositAmount) => {
   const user = await readBook({ userName });
-  console.log(user.userName, user.balance);
+  if (!user) return false;
+
+  await writeBook(
+    { userName },
+    { depositedFundsEth: user.depositedFundsEth + depositAmount },
+  );
+  return true;
+};
+
+(async () => {
+  const userName = 'Muneeb1';
+  const depositAmount = 10;
+
+  const depositSuccess = await depositFunds(userName, depositAmount);
+  if (depositSuccess) console.log(`Deposit Success ${depositAmount} TON`);
+  else console.log('Deposit Failed, User not found in system');
 })();
 
 module.exports = { readBook, writeBook };
