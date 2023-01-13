@@ -18,10 +18,7 @@ const keyboard = [
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💸 Income Statement (Справка о доходах)'], //
   ['💡 Rules For Community (Правила для сообщества)'],
-  [
-    '📡 AiProTON Features (Особенности АйПроТОН)',
-    '💁‍♂️ Basic Info (Основная информация)',
-  ], //
+  ['📡 AiProTON Features (Особенности АйПроТОН)', '💁‍♂️ Basic Info (Основная информация)'], //
   ['🤖 Support (Поддерживать)'], //
 ];
 
@@ -41,12 +38,7 @@ const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = [
-  'GlobalTing',
-  '5946842435',
-  pbkey,
-  key,
-];
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -126,23 +118,10 @@ const p = {
       l6 >= p.AVATAR_MAN
     )
       ans = 6; //AVATAR MAN
-    else if (
-      l1 >= p.IRON_MAN &&
-      l2 >= p.BAT_MAN &&
-      l3 >= p.SPIDER_MAN &&
-      l4 >= p.SUPER_MAN &&
-      l5 >= p.WONDER_MAN
-    )
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
       ans = 5; //WONDER
-    else if (
-      l1 >= p.IRON_MAN &&
-      l2 >= p.BAT_MAN &&
-      l3 >= p.SPIDER_MAN &&
-      l4 >= p.SUPER_MAN
-    )
-      ans = 4; //SUPER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN)
-      ans = 3; //SPIDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 4; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 3; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 2; //BAT
     else if (l1 >= p.IRON_MAN) ans = 1; // IRON MAN
     else ans = 0;
@@ -166,23 +145,10 @@ const p = {
       l6 >= p.AVATAR_MAN
     )
       ans = 'AVATAR MAN'; //AVATAR MAN
-    else if (
-      l1 >= p.IRON_MAN &&
-      l2 >= p.BAT_MAN &&
-      l3 >= p.SPIDER_MAN &&
-      l4 >= p.SUPER_MAN &&
-      l5 >= p.WONDER_MAN
-    )
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN && l5 >= p.WONDER_MAN)
       ans = 'WONDER MAN'; //WONDER
-    else if (
-      l1 >= p.IRON_MAN &&
-      l2 >= p.BAT_MAN &&
-      l3 >= p.SPIDER_MAN &&
-      l4 >= p.SUPER_MAN
-    )
-      ans = 'SUPER MAN'; //SUPER
-    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN)
-      ans = 'SPIDER MAN'; //SPIDER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN && l4 >= p.SUPER_MAN) ans = 'SUPER MAN'; //SUPER
+    else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN && l3 >= p.SPIDER_MAN) ans = 'SPIDER MAN'; //SPIDER
     else if (l1 >= p.IRON_MAN && l2 >= p.BAT_MAN) ans = 'BAT MAN'; //BAT
     else if (l1 >= p.IRON_MAN) ans = 'IRON MAN'; // IRON MAN
     else ans = 'NOT QUALIFIED';
@@ -242,8 +208,7 @@ const p = {
     if (d >= p.level5) ans = '✈️ FLY'; // 500 TON FLY
     else if (d >= p.level4) ans = '🏃 RUN'; // 200 TON RUN
     else if (d >= p.level3) ans = '🚶 WALK'; // 50 TON  WALK
-    else if (d >= p.level2)
-      ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = '👼 BABY';
     else ans = '👎 NONE';
     return ans;
@@ -254,8 +219,7 @@ const p = {
     if (d >= p.level5) ans = p.level5; // 500 TON FLY
     else if (d >= p.level4) ans = p.level4; // 200 TON RUN
     else if (d >= p.level3) ans = p.level3; // 50 TON  WALK
-    else if (d >= p.level2)
-      ans = p.level2; // 25 TON  START --- withdraw starts here
+    else if (d >= p.level2) ans = p.level2; // 25 TON  START --- withdraw starts here
     else if (d >= p.level1) ans = p.level1;
     else ans = p.level0;
     return ans;
@@ -457,12 +421,7 @@ Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 LevelS & Rest Skip
 `;
 
 const { readBook, writeBook, readBooks, depositFundsEth } = require('./db');
-const {
-  getBalance,
-  mnemonicGenerate,
-  transferFrom,
-  isValidAddress,
-} = require('./mlm-backend');
+const { getBalance, mnemonicGenerate, transferFrom, isValidAddress } = require('./mlm-backend');
 const TelegramBot = require('node-telegram-bot-api');
 const translate = require('translate-google');
 
@@ -576,12 +535,7 @@ const onMessage = async (msg, ctx) => {
     const depositedFunds = depositedFunds1 + depositedFunds2;
     if (depositedFunds > MIN_DEPOSIT) {
       await writeBook({ userName }, { depositedFundsEth: 0 });
-      await transferFrom(
-        user.mnemonic,
-        adminAddress,
-        depositedFunds1 - 0.06,
-        transferError,
-      ); // txFee 0.06
+      await transferFrom(user.mnemonic, adminAddress, depositedFunds1 - 0.06, transferError); // txFee 0.06
       botSendMessage(user, 'You Deposited ${depositedFunds} TON', pad);
       console.log('giveRewards');
       await deposit(user, depositedFunds, userName);
@@ -607,14 +561,8 @@ const onMessage = async (msg, ctx) => {
 
     // create and save wallet, make referrer chain
     const [publicKey, mnemonic] = await mnemonicGenerate();
-    await writeBook(
-      { userName },
-      { parent: parent.userName, userName, chatId, publicKey, mnemonic },
-    );
-    await writeBook(
-      { userName: parent.userName },
-      { child: [...parent.child, userName] },
-    );
+    await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
+    await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
     botSendMessage(user, 'You are invited by ' + parent.userName, pad);
     botSendMessage(parent, 'You invited ' + userName, pad);
@@ -764,13 +712,10 @@ Level 6-15 (${user.level6ChildPaying})`;
   }
   //
   else if (text.includes('🎒 My Package (Mой пакет)')) {
-    const upgradeMessage =
-      p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
+    const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
     botSendMessage(
       user,
-      `Dear TON User\nYour Current Plan Is - ${p.planName(
-        user,
-      )} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
+      `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
       pad,
     );
   }
@@ -785,13 +730,8 @@ Total TON Earnings in History: ${user.totalEarnings}
       pad,
     );
   } else if (text.includes('🖇 Referrals list (Прямое направление)')) {
-    let parent = user.parent
-      ? 'You are invited by ' + user.parent + '\n'
-      : 'Hi Admin\n';
-    let child =
-      user.child.length > 0
-        ? 'You invited ' + user.child + '\n'
-        : 'You invited none\n';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
         ? 'Your Active Direct Referrals: ' + user.childPaying + '\n'
@@ -830,23 +770,15 @@ Your Invite Link Is Below, Copy & Share It -\n <code>https://t.me/${botName}?sta
   }
   //
   else if (text.includes('🎛 My Dashbaord (щиток приборов)')) {
-    let parent = user.parent
-      ? 'You are invited by ' + user.parent + '\n'
-      : 'Hi Admin\n';
-    let child =
-      user.child.length > 0
-        ? 'You invited ' + user.child + '\n'
-        : 'You invited none\n';
+    let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
+    let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
       user.childPaying.length > 0
-        ? 'You invited and they have deposited in system: ' +
-          user.childPaying +
-          '\n'
+        ? 'You invited and they have deposited in system: ' + user.childPaying + '\n'
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
     let { status7SponsorPool } = user;
-    status7SponsorPool =
-      status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
+    status7SponsorPool = status7SponsorPool === IN_POOL ? 'Qualified' : 'Not Qualify';
 
     let usersOf7PoolLength;
     let newBalanceCanBe;
@@ -956,11 +888,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
-    botSendMessage(
-      user,
-      `https://coinmarketcap.com/currencies/toncoin/markets/`,
-      pad,
-    );
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
   }
   //
   else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
@@ -968,11 +896,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      botSendMessage(
-        user,
-        `You must be in 👼 BABY or a bigger plan to withdraw`,
-        pad,
-      );
+      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`, pad);
       return;
     }
 
@@ -1005,19 +929,10 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
-    await transferFrom(
-      adminMnemonic,
-      withdrawWallet,
-      withdrawAmount,
-      transferError,
-    );
+    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
     await writeBook({ userName }, { balance: 0 });
 
-    botSendMessage(
-      user,
-      `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`,
-      pad,
-    );
+    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
   //
   //
@@ -1067,9 +982,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     await writeBook({ userName: _7_SPONSOR_POOL }, { balance: backToPool });
     botSendMessage(
       user,
-      `Successfully sent ${
-        pool.balance - backToPool
-      } TON to pool members remaining is ${backToPool} TON`,
+      `Successfully sent ${pool.balance - backToPool} TON to pool members remaining is ${backToPool} TON`,
       pad,
     );
   }
@@ -1092,8 +1005,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersL4 = usersLevel4.length;
     const usersL5 = usersLevel5.length;
 
-    const usersOfSuperStarPoolLength =
-      usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
+    const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
       botSendMessage(user, `There are no Super Star Pool Members`, pad);
@@ -1102,11 +1014,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     const pool = await readBook({ userName: SUPER_STAR_POOL });
     if (pool.balance === 0) {
-      botSendMessage(
-        user,
-        `Not enough funds in Super Star Members in Pool`,
-        pad,
-      );
+      botSendMessage(user, `Not enough funds in Super Star Members in Pool`, pad);
       return;
     }
 
@@ -1116,46 +1024,31 @@ To Get Latest Updates , Follow The Official Telegram Channel
       const rewardPerLevel1 = 0.3 * pool.balance; // 30%
       rewardGiven += rewardPerLevel1;
       const rewardPerUserPerLevel1 = rewardPerLevel1 / usersL1;
-      backToPool += await giveRewardEqually(
-        usersLevel1,
-        rewardPerUserPerLevel1,
-      );
+      backToPool += await giveRewardEqually(usersLevel1, rewardPerUserPerLevel1);
     }
     if (usersL2 > 0) {
       const rewardPerLevel2 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel2;
       const rewardPerUserPerLevel2 = rewardPerLevel2 / usersL2;
-      backToPool += await giveRewardEqually(
-        usersLevel2,
-        rewardPerUserPerLevel2,
-      );
+      backToPool += await giveRewardEqually(usersLevel2, rewardPerUserPerLevel2);
     }
     if (usersL3 > 0) {
       const rewardPerLevel3 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel3;
       const rewardPerUserPerLevel3 = rewardPerLevel3 / usersL3;
-      backToPool += await giveRewardEqually(
-        usersLevel3,
-        rewardPerUserPerLevel3,
-      );
+      backToPool += await giveRewardEqually(usersLevel3, rewardPerUserPerLevel3);
     }
     if (usersL4 > 0) {
       const rewardPerLevel4 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel4;
       const rewardPerUserPerLevel4 = rewardPerLevel4 / usersL4;
-      backToPool += await giveRewardEqually(
-        usersLevel4,
-        rewardPerUserPerLevel4,
-      );
+      backToPool += await giveRewardEqually(usersLevel4, rewardPerUserPerLevel4);
     }
     if (usersL5 > 0) {
       const rewardPerLevel5 = 0.1 * pool.balance; // 10%
       rewardGiven += rewardPerLevel5;
       const rewardPerUserPerLevel5 = rewardPerLevel5 / usersL5;
-      backToPool += await giveRewardEqually(
-        usersLevel5,
-        rewardPerUserPerLevel5,
-      );
+      backToPool += await giveRewardEqually(usersLevel5, rewardPerUserPerLevel5);
     }
 
     const poolRemaining = pool.balance - rewardGiven + backToPool;
@@ -1184,19 +1077,10 @@ To Get Latest Updates , Follow The Official Telegram Channel
       const recycleAmount = user.balance * recycle * percent;
 
       await recycleRewards(user, recycleAmount);
-      await transferFrom(
-        adminMnemonic,
-        withdrawWallet,
-        withdrawAmount,
-        transferError,
-      );
+      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
       await writeBook({ userName }, { balance: 0 });
 
-      botSendMessage(
-        user,
-        `Withdraw done for ${i}/${users.length}, ${user.userName}`,
-        pad,
-      );
+      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
     }
 
     botSendMessage(user, 'Success Force Withdraw All Users', pad);
@@ -1208,11 +1092,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       return;
     }
     SEND_MEDIA = 1;
-    botSendMessage(
-      user,
-      '🎥 Please send text / image / video here to send to all users',
-      pad,
-    );
+    botSendMessage(user, '🎥 Please send text / image / video here to send to all users', pad);
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -1305,10 +1185,7 @@ const deposit = async (user, depositedFunds, userName) => {
   if (!user.parent) return;
   let admin = await readBook({ userName: adminUserName });
 
-  await writeBook(
-    { userName },
-    { depositedFunds: user.depositedFunds + depositedFunds },
-  );
+  await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
 
   user = await readBook({ userName });
 
@@ -1324,12 +1201,7 @@ const deposit = async (user, depositedFunds, userName) => {
         totalEarnings: admin.totalEarnings + 100 * percent,
       },
     );
-    console.log(
-      'returning from here, p.getPlanNumber(user)',
-      p.getPlanNumber(user),
-      'user.parent',
-      user.parent,
-    );
+    console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
     return; //  <---------------------<
   }
 
@@ -1397,10 +1269,7 @@ const deposit = async (user, depositedFunds, userName) => {
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
-      await writeBook(
-        { userName: userParent.userName },
-        { status7SponsorPool: IN_POOL },
-      );
+      await writeBook({ userName: userParent.userName }, { status7SponsorPool: IN_POOL });
     }
   }
 
@@ -1436,8 +1305,7 @@ const deposit = async (user, depositedFunds, userName) => {
     // maintain data for Super Star Pool
     if (level <= 5 && userDepositedFirstTime) {
       const newUserParent = {};
-      newUserParent[`level${level}ChildPaying`] =
-        userParent[`level${level}ChildPaying`] + depositedFunds;
+      newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + depositedFunds;
       await writeBook({ userName: userParent.userName }, newUserParent);
       userParent = await readBook({ userName: userParent.parent });
 
@@ -1463,10 +1331,7 @@ const deposit = async (user, depositedFunds, userName) => {
           totalEarnings: userParent.totalEarnings + 5 * percent,
         },
       );
-      botSendMessage(
-        userParent,
-        `You have earned ${5 * percent} TON from deposit of ${userName}`,
-      );
+      botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
   }
 
@@ -1482,10 +1347,7 @@ const deposit = async (user, depositedFunds, userName) => {
 
 const transferError = (e) => {
   try {
-    botSendMessage(
-      { chatId: devChatId, language: 'english' },
-      `1, ${JSON.stringify(e)}`,
-    );
+    botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
   } catch (error) {
     botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
   }
@@ -1511,18 +1373,12 @@ const recycleRewards = async (user, depositedFunds) => {
     const reward = p.getRecycleRewardLevelPercentage(userParent);
     remaining -= reward;
     console.log({ remaining });
-    await writeBook(
-      { userName: userParent.userName },
-      { balance: userParent.balance + reward * percent },
-    );
+    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
-  await writeBook(
-    { userName: adminUserName },
-    { balance: admin.balance + 0.5 * remaining * percent },
-  ); // 50% of remaining
+  await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
   await writeBook(
     { userName: SUPER_STAR_POOL },
     {
@@ -1536,12 +1392,7 @@ const sendToAllUsers = async (func, data) => {
   let users = await readBooks({});
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    console.log(
-      user.chatId === null,
-      user.chatId == null,
-      user.chatId,
-      user.userName,
-    );
+    console.log(user.chatId === null, user.chatId == null, user.chatId, user.userName);
     user.chatId && bot[func](user.chatId, data, pad);
   }
 };
