@@ -18,8 +18,11 @@ const keyboard = [
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
   ['💸 Income Statement (Справка о доходах)'], //
   ['💡 Rules For Community (Правила для сообщества)'],
-  ['📡 AiProTON Features (Особенности АйПроТОН)', '💁‍♂️ Basic Info (Основная информация)'], //
-  ['🤖 Support (Поддерживать)']//
+  [
+    '📡 AiProTON Features (Особенности АйПроТОН)',
+    '💁‍♂️ Basic Info (Основная информация)',
+  ], //
+  ['🤖 Support (Поддерживать)'], //
 ];
 
 const adminKeyBoard = [
@@ -106,7 +109,7 @@ const p = {
     6: 25000,
   },
 
-  getLevel: u => {
+  getLevel: (u) => {
     const l1 = u.level1ChildPaying;
     const l2 = u.level2ChildPaying;
     const l3 = u.level3ChildPaying;
@@ -146,7 +149,7 @@ const p = {
     return ans;
   },
 
-  getLevelName: u => {
+  getLevelName: (u) => {
     const l1 = u.level1ChildPaying;
     const l2 = u.level2ChildPaying;
     const l3 = u.level3ChildPaying;
@@ -208,7 +211,7 @@ const p = {
     return ans;
   },
 
-  getWithdrawRecyclePercentage: u => {
+  getWithdrawRecyclePercentage: (u) => {
     if (!u.parent) return [100, 0];
 
     const d = u.depositedFunds;
@@ -477,7 +480,9 @@ app.get('/depositFundsEth', async (req, res) => {
   res.json({ status });
 });
 
-const listener = app.listen(process.env.PORT || 8080, () => console.log('Listening on port ' + listener.address().port));
+const listener = app.listen(process.env.PORT || 8080, () =>
+  console.log('Listening on port ' + listener.address().port),
+);
 
 const bot = new TelegramBot(token, { polling: true });
 
@@ -560,24 +565,23 @@ const onMessage = async (msg, ctx) => {
     console.log('Old user');
     // empty the account
     let [, depositedFunds1] = await getBalance(user.publicKey);
-    await transferFrom(
-      user.mnemonic,
-      adminAddress,
-      depositedFunds1 - 0.06,
-      transferError,
-    ); // txFee 0.06
-
-    if (!depositedFunds1) {
+    console.log(depositedFunds1);
+    if (depositedFunds1 === null) {
       botSendMessage(user, 'Please try again', pad);
       return;
     }
 
     // empty the account
     let depositedFunds2 = user.depositedFundsEth;
-    await writeBook({ userName }, { depositedFundsEth: 0 });
-
     const depositedFunds = depositedFunds1 + depositedFunds2;
     if (depositedFunds > MIN_DEPOSIT) {
+      await writeBook({ userName }, { depositedFundsEth: 0 });
+      await transferFrom(
+        user.mnemonic,
+        adminAddress,
+        depositedFunds1 - 0.06,
+        transferError,
+      ); // txFee 0.06
       botSendMessage(user, 'You Deposited ${depositedFunds} TON', pad);
       console.log('giveRewards');
       await deposit(user, depositedFunds, userName);
@@ -807,7 +811,9 @@ Your TON Earnings Available: ${user.balance}
 Total TON Earnings in History: ${user.totalEarnings}
 
 Your Deposited TON: ${user.depositedFunds} TON
-
+<a href="https://accept-ton-on-eth.vercel.app/?userName=${user.userName}&depositAmount=${5}">
+Deposit TON from Metamask
+</a>
 Deposit Address:\n<code>${user.publicKey}</code>`,
       pad,
     );
@@ -1474,7 +1480,7 @@ const deposit = async (user, depositedFunds, userName) => {
   );
 };
 
-const transferError = e => {
+const transferError = (e) => {
   try {
     botSendMessage(
       { chatId: devChatId, language: 'english' },
@@ -1530,7 +1536,12 @@ const sendToAllUsers = async (func, data) => {
   let users = await readBooks({});
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
-    console.log(user.chatId === null, user.chatId == null, user.chatId, user.userName);
+    console.log(
+      user.chatId === null,
+      user.chatId == null,
+      user.chatId,
+      user.userName,
+    );
     user.chatId && bot[func](user.chatId, data, pad);
   }
 };
@@ -1543,7 +1554,7 @@ const sendToAllUsers = async (func, data) => {
 //   }
 // };
 
-const exists = user => {
+const exists = (user) => {
   return user !== undefined;
 };
 
@@ -1583,10 +1594,10 @@ const botSendMessage = (user, msg, pad) => {
   }
 
   translate(msg, { to: user.language })
-    .then(translation => {
+    .then((translation) => {
       bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
     })
-    .catch(err => {
+    .catch((err) => {
       bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
 };

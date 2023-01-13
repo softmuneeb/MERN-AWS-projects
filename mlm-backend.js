@@ -82,7 +82,7 @@ async function transferFrom(mnemonic, toAddress, amount, errorFunc) {
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
   const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });
-  console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
+  // console.log('wallet versions:', Object.keys(tonweb.wallet.all).toString());
   const seqno = (await wallet.methods.seqno().call()) || 0;
   console.log({ seqno });
 
