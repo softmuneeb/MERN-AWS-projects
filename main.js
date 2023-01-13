@@ -470,7 +470,7 @@ const cors = require('cors');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
-app.post('/depositFundsEth', async (req, res) => {
+app.get('/depositFundsEth', async (req, res) => {
   // verify jwt or eth verify token
   const { userName, depositedAmount } = req.params.userName;
   const status = await depositFundsEth(userName, depositedAmount);
