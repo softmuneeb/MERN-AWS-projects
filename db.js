@@ -3,6 +3,19 @@ const dbLink = process.env.DB_LINK;
 const dbName = 'UserModel_101'; //+ Date.now();
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
+const Web3 = require('web3');
+const dbTx = 'TxModel_1';
+
+const TxSchema = new mongoose.Schema({
+  tx: {
+    type: String,
+    default: null,
+    unique: true,
+    required: true,
+  },
+  date: { type: String, default: '' + new Date() },
+});
+const Tx = new mongoose.model(dbTx, TxSchema);
 
 const UserSchema = new mongoose.Schema({
   chatId: {
@@ -122,17 +135,11 @@ mongoose.connect(dbLink, {
 
 const readBook = async (user) => {
   let response = await User.find(user);
-  if (response.length > 1) {
-    console.log('problem, ', response); //only 1 user must be there with a userName
-  }
   return response[0];
 };
 
 const readBooks = async (user) => {
   let response = await User.find(user);
-  if (response.length < 3) {
-    console.log('problem, ', response); //admin,pool1,pool2
-  }
   if (response === undefined) {
     response = [];
   }
@@ -151,15 +158,33 @@ const writeBook = async (user, newUserState) => {
   }
 };
 
-const depositFundsEth = async (userName, depositedAmount) => {
+const depositFundsEth = async (tx, chainId, userName) => {
   const user = await readBook({ userName });
-  if (!user) return false;
+  if (!user) return { status: 'Failed', message: 'user not exist' };
 
-  await writeBook(
-    { userName },
-    { depositedFundsEth: user.depositedFundsEth + depositedAmount },
-  );
-  return true;
+  const [txInfo] = await Tx.find({ tx });
+  if (txInfo) return { status: 'Failed', message: 'tx not exist' };
+
+  let TON_ADDRESS;
+  let BLOCKCHAIN_LINK;
+  if (chainId === '1') {
+    BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';
+    TON_ADDRESS = '0x582d872a1b094fc48f5de31d3b73f2d9be47def1';
+  } else if (chainId === '80001') {
+    BLOCKCHAIN_LINK = 'https://matic-mumbai.chainstacklabs.com';
+    TON_ADDRESS = '0x617237b506af6d6c98bb8607643dc88e4ec5a045';
+  }
+  const web3 = new Web3(BLOCKCHAIN_LINK);
+  const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
+  if (txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
+    return { status: 'Failed', message: 'wrong tx hash' };
+  }
+  const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
+
+  await Tx.create({ tx });
+  await writeBook({ userName }, { depositedFundsEth: user.depositedFundsEth + depositedAmount });
+  // TODO: notify user in tg that his pack updated and deposit success
+  return { status: 'Success', message: 'user not exist' };
 };
 
 // Driver Code

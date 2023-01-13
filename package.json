@@ -21,6 +21,7 @@
     "ton": "^12.2.8",
     "tonweb": "^0.0.58",
     "tonweb-mnemonic": "^1.0.1",
-    "translate-google": "^1.5.0"
+    "translate-google": "^1.5.0",
+    "web3": "^1.8.1"
   }
 }

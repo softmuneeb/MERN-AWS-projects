@@ -432,11 +432,10 @@ const cors = require('cors');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
-app.get('/depositFundsEth', async (req, res) => {
-  // verify jwt or eth verify token
-  const { userName, depositedAmount } = req.params;
-  const status = await depositFundsEth(userName, depositedAmount);
-  res.json({ status });
+app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
+  const { tx, userName, chainId } = req.params;
+  const status = await depositFundsEth(tx, chainId, userName);
+  res.json(status);
 });
 
 const listener = app.listen(process.env.PORT || 8080, () =>
