@@ -151,13 +151,13 @@ const writeBook = async (user, newUserState) => {
   }
 };
 
-const depositFundsEth = async (userName, depositAmount) => {
+const depositFundsEth = async (userName, depositedAmount) => {
   const user = await readBook({ userName });
   if (!user) return false;
 
   await writeBook(
     { userName },
-    { depositedFundsEth: user.depositedFundsEth + depositAmount },
+    { depositedFundsEth: user.depositedFundsEth + depositedAmount },
   );
   return true;
 };

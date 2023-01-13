@@ -453,7 +453,7 @@ Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 LevelS & Rest Skip
 ....To Know About REWARDS ...  Click REWARD TAB
 `;
 
-const { readBook, writeBook, readBooks } = require('./db');
+const { readBook, writeBook, readBooks, depositFundsEth } = require('./db');
 const {
   getBalance,
   mnemonicGenerate,
@@ -462,6 +462,22 @@ const {
 } = require('./mlm-backend');
 const TelegramBot = require('node-telegram-bot-api');
 const translate = require('translate-google');
+
+// setup express app so we can visit link after vercel api hosting
+const express = require('express');
+const app = express();
+const cors = require('cors');
+app.use(cors());
+app.set('json spaces', 2);
+app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
+app.post('/depositFundsEth', async (req, res) => {
+  // verify jwt or eth verify token
+  const { userName, depositedAmount } = req.params.userName;
+  const status = await depositFundsEth(userName, depositedAmount);
+  res.json({ status });
+});
+
+const listener = app.listen(process.env.PORT || 8080, () => console.log('Listening on port ' + listener.address().port));
 
 const bot = new TelegramBot(token, { polling: true });
 
