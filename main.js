@@ -38,7 +38,8 @@ const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
-const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
+const adminAddressEth = '0xA827c2964536668D9d2ce10962392c328af4c131';
+// const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
