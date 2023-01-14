@@ -8,7 +8,7 @@ const keyboard = [
   ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
   ['💼 Plan Packages (Пакет планов)'], //
-  ['🎛 My Dashbaord (щиток приборов)'], //
+  ['🎛 My Dashboard (щиток приборов)'], //
   ['⭐️ Home (Дом)'], //
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['🎒 My Package (Mой пакет)'], //
@@ -33,13 +33,13 @@ const adminKeyBoard = [
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
-const pbkey = process.env.ADMIN_ADDRESS;
+const pubkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
 const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -412,9 +412,9 @@ if you on Start – 2% ,
 If You on Walk – 3% , 
 If You On Run – 4% , 
 if you on FLY pack you get 5% on Each level from each 
-RECYLE Activity. 
+RECYCLE Activity. 
 
-Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 LevelS & Rest Skiped Balance Use In REWARDS
+Thus 5% x 15 Level – Upto 75% Distribution of RECYCLE In 15 LevelS & Rest Skipped Balance Use In REWARDS
 
 100% Distribution 
 
@@ -770,7 +770,7 @@ Your Invite Link Is Below, Copy & Share It -\n <code>https://t.me/${botName}?sta
     );
   }
   //
-  else if (text.includes('🎛 My Dashbaord (щиток приборов)')) {
+  else if (text.includes('🎛 My Dashboard (щиток приборов)')) {
     let parent = user.parent ? 'You are invited by ' + user.parent + '\n' : 'Hi Admin\n';
     let child = user.child.length > 0 ? 'You invited ' + user.child + '\n' : 'You invited none\n';
     let childPaying =
@@ -866,7 +866,7 @@ L6
 To     - 5,00,000 TON    - 25,000 TON
 L15
 
-( Before Achive 6th Reward.. Any Above 4 Level Must Be Achived)
+( Before Achieve 6th Reward.. Any Above 4 Level Must Be Achieved)
 
 Skipped Non-Distributed Balance from Recycled TON Go To REWARD Club
 And Distribute Among Achievers
