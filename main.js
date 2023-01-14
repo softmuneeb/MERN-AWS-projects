@@ -434,7 +434,7 @@ app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
-  const status = await depositFundsEth(tx, chainId, userName);
+  const status = await depositFundsEth(tx, chainId, userName, botSendMessage);
   res.json(status);
 });
 
@@ -1436,7 +1436,7 @@ const seedDB = async () => {
 };
 
 const botSendMessage = (user, msg, pad) => {
-  // if (!pad) pad = padSimple;
+  if (!pad) pad = padSimple;
 
   if (user.language.toLowerCase() === 'english') {
     bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);

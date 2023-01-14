@@ -150,15 +150,14 @@ const writeBook = async (user, newUserState) => {
   // only create a user if he does not exist, do not create a duplicate userName
   let responseRead = await readBook(user);
   if (!responseRead) {
-    const responseCreate = await User.create({ ...user, ...newUserState });
-    // console.log({ responseCreate, newUserState });
-  } else {
-    const responseUpdate = await User.updateOne(user, newUserState);
-    // console.log({ responseUpdate, newUserState });
+    await User.create({ ...user, ...newUserState });
+    return;
   }
+
+  await User.updateOne(user, newUserState);
 };
 
-const depositFundsEth = async (tx, chainId, userName) => {
+const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
   const user = await readBook({ userName });
   if (!user) return { status: 'Failed', message: 'user not exist' };
 
@@ -167,13 +166,15 @@ const depositFundsEth = async (tx, chainId, userName) => {
 
   let TON_ADDRESS;
   let BLOCKCHAIN_LINK;
+  // TODO: convert if else to obj
   if (chainId === '1') {
     BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';
     TON_ADDRESS = '0x582d872a1b094fc48f5de31d3b73f2d9be47def1';
   } else if (chainId === '80001') {
     BLOCKCHAIN_LINK = 'https://matic-mumbai.chainstacklabs.com';
     TON_ADDRESS = '0x617237b506af6d6c98bb8607643dc88e4ec5a045';
-  }
+  } else return { status: 'Failed', message: 'wrong chain id' };
+
   const web3 = new Web3(BLOCKCHAIN_LINK);
   const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
   if (!txData || txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
@@ -184,29 +185,14 @@ const depositFundsEth = async (tx, chainId, userName) => {
   await Tx.create({ tx });
   await writeBook({ userName }, { depositedFundsEth: user.depositedFundsEth + depositedAmount });
   // TODO: notify user in tg that his pack updated and deposit success
-  return { status: 'Success', message: 'Funds Deposited' };
+  const message = `Successfully Deposited ${depositedAmount} TON`;
+  botSendMessage(user, message);
+  return { status: 'Success', message };
 };
 
 // Driver Code
 (async () => {
-  // let r;
-  // r = await User.create({ userName: 'Jean-Luc Picard' });
-  // console.log({ r });
-  // r = await User.exists({ userName: /picard/i }); // { _id: ... }
-  // console.log({ r });
-  // r = await User.exists({ userName: /riker/i }); // null
-  // console.log({ r });
-  // r = await writeBook({ userName }, { userName, balance: '11' });
-  // console.log({ r });
-  // const users = await readBooks({});
-  // console.log({ users: users.length });
-  // const userName = '__________3';
-  // let user = await readBook({ userName });
-  // if (!user) {
-  //   await writeBook({ userName }, { userName, balance: 10 });
-  //   user = await readBook({ userName });
-  // }
-  // console.log({ user });
+  //
 })();
 
 module.exports = { readBook, writeBook, readBooks, depositFundsEth };
