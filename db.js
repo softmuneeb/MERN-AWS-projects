@@ -158,13 +158,21 @@ const writeBook = async (user, newUserState) => {
 };
 
 const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
+  function validate_txhash(addr) {
+    return /^0x([A-Fa-f0-9]{64})$/.test(addr);
+  }
+
+  console.log({ tx, chainId, userName });
+
+  if (!validate_txhash(tx)) return { status: 'Failed', message: 'Invalid Tx' };
+
   const user = await readBook({ userName });
   if (!user) return { status: 'Failed', message: 'user not exist' };
 
   console.log(user);
 
   const [txInfo] = await Tx.find({ tx });
-  if (txInfo) return { status: 'Failed', message: 'tx not exist' };
+  if (txInfo) return { status: 'Failed', message: 'tx already recorded' };
 
   let TON_ADDRESS;
   let BLOCKCHAIN_LINK;

@@ -1409,7 +1409,8 @@ const exists = (user) => {
 };
 
 const seedDB = async () => {
-  botName = (await bot.getMe()).username;
+  // botName = (await bot.getMe()).username;
+  console.log({ botName:1 });
 
   let user = await readBook({ userName: adminUserName });
   console.log({ user });
@@ -1451,8 +1452,9 @@ const botSendMessage = (user, msg, pad) => {
       bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
 };
-
-seedDB().then(() => bot.on('message', onMessage));
+console.log(1);
+seedDB()
+  // .then(() => bot.on('message', onMessage));
 
 /*
 writeBook(
