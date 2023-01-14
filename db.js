@@ -184,7 +184,7 @@ const depositFundsEth = async (tx, chainId, userName) => {
   await Tx.create({ tx });
   await writeBook({ userName }, { depositedFundsEth: user.depositedFundsEth + depositedAmount });
   // TODO: notify user in tg that his pack updated and deposit success
-  return { status: 'Success', message: 'user not exist' };
+  return { status: 'Success', message: 'Funds Deposited' };
 };
 
 // Driver Code
