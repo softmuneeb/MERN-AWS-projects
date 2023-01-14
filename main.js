@@ -1456,8 +1456,7 @@ const botSendMessage = (user, msg, pad) => {
     });
 };
 console.log(1);
-seedDB();
-// .then(() => bot.on('message', onMessage));
+seedDB().then(() => bot.on('message', onMessage));
 
 /*
 writeBook(
