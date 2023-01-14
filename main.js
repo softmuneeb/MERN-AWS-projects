@@ -436,7 +436,7 @@ app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
 app.get('/adminAddressEth', (req, res) => res.json({ adminAddressEth }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
-  const status = await depositFundsEth(tx, chainId, userName, botSendMessage);
+  const status = await depositFundsEth(tx, chainId, userName, botSendMessage, adminAddressEth);
   res.json(status);
 });
 

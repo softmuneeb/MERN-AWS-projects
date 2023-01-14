@@ -1,4 +1,6 @@
-const tx = {
+const Web3 = require('web3');
+
+const txData = {
   blockHash: '0xa2a96ab6cd0e9098f1df10679cd0b20382bc9549bea35dcef83fec19071edb6e',
   blockNumber: 30914929,
   contractAddress: null,
@@ -66,3 +68,7 @@ const tx = {
   transactionIndex: 6,
   type: '0x2',
 };
+
+const adminAddress = '0x84bF8BcDE152B33bbA6852E488d0C884898F17Dc';
+const depositAddress = txData?.logs[0]?.topics[3];
+console.log();

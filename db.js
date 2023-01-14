@@ -157,7 +157,7 @@ const writeBook = async (user, newUserState) => {
   await User.updateOne(user, newUserState);
 };
 
-const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
+const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddressEth) => {
   function validate_txhash(addr) {
     return /^0x([A-Fa-f0-9]{64})$/.test(addr);
   }
@@ -191,7 +191,12 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
     return { status: 'Failed', message: 'wrong tx hash' };
   }
 
-  const depositAddress = txData.logs[0].topics[3];
+  const depositAddress = (txData?.logs[0]?.topics[3]).toLowerCase();
+  const adminAddressEth_ = adminAddressEth.toLowerCase().replace('0x', '');
+  if (!depositAddress.includes(adminAddressEth_)) {
+    return { status: 'Failed', message: 'wrong deposit address' };
+  }
+
   const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
 
   await Tx.create({ tx });
