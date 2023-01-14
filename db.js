@@ -161,6 +161,8 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
   const user = await readBook({ userName });
   if (!user) return { status: 'Failed', message: 'user not exist' };
 
+  console.log(user);
+
   const [txInfo] = await Tx.find({ tx });
   if (txInfo) return { status: 'Failed', message: 'tx not exist' };
 
