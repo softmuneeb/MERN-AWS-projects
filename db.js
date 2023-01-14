@@ -176,7 +176,7 @@ const depositFundsEth = async (tx, chainId, userName) => {
   }
   const web3 = new Web3(BLOCKCHAIN_LINK);
   const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
-  if (txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
+  if (!txData || txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
     return { status: 'Failed', message: 'wrong tx hash' };
   }
   const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
