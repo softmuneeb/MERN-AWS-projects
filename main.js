@@ -38,6 +38,7 @@ const key = process.env.ADMIN_MNEMONIC;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
+const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
 const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pbkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
@@ -432,6 +433,7 @@ const cors = require('cors');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
+app.get('/adminAddressEth', (req, res) => res.json({ adminAddressEth }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
   const status = await depositFundsEth(tx, chainId, userName, botSendMessage);
@@ -1410,7 +1412,7 @@ const exists = (user) => {
 
 const seedDB = async () => {
   // botName = (await bot.getMe()).username;
-  console.log({ botName:1 });
+  console.log({ botName: 1 });
 
   let user = await readBook({ userName: adminUserName });
   console.log({ user });
@@ -1453,8 +1455,8 @@ const botSendMessage = (user, msg, pad) => {
     });
 };
 console.log(1);
-seedDB()
-  // .then(() => bot.on('message', onMessage));
+seedDB();
+// .then(() => bot.on('message', onMessage));
 
 /*
 writeBook(

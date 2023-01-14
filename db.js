@@ -190,6 +190,8 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage) => {
   if (!txData || txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
     return { status: 'Failed', message: 'wrong tx hash' };
   }
+
+  const depositAddress = txData.logs[0].topics[3];
   const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
 
   await Tx.create({ tx });
