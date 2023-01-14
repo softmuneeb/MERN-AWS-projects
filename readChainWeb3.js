@@ -6,6 +6,10 @@ const web3 = new Web3(networkLink);
 const pair_USD_ETH = '0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11';
 const pair_BOXA_ETH = '0x02BeA4499aaC742578b9b4CcFDFE4036B4E02Ed0';
 
+const tx = '0xadaf628e5f439123ecd2494a98be1f6b58726f4ef2574aa5584ba17a24eb30b1';
+const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
+console.log(!txData, !!txData, txData === null);
+
 // Code
 const getPrice = async (web3, pairAddress) => {
   // boxa      , erc20 token, https://etherscan.io/address/0x7662c015D845EF487fDe32cb884653bE9c9E0110
