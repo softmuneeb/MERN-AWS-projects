@@ -176,6 +176,7 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
 
   let TON_ADDRESS;
   let BLOCKCHAIN_LINK;
+  // TODO: tx pending -> confirmed
   // TODO: convert if else to obj
   if (chainId === '1') {
     BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';

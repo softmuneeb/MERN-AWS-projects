@@ -1,3 +1,11 @@
+hamza
+node -> nest
+react -> next
+js
+laravel
+postgres
+
+
 Now:
 
 // TODO: user can withdraw his 7pool superPool earnings, also add to historyEarnings

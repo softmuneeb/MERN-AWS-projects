@@ -1412,8 +1412,7 @@ const exists = (user) => {
 };
 
 const seedDB = async () => {
-  // botName = (await bot.getMe()).username;
-  console.log({ botName: 1 });
+  botName = (await bot.getMe()).username;
 
   let user = await readBook({ userName: adminUserName });
   console.log({ user });
