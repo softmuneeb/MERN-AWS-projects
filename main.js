@@ -1,5 +1,5 @@
 // explanation / plan in readme file
-const APP_ON_MAINNET = true;
+const APP_ON_MAINNET = false;
 // const APP_ON_MAINNET = false;
 
 const devChatId = '5207150830'; // for error messages
