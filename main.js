@@ -436,6 +436,7 @@ app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
 app.get('/adminAddressEth', (req, res) => res.json({ adminAddressEth }));
+app.get('/TG_BOT_LINK', (req, res) => res.json({ TG_BOT_LINK: `https://t.me/${botName}` }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
   const status = await depositFundsEth(tx, chainId, userName, botSendMessage, adminAddressEth);
