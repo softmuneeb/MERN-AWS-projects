@@ -201,7 +201,13 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
   const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
 
   await Tx.create({ tx });
-  await writeBook({ userName }, { depositedFundsEth: user.depositedFundsEth + depositedAmount });
+  await writeBook(
+    { userName },
+    {
+      depositedFunds: user.depositedFunds + depositedAmount,
+      depositedFundsEth: user.depositedFundsEth + depositedAmount,
+    },
+  );
   // TODO: notify user in tg that his pack updated and deposit success
   const message = `Successfully Deposited ${depositedAmount} TON`;
   botSendMessage(user, message);
