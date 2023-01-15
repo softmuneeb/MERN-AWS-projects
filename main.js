@@ -1,5 +1,6 @@
 // explanation / plan in readme file
 const APP_ON_MAINNET = true;
+// const APP_ON_MAINNET = false;
 
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
@@ -438,7 +439,7 @@ app.get('/APP_ON_MAINNET', (req, res) => res.json({ APP_ON_MAINNET }));
 app.get('/TG_BOT_LINK', (req, res) => res.json({ TG_BOT_LINK: `https://t.me/${botName}` }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
-  const status = await depositFundsEth(tx, chainId, userName, botSendMessage, adminAddressEth);
+  const status = await depositFundsEth(tx, chainId, userName, botSendMessage, adminAddressEth, APP_ON_MAINNET);
   res.json(status);
 });
 

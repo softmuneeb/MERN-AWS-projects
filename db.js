@@ -157,7 +157,7 @@ const writeBook = async (user, newUserState) => {
   await User.updateOne(user, newUserState);
 };
 
-const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddressEth) => {
+const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddressEth, APP_ON_MAINNET) => {
   function validate_txhash(addr) {
     return /^0x([A-Fa-f0-9]{64})$/.test(addr);
   }
@@ -178,13 +178,22 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
   let BLOCKCHAIN_LINK;
   // TODO: tx pending -> confirmed
   // TODO: convert if else to obj
-  if (chainId === '1') {
-    BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';
-    TON_ADDRESS = '0x582d872a1b094fc48f5de31d3b73f2d9be47def1';
-  } else if (chainId === '80001') {
-    BLOCKCHAIN_LINK = 'https://matic-mumbai.chainstacklabs.com';
-    TON_ADDRESS = '0x617237b506af6d6c98bb8607643dc88e4ec5a045';
-  } else return { status: 'Failed', message: 'wrong chain id' };
+
+  if (APP_ON_MAINNET) {
+    if (chainId === '1') {
+      BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';
+      TON_ADDRESS = '0x582d872a1b094fc48f5de31d3b73f2d9be47def1';
+    } else if (chainId === '56') {
+      BLOCKCHAIN_LINK = 'https://bsc-dataseed1.binance.org';
+      TON_ADDRESS = '0x76A797A59Ba2C17726896976B7B3747BfD1d220f';
+    } else return { status: 'Failed', message: 'Please change network to ETH Mainnet or BSC Mainnet' };
+  } else {
+    if (chainId === '80001') {
+      BLOCKCHAIN_LINK = 'https://matic-mumbai.chainstacklabs.com';
+      TON_ADDRESS = '0x617237b506af6d6c98bb8607643dc88e4ec5a045';
+    } else return { status: 'Failed', message: 'Please change network to Mumbai' };
+  }
+  
 
   const web3 = new Web3(BLOCKCHAIN_LINK);
   const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
