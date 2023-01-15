@@ -753,8 +753,8 @@ Your TON Earnings Available: ${user.balance}
 Total TON Earnings in History: ${user.totalEarnings}
 
 Your Deposited TON: ${user.depositedFunds} TON
-<a href="https://accept-ton-on-eth.vercel.app/?userName=${user.userName}&depositAmount=${5}">
-Deposit TON from Metamask
+<a href="https://accept-ton-on-eth.vercel.app/?userName=${user.userName}&balance=${user.balance}">
+Click here to deposit TON from Metamask
 </a>
 Deposit Address:\n<code>${user.publicKey}</code>`,
       pad,
