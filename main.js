@@ -5,7 +5,6 @@ const APP_ON_MAINNET = true;
 const devChatId = '5207150830'; // for error messages
 const admins = ['GlobalTing', 'ADMIN'];
 const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 const MIN_WITHDRAW = 0.1; //TON
 const MIN_DEPOSIT = 0.1; // TON
 
@@ -44,6 +43,7 @@ require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const pubkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
