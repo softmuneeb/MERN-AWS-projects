@@ -33,6 +33,7 @@ const adminKeyBoard = [
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
+console.log({ token });
 const pubkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
 
