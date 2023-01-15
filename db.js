@@ -157,7 +157,6 @@ const writeBook = async (user, newUserState) => {
   await User.updateOne(user, newUserState);
 };
 
-
 const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddressEth) => {
   function validate_txhash(addr) {
     return /^0x([A-Fa-f0-9]{64})$/.test(addr);
