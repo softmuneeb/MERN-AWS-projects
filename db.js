@@ -204,7 +204,7 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
   await writeBook(
     { userName },
     {
-      depositedFunds: user.depositedFunds + depositedAmount,
+      // depositedFunds: user.depositedFunds + depositedAmount,
       depositedFundsEth: user.depositedFundsEth + depositedAmount,
     },
   );
