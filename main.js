@@ -51,7 +51,7 @@ const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
 
 const MIN_WITHDRAW = 0.1; //TON
-const MIN_DEPOSIT = 1; // TON
+const MIN_DEPOSIT = 0.1; // TON
 
 // moved some functions in an object because they depend on each other
 const p = {
@@ -536,7 +536,7 @@ const onMessage = async (msg, ctx) => {
     // empty the account
     let depositedFunds2 = user.depositedFundsEth;
     const depositedFunds = depositedFunds1 + depositedFunds2;
-    if (depositedFunds > MIN_DEPOSIT) {
+    if (depositedFunds >= MIN_DEPOSIT) {
       await writeBook({ userName }, { depositedFundsEth: 0 });
       await transferFrom(user.mnemonic, adminAddress, depositedFunds1 - 0.06, transferError); // txFee 0.06
       botSendMessage(user, `You Deposited ${depositedFunds} TON`, pad);
