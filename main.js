@@ -439,7 +439,7 @@ app.get('/APP_ON_MAINNET', (req, res) => res.json({ APP_ON_MAINNET }));
 app.get('/TG_BOT_LINK', (req, res) => res.json({ TG_BOT_LINK: `https://t.me/${botName}` }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
-  const status = await depositFundsEth(tx, chainId, userName, botSendMessage, adminAddressEth, APP_ON_MAINNET);
+  const status = await depositFundsEth(tx, Number(chainId), userName, botSendMessage, adminAddressEth, APP_ON_MAINNET);
   res.json(status);
 });
 
@@ -476,6 +476,7 @@ const padLanguage = {
       ['🇨🇳 Chinese Simplified'],
     ],
   },
+  parse_mode: 'HTML',
 };
 
 let botName;

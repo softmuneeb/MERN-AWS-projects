@@ -1,10 +1,10 @@
 require('dotenv').config();
 const dbLink = process.env.DB_LINK;
-const dbName = 'UserModel_101'; //+ Date.now();
+const DB_USER = process.env.DB_USER;
+const DB_TX = `TX_OF_${DB_USER}`;
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
 const Web3 = require('web3');
-const dbTx = 'TxModel_1';
 
 const TxSchema = new mongoose.Schema({
   tx: {
@@ -13,9 +13,23 @@ const TxSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  chainId: {
+    type: Number,
+    default: null,
+    required: true,
+  },
+  userName: {
+    type: String,
+    default: null,
+    required: true,
+  },
+  value: {
+    type: Number,
+    default: null,
+  },
   date: { type: String, default: '' + new Date() },
 });
-const Tx = new mongoose.model(dbTx, TxSchema);
+const Tx = new mongoose.model(DB_TX, TxSchema);
 
 const UserSchema = new mongoose.Schema({
   chatId: {
@@ -127,7 +141,8 @@ const UserSchema = new mongoose.Schema({
   },
   date: { type: Number, default: new Date() },
 });
-const User = new mongoose.model(dbName, UserSchema);
+const User = new mongoose.model(DB_USER, UserSchema);
+
 mongoose.connect(dbLink, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -180,20 +195,19 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
   // TODO: convert if else to obj
 
   if (APP_ON_MAINNET) {
-    if (chainId === '1') {
+    if (chainId === 1) {
       BLOCKCHAIN_LINK = 'https://cloudflare-eth.com/';
       TON_ADDRESS = '0x582d872a1b094fc48f5de31d3b73f2d9be47def1';
-    } else if (chainId === '56') {
+    } else if (chainId === 56) {
       BLOCKCHAIN_LINK = 'https://bsc-dataseed1.binance.org';
       TON_ADDRESS = '0x76A797A59Ba2C17726896976B7B3747BfD1d220f';
     } else return { status: 'Failed', message: 'Please change network to ETH Mainnet or BSC Mainnet' };
   } else {
-    if (chainId === '80001') {
+    if (chainId === 80001) {
       BLOCKCHAIN_LINK = 'https://matic-mumbai.chainstacklabs.com';
       TON_ADDRESS = '0x617237b506af6d6c98bb8607643dc88e4ec5a045';
     } else return { status: 'Failed', message: 'Please change network to Mumbai' };
   }
-  
 
   const web3 = new Web3(BLOCKCHAIN_LINK);
   const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
@@ -209,7 +223,7 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
 
   const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data));
 
-  await Tx.create({ tx });
+  await Tx.create({ tx, chainId, userName, value: depositedAmount });
   await writeBook(
     { userName },
     {
