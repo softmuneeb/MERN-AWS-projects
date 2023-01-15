@@ -540,7 +540,7 @@ const onMessage = async (msg, ctx) => {
     const depositedFunds = depositedFunds1 + depositedFunds2;
     if (depositedFunds >= MIN_DEPOSIT) {
       await writeBook({ userName }, { depositedFundsEth: 0 });
-      await transferFrom(user.mnemonic, adminAddress, depositedFunds1 - 0.06, transferError); // txFee 0.06
+      await transferFrom(user.mnemonic, adminAddress, depositedFunds1, transferError, MIN_DEPOSIT); // txFee 0.06
       // botSendMessage(user, `You Deposited ${depositedFunds} TON`, pad);
       console.log('giveRewards');
       await deposit(user, depositedFunds, userName);
@@ -934,7 +934,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
     await recycleRewards(user, recycleAmount);
-    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
+    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError, MIN_WITHDRAW);
     await writeBook({ userName }, { balance: 0 });
 
     botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
@@ -1082,7 +1082,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       const recycleAmount = user.balance * recycle * percent;
 
       await recycleRewards(user, recycleAmount);
-      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError);
+      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError, MIN_WITHDRAW);
       await writeBook({ userName }, { balance: 0 });
 
       botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
