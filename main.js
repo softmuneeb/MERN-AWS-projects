@@ -1,4 +1,13 @@
 // explanation / plan in readme file
+const APP_ON_MAINNET = true;
+
+const devChatId = '5207150830'; // for error messages
+const admins = ['GlobalTing', 'ADMIN'];
+const adminAddressEth = '0xA827c2964536668D9d2ce10962392c328af4c131';
+// const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
+const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
+const MIN_WITHDRAW = 0.1; //TON
+const MIN_DEPOSIT = 0.1; // TON
 
 // ===============This section if for crypto millio
 const keyboard = [
@@ -33,15 +42,8 @@ const adminKeyBoard = [
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
-console.log({ token });
 const pubkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
-
-const devChatId = '5207150830'; // for error messages
-const admins = ['GlobalTing', 'ADMIN'];
-const adminAddressEth = '0xA827c2964536668D9d2ce10962392c328af4c131';
-// const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -49,9 +51,6 @@ const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
 const IN_POOL = 1;
 const NOT_IN_POOL = 0;
 const REMOVED_FROM_POOL = 2;
-
-const MIN_WITHDRAW = 0.1; //TON
-const MIN_DEPOSIT = 0.1; // TON
 
 // moved some functions in an object because they depend on each other
 const p = {
@@ -436,6 +435,7 @@ app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
 app.get('/adminAddressEth', (req, res) => res.json({ adminAddressEth }));
+app.get('/APP_ON_MAINNET', (req, res) => res.json({ APP_ON_MAINNET }));
 app.get('/TG_BOT_LINK', (req, res) => res.json({ TG_BOT_LINK: `https://t.me/${botName}` }));
 app.get('/depositFundsEth/:tx/:chainId/:userName', async (req, res) => {
   const { tx, userName, chainId } = req.params;
