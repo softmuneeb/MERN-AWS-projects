@@ -221,7 +221,7 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
     return { status: 'Failed', message: 'wrong deposit address' };
   }
 
-  const depositedAmount = parseInt(Web3.utils.fromWei(txData.logs[0].data, 'nano'));
+  const depositedAmount = Number(Web3.utils.fromWei(txData.logs[0].data, 'nano'));
 
   await Tx.create({ tx, chainId, userName, value: depositedAmount });
   await writeBook(
