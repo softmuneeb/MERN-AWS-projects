@@ -212,10 +212,10 @@ const depositFundsEth = async (tx, chainId, userName, botSendMessage, adminAddre
   const web3 = new Web3(BLOCKCHAIN_LINK);
   const txData = await web3.eth.getTransactionReceipt(tx); // TODO: test wrong tx data?
   if (!txData || txData.to.toLowerCase() !== TON_ADDRESS.toLowerCase()) {
-    return { status: 'Failed', message: 'wrong tx hash' };
+    return { status: 'Failed', message: 'wrong deposit currency' };
   }
 
-  const depositAddress = (txData?.logs[0]?.topics[3]).toLowerCase();
+  const depositAddress = (txData?.logs[0]?.topics[2]).toLowerCase();
   const adminAddressEth_ = adminAddressEth.toLowerCase().replace('0x', '');
   if (!depositAddress.includes(adminAddressEth_)) {
     return { status: 'Failed', message: 'wrong deposit address' };
