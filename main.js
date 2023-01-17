@@ -731,6 +731,7 @@ Level 6-15 (${user.level6ChildPaying})`;
       `Your TON Earnings Available: ${user.balance}
 
 Total TON Earnings in History: ${user.totalEarnings}
+Total TON Withdraw in History: ${user.totalWithdraw}
 `,
       pad,
     );
@@ -754,6 +755,8 @@ Total TON Earnings in History: ${user.totalEarnings}
 Your TON Earnings Available: ${user.balance}
 
 Total TON Earnings in History: ${user.totalEarnings}
+
+Total TON Withdraw in History: ${user.totalWithdraw}
 
 Your Deposited TON: ${user.depositedFunds} TON
 <a href="https://accept-ton-on-eth.vercel.app/?userName=${user.userName}&balance=${user.depositedFunds}">
@@ -821,7 +824,9 @@ My Total Earning Available – ${user.balance} TON
 
 My Total Earning in History – ${user.totalEarnings} TON
 
-My Total Withdraw – ${withdrawAmount} TON
+My Total Withdraw in History – ${user.totalWithdraw} TON
+
+My Total Withdraw Available – ${withdrawAmount} TON
 
 My All Direct – ${child}
 
@@ -1126,7 +1131,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     botSendMessage(
       user,
-      `Total Users in System: ${totalUsers}\nAdmin Deposit Amount: ${admin.depositedFunds} TON\nAdmin Earnings Available: ${admin.balance} TON\nAdmin Earnings History: ${admin.totalEarnings} TON\n7 SPONSOR POOL AVAILABLE: ${__7_SPONSOR_POOL.balance} TON\n7 SPONSOR POOL HISTORY: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL AVAILABLE: ${_SUPER_STAR_POOL.balance} TON\nSUPER STAR POOL HISTORY: ${_SUPER_STAR_POOL.balance} TON
+      `Total Users in System: ${totalUsers}\nAdmin Earnings Available: ${admin.balance} TON\nAdmin Earnings History: ${admin.totalEarnings} TON\n7 SPONSOR POOL AVAILABLE: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL AVAILABLE: ${_SUPER_STAR_POOL.balance} TON
 
 Users Level 1: ${usersL1} 
 Users Level 2: ${usersL2} 
