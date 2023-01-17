@@ -507,7 +507,6 @@ const onMessage = async (msg, ctx) => {
   const userName = msg.chat.username;
 
   // console.log({ msg, ctx }); // for dev
-  console.log({ text });
 
   if (!userName) {
     botSendMessage(chatId, 'Please add your user name in telegram settings');
