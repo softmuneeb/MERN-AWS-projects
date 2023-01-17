@@ -605,8 +605,6 @@ const onMessage = async (msg, ctx) => {
 
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
-    // bot.forwardMessage(adminChatId, chatId, msg.message_id);
-    // await sendToAllUsers(msg);
 
     if (msg.document) {
       await sendToAllUsers('sendDocument', msg.document.file_id);
@@ -1443,14 +1441,6 @@ const sendToAllUsers = async (func, data) => {
   }
 };
 
-// const forwardToAllUsers = async msg => {
-//   let users = await readBooks({});
-//   for (let i = 0; i < users.length; i++) {
-//     const user = users[i];
-//     user.chatId && bot.forwardMessage(user.chatId, adminChatId, msg.message_id);
-//   }
-// };
-
 const exists = (user) => {
   return user !== undefined;
 };
@@ -1499,9 +1489,11 @@ const botSendMessage = (user, msg, pad) => {
     });
 };
 console.log(1);
-seedDB().then(() => {
+seedDB().then(async () => {
   bot.on('message', onMessage);
-  botSendMessage({ chatId: '5207150830', language: 'english' }, 'bot deployed ' + new Date(), pad);
+
+  const user = await readBook({ userName: 'adilkh12' });
+  if (user) botSendMessage(user, 'bot deployed ' + new Date(), pad);
 });
 
 /*
