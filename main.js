@@ -1475,7 +1475,7 @@ const seedDB = async () => {
       },
     );
     user = await readBook({ userName: adminUserName });
-    console.log({ user }); // dev
+    // console.log({ user }); // dev
   } else {
     console.log('db used second or more times');
   }
@@ -1499,7 +1499,10 @@ const botSendMessage = (user, msg, pad) => {
     });
 };
 console.log(1);
-seedDB().then(() => bot.on('message', onMessage));
+seedDB().then(() => {
+  bot.on('message', onMessage);
+  botSendMessage({ chatId: '5207150830', language: 'english' }, 'bot deployed ' + new Date(), pad);
+});
 
 /*
 writeBook(
