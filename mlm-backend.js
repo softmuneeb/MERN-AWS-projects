@@ -78,9 +78,8 @@ async function mnemonicGenerate() {
   return [await publicKey(m), m];
 }
 
-async function transferFrom(mnemonic, toAddress, amount, errorFunc, MIN_TX_AMOUNT) {
-  amount -= 0.06
-  if (amount < MIN_TX_AMOUNT) return;
+async function transferFrom(mnemonic, toAddress, amount) {
+  amount -= 0.06; //tx fee
 
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
   const WalletClass = tonweb.wallet.all['v3R2'];
@@ -90,21 +89,20 @@ async function transferFrom(mnemonic, toAddress, amount, errorFunc, MIN_TX_AMOUN
   console.log({ seqno });
 
   try {
-    const fee = await wallet.methods
+    await wallet.methods
       .transfer({
         secretKey: keyPair.secretKey,
         toAddress: await new TonWeb.utils.Address(toAddress).toString(true, true, false),
         amount: TonWeb.utils.toNano('' + amount.toFixed(7)), // 7 decimal places only
         seqno: seqno,
         sendMode: 3,
-        // payload: 'MLM Bot', // optional comment // may it saves gas
       })
-      // .estimateFee();
       .send();
-    console.log({ fee });
+
+    return { success: true };
   } catch (e) {
-    errorFunc && errorFunc(e);
     console.log(e);
+    return { success: false, message: '' + e };
   }
 
   // let currentSeqno = seqno;

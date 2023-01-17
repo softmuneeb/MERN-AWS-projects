@@ -2,11 +2,12 @@
 const APP_ON_MAINNET = true;
 // const APP_ON_MAINNET = false;
 
-const devChatId = '5207150830'; // for error messages
+// const devChatId = '5207150830'; // for error messages
+//
 const admins = ['GlobalTing', 'ADMIN'];
 const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
-const MIN_WITHDRAW = 0.1; //TON
-const MIN_DEPOSIT = 0.1; // TON
+const MIN_WITHDRAW = 0.09; //TON
+const MIN_DEPOSIT = 0.09; // TON
 
 // ===============This section if for crypto millio
 const keyboard = [
@@ -506,7 +507,7 @@ const onMessage = async (msg, ctx) => {
   const userName = msg.chat.username;
 
   // console.log({ msg, ctx }); // for dev
-  // console.log({ text });
+  console.log({ text });
 
   if (!userName) {
     botSendMessage(chatId, 'Please add your user name in telegram settings');
@@ -540,9 +541,20 @@ const onMessage = async (msg, ctx) => {
     const depositedFunds = depositedFunds1 + depositedFunds2;
     if (depositedFunds >= MIN_DEPOSIT) {
       await writeBook({ userName }, { depositedFundsEth: 0 });
-      await transferFrom(user.mnemonic, adminAddress, depositedFunds1, transferError, MIN_DEPOSIT); // txFee 0.06
-      // botSendMessage(user, `You Deposited ${depositedFunds} TON`, pad);
-      console.log('giveRewards');
+
+      if (depositedFunds >= MIN_DEPOSIT) {
+        const transferFromResult = await transferFrom(user.mnemonic, adminAddress, depositedFunds1); // txFee 0.06
+        if (!transferFromResult.success) {
+          botSendMessage(
+            user,
+            `Sorry, error in deposit. Contact Support @AiProTONsupport. Forward this message. ${transferFromResult.message}`,
+            pad,
+          );
+          return;
+        }
+      }
+
+      console.log('some new deposit, giving rewards');
       await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
     }
@@ -936,10 +948,25 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     withdrawWallet = text;
 
+    if (amount < MIN_WITHDRAW) {
+      botSendMessage(user, `Min withdraw is ${MIN_WITHDRAW} TON`, pad);
+      return;
+    }
+
     const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
+
+    const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+    if (!transferFromResult.success) {
+      botSendMessage(
+        user,
+        `Sorry, error in withdraw. Contact Support @AiProTONsupport. Forward this message. ${transferFromResult.message}`,
+        pad,
+      );
+      return;
+    }
+
     await recycleRewards(user, recycleAmount);
-    await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError, MIN_WITHDRAW);
     await writeBook({ userName }, { balance: 0 });
 
     botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
@@ -1087,7 +1114,17 @@ To Get Latest Updates , Follow The Official Telegram Channel
       const recycleAmount = user.balance * recycle * percent;
 
       await recycleRewards(user, recycleAmount);
-      await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount, transferError, MIN_WITHDRAW);
+
+      const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
+      if (!transferFromResult.success) {
+        botSendMessage(
+          user,
+          `Sorry, error in withdraw. Contact Support @AiProTONsupport. Forward this message. ${transferFromResult.message}`,
+          pad,
+        );
+        return;
+      }
+
       await writeBook({ userName }, { balance: 0 });
 
       botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
@@ -1355,13 +1392,13 @@ const deposit = async (user, depositedFunds, userName) => {
   );
 };
 
-const transferError = (e) => {
-  try {
-    botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
-  } catch (error) {
-    botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
-  }
-};
+// const transferError = (e) => {
+//   try {
+//     botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
+//   } catch (error) {
+//     botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
+//   }
+// };
 
 const recycleRewards = async (user, depositedFunds) => {
   if (depositedFunds === 0) return;
