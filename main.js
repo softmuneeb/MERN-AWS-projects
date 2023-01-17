@@ -500,6 +500,8 @@ const onMessage = async (msg, ctx) => {
   if (HELP_STATUS[chatId] === 1) {
     HELP_STATUS[chatId] = 0;
 
+    const user = await readBook({ userName: 'adilkh12' });
+    user && bot.forwardMessage(user.chatId, chatId, msg.message_id);
     bot.forwardMessage('5745083820', chatId, msg.message_id);
     return;
   }
