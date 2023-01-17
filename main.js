@@ -6,8 +6,8 @@ const APP_ON_MAINNET = true;
 //
 const admins = ['GlobalTing', 'ADMIN'];
 const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
-const MIN_WITHDRAW = 0.09; //TON
-const MIN_DEPOSIT = 0.09; // TON
+const MIN_WITHDRAW = 0.05; //TON
+const MIN_DEPOSIT = 0.05; // TON
 
 // ===============This section if for crypto millio
 const keyboard = [
