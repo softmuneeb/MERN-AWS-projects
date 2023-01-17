@@ -55,8 +55,8 @@ const REMOVED_FROM_POOL = 2;
 
 // moved some functions in an object because they depend on each other
 const p = {
-  REFERRERS_LIMIT_1: 1, //3, // 0 - 3 referrers 10% commission
-  REFERRERS_LIMIT_2: 2, //6, // 4 - 6 referrers 15% commission
+  REFERRERS_LIMIT_1: 3, //1, // 0 - 3 referrers 10% commission
+  REFERRERS_LIMIT_2: 6, //2, // 4 - 6 referrers 15% commission
   // 7+ referrers 20% commission
 
   level0: 0, // < 5 TON ZERO
