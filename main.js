@@ -818,7 +818,7 @@ Your Invite Link Is Below, Copy & Share It -\n <code>https://t.me/${botName}?sta
 
     const percent = 1 / 100;
     const [withdraw] = p.getWithdrawRecyclePercentage(user);
-    const withdrawAmount = user.balance * withdraw * percent;
+    const withdrawAmount = (user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool) * withdraw * percent;
 
     botSendMessage(
       user,
@@ -921,7 +921,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       return;
     }
 
-    const withdrawAmount = user.balance * withdraw * percent;
+    const withdrawAmount = (user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool) * withdraw * percent;
     if (withdrawAmount < MIN_WITHDRAW) {
       botSendMessage(
         user,
@@ -962,8 +962,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     }
 
     await recycleRewards(user, recycleAmount);
-    await writeBook({ userName }, { balance: 0 });
-
+    await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
     botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
   }
   //
@@ -1105,10 +1104,9 @@ To Get Latest Updates , Follow The Official Telegram Channel
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
-      const withdrawAmount = user.balance * withdraw * percent;
-      const recycleAmount = user.balance * recycle * percent;
-
-      await recycleRewards(user, recycleAmount);
+      const reward = user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool;
+      const withdrawAmount = reward * withdraw * percent;
+      const recycleAmount = reward * recycle * percent;
 
       const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
       if (!transferFromResult.success) {
@@ -1120,7 +1118,8 @@ To Get Latest Updates , Follow The Official Telegram Channel
         return;
       }
 
-      await writeBook({ userName }, { balance: 0 });
+      await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
+      await recycleRewards(user, recycleAmount);
 
       botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
     }
