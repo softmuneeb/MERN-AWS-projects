@@ -926,6 +926,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       botSendMessage(
         user,
         `Can not withdraw. Your Referral Earnings + Pool Earnings are less than ${MIN_WITHDRAW} TON`,
+        // `Sorry, Min withdraw is ${MIN_WITHDRAW} TON`,
         pad,
       );
       return;
@@ -946,11 +947,6 @@ To Get Latest Updates , Follow The Official Telegram Channel
     }
 
     withdrawWallet = text;
-
-    if (amount < MIN_WITHDRAW) {
-      botSendMessage(user, `Min withdraw is ${MIN_WITHDRAW} TON`, pad);
-      return;
-    }
 
     const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
