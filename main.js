@@ -543,7 +543,7 @@ const onMessage = async (msg, ctx) => {
     if (depositedFunds >= MIN_DEPOSIT) {
       await writeBook({ userName }, { depositedFundsEth: 0 });
 
-      if (depositedFunds >= MIN_DEPOSIT) {
+      if (depositedFunds1 >= MIN_DEPOSIT) {
         const transferFromResult = await transferFrom(user.mnemonic, adminAddress, depositedFunds1); // txFee 0.06
         if (!transferFromResult.success) {
           botSendMessage(
