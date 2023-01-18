@@ -768,10 +768,11 @@ Total TON Earnings in History: ${user.totalEarnings}
 Total TON Withdraw in History: ${user.totalWithdraw}
 
 Your Deposited TON: ${user.depositedFunds} TON
+
+Deposit Address:\n<code>${user.publicKey}</code>
 <a href="https://aiproton.io/?userName=${user.userName}&balance=${user.depositedFunds}">
-Click here to deposit TON from Metamask
-</a>
-Deposit Address:\n<code>${user.publicKey}</code>`,
+Clich here Deposit TONcoin from Smartchain Or Ether Chain
+</a>`,
       pad,
     );
   }
