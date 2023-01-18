@@ -919,7 +919,10 @@ To Get Latest Updates , Follow The Official Telegram Channel
       return;
     }
 
-    const withdrawAmount = (user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool) * withdraw * percent;
+    const earnings = user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool;
+    const withdrawAmount = earnings * withdraw * percent;
+    const recycleAmount = earnings * recycle * percent;
+
     if (withdrawAmount < MIN_WITHDRAW) {
       botSendMessage(
         user,
@@ -946,7 +949,6 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     withdrawWallet = text;
 
-    const recycleAmount = user.balance * recycle * percent;
     botSendMessage(user, `Loading...`, pad);
 
     const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
@@ -1102,9 +1104,9 @@ To Get Latest Updates , Follow The Official Telegram Channel
     for (let i = 0; i < users.length; i++) {
       const user = users[i];
       const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
-      const reward = user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool;
-      const withdrawAmount = reward * withdraw * percent;
-      const recycleAmount = reward * recycle * percent;
+      const earnings = user.balance + user.earningsSuperStarPool + user.earnings7SponsorPool;
+      const withdrawAmount = earnings * withdraw * percent;
+      const recycleAmount = earnings * recycle * percent;
 
       const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
       if (!transferFromResult.success) {
@@ -1392,27 +1394,27 @@ const deposit = async (user, depositedFunds, userName) => {
 //   }
 // };
 
-const recycleRewards = async (user, depositedFunds) => {
-  if (depositedFunds === 0) return;
+const recycleRewards = async (user, recycleAmount) => {
+  if (recycleAmount === 0) return;
   if (!user.parent) {
     // botSendMessage(user.chatId, `Admin can not recycle`);
     return;
   }
 
-  let userParent = await readBook({ userName: user.parent });
   let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: SUPER_STAR_POOL });
-
+  
   let remaining = 100; // percent
-  const percent = depositedFunds / 100;
-
+  const percent = recycleAmount / 100;
+  
   // give reward till level 15
+  let userParent = await readBook({ userName: user.parent });
   for (let level = 1; level <= 15 && userParent.parent; level++) {
-    userParent = await readBook({ userName: userParent.parent });
     const reward = p.getRecycleRewardLevelPercentage(userParent);
     remaining -= reward;
     console.log({ remaining });
     await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
+    userParent = await readBook({ userName: userParent.parent });
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
