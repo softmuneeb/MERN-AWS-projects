@@ -665,8 +665,6 @@ const onMessage = async (msg, ctx) => {
 
   //
   //
-  //Plan ${p.planName(user)}
-  // Deposited ${user.depositedFunds} TON
   // PUBLIC FUNCTIONS
   if (text.includes('/start') || text.includes('⭐️ Home (Дом)')) {
     const textReply = `Hello ${userName}
