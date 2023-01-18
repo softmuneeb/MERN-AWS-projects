@@ -758,7 +758,7 @@ Your Deposited TON: ${user.depositedFunds} TON
 
 Deposit Address:\n<code>${user.publicKey}</code>
 <a href="https://aiproton.io/?userName=${user.userName}&balance=${user.depositedFunds}">
-Clich here Deposit TONcoin from Smartchain Or Ether Chain
+Click here Deposit TONcoin from Smart Chain Or Ether Chain
 </a>`,
       pad,
     );
