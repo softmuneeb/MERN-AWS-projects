@@ -44,7 +44,7 @@ require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const pubkey = process.env.ADMIN_ADDRESS;
 const key = process.env.ADMIN_MNEMONIC;
-const [adminUserName, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
+const [ADMIN, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -59,34 +59,23 @@ const p = {
   REFERRERS_LIMIT_2: 6, //2, // 4 - 6 referrers 15% commission
   // 7+ referrers 20% commission
 
-  level0: 0, // < 5 TON ZERO
-  level1: 1, // 5 TON   BABY
-  level2: 2, // 25 TON  START
-  level3: 3, // 50 TON  WALK
-  level4: 4, // 200 TON RUN
-  level5: 5, // 500 TON FLY
+  // Plan TON Value 5 TON, 25 TON, 50 TON, 200 TON, 500 TON
+  ZERO_TON: 0,
+  BABY_TON: 1,
+  START_TON: 2, // TOUCH ME
+  WALK_TON: 3,
+  RUN_TON: 4,
+  FLY_TON: 5,
 
-  // level0: 0.0, // < 5 TON ZERO
-  // level1: 1, // 5 TON   BABY
-  // level2: 2, // 25 TON  START
-  // level3: 3, // 50 TON  WALK
-  // level4: 4, // 200 TON RUN
-  // level5: 5, // 500 TON FLY
-
+  // Plan Ids 1,2,3,4,5
   ZERO: 0,
   BABY: 1,
   START: 2,
-  WALK: 3,
+  WALK: 3, // DO NOT TOUCH
   RUN: 4,
   FLY: 5,
 
-  // IRON_MAN: 1, // LEVEL 1
-  // BAT_MAN: 2, // LEVEL 2
-  // SPIDER_MAN: 3, // LEVEL 3
-  // SUPER_MAN: 4, // LEVEL 4
-  // WONDER_MAN: 5, // LEVEL 5
-  // AVATAR_MAN: 6, // LEVEL 6
-
+  // 1000 Referrals at Level 1 => IRON_MAN, 3000 at Level 2 => BAT_MAN, ...
   IRON_MAN: 1_000, // LEVEL 1
   BAT_MAN: 3_000, // LEVEL 2
   SPIDER_MAN: 10_000, // LEVEL 3
@@ -94,14 +83,15 @@ const p = {
   WONDER_MAN: 30_000, // LEVEL 5
   AVATAR_MAN: 500_000, // LEVEL 6
 
+  // level Max Earnings From 🦸‍♂️ Super Star Pool
   levelMaxEarnings: {
-    0: 0,
-    1: 200,
-    2: 500,
-    3: 1000,
-    4: 2500,
-    5: 5000,
-    6: 25000,
+    0: 0, // TON
+    1: 200, // TON
+    2: 500, // TON
+    3: 1000, // TON
+    4: 2500, // TON
+    5: 5000, // TON
+    6: 25000, // TON
   },
 
   getLevel: (u) => {
@@ -158,24 +148,13 @@ const p = {
     return ans;
   },
 
-  getPlanNumber: ({ depositedFunds: d }) => {
-    let ans; // plan
-    if (d >= p.level5) ans = 500; // 500 TON FLY
-    else if (d >= p.level4) ans = 200; // 200 TON RUN
-    else if (d >= p.level3) ans = 100; // 50 TON  WALK
-    else if (d >= p.level2) ans = 25; // 25 TON  START --- withdraw starts here
-    else if (d >= p.level1) ans = 5; // 5 TON BABY
-    else ans = 0;
-    return ans;
-  },
-
   getRewardLevelsUnlocked: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = 15;
-    else if (d >= p.level4) ans = 12;
-    else if (d >= p.level3) ans = 9;
-    else if (d >= p.level2) ans = 6;
-    else if (d >= p.level1) ans = 0;
+    if (d >= p.FLY_TON) ans = 15;
+    else if (d >= p.RUN_TON) ans = 12;
+    else if (d >= p.WALK_TON) ans = 9;
+    else if (d >= p.START_TON) ans = 6;
+    else if (d >= p.BABY_TON) ans = 0;
     else ans = 0;
     return ans;
   },
@@ -186,45 +165,56 @@ const p = {
     const d = u.depositedFunds;
 
     let ans; // plan
-    if (d >= p.level5) ans = [90, 10];
-    else if (d >= p.level4) ans = [80, 20];
-    else if (d >= p.level3) ans = [70, 30];
-    else if (d >= p.level2) ans = [60, 40];
-    else if (d >= p.level1) ans = [50, 50];
+    if (d >= p.FLY_TON) ans = [90, 10];
+    else if (d >= p.RUN_TON) ans = [80, 20];
+    else if (d >= p.WALK_TON) ans = [70, 30];
+    else if (d >= p.START_TON) ans = [60, 40];
+    else if (d >= p.BABY_TON) ans = [50, 50];
     else ans = [0, 0];
     return ans;
   },
 
   getRecycleRewardLevelPercentage: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = 5;
-    else if (d >= p.level4) ans = 4;
-    else if (d >= p.level3) ans = 3;
-    else if (d >= p.level2) ans = 2;
-    else if (d >= p.level1) ans = 1;
+    if (d >= p.FLY_TON) ans = 5;
+    else if (d >= p.RUN_TON) ans = 4;
+    else if (d >= p.WALK_TON) ans = 3;
+    else if (d >= p.START_TON) ans = 2;
+    else if (d >= p.BABY_TON) ans = 1;
     else ans = 0;
     return ans;
   },
 
-  planName: ({ depositedFunds: d }) => {
+  getPlanName: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = '✈️ FLY'; // 500 TON FLY
-    else if (d >= p.level4) ans = '🏃 RUN'; // 200 TON RUN
-    else if (d >= p.level3) ans = '🚶 WALK'; // 50 TON  WALK
-    else if (d >= p.level2) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
-    else if (d >= p.level1) ans = '👼 BABY';
+    if (d >= p.FLY_TON) ans = '✈️ FLY'; // 500 TON FLY
+    else if (d >= p.RUN_TON) ans = '🏃 RUN'; // 200 TON RUN
+    else if (d >= p.WALK_TON) ans = '🚶 WALK'; // 50 TON  WALK
+    else if (d >= p.START_TON) ans = '⭐️ START'; // 25 TON  START --- withdraw starts here
+    else if (d >= p.BABY_TON) ans = '👼 BABY';
     else ans = '👎 NONE';
     return ans;
   },
 
-  planValue: ({ depositedFunds: d }) => {
+  getPlanValue: ({ depositedFunds: d }) => {
     let ans; // plan
-    if (d >= p.level5) ans = p.level5; // 500 TON FLY
-    else if (d >= p.level4) ans = p.level4; // 200 TON RUN
-    else if (d >= p.level3) ans = p.level3; // 50 TON  WALK
-    else if (d >= p.level2) ans = p.level2; // 25 TON  START --- withdraw starts here
-    else if (d >= p.level1) ans = p.level1;
-    else ans = p.level0;
+    if (d >= p.FLY_TON) ans = p.FLY_TON; // 500 TON FLY
+    else if (d >= p.RUN_TON) ans = p.RUN_TON; // 200 TON RUN
+    else if (d >= p.WALK_TON) ans = p.WALK_TON; // 50 TON  WALK
+    else if (d >= p.START_TON) ans = p.START_TON; // 25 TON  START --- withdraw starts here
+    else if (d >= p.BABY_TON) ans = p.BABY_TON;
+    else ans = p.ZERO_TON;
+    return ans;
+  },
+
+  getPlanNumber: ({ depositedFunds: d }) => {
+    let ans; // plan
+    if (d >= p.FLY_TON) ans = p.FLY; // 500 TON FLY
+    else if (d >= p.RUN_TON) ans = p.RUN; // 200 TON RUN
+    else if (d >= p.WALK_TON) ans = p.WALK; // 50 TON  WALK
+    else if (d >= p.START_TON) ans = p.START; // 25 TON  START --- withdraw starts here
+    else if (d >= p.BABY_TON) ans = p.BABY; // 5 TON BABY
+    else ans = p.ZERO;
     return ans;
   },
 };
@@ -521,9 +511,9 @@ const onMessage = async (msg, ctx) => {
     pad = padAdmin;
   }
 
-  ///////////////////////////////
-  /////////  USER AUTH  /////////
-  ///////////////////////////////
+  ////////////////////////////////////
+  /////////  USER AUTH START /////////
+  ////////////////////////////////////
 
   let user = await readBook({ userName });
   // Old User
@@ -533,7 +523,7 @@ const onMessage = async (msg, ctx) => {
     let [, depositedFunds1] = await getBalance(user.publicKey);
     console.log(depositedFunds1);
     if (depositedFunds1 === null) {
-      botSendMessage(user, 'Please try again', pad);
+      botSendMessage(user, 'Please try again');
       return;
     }
 
@@ -566,15 +556,13 @@ const onMessage = async (msg, ctx) => {
     // if referrer undefined then make defaultReferrer his referrer
     let referrer = text.split(' ')[1];
     if (referrer === undefined) {
-      referrer = adminUserName;
+      referrer = ADMIN;
     }
 
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
     if (!exists(parent)) {
-      parent = await readBook({ userName: adminUserName });
-      console.log({ adminUserName });
-      console.log({ parent });
+      parent = await readBook({ userName: ADMIN });
     }
 
     // create and save wallet, make referrer chain
@@ -582,24 +570,24 @@ const onMessage = async (msg, ctx) => {
     await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
-    botSendMessage(user, 'You are invited by ' + parent.userName, pad);
-    botSendMessage(parent, 'You invited ' + userName, pad);
+    botSendMessage(user, 'You are invited by ' + parent.userName);
+    botSendMessage(parent, 'You invited ' + userName);
   }
 
   console.log({ user, d: new Date() });
 
-  ///////////////////////////////
-  /////////  USER AUTH  /////////
-  ///////////////////////////////
+  //////////////////////////////////
+  /////////  USER AUTH END /////////
+  //////////////////////////////////
 
   if (LANGUAGE_STATUS[chatId] === 1) {
     LANGUAGE_STATUS[chatId] = 0;
 
     if (acceptedLanguages[text]) {
       await writeBook({ userName }, { language: acceptedLanguages[text] });
-      botSendMessage(user, `Language changed to ${text} successfully`, pad);
+      botSendMessage(user, `Language changed to ${text} successfully`);
     } else {
-      botSendMessage(user, 'Please give correct language', pad);
+      botSendMessage(user, 'Please give correct language');
     }
 
     return;
@@ -618,17 +606,17 @@ const onMessage = async (msg, ctx) => {
       await sendToAllUsers('sendMessage', msg.text);
     }
 
-    botSendMessage(user, 'Sending... to all users', pad);
+    botSendMessage(user, 'Sending... to all users');
     return;
   }
 
   if (!text || text === undefined) {
-    botSendMessage(user, 'Please send only text', pad);
+    botSendMessage(user, 'Please send only text');
     return;
   }
   //
   else if (text.includes('🤖 Support (Поддерживать)')) {
-    botSendMessage(user, help, pad);
+    botSendMessage(user, help);
     HELP_STATUS[chatId] = 1;
     return;
   }
@@ -640,27 +628,27 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
-    botSendMessage(user, info, pad);
+    botSendMessage(user, info);
     return;
   }
   //
   else if (text.includes('💼 Plan Packages (Пакет планов)')) {
-    botSendMessage(user, plans, pad);
+    botSendMessage(user, plans);
     return;
   }
   //
   else if (text.includes('📡 AiProTON Features (Особенности АйПроТОН)')) {
-    botSendMessage(user, features, pad);
+    botSendMessage(user, features);
     return;
   }
   //
   else if (text.includes('💡 Rules For Community (Правила для сообщества)')) {
-    botSendMessage(user, rules, pad);
+    botSendMessage(user, rules);
     return;
   }
   //
   else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
-    botSendMessage(user, market, pad);
+    botSendMessage(user, market);
   }
 
   //
@@ -686,26 +674,25 @@ As Telegram Network Itself Have more Than 700 Million Community Across The Globe
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
 `;
 
-    botSendMessage(user, textReply, pad);
+    botSendMessage(user, textReply);
   }
   //
   else if (text.includes('🕹 Upgrade (Обновление)')) {
     if (!exists(user)) {
-      botSendMessage(user, 'Invalid user', pad);
+      botSendMessage(user, 'Invalid user');
       return;
     }
     if (user.balance === 0) {
-      botSendMessage(user, 'Low balance to upgrade', pad);
+      botSendMessage(user, 'Low balance to upgrade');
       return;
     }
 
+    await writeBook({ userName }, { balance: 0 });
     await deposit(user, user.balance * 1.0, userName); // 100% used in plan upgrade, distributed in referrals, admin
     // await recycleRewards(user, user.balance * 0.0); // 0% distributed in referrals, admin
-    // empty the account
-    await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
-    botSendMessage(user, 'Upgraded your package is ' + p.planName(user), pad);
+    botSendMessage(user, 'Upgraded your package is ' + p.getPlanName(user));
   }
   //
   else if (text.includes('🚀 Super Star Club (Суперзвездный клуб)')) {
@@ -717,7 +704,7 @@ Level-4    (${user.level4ChildPaying})
 Level-5    (${user.level5ChildPaying})
 Level 6-15 (${user.level6ChildPaying})`;
 
-    botSendMessage(user, replyText, pad);
+    botSendMessage(user, replyText);
     // botSendMessage(
     //   chatId,
     //   `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
@@ -729,7 +716,7 @@ Level 6-15 (${user.level6ChildPaying})`;
     const upgradeMessage = p.getPlanNumber(user) < p.FLY ? 'Upgrade To Get More Benefits' : '';
     botSendMessage(
       user,
-      `Dear TON User\nYour Current Plan Is - ${p.planName(user)} - (${p.planValue(user)} TON)\n${upgradeMessage}`,
+      `Dear TON User\nYour Current Plan Is - ${p.getPlanName(user)} - (${p.getPlanValue(user)} TON)\n${upgradeMessage}`,
       pad,
     );
   }
@@ -753,7 +740,7 @@ Total TON Withdraw in History: ${user.totalWithdraw}
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
-    botSendMessage(user, `${parent}${child}${childPaying}`, pad);
+    botSendMessage(user, `${parent}${child}${childPaying}`);
   }
   //
   else if (text.includes('💵 My Wallet (Мой бумажник)')) {
@@ -827,7 +814,7 @@ My Sponsor Name – ${user.parent}
 
 My Referral Link –  <code>https://t.me/${botName}?start=${userName}</code>
 
-My Current Pack (${p.planValue(user)} TON) – ${p.planName(user)}
+My Current Pack (${p.getPlanValue(user)} TON) – ${p.getPlanName(user)}
 
 My Total Earning Available – ${user.balance} TON
 
@@ -858,11 +845,11 @@ Level 6-15 (${user.level6ChildPaying})
   }
   //
   else if (text.includes('💎 TON Ecosystem (Экосистема ТОН)')) {
-    botSendMessage(user, `https://ton.org/`, pad);
+    botSendMessage(user, `https://ton.org/`);
   }
   //
   else if (text.includes('TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)')) {
-    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/`);
   }
   //
   else if (text.includes('💰 REWARD (ВОЗНАГРАЖДЕНИЕ)')) {
@@ -907,7 +894,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
-    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`);
   }
   //
   else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
@@ -915,7 +902,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`, pad);
+      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`);
       return;
     }
 
@@ -935,21 +922,21 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     const [, adminBalance] = await getBalance(adminAddress);
     if (adminBalance < withdrawAmount) {
-      botSendMessage(user, `Please ask admin to open the withdraw`, pad);
-      const admin = await readBook({ userName: adminUserName });
-      botSendMessage(admin, `A user is asking for withdraw: ${userName}`, pad);
+      botSendMessage(user, `Please ask admin to open the withdraw`);
+      const admin = await readBook({ userName: ADMIN });
+      botSendMessage(admin, `A user is asking for withdraw: ${userName}`);
       return;
     }
 
     let withdrawWallet = text.split(' ')[1];
     if (!isValidAddress(text)) {
-      botSendMessage(user, 'Please send TON deposit address', pad);
+      botSendMessage(user, 'Please send TON deposit address');
       return;
     }
 
     withdrawWallet = text;
 
-    botSendMessage(user, `Loading...`, pad);
+    botSendMessage(user, `Loading...`);
 
     const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
     if (!transferFromResult.success) {
@@ -963,27 +950,27 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     await recycleRewards(user, recycleAmount);
     await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
-    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
+    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`);
   }
   //
   //
   // ADMIN FUNCTIONS
   else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admin can access this function`, pad);
+      botSendMessage(user, `Only admin can access this function`);
       return;
     }
 
     const usersOf7Pool = await readBooks({ status7SponsorPool: IN_POOL });
     if (usersOf7Pool.length === 0) {
-      botSendMessage(user, `There are no 7 Pool Members`, pad);
+      botSendMessage(user, `There are no 7 Pool Members`);
       return;
     }
 
     const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7Pool.length;
     if (rewardPerUser === 0) {
-      botSendMessage(user, `Not enough funds in 7 Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in 7 Members in Pool`);
       return;
     }
 
@@ -1020,7 +1007,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
 
@@ -1039,13 +1026,13 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
-      botSendMessage(user, `There are no Super Star Pool Members`, pad);
+      botSendMessage(user, `There are no Super Star Pool Members`);
       return;
     }
 
     const pool = await readBook({ userName: SUPER_STAR_POOL });
     if (pool.balance === 0) {
-      botSendMessage(user, `Not enough funds in Super Star Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in Super Star Members in Pool`);
       return;
     }
 
@@ -1093,12 +1080,15 @@ To Get Latest Updates , Follow The Official Telegram Channel
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
 
-    const users = await readBooks({ balance: { $gte: MIN_WITHDRAW } });
+    botSendMessage(user, `Pending`);
+    return;
+
     const withdrawWallet = 'abcd';
+    const users = await readBooks({ balance: { $gte: MIN_WITHDRAW } });
 
     const percent = 1 / 100;
     for (let i = 0; i < users.length; i++) {
@@ -1121,27 +1111,27 @@ To Get Latest Updates , Follow The Official Telegram Channel
       await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
       await recycleRewards(user, recycleAmount);
 
-      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
+      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`);
     }
 
-    botSendMessage(user, 'Success Force Withdraw All Users', pad);
+    botSendMessage(user, 'Success Force Withdraw All Users');
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
     SEND_MEDIA = 1;
-    botSendMessage(user, '🎥 Please send text / image / video here to send to all users', pad);
+    botSendMessage(user, '🎥 Please send text / image / video here to send to all users');
   }
   //
   else if (text.includes('📊 System Stats')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
-    let admin = await readBook({ userName: adminUserName });
+    let admin = await readBook({ userName: ADMIN });
     let __7_SPONSOR_POOL = await readBook({ userName: _7_SPONSOR_POOL });
     let _SUPER_STAR_POOL = await readBook({ userName: SUPER_STAR_POOL });
     let users = await readBooks({}); // SHOW PEOPLE ON LEVELS
@@ -1176,11 +1166,11 @@ Users Level 5: ${usersL5}
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
-      botSendMessage(user, `Hi Admin ${userName}`, pad);
+      botSendMessage(user, `Hi Admin ${userName}`);
       return;
     }
 
-    botSendMessage(user, `Hi ${userName}`, pad);
+    botSendMessage(user, `Hi ${userName}`);
   }
 };
 
@@ -1223,90 +1213,55 @@ const giveRewardEqually = async (users, rewardPerUser) => {
 };
 
 const deposit = async (user, depositedFunds, userName) => {
-  if (!user.parent) return;
-  let admin = await readBook({ userName: adminUserName });
+  if (!user.parent) {
+    botSendMessage(user, 'You should not deposit funds');
+    return;
+  }
 
   await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
-
   user = await readBook({ userName });
 
-  const percent = depositedFunds / 100;
   let pool = await readBook({ userName: _7_SPONSOR_POOL });
+  let admin = await readBook({ userName: ADMIN });
 
+  const percent = depositedFunds / 100;
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
-  if (!user.parent || p.getPlanNumber(user) < p.START) {
+  if (p.getPlanNumber(user) < p.START) {
     await writeBook(
-      { userName: adminUserName },
+      { userName: ADMIN },
       {
         balance: admin.balance + 100 * percent,
         totalEarnings: admin.totalEarnings + 100 * percent,
       },
     );
-    console.log('returning from here, p.getPlanNumber(user)', p.getPlanNumber(user), 'user.parent', user.parent);
+    botSendMessage(admin, `100% goes to admin, ${user.userName} deposited  ${depositedFunds} TON`);
     return; //  <---------------------<
   }
 
+  let parentEarnings;
+  let adminEarnings;
+  let _7SponsorPoolEarnings;
+
   let userParent = await readBook({ userName: user.parent });
 
+  // Calculate Rewards
   // 1 to 3
   if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
-    await writeBook(
-      { userName: userParent.userName },
-      {
-        balance: userParent.balance + 10 * percent,
-        totalEarnings: userParent.totalEarnings + 10 * percent,
-      },
-    );
-    await writeBook(
-      { userName: adminUserName },
-      {
-        balance: admin.balance + 5 * percent,
-        totalEarnings: admin.totalEarnings + 5 * percent,
-      },
-    );
-    await writeBook(
-      { userName: _7_SPONSOR_POOL },
-      {
-        balance: pool.balance + 5 * percent,
-        totalEarnings: pool.totalEarnings + 5 * percent,
-      },
-    );
+    parentEarnings = 10 * percent;
+    adminEarnings = 5 * percent;
+    _7SponsorPoolEarnings = 5 * percent;
   }
-
   // 4 to 6
   else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
-    await writeBook(
-      { userName: userParent.userName },
-      {
-        balance: userParent.balance + 15 * percent,
-        totalEarnings: userParent.totalEarnings + 15 * percent,
-      },
-    );
-    await writeBook(
-      { userName: adminUserName },
-      {
-        balance: admin.balance + 2.5 * percent,
-        totalEarnings: admin.totalEarnings + 2.5 * percent,
-      },
-    );
-    await writeBook(
-      { userName: _7_SPONSOR_POOL },
-      {
-        balance: pool.balance + 2.5 * percent,
-        totalEarnings: pool.totalEarnings + 2.5 * percent,
-      },
-    );
+    parentEarnings = 15 * percent;
+    adminEarnings = 2.5 * percent;
+    _7SponsorPoolEarnings = 2.5 * percent;
   }
-
   // 7 or more child paying
   else {
-    await writeBook(
-      { userName: userParent.userName },
-      {
-        balance: userParent.balance + 20 * percent,
-        totalEarnings: userParent.totalEarnings + 20 * percent,
-      },
-    );
+    parentEarnings = 20 * percent;
+    adminEarnings = 0 * percent;
+    _7SponsorPoolEarnings = 0 * percent;
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
@@ -1314,85 +1269,74 @@ const deposit = async (user, depositedFunds, userName) => {
     }
   }
 
-  // START OR BIGGER PLAN
-  let userDepositedFirstTime = false;
-  if (!userParent.childPaying.includes(userName)) {
-    userDepositedFirstTime = true;
+  // Give Rewards
+  const rewardAdmin = adminEarnings !== 0;
+  const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
+  const rewardParent = p.getPlanNumber(userParent) >= p.BABY;
+  if (rewardParent) {
     await writeBook(
       { userName: userParent.userName },
-      {
-        level1ChildPaying: userParent.level1ChildPaying + depositedFunds,
-        childPaying: [...userParent.childPaying, userName],
-      },
+      { balance: userParent.balance + parentEarnings, totalEarnings: userParent.totalEarnings + parentEarnings },
     );
-    userParent = await readBook({ userName: userParent.userName });
+  }
+  if (rewardAdmin) {
+    await writeBook(
+      { userName: ADMIN },
+      { balance: admin.balance + adminEarnings, totalEarnings: admin.totalEarnings + adminEarnings },
+    );
+  }
+  if (reward7SponsorPool) {
+    await writeBook(
+      { userName: _7_SPONSOR_POOL },
+      { balance: pool.balance + _7SponsorPoolEarnings, totalEarnings: pool.totalEarnings + _7SponsorPoolEarnings },
+    );
+  }
 
-    console.log({ userParent, wasError: 'can not read value of undefined' });
-    const newLevel = p.getLevel(userParent);
-    newLevel > userParent.level &&
-      (await writeBook(
-        { userName: userParent.userName },
-        { level: newLevel, balanceOnEnteringSuperStarPool: userParent.balance },
-      ));
+  // Update child paying user names list of user's parent
+  if (!userParent.childPaying.includes(userName)) {
+    await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, userName] });
   }
 
   let remaining = 100; // percent
   remaining -= 20; // percent, 20% distributed on LEVEL 1
-  // give reward till level 6, 9, 12, 15
-  for (let level = 2; level <= 15 && userParent.parent; level++) {
-    userParent = await readBook({ userName: userParent.parent });
-    const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
 
+  // give reward till level 6, 9, 12, 15
+  for (let level = 1; level <= 15; level++) {
     // maintain data for Super Star Pool
-    if (level <= 5 && userDepositedFirstTime) {
+    if (level <= 5) {
       const newUserParent = {};
       newUserParent[`level${level}ChildPaying`] = userParent[`level${level}ChildPaying`] + depositedFunds;
       await writeBook({ userName: userParent.userName }, newUserParent);
-      userParent = await readBook({ userName: userParent.parent });
-
+      userParent = await readBook({ userName: userParent.userName });
       const newLevel = p.getLevel(userParent);
-      newLevel > userParent.level &&
-        (await writeBook(
-          { userName: userParent.userName },
-          {
-            level: newLevel,
-            balanceOnEnteringSuperStarPool: userParent.balance,
-          },
-        ));
+      newLevel > userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel }));
     }
 
-    // deposit logic, reward 5% upto 15 levels
+    // Reward to up line, reward 5% upto 15 levels
+    const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
     if (level <= levelUnlocked) {
       remaining -= 5; // percent
       console.log({ remaining });
       await writeBook(
         { userName: userParent.userName },
-        {
-          balance: userParent.balance + 5 * percent,
-          totalEarnings: userParent.totalEarnings + 5 * percent,
-        },
+        { balance: userParent.balance + 5 * percent, totalEarnings: userParent.totalEarnings + 5 * percent },
       );
       botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
+
+    if (!userParent.parent) break;
+    userParent = await readBook({ userName: userParent.parent });
   }
 
-  console.log({ remainingSending: remaining });
+  console.log({ remainingSending: remaining, debug: true });
   await writeBook(
-    { userName: adminUserName },
+    { userName: ADMIN },
     {
       balance: admin.balance + remaining * percent,
       totalEarnings: admin.totalEarnings + remaining * percent,
     },
   );
 };
-
-// const transferError = (e) => {
-//   try {
-//     botSendMessage({ chatId: devChatId, language: 'english' }, `1, ${JSON.stringify(e)}`);
-//   } catch (error) {
-//     botSendMessage({ chatId: devChatId, language: 'english' }, `2, ${e}`);
-//   }
-// };
 
 const recycleRewards = async (user, recycleAmount) => {
   if (recycleAmount === 0) return;
@@ -1401,7 +1345,7 @@ const recycleRewards = async (user, recycleAmount) => {
     return;
   }
 
-  let admin = await readBook({ userName: adminUserName });
+  let admin = await readBook({ userName: ADMIN });
   let pool = await readBook({ userName: SUPER_STAR_POOL });
 
   let remaining = 100; // percent
@@ -1409,17 +1353,28 @@ const recycleRewards = async (user, recycleAmount) => {
 
   // give reward till level 15
   let userParent = await readBook({ userName: user.parent });
-  for (let level = 1; level <= 15 && userParent.parent; level++) {
+  for (let level = 1; level <= 15; level++) {
     const reward = p.getRecycleRewardLevelPercentage(userParent);
     remaining -= reward;
-    console.log({ remaining });
-    await writeBook({ userName: userParent.userName }, { balance: userParent.balance + reward * percent });
+    console.log({ level, remaining });
+    await writeBook(
+      { userName: userParent.userName },
+      { balance: userParent.balance + reward * percent, totalEarnings: userParent.totalEarnings + reward * percent },
+    );
+
+    if (!userParent.parent) break;
     userParent = await readBook({ userName: userParent.parent });
   }
 
   // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
   console.log({ remainingSending: remaining });
-  await writeBook({ userName: adminUserName }, { balance: admin.balance + 0.5 * remaining * percent }); // 50% of remaining
+  await writeBook(
+    { userName: ADMIN },
+    {
+      balance: admin.balance + 0.5 * remaining * percent,
+      totalEarnings: admin.totalEarnings + 0.5 * remaining * percent,
+    },
+  ); // 50% of remaining
   await writeBook(
     { userName: SUPER_STAR_POOL },
     {
@@ -1434,7 +1389,7 @@ const sendToAllUsers = async (func, data) => {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     console.log(user.chatId === null, user.chatId == null, user.chatId, user.userName);
-    user.chatId && bot[func](user.chatId, data, pad);
+    user.chatId && bot[func](user.chatId, data);
   }
 };
 
@@ -1445,7 +1400,7 @@ const exists = (user) => {
 const seedDB = async () => {
   botName = (await bot.getMe()).username;
 
-  let user = await readBook({ userName: adminUserName });
+  let user = await readBook({ userName: ADMIN });
   console.log({ user });
 
   if (!exists(user)) {
@@ -1454,7 +1409,7 @@ const seedDB = async () => {
     await writeBook({ userName: _7_SPONSOR_POOL }, {});
     await writeBook({ userName: SUPER_STAR_POOL }, {});
     await writeBook(
-      { userName: adminUserName },
+      { userName: ADMIN },
       {
         chatId: adminChatId,
         publicKey: adminAddress,
@@ -1492,7 +1447,7 @@ const seedDB = async () => {
       },
     );
 
-    user = await readBook({ userName: adminUserName });
+    user = await readBook({ userName: ADMIN });
     // console.log({ user }); // dev
   } else {
     console.log('db used second or more times');
@@ -1500,20 +1455,20 @@ const seedDB = async () => {
   console.log('Bot started ' + new Date());
 };
 
-const botSendMessage = (user, msg, pad) => {
+const botSendMessage = (user, msg) => {
   if (!pad) pad = padSimple;
 
   if (user.language.toLowerCase() === 'english') {
-    bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
+    bot.sendMessage(user.chatId, `<b>${msg}</b>`);
     return;
   }
 
   translate(msg, { to: user.language })
     .then((translation) => {
-      bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
+      bot.sendMessage(user.chatId, `<b>${translation}</b>`);
     })
     .catch((err) => {
-      bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
+      bot.sendMessage(user.chatId, `<b>${msg}</b>`);
     });
 };
 console.log(1);
@@ -1521,7 +1476,7 @@ seedDB().then(async () => {
   bot.on('message', onMessage);
 
   const user = await readBook({ userName: 'adilkh12' });
-  if (user) botSendMessage(user, 'bot deployed ' + new Date(), pad);
+  if (user) botSendMessage(user, 'bot deployed ' + new Date());
 });
 
 /*
