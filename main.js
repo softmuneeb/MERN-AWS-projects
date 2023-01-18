@@ -1460,19 +1460,19 @@ const botSendMessage = (user, msg) => {
   if (!pad) pad = padSimple;
 
   if (user.language.toLowerCase() === 'english') {
-    bot.sendMessage(user.chatId, `<b>${msg}</b>`);
+    bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     return;
   }
 
   translate(msg, { to: user.language })
     .then((translation) => {
-      bot.sendMessage(user.chatId, `<b>${translation}</b>`);
+      bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
     })
     .catch((err) => {
-      bot.sendMessage(user.chatId, `<b>${msg}</b>`);
+      bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
 };
-console.log(1);
+
 seedDB().then(async () => {
   bot.on('message', onMessage);
 
