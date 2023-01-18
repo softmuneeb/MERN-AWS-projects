@@ -1397,7 +1397,7 @@ const deposit = async (user, depositedFunds, userName) => {
 const recycleRewards = async (user, depositedFunds) => {
   if (depositedFunds === 0) return;
   if (!user.parent) {
-    // botSendMessage(user.chatId, `Admin can not recycle`);
+    botSendMessage(user, `Admin can not recycle`);
     return;
   }
 
