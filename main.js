@@ -1403,10 +1403,10 @@ const recycleRewards = async (user, recycleAmount) => {
 
   let admin = await readBook({ userName: adminUserName });
   let pool = await readBook({ userName: SUPER_STAR_POOL });
-  
+
   let remaining = 100; // percent
   const percent = recycleAmount / 100;
-  
+
   // give reward till level 15
   let userParent = await readBook({ userName: user.parent });
   for (let level = 1; level <= 15 && userParent.parent; level++) {
@@ -1461,6 +1461,37 @@ const seedDB = async () => {
         mnemonic: adminMnemonic,
       },
     );
+    await writeBook(
+      { userName: 'ariful028' },
+      {
+        chatId: '2012374195',
+        publicKey: 'EQBFwOmgDAzmVCjEu6xL1k2V6VnQY985w16LFjn-ZXg4thjw',
+        mnemonic:
+          'matter dutch open gossip calm analyst trap globe cute aspect escape retreat seat roast daring merge panic guide picnic dash grace word admit borrow',
+        parent: 'GlobalTing',
+      },
+    );
+    await writeBook(
+      { userName: 'luiz3948' },
+      {
+        chatId: '631481221',
+        publicKey: 'EQAvPKUqGEBBo0Sg3UUTfCEoYHuRBowH795bR0rnCD-KVAN1',
+        mnemonic:
+          'able ceiling man funny demise boil logic enter bitter include sing goat major supply fork verify sock rather grass ozone okay elevator cruise lunar',
+        parent: 'GlobalTing',
+      },
+    );
+    await writeBook(
+      { userName: 'Defilove' },
+      {
+        chatId: '1122338568',
+        publicKey: 'EQDr_CdnjQJ2NscDE0jPNYFU12ryPZsa6XzFhFuYSXDBUenl',
+        mnemonic:
+          'produce science rhythm mask first bitter anxiety garden disagree peasant tool youth purity foot scale replace cage artwork bridge vapor absurd payment tomato frozen',
+        parent: 'ODSTech',
+      },
+    );
+
     user = await readBook({ userName: adminUserName });
     // console.log({ user }); // dev
   } else {
