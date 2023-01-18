@@ -533,7 +533,7 @@ const onMessage = async (msg, ctx) => {
     let [, depositedFunds1] = await getBalance(user.publicKey);
     console.log(depositedFunds1);
     if (depositedFunds1 === null) {
-      botSendMessage(user, 'Please try again', pad);
+      botSendMessage(user, 'Please try again');
       return;
     }
 
@@ -582,8 +582,8 @@ const onMessage = async (msg, ctx) => {
     await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
     user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
-    botSendMessage(user, 'You are invited by ' + parent.userName, pad);
-    botSendMessage(parent, 'You invited ' + userName, pad);
+    botSendMessage(user, 'You are invited by ' + parent.userName);
+    botSendMessage(parent, 'You invited ' + userName);
   }
 
   console.log({ user, d: new Date() });
@@ -597,9 +597,9 @@ const onMessage = async (msg, ctx) => {
 
     if (acceptedLanguages[text]) {
       await writeBook({ userName }, { language: acceptedLanguages[text] });
-      botSendMessage(user, `Language changed to ${text} successfully`, pad);
+      botSendMessage(user, `Language changed to ${text} successfully`);
     } else {
-      botSendMessage(user, 'Please give correct language', pad);
+      botSendMessage(user, 'Please give correct language');
     }
 
     return;
@@ -618,17 +618,17 @@ const onMessage = async (msg, ctx) => {
       await sendToAllUsers('sendMessage', msg.text);
     }
 
-    botSendMessage(user, 'Sending... to all users', pad);
+    botSendMessage(user, 'Sending... to all users');
     return;
   }
 
   if (!text || text === undefined) {
-    botSendMessage(user, 'Please send only text', pad);
+    botSendMessage(user, 'Please send only text');
     return;
   }
   //
   else if (text.includes('🤖 Support (Поддерживать)')) {
-    botSendMessage(user, help, pad);
+    botSendMessage(user, help);
     HELP_STATUS[chatId] = 1;
     return;
   }
@@ -640,27 +640,27 @@ const onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
-    botSendMessage(user, info, pad);
+    botSendMessage(user, info);
     return;
   }
   //
   else if (text.includes('💼 Plan Packages (Пакет планов)')) {
-    botSendMessage(user, plans, pad);
+    botSendMessage(user, plans);
     return;
   }
   //
   else if (text.includes('📡 AiProTON Features (Особенности АйПроТОН)')) {
-    botSendMessage(user, features, pad);
+    botSendMessage(user, features);
     return;
   }
   //
   else if (text.includes('💡 Rules For Community (Правила для сообщества)')) {
-    botSendMessage(user, rules, pad);
+    botSendMessage(user, rules);
     return;
   }
   //
   else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
-    botSendMessage(user, market, pad);
+    botSendMessage(user, market);
   }
 
   //
@@ -686,16 +686,16 @@ As Telegram Network Itself Have more Than 700 Million Community Across The Globe
 Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
 `;
 
-    botSendMessage(user, textReply, pad);
+    botSendMessage(user, textReply);
   }
   //
   else if (text.includes('🕹 Upgrade (Обновление)')) {
     if (!exists(user)) {
-      botSendMessage(user, 'Invalid user', pad);
+      botSendMessage(user, 'Invalid user');
       return;
     }
     if (user.balance === 0) {
-      botSendMessage(user, 'Low balance to upgrade', pad);
+      botSendMessage(user, 'Low balance to upgrade');
       return;
     }
 
@@ -705,7 +705,7 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     await writeBook({ userName }, { balance: 0 });
     user = await readBook({ userName });
 
-    botSendMessage(user, 'Upgraded your package is ' + p.planName(user), pad);
+    botSendMessage(user, 'Upgraded your package is ' + p.planName(user));
   }
   //
   else if (text.includes('🚀 Super Star Club (Суперзвездный клуб)')) {
@@ -717,7 +717,7 @@ Level-4    (${user.level4ChildPaying})
 Level-5    (${user.level5ChildPaying})
 Level 6-15 (${user.level6ChildPaying})`;
 
-    botSendMessage(user, replyText, pad);
+    botSendMessage(user, replyText);
     // botSendMessage(
     //   chatId,
     //   `Level: ${user.level}\nInvite ${10 - user.childPaying} more users to go to Level ${user.level + 1} `,
@@ -753,7 +753,7 @@ Total TON Withdraw in History: ${user.totalWithdraw}
         : 'You invited no people who deposited funds\n';
     childPaying = user.child.length > 0 ? childPaying : '';
 
-    botSendMessage(user, `${parent}${child}${childPaying}`, pad);
+    botSendMessage(user, `${parent}${child}${childPaying}`);
   }
   //
   else if (text.includes('💵 My Wallet (Мой бумажник)')) {
@@ -859,11 +859,11 @@ Level 6-15 (${user.level6ChildPaying})
   }
   //
   else if (text.includes('💎 TON Ecosystem (Экосистема ТОН)')) {
-    botSendMessage(user, `https://ton.org/`, pad);
+    botSendMessage(user, `https://ton.org/`);
   }
   //
   else if (text.includes('TON Coinmarketcap (ТОН КОИНМАРКЕТ КАПИТАЛ)')) {
-    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/`);
   }
   //
   else if (text.includes('💰 REWARD (ВОЗНАГРАЖДЕНИЕ)')) {
@@ -908,7 +908,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
-    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`, pad);
+    botSendMessage(user, `https://coinmarketcap.com/currencies/toncoin/markets/`);
   }
   //
   else if (text.includes('💰 Withdraw (Отзывать)') || isValidAddress(text)) {
@@ -916,7 +916,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const [withdraw, recycle] = p.getWithdrawRecyclePercentage(user);
 
     if (withdraw === 0) {
-      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`, pad);
+      botSendMessage(user, `You must be in 👼 BABY or a bigger plan to withdraw`);
       return;
     }
 
@@ -936,21 +936,21 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     const [, adminBalance] = await getBalance(adminAddress);
     if (adminBalance < withdrawAmount) {
-      botSendMessage(user, `Please ask admin to open the withdraw`, pad);
+      botSendMessage(user, `Please ask admin to open the withdraw`);
       const admin = await readBook({ userName: adminUserName });
-      botSendMessage(admin, `A user is asking for withdraw: ${userName}`, pad);
+      botSendMessage(admin, `A user is asking for withdraw: ${userName}`);
       return;
     }
 
     let withdrawWallet = text.split(' ')[1];
     if (!isValidAddress(text)) {
-      botSendMessage(user, 'Please send TON deposit address', pad);
+      botSendMessage(user, 'Please send TON deposit address');
       return;
     }
 
     withdrawWallet = text;
 
-    botSendMessage(user, `Loading...`, pad);
+    botSendMessage(user, `Loading...`);
 
     const transferFromResult = await transferFrom(adminMnemonic, withdrawWallet, withdrawAmount);
     if (!transferFromResult.success) {
@@ -964,27 +964,27 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     await recycleRewards(user, recycleAmount);
     await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
-    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`, pad);
+    botSendMessage(user, `Successfully withdrawn ${withdrawAmount} TON to ${withdrawWallet}`);
   }
   //
   //
   // ADMIN FUNCTIONS
   else if (text.includes('🤵🏼‍♂️ Reward 7 Pool Members')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admin can access this function`, pad);
+      botSendMessage(user, `Only admin can access this function`);
       return;
     }
 
     const usersOf7Pool = await readBooks({ status7SponsorPool: IN_POOL });
     if (usersOf7Pool.length === 0) {
-      botSendMessage(user, `There are no 7 Pool Members`, pad);
+      botSendMessage(user, `There are no 7 Pool Members`);
       return;
     }
 
     const pool = await readBook({ userName: _7_SPONSOR_POOL });
     const rewardPerUser = pool.balance / usersOf7Pool.length;
     if (rewardPerUser === 0) {
-      botSendMessage(user, `Not enough funds in 7 Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in 7 Members in Pool`);
       return;
     }
 
@@ -1021,7 +1021,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   //
   else if (text.includes('🦸‍♂️ Reward Super Star Pool Members')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
 
@@ -1040,13 +1040,13 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
 
     if (usersOfSuperStarPoolLength === 0) {
-      botSendMessage(user, `There are no Super Star Pool Members`, pad);
+      botSendMessage(user, `There are no Super Star Pool Members`);
       return;
     }
 
     const pool = await readBook({ userName: SUPER_STAR_POOL });
     if (pool.balance === 0) {
-      botSendMessage(user, `Not enough funds in Super Star Members in Pool`, pad);
+      botSendMessage(user, `Not enough funds in Super Star Members in Pool`);
       return;
     }
 
@@ -1094,7 +1094,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
   //
   else if (text.includes('💳 Force Withdraw All Users')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
 
@@ -1122,24 +1122,24 @@ To Get Latest Updates , Follow The Official Telegram Channel
       await writeBook({ userName }, { balance: 0, earningsSuperStarPool: 0, earnings7SponsorPool: 0 });
       await recycleRewards(user, recycleAmount);
 
-      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`, pad);
+      botSendMessage(user, `Withdraw done for ${i}/${users.length}, ${user.userName}`);
     }
 
-    botSendMessage(user, 'Success Force Withdraw All Users', pad);
+    botSendMessage(user, 'Success Force Withdraw All Users');
   }
   //
   else if (text.includes('🎥 Send Media to Users')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
     SEND_MEDIA = 1;
-    botSendMessage(user, '🎥 Please send text / image / video here to send to all users', pad);
+    botSendMessage(user, '🎥 Please send text / image / video here to send to all users');
   }
   //
   else if (text.includes('📊 System Stats')) {
     if (!admins.includes(userName)) {
-      botSendMessage(user, `Only admins can access this function`, pad);
+      botSendMessage(user, `Only admins can access this function`);
       return;
     }
     let admin = await readBook({ userName: adminUserName });
@@ -1177,11 +1177,11 @@ Users Level 5: ${usersL5}
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
-      botSendMessage(user, `Hi Admin ${userName}`, pad);
+      botSendMessage(user, `Hi Admin ${userName}`);
       return;
     }
 
-    botSendMessage(user, `Hi ${userName}`, pad);
+    botSendMessage(user, `Hi ${userName}`);
   }
 };
 
@@ -1435,7 +1435,7 @@ const sendToAllUsers = async (func, data) => {
   for (let i = 0; i < users.length; i++) {
     const user = users[i];
     console.log(user.chatId === null, user.chatId == null, user.chatId, user.userName);
-    user.chatId && bot[func](user.chatId, data, pad);
+    user.chatId && bot[func](user.chatId, data);
   }
 };
 
@@ -1501,20 +1501,20 @@ const seedDB = async () => {
   console.log('Bot started ' + new Date());
 };
 
-const botSendMessage = (user, msg, pad) => {
+const botSendMessage = (user, msg) => {
   if (!pad) pad = padSimple;
 
   if (user.language.toLowerCase() === 'english') {
-    bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
+    bot.sendMessage(user.chatId, `<b>${msg}</b>`);
     return;
   }
 
   translate(msg, { to: user.language })
     .then((translation) => {
-      bot.sendMessage(user.chatId, `<b>${translation}</b>`, pad);
+      bot.sendMessage(user.chatId, `<b>${translation}</b>`);
     })
     .catch((err) => {
-      bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
+      bot.sendMessage(user.chatId, `<b>${msg}</b>`);
     });
 };
 console.log(1);
@@ -1522,7 +1522,7 @@ seedDB().then(async () => {
   bot.on('message', onMessage);
 
   const user = await readBook({ userName: 'adilkh12' });
-  if (user) botSendMessage(user, 'bot deployed ' + new Date(), pad);
+  if (user) botSendMessage(user, 'bot deployed ' + new Date());
 });
 
 /*
