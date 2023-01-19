@@ -498,18 +498,13 @@ const onMessage = async (msg, ctx) => {
 
   const userName = msg.chat.username;
 
-  // console.log({ msg, ctx }); // for dev
-
   if (!userName) {
     botSendMessage(chatId, 'Please add your user name in telegram settings');
     return;
   }
-  console.log({ text, userName, chatId }); // for dev
+  console.log({ text, userName, chatId, ctx }); // for dev
 
-  pad = padSimple;
-  if (admins.includes(userName)) {
-    pad = padAdmin;
-  }
+  pad = admins.includes(userName) ? padAdmin : padSimple;
 
   ////////////////////////////////////
   /////////  USER AUTH START /////////
@@ -521,18 +516,17 @@ const onMessage = async (msg, ctx) => {
     console.log('Old user');
     // empty the account
     let [, depositedFunds1] = await getBalance(user.publicKey);
-    console.log(depositedFunds1);
     if (depositedFunds1 === null) {
-      botSendMessage(user, 'Please try again');
+      botSendMessage(user, 'Please press button again');
       return;
     }
 
     // empty the account
     let depositedFunds2 = user.depositedFundsEth;
     const depositedFunds = depositedFunds1 + depositedFunds2;
-    if (depositedFunds >= MIN_DEPOSIT) {
-      await writeBook({ userName }, { depositedFundsEth: 0 });
+    console.log(`depositedFundsTon ${depositedFunds1} depositedFundsEth ${depositedFunds2}`);
 
+    if (depositedFunds >= MIN_DEPOSIT) {
       if (depositedFunds1 >= MIN_DEPOSIT) {
         const transferFromResult = await transferFrom(user.mnemonic, adminAddress, depositedFunds1); // txFee 0.06
         if (!transferFromResult.success) {
@@ -544,6 +538,8 @@ const onMessage = async (msg, ctx) => {
           return;
         }
       }
+
+      await writeBook({ userName }, { depositedFundsEth: 0 });
 
       console.log('some new deposit, giving rewards');
       await deposit(user, depositedFunds, userName);
@@ -1476,8 +1472,15 @@ const botSendMessage = (user, msg) => {
 seedDB().then(async () => {
   bot.on('message', onMessage);
 
-  const user = await readBook({ userName: 'adilkh12' });
-  if (user) botSendMessage(user, 'bot deployed ' + new Date());
+  {
+    const user = await readBook({ userName: 'adilkh12' });
+    if (user) botSendMessage(user, 'bot deployed ' + new Date());
+  }
+
+  {
+    const user = await readBook({ userName: 'thinkmuneeb' });
+    if (user) botSendMessage(user, 'bot deployed ' + new Date());
+  }
 });
 
 /*
