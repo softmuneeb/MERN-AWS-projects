@@ -12,7 +12,7 @@ function isValidAddress(address) {
   return TonWeb.utils.Address.isValid(address);
 }
 
-async function publicKey(mnemonic) {
+async function getPublicKey(mnemonic) {
   const mnemonicArray = mnemonic.split(' ');
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonicArray);
   const WalletClass = tonweb.wallet.all['v3R2'];
@@ -75,7 +75,7 @@ async function mnemonicGenerate() {
   // -> "b75abbb599feed077c8e11cc8cadecfce4945a7869a56d3d38b59cce057a3e0f8c8dfc9f9f58badd76151775ff0699bb2498939f669eaef2de16f95a52888c65"
 
   const m = mnemonic.join(' ');
-  return [await publicKey(m), m];
+  return [await getPublicKey(m), m];
 }
 
 async function transferFrom(mnemonic, toAddress, amount) {
@@ -165,7 +165,7 @@ const unitTest3 = async () => {
 // unitTest3();
 
 module.exports = {
-  publicKey,
+  publicKey: getPublicKey,
   getBalance,
   transferFrom,
   isValidAddress,
