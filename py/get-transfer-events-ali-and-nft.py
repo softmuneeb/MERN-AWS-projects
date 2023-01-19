@@ -31,22 +31,23 @@ ali = web3.eth.contract(address=ali_address, abi=ali_abi)
 
 print('nft total supply:')
 print(nft.functions.totalSupply().call())
-print(nft.functions.balanceOf(wallet_address).call())
+
+# print(nft.functions.balanceOf(wallet_address).call())
 
 
-async def log_loop(event_filter):
-    while True:
-        for event in event_filter.get_new_entries():
-            print(event)
-            await asyncio.sleep(2)
+# async def log_loop(event_filter):
+#     while True:
+#         for event in event_filter.get_new_entries():
+#             print(event)
+#             await asyncio.sleep(2)
 
-nft_transfer_event = nft.events.Transfer.createFilter(fromBlock="0x0")
-ali_transfer_event = ali.events.Transfer.createFilter(fromBlock="0x0")
+# nft_transfer_event = nft.events.Transfer.createFilter(fromBlock="0x0")
+# ali_transfer_event = ali.events.Transfer.createFilter(fromBlock="0x0")
 
-loop = asyncio.get_event_loop()
-try:
-    loop.run_until_complete(asyncio.gather(log_loop(ali_transfer_event)))
-    loop.run_until_complete(asyncio.gather(log_loop(nft_transfer_event)))
-finally:
-    loop.close()
+# loop = asyncio.get_event_loop()
+# try:
+#     loop.run_until_complete(asyncio.gather(log_loop(ali_transfer_event)))
+#     loop.run_until_complete(asyncio.gather(log_loop(nft_transfer_event)))
+# finally:
+#     loop.close()
     
