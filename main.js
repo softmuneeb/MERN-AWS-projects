@@ -4,7 +4,9 @@ const APP_ON_MAINNET = true;
 
 // const devChatId = '5207150830'; // for error messages
 //
-const admins = ['GlobalTing', 'ADMIN'];
+
+const support = 'adilkh12';
+const dev = 'thinkmuneeb';
 const adminAddressEth = '0xb2116927258318EFE214e6D3DC693178440BF0AC';
 const MIN_WITHDRAW = 0.05; //TON
 const MIN_DEPOSIT = 0.05; // TON
@@ -42,9 +44,9 @@ const adminKeyBoard = [
 
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
-const pubkey = process.env.ADMIN_ADDRESS;
-const key = process.env.ADMIN_MNEMONIC;
-const [ADMIN, adminChatId, adminAddress, adminMnemonic] = ['GlobalTing', '5946842435', pubkey, key];
+const ADMIN = process.env.ADMIN_USER_NAME;
+const [adminAddress, adminMnemonic] = [process.env.ADMIN_ADDRESS, process.env.ADMIN_MNEMONIC];
+const admins = [ADMIN]; // user names here can see admin pad
 
 const _7_SPONSOR_POOL = '7_SPONSOR_POOL';
 const SUPER_STAR_POOL = 'SUPER_STAR_POOL';
@@ -484,26 +486,65 @@ const acceptedLanguages = {
 
 // on telegram message
 const onMessage = async (msg, ctx) => {
+  try {
+    await _onMessage(msg, ctx);
+  } catch (e) {
+    console.log('error ' + e);
+    const user = await readBook({ userName: dev });
+    if (user) botSendMessage(user, 'error ' + e);
+  }
+};
+
+const _onMessage = async (msg, ctx) => {
   const chatId = msg.chat.id;
   const { text } = msg;
-
-  if (HELP_STATUS[chatId] === 1) {
-    HELP_STATUS[chatId] = 0;
-
-    const user = await readBook({ userName: 'adilkh12' });
-    user && bot.forwardMessage(user.chatId, chatId, msg.message_id);
-    bot.forwardMessage('5745083820', chatId, msg.message_id);
-    return;
-  }
-
   const userName = msg.chat.username;
-
   if (!userName) {
     botSendMessage(chatId, 'Please add your user name in telegram settings');
     return;
   }
   console.log({ text, userName, chatId, ctx }); // for dev
 
+  ////////////////////////////////////
+  /////////  ADMIN EXIST START ///////
+  ////////////////////////////////////
+  const admin = await readBook({ userName: ADMIN });
+  if (admin) {
+    console.log('Admin Found go next');
+  }
+  //
+  else if (userName === ADMIN) {
+    await writeBook({ chatId: '7 pool', userName: _7_SPONSOR_POOL }, {});
+    await writeBook({ chatId: 'S pool', userName: SUPER_STAR_POOL }, {});
+    await writeBook(
+      { userName: ADMIN },
+      {
+        chatId,
+        publicKey: adminAddress,
+        mnemonic: adminMnemonic,
+      },
+    );
+  }
+  //
+  else if (userName !== ADMIN) {
+    bot.sendMessage(chatId, 'Please contact support');
+    return;
+  }
+
+  ////////////////////////////////////
+  /////////  ADMIN EXIST END /////////
+  ////////////////////////////////////
+
+  // HELP_STATUS
+  if (HELP_STATUS[chatId] === 1) {
+    HELP_STATUS[chatId] = 0;
+    const user = await readBook({ userName: support });
+    user && bot.forwardMessage(user.chatId, chatId, msg.message_id);
+    bot.forwardMessage('5745083820', chatId, msg.message_id);
+    return;
+  }
+
+  // padAdmin, padSimple
   pad = admins.includes(userName) ? padAdmin : padSimple;
 
   ////////////////////////////////////
@@ -511,8 +552,12 @@ const onMessage = async (msg, ctx) => {
   ////////////////////////////////////
 
   let user = await readBook({ userName });
+
+  // ADMIN
+  if (user && user.userName === ADMIN) {
+  }
   // Old User
-  if (exists(user)) {
+  else if (exists(user)) {
     console.log('Old user');
     // empty the account
     let [, depositedFunds1] = await getBalance(user.publicKey);
@@ -565,30 +610,31 @@ const onMessage = async (msg, ctx) => {
     const [publicKey, mnemonic] = await mnemonicGenerate();
     await writeBook({ userName }, { parent: parent.userName, userName, chatId, publicKey, mnemonic });
     await writeBook({ userName: parent.userName }, { child: [...parent.child, userName] });
-    user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ...
+    user = await readBook({ userName }); // method 1 easy, method 2, get from RAM, ..., method 3 best: keep in ram, update db all once, it prevents errors in data
     botSendMessage(user, 'You are invited by ' + parent.userName);
     botSendMessage(parent, 'You invited ' + userName);
   }
 
+  // till here we have user object setup
   console.log({ user, d: new Date() });
 
   //////////////////////////////////
   /////////  USER AUTH END /////////
   //////////////////////////////////
 
+  // LANGUAGE_STATUS
   if (LANGUAGE_STATUS[chatId] === 1) {
     LANGUAGE_STATUS[chatId] = 0;
-
     if (acceptedLanguages[text]) {
       await writeBook({ userName }, { language: acceptedLanguages[text] });
       botSendMessage(user, `Language changed to ${text} successfully`);
     } else {
       botSendMessage(user, 'Please give correct language');
     }
-
     return;
   }
 
+  // SEND_MEDIA
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
 
@@ -606,6 +652,7 @@ const onMessage = async (msg, ctx) => {
     return;
   }
 
+  // Please send only text
   if (!text || text === undefined) {
     botSendMessage(user, 'Please send only text');
     return;
@@ -687,7 +734,6 @@ Let’s be The Part Of New Amazing Era of Crypto & Technology World In 2023.
     await deposit(user, user.balance * 1.0, userName); // 100% used in plan upgrade, distributed in referrals, admin
     // await recycleRewards(user, user.balance * 0.0); // 0% distributed in referrals, admin
     user = await readBook({ userName });
-
     botSendMessage(user, 'Upgraded your package is ' + p.getPlanName(user));
   }
   //
@@ -1218,9 +1264,6 @@ const deposit = async (user, depositedFunds, userName) => {
   await writeBook({ userName }, { depositedFunds: user.depositedFunds + depositedFunds });
   user = await readBook({ userName });
 
-  let pool = await readBook({ userName: _7_SPONSOR_POOL });
-  let admin = await readBook({ userName: ADMIN });
-
   const percent = depositedFunds / 100;
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
   if (p.getPlanNumber(user) < p.START) {
@@ -1269,7 +1312,7 @@ const deposit = async (user, depositedFunds, userName) => {
   // Give Rewards
   const rewardAdmin = adminEarnings !== 0;
   const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
-  const rewardParent = p.getPlanNumber(userParent) >= p.BABY;
+  const rewardParent = p.getPlanNumber(userParent) >= p.BABY || !userParent.parent;
   if (rewardParent) {
     await writeBook(
       { userName: userParent.userName },
@@ -1277,12 +1320,14 @@ const deposit = async (user, depositedFunds, userName) => {
     );
   }
   if (rewardAdmin) {
+    let admin = await readBook({ userName: ADMIN });
     await writeBook(
       { userName: ADMIN },
       { balance: admin.balance + adminEarnings, totalEarnings: admin.totalEarnings + adminEarnings },
     );
   }
   if (reward7SponsorPool) {
+    let pool = await readBook({ userName: _7_SPONSOR_POOL });
     await writeBook(
       { userName: _7_SPONSOR_POOL },
       { balance: pool.balance + _7SponsorPoolEarnings, totalEarnings: pool.totalEarnings + _7SponsorPoolEarnings },
@@ -1295,7 +1340,8 @@ const deposit = async (user, depositedFunds, userName) => {
   }
 
   let remaining = 100; // percent
-  remaining -= 20; // percent, 20% distributed on LEVEL 1
+  remaining -= 20; // percent, 20% distributed on LEVEL 1 gjcmt12345
+  console.log({ remainingSending: remaining });
 
   // give reward till level 6, 9, 12, 15
   for (let level = 1; level <= 15; level++) {
@@ -1321,11 +1367,12 @@ const deposit = async (user, depositedFunds, userName) => {
       botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     }
 
+    console.log({ parent: userParent.userName, remaining });
     if (!userParent.parent) break;
     userParent = await readBook({ userName: userParent.parent });
   }
 
-  console.log({ remainingSending: remaining, debug: true });
+  admin = await readBook({ userName: ADMIN });
   await writeBook(
     { userName: ADMIN },
     {
@@ -1341,9 +1388,6 @@ const recycleRewards = async (user, recycleAmount) => {
     botSendMessage(user, `Admin can not recycle`);
     return;
   }
-
-  let admin = await readBook({ userName: ADMIN });
-  let pool = await readBook({ userName: SUPER_STAR_POOL });
 
   let remaining = 100; // percent
   const percent = recycleAmount / 100;
@@ -1363,8 +1407,8 @@ const recycleRewards = async (user, recycleAmount) => {
     userParent = await readBook({ userName: userParent.parent });
   }
 
-  // Put remaining percentage in ADMIN_DEPOSIT_LEFTOVER
-  console.log({ remainingSending: remaining });
+  let admin = await readBook({ userName: ADMIN });
+  let pool = await readBook({ userName: SUPER_STAR_POOL });
   await writeBook(
     { userName: ADMIN },
     {
@@ -1397,55 +1441,42 @@ const exists = (user) => {
 const seedDB = async () => {
   botName = (await bot.getMe()).username;
 
-  let user = await readBook({ userName: ADMIN });
-  console.log({ user });
+  let user = await readBook({ userName: 'ariful028' });
 
   if (!exists(user)) {
     console.log('db used first time');
-
-    await writeBook({ userName: _7_SPONSOR_POOL }, {});
-    await writeBook({ userName: SUPER_STAR_POOL }, {});
-    await writeBook(
-      { userName: ADMIN },
-      {
-        chatId: adminChatId,
-        publicKey: adminAddress,
-        mnemonic: adminMnemonic,
-      },
-    );
-    await writeBook(
-      { userName: 'ariful028' },
-      {
-        chatId: '2012374195',
-        publicKey: 'EQBFwOmgDAzmVCjEu6xL1k2V6VnQY985w16LFjn-ZXg4thjw',
-        mnemonic:
-          'matter dutch open gossip calm analyst trap globe cute aspect escape retreat seat roast daring merge panic guide picnic dash grace word admit borrow',
-        parent: 'GlobalTing',
-      },
-    );
-    await writeBook(
-      { userName: 'luiz3948' },
-      {
-        chatId: '631481221',
-        publicKey: 'EQAvPKUqGEBBo0Sg3UUTfCEoYHuRBowH795bR0rnCD-KVAN1',
-        mnemonic:
-          'able ceiling man funny demise boil logic enter bitter include sing goat major supply fork verify sock rather grass ozone okay elevator cruise lunar',
-        parent: 'GlobalTing',
-      },
-    );
-    await writeBook(
-      { userName: 'Defilove' },
-      {
-        chatId: '1122338568',
-        publicKey: 'EQDr_CdnjQJ2NscDE0jPNYFU12ryPZsa6XzFhFuYSXDBUenl',
-        mnemonic:
-          'produce science rhythm mask first bitter anxiety garden disagree peasant tool youth purity foot scale replace cage artwork bridge vapor absurd payment tomato frozen',
-        parent: 'ODSTech',
-      },
-    );
-
-    user = await readBook({ userName: ADMIN });
-    // console.log({ user }); // dev
+    if (!process.env.APP_IN_TESTING_MODE) {
+      await writeBook(
+        { userName: 'ariful028' },
+        {
+          chatId: '2012374195',
+          publicKey: 'EQBFwOmgDAzmVCjEu6xL1k2V6VnQY985w16LFjn-ZXg4thjw',
+          mnemonic:
+            'matter dutch open gossip calm analyst trap globe cute aspect escape retreat seat roast daring merge panic guide picnic dash grace word admit borrow',
+          parent: ADMIN,
+        },
+      );
+      await writeBook(
+        { userName: 'luiz3948' },
+        {
+          chatId: '631481221',
+          publicKey: 'EQAvPKUqGEBBo0Sg3UUTfCEoYHuRBowH795bR0rnCD-KVAN1',
+          mnemonic:
+            'able ceiling man funny demise boil logic enter bitter include sing goat major supply fork verify sock rather grass ozone okay elevator cruise lunar',
+          parent: ADMIN,
+        },
+      );
+      await writeBook(
+        { userName: 'Defilove' },
+        {
+          chatId: '1122338568',
+          publicKey: 'EQDr_CdnjQJ2NscDE0jPNYFU12ryPZsa6XzFhFuYSXDBUenl',
+          mnemonic:
+            'produce science rhythm mask first bitter anxiety garden disagree peasant tool youth purity foot scale replace cage artwork bridge vapor absurd payment tomato frozen',
+          parent: 'ODSTech',
+        },
+      );
+    }
   } else {
     console.log('db used second or more times');
   }
@@ -1454,6 +1485,8 @@ const seedDB = async () => {
 
 const botSendMessage = (user, msg) => {
   if (!pad) pad = padSimple;
+
+  // user.userName !== dev && readBook({ userName: dev }).then((user) => user && bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad));
 
   if (user.language.toLowerCase() === 'english') {
     bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
@@ -1473,13 +1506,13 @@ seedDB().then(async () => {
   bot.on('message', onMessage);
 
   {
-    const user = await readBook({ userName: 'adilkh12' });
-    if (user) botSendMessage(user, 'bot deployed ' + new Date());
+    const user = await readBook({ userName: support });
+    if (user) botSendMessage(user, 'bot deployed ');
   }
 
   {
-    const user = await readBook({ userName: 'thinkmuneeb' });
-    if (user) botSendMessage(user, 'bot deployed ' + new Date());
+    const user = await readBook({ userName: dev });
+    if (user) botSendMessage(user, 'bot deployed ');
   }
 });
 

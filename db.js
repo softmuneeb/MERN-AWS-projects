@@ -35,8 +35,8 @@ const UserSchema = new mongoose.Schema({
   chatId: {
     type: String,
     default: null,
-    // unique: true,
-    // required: true,
+    unique: true,
+    required: true,
   },
   userName: {
     type: String,
@@ -44,12 +44,16 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  balance: {
+    // referral earnings
+    type: Number,
+    default: 0,
+  },
 
   depositedFundsEth: {
     type: Number,
     default: 0, // 0 not added to pool, 1 added to pool, 2 removed from pool and he can not enter again
   },
-
   status7SponsorPool: {
     type: Number,
     default: 0, // 0 not added to pool, 1 added to pool, 2 removed from pool and he can not enter again
@@ -59,18 +63,11 @@ const UserSchema = new mongoose.Schema({
     default: 0, // if earnings go 2x of depositedFunds then person is removed from pool and can not enter gain
   },
 
-  statusSuperStarPool: {
-    type: Number,
-    default: 0, // 2 removed from pool and he can not enter again
-  },
   earningsSuperStarPool: {
     type: Number,
     default: 0, // if earnings go 2x of depositedFunds then person is removed from pool and can not enter gain
   },
-  balanceOnEnteringSuperStarPool: {
-    type: Number,
-    default: 0, // when user gets double of this he is out from pool
-  },
+
   level: {
     type: Number,
     default: 0, // levels 1,2,3,4,5
@@ -105,11 +102,7 @@ const UserSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  balance: {
-    // referral earnings
-    type: Number,
-    default: 0,
-  },
+
   totalEarnings: {
     // referral earnings + pool earnings total in history
     type: Number,
