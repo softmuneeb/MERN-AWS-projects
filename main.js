@@ -1060,14 +1060,16 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersLevel3 = await readBooks({ level: 3 });
     const usersLevel4 = await readBooks({ level: 4 });
     const usersLevel5 = await readBooks({ level: 5 });
+    const usersLevel6 = await readBooks({ level: 6 });
 
     const usersL1 = usersLevel1.length;
     const usersL2 = usersLevel2.length;
     const usersL3 = usersLevel3.length;
     const usersL4 = usersLevel4.length;
     const usersL5 = usersLevel5.length;
+    const usersL6 = usersLevel6.length;
 
-    const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5;
+    const usersOfSuperStarPoolLength = usersL1 + usersL2 + usersL3 + usersL4 + usersL5 + usersL6;
 
     if (usersOfSuperStarPoolLength === 0) {
       botSendMessage(user, `There are no Super Star Pool Members`);
@@ -1083,7 +1085,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     let rewardGiven = 0,
       backToPool = 0;
     if (usersL1 > 0) {
-      const rewardPerLevel1 = 0.3 * pool.balance; // 30%
+      const rewardPerLevel1 = 0.2 * pool.balance; // 20%
       rewardGiven += rewardPerLevel1;
       const rewardPerUserPerLevel1 = rewardPerLevel1 / usersL1;
       backToPool += await giveRewardEqually(usersLevel1, rewardPerUserPerLevel1);
@@ -1101,7 +1103,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       backToPool += await giveRewardEqually(usersLevel3, rewardPerUserPerLevel3);
     }
     if (usersL4 > 0) {
-      const rewardPerLevel4 = 0.2 * pool.balance; // 20%
+      const rewardPerLevel4 = 0.1 * pool.balance; // 10%
       rewardGiven += rewardPerLevel4;
       const rewardPerUserPerLevel4 = rewardPerLevel4 / usersL4;
       backToPool += await giveRewardEqually(usersLevel4, rewardPerUserPerLevel4);
@@ -1111,6 +1113,12 @@ To Get Latest Updates , Follow The Official Telegram Channel
       rewardGiven += rewardPerLevel5;
       const rewardPerUserPerLevel5 = rewardPerLevel5 / usersL5;
       backToPool += await giveRewardEqually(usersLevel5, rewardPerUserPerLevel5);
+    }
+    if (usersL6 > 0) {
+      const rewardPerLevel6 = 0.2 * pool.balance; // 20%
+      rewardGiven += rewardPerLevel6;
+      const rewardPerUserPerLevel6 = rewardPerLevel6 / usersL6;
+      backToPool += await giveRewardEqually(usersLevel6, rewardPerUserPerLevel6);
     }
 
     const poolRemaining = pool.balance - rewardGiven + backToPool;
