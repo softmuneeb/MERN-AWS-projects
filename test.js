@@ -8,6 +8,18 @@ const { readBooks, writeBook, readBook } = require('./db');
   // const users = await readBooks(); // see all users
   // console.log(users);
 
+  // // See Users Names
+  // const users = await readBooks(); // see all users
+  // let userNames = [];
+  // for (let i = 0; i < users.length; i++) {
+  //   const user = users[i];
+  //   if (user.userName === '7_SPONSOR_POOL' || user.userName === 'SUPER_STAR_POOL') continue;
+  //   userNames.push(user.userName);
+  // }
+  // console.log(userNames + '');
+
+  // console.log(users);
+
   // // Get All Users Balance
   // const users = await readBooks(); // see all users
   // let total = 0;
