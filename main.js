@@ -37,6 +37,7 @@ const adminKeyBoard = [
   ['________ADMIN________'], //
   ['🎥 Send Media to Users'], //
   ['📊 System Stats'], //
+  ['All Users Names'],//
   ['🤵🏼‍♂️ Reward 7 Pool Members'], //
   ['🦸‍♂️ Reward Super Star Pool Members'], //
   ['💳 Force Withdraw All Users'], //
@@ -1168,6 +1169,13 @@ To Get Latest Updates , Follow The Official Telegram Channel
     SEND_MEDIA = 1;
     botSendMessage(user, '🎥 Please send text / image / video here to send to all users');
   }
+    //  
+  else if (text.includes('All Users Names')) {
+    if (!admins.includes(userName)) {
+      botSendMessage(user, `Only admins can access this function`);
+      return;
+    }
+  }
   //
   else if (text.includes('📊 System Stats')) {
     if (!admins.includes(userName)) {
@@ -1195,17 +1203,27 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     botSendMessage(
       user,
-      `Total Users in System: ${totalUsers}\nAdmin Earnings Available: ${admin.balance} TON\nAdmin Earnings History: ${admin.totalEarnings} TON\n7 SPONSOR POOL AVAILABLE: ${__7_SPONSOR_POOL.balance} TON\nSUPER STAR POOL AVAILABLE: ${_SUPER_STAR_POOL.balance} TON
+      `1. Total Users in System: ${totalUsers}
 
-Users Level 1: ${usersL1} 
-Users Level 2: ${usersL2} 
-Users Level 3: ${usersL3} 
-Users Level 4: ${usersL4} 
-Users Level 5: ${usersL5} 
+2. Total Deposit In TONChain Wallet
+
+3. Total Deposit In Metamask Wallet 
+
+4. Total Instant Payout Distributed 
+
+5. Fund Value For 7 Sponsor Club
+
+6. Fund Value For Reward Club 
+
+7. Fund Distributed in 7 Sponsor Club- ( when monthly distribute )
+
+8. Fund Distributed in Reward Club -  (when monthly distribute)
+
+9. User Level Count in System - ( user count )  (  TON COUNT ) 
       `,
       pad,
     );
-  }
+  }  
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
