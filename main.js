@@ -1183,6 +1183,14 @@ To Get Latest Updates , Follow The Official Telegram Channel
       botSendMessage(user, `Only admins can access this function`);
       return;
     }
+    const users = await readBooks(); // see all users
+    let userNames = [];
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (user.userName === '7_SPONSOR_POOL' || user.userName === 'SUPER_STAR_POOL') continue;
+      userNames.push(user.userName);
+    }
+    botSendMessage(user, `${userNames}`);
   }
   //
   else if (text.includes('📊 System Stats')) {
@@ -1211,23 +1219,23 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
     botSendMessage(
       user,
-      `1. Total Users in System: ${totalUsers}
+      `1. Total Users in System - ${totalUsers}
 
-2. Total Deposit In TONChain Wallet
+2. Total Deposit In TONChain Wallet - 
 
-3. Total Deposit In Metamask Wallet 
+3. Total Deposit In Metamask Wallet - 
 
-4. Total Instant Payout Distributed 
+4. Total Instant Payout Distributed - 
 
-5. Fund Value For 7 Sponsor Club
+5. Fund Value For 7 Sponsor Club - ${__7_SPONSOR_POOL.balance}
 
-6. Fund Value For Reward Club 
+6. Fund Value For Reward Club - ${_SUPER_STAR_POOL.balance}
 
-7. Fund Distributed in 7 Sponsor Club- ( when monthly distribute )
+7. Fund Distributed in 7 Sponsor Club - ( when monthly distribute )
 
 8. Fund Distributed in Reward Club -  (when monthly distribute)
 
-9. User Level Count in System - ( user count )  (  TON COUNT ) 
+9. User Level Count in System - ${totalUsers}  (  TON COUNT ) 
       `,
       pad,
     );
