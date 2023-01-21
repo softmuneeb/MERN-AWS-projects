@@ -1219,13 +1219,16 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersL5 = usersLevel5.length;
     const usersL6 = usersLevel6.length;
 
+    const [, tonDepositOnTon] = await getBalance(adminAddress);
+    const tonDepositOnEth = '';
+
     botSendMessage(
       user,
       `1. Total Users in System - ${totalUsers}
 
-2. Total Deposit In TONChain Wallet - 
+2. Total Deposit In TONChain Wallet - ${tonDepositOnTon} TON
 
-3. Total Deposit In Metamask Wallet - 
+3. Total Deposit In Metamask Wallet - ${tonDepositOnEth} TON
 
 4. Total Instant Payout Distributed - 
 
@@ -1472,7 +1475,7 @@ const recycleRewards = async (user, recycleAmount) => {
       totalEarnings: admin.totalEarnings + 0.5 * remaining * percent,
     },
   ); // 50% of remaining
-  
+
   let pool = await readBook({ userName: SUPER_STAR_POOL });
   await writeBook(
     { userName: SUPER_STAR_POOL },
