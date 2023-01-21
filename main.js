@@ -1210,12 +1210,14 @@ To Get Latest Updates , Follow The Official Telegram Channel
     const usersLevel3 = await readBooks({ level: 3 });
     const usersLevel4 = await readBooks({ level: 4 });
     const usersLevel5 = await readBooks({ level: 5 });
+    const usersLevel6 = await readBooks({ level: 6 });
 
     const usersL1 = usersLevel1.length;
     const usersL2 = usersLevel2.length;
     const usersL3 = usersLevel3.length;
     const usersL4 = usersLevel4.length;
     const usersL5 = usersLevel5.length;
+    const usersL6 = usersLevel6.length;
 
     botSendMessage(
       user,
@@ -1235,7 +1237,13 @@ To Get Latest Updates , Follow The Official Telegram Channel
 
 8. Fund Distributed in Reward Club -  (when monthly distribute)
 
-9. User Level Count in System - ${totalUsers}  (  TON COUNT ) 
+9. User Level Count in System -
+    Users Level 1 ${usersL1} TON
+    Users Level 2 ${usersL2} TON
+    Users Level 3 ${usersL3} TON
+    Users Level 4 ${usersL4} TON
+    Users Level 5 ${usersL5} TON
+    Users Level 6 ${usersL6} TON
       `,
       pad,
     );
