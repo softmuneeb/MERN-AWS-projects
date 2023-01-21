@@ -18,6 +18,7 @@ const keyboard = [
   ['💎 TON Ecosystem (Экосистема ТОН)'],
   ['📈 Marketing Plan (Маркетинговый план)'], //
   ['💰 REWARD (ВОЗНАГРАЖДЕНИЕ)'], //
+  ['🎖7 SPONSOR CLUB (7 Спонсорский клуб)'],//
   ['💼 Plan Packages (Пакет планов)'], //
   ['🎛 My Dashboard (щиток приборов)'], //
   ['⭐️ Home (Дом)'], //
@@ -935,6 +936,24 @@ To Get Latest Updates , Follow The Official Telegram Channel
       `,
       pad,
     );
+  }
+      //
+  else if (text.includes('🎖7 SPONSOR CLUB (7 Спонсорский клуб)')) {
+    botSendMessage(user, `
+When You Sponsor 7th Direct , You Eligible For 
+7 Sponsor Club Reward .
+
+In This Club You Get 300% Value Reward 
+Of Your Self Package Amount
+At The Time Of Qualification Of 7th Sponsoring Club.
+
+From Every Global 1-3rd sponsoring - 10% 
+& From Every Global Sponsoring 4-6th - 5% 
+This Revenue Comes In 7 Sponsor Club , And
+Distribute Into Qualified Achievers of Club .
+This Means If Any User Sponsor 7 Direct In His Tree,
+Than He can eligible To Earn From Global Sponsoring 
+upto 300% Value Of Their Pack.`);
   }
   //
   else if (text.includes('TON Exchanges (ТОН биржи)')) {
