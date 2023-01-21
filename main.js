@@ -37,7 +37,7 @@ const adminKeyBoard = [
   ['________ADMIN________'], //
   ['🎥 Send Media to Users'], //
   ['📊 System Stats'], //
-  ['All Users Names'],//
+  ['All Users Names'], //
   ['🤵🏼‍♂️ Reward 7 Pool Members'], //
   ['🦸‍♂️ Reward Super Star Pool Members'], //
   ['💳 Force Withdraw All Users'], //
@@ -1177,7 +1177,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
     SEND_MEDIA = 1;
     botSendMessage(user, '🎥 Please send text / image / video here to send to all users');
   }
-    //  
+  //
   else if (text.includes('All Users Names')) {
     if (!admins.includes(userName)) {
       botSendMessage(user, `Only admins can access this function`);
@@ -1231,7 +1231,7 @@ To Get Latest Updates , Follow The Official Telegram Channel
       `,
       pad,
     );
-  }  
+  }
   // bot does not understand message
   else {
     if (admins.includes(userName)) {
@@ -1308,26 +1308,28 @@ const deposit = async (user, depositedFunds, userName) => {
   let adminEarnings;
   let _7SponsorPoolEarnings;
 
+  let remaining = 100; // percent
+
   let userParent = await readBook({ userName: user.parent });
 
   // Calculate Rewards
   // 1 to 3
   if (userParent.childPaying.length <= p.REFERRERS_LIMIT_1) {
-    parentEarnings = 10 * percent;
-    adminEarnings = 5 * percent;
-    _7SponsorPoolEarnings = 5 * percent;
+    parentEarnings = 10;
+    adminEarnings = 5;
+    _7SponsorPoolEarnings = 5;
   }
   // 4 to 6
   else if (userParent.childPaying.length <= p.REFERRERS_LIMIT_2) {
-    parentEarnings = 15 * percent;
-    adminEarnings = 2.5 * percent;
-    _7SponsorPoolEarnings = 2.5 * percent;
+    parentEarnings = 15;
+    adminEarnings = 2.5;
+    _7SponsorPoolEarnings = 2.5;
   }
   // 7 or more child paying
   else {
-    parentEarnings = 20 * percent;
-    adminEarnings = 0 * percent;
-    _7SponsorPoolEarnings = 0 * percent;
+    parentEarnings = 20;
+    adminEarnings = 0;
+    _7SponsorPoolEarnings = 0;
 
     // add person to status7SponsorPool
     if (user.status7SponsorPool === NOT_IN_POOL) {
@@ -1340,23 +1342,38 @@ const deposit = async (user, depositedFunds, userName) => {
   const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
   const rewardParent = p.getPlanNumber(userParent) >= p.BABY || !userParent.parent;
   if (rewardParent) {
+    remaining -= parentEarnings;
+
     await writeBook(
       { userName: userParent.userName },
-      { balance: userParent.balance + parentEarnings, totalEarnings: userParent.totalEarnings + parentEarnings },
+      {
+        balance: userParent.balance + parentEarnings * percent,
+        totalEarnings: userParent.totalEarnings + parentEarnings * percent,
+      },
     );
   }
   if (rewardAdmin) {
+    remaining -= adminEarnings;
+
     let admin = await readBook({ userName: ADMIN });
     await writeBook(
       { userName: ADMIN },
-      { balance: admin.balance + adminEarnings, totalEarnings: admin.totalEarnings + adminEarnings },
+      {
+        balance: admin.balance + adminEarnings * percent,
+        totalEarnings: admin.totalEarnings + adminEarnings * percent,
+      },
     );
   }
   if (reward7SponsorPool) {
+    remaining -= poolEarnings;
+
     let pool = await readBook({ userName: _7_SPONSOR_POOL });
     await writeBook(
       { userName: _7_SPONSOR_POOL },
-      { balance: pool.balance + _7SponsorPoolEarnings, totalEarnings: pool.totalEarnings + _7SponsorPoolEarnings },
+      {
+        balance: pool.balance + _7SponsorPoolEarnings * percent,
+        totalEarnings: pool.totalEarnings + _7SponsorPoolEarnings * percent,
+      },
     );
   }
 
@@ -1365,8 +1382,6 @@ const deposit = async (user, depositedFunds, userName) => {
     await writeBook({ userName: userParent.userName }, { childPaying: [...userParent.childPaying, userName] });
   }
 
-  let remaining = 100; // percent
-  remaining -= 20; // percent, 20% distributed on LEVEL 1 gjcmt12345
   console.log({ remainingSending: remaining });
 
   // give reward till level 6, 9, 12, 15
@@ -1434,7 +1449,6 @@ const recycleRewards = async (user, recycleAmount) => {
   }
 
   let admin = await readBook({ userName: ADMIN });
-  let pool = await readBook({ userName: SUPER_STAR_POOL });
   await writeBook(
     { userName: ADMIN },
     {
@@ -1442,6 +1456,8 @@ const recycleRewards = async (user, recycleAmount) => {
       totalEarnings: admin.totalEarnings + 0.5 * remaining * percent,
     },
   ); // 50% of remaining
+  
+  let pool = await readBook({ userName: SUPER_STAR_POOL });
   await writeBook(
     { userName: SUPER_STAR_POOL },
     {
