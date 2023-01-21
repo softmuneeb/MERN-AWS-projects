@@ -4,7 +4,7 @@ const { readBooks, writeBook, readBook } = require('./db');
 (async () => {
   console.log('start');
 
-  // // See Users
+  // // See all users all details
   // const users = await readBooks(); // see all users
   // console.log(users);
 
@@ -18,24 +18,22 @@ const { readBooks, writeBook, readBook } = require('./db');
   // }
   // console.log(userNames + '');
 
-  // console.log(users);
-
-  // // Get All Users Balance
+  // Get All Users Balance
   // const users = await readBooks(); // see all users
   // let total = 0;
   // for (let i = 0; i < users.length; i++) {
   //   const user = users[i];
-  //   total += user.balance;
+  //   total += user.balance + user.depositedFundsEth;
   // }
   // console.log(total);
 
-  // // Add Ton from ETH
-  // const userName = 'MehsimBote';
+  // Add Ton from ETH
+  // const userName = 'WarmSilkyChocolate';
   // if (!(await readBook({ userName }))) {
   //   console.log('user not found');
   //   return;
   // }
-  // await writeBook({ userName }, { depositedFundsEth: 10, balance: 0 });
+  // await writeBook({ userName }, { depositedFundsEth: 10 });
 
   console.log('done');
 })();
