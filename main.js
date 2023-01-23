@@ -1544,7 +1544,7 @@ const seedDB = async () => {
   console.log('Bot started ' + new Date());
 };
 
-const botSendMessage = (user, msg) => {
+const botSendMessage = (user, msg, pad) => {
   if (!pad) pad = padSimple;
 
   // user.userName !== dev && readBook({ userName: dev }).then((user) => user && bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad));
@@ -1577,11 +1577,3 @@ seedDB().then(async () => {
   }
 });
 
-/*
-writeBook(
-  { userName: 'AdilKhanG' },
-  {
-    depositedFunds: 0,
-  },
-).then(() => console.log('ok'));
-*/
