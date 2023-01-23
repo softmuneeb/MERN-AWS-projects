@@ -861,6 +861,8 @@ My Referral Link –  <code>https://t.me/${botName}?start=${userName}</code>
 
 My Current Pack (${p.getPlanValue(user)} TON) – ${p.getPlanName(user)}
 
+My Deposited Funds (${user.depositedFunds} TON)
+
 My Total Earning Available – ${user.balance} TON
 
 My Total Earning in History – ${user.totalEarnings} TON
@@ -1406,7 +1408,7 @@ const deposit = async (user, depositedFunds, userName) => {
     );
   }
   if (reward7SponsorPool) {
-    remaining -= poolEarnings;
+    remaining -= _7SponsorPoolEarnings;
 
     let pool = await readBook({ userName: _7_SPONSOR_POOL });
     await writeBook(

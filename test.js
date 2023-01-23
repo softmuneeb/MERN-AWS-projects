@@ -5,8 +5,8 @@ const { readBooks, writeBook, readBook } = require('./db');
   console.log('start');
 
   // // See all users all details
-  // const users = await readBooks(); // see all users
-  // console.log(users);
+  const users = await readBooks(); // see all users
+  console.log(users);
 
   // // See Users Names
   // const users = await readBooks(); // see all users
@@ -29,6 +29,7 @@ const { readBooks, writeBook, readBook } = require('./db');
 
   // Add Ton from ETH
   // const userName = 'WarmSilkyChocolate';
+  // const userName = 'MehsimBote';
   // if (!(await readBook({ userName }))) {
   //   console.log('user not found');
   //   return;
