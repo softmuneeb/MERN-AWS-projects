@@ -491,9 +491,9 @@ const onMessage = async (msg, ctx) => {
   try {
     await _onMessage(msg, ctx);
   } catch (e) {
-    console.log('error ' + e);
+    console.log('error onMessage ' + e);
     const user = await readBook({ userName: dev });
-    if (user) botSendMessage(user, 'error ' + e);
+    if (user) botSendMessage(user, 'error onMessage ' + e);
   }
 };
 
