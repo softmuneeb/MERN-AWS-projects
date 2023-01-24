@@ -529,7 +529,7 @@ const _onMessage = async (msg, ctx) => {
   }
   //
   else if (userName !== ADMIN) {
-    bot.sendMessage(chatId, 'Please contact support');
+    bot.sendMessage(chatId, 'Please create the first user in system');
     return;
   }
 
