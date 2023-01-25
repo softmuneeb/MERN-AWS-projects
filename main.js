@@ -1382,19 +1382,6 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // Give Rewards
   const rewardAdmin = adminEarnings !== 0;
-  const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
-  const rewardParent = p.getPlanNumber(userParent) >= p.BABY || !userParent.parent;
-  if (rewardParent) {
-    remaining -= parentEarnings;
-
-    await writeBook(
-      { userName: userParent.userName },
-      {
-        balance: userParent.balance + parentEarnings * percent,
-        totalEarnings: userParent.totalEarnings + parentEarnings * percent,
-      },
-    );
-  }
   if (rewardAdmin) {
     remaining -= adminEarnings;
 
@@ -1407,6 +1394,8 @@ const deposit = async (user, depositedFunds, userName) => {
       },
     );
   }
+
+  const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
   if (reward7SponsorPool) {
     remaining -= _7SponsorPoolEarnings;
 
@@ -1440,15 +1429,25 @@ const deposit = async (user, depositedFunds, userName) => {
     }
 
     // Reward to up line, reward 5% upto 15 levels
-    const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
-    if (level <= levelUnlocked) {
+    if ((level === 1 && p.getPlanNumber(userParent) >= p.BABY) || !userParent.parent) {
+      remaining -= parentEarnings;
+      await writeBook(
+        { userName: userParent.userName },
+        {
+          balance: userParent.balance + parentEarnings * percent,
+          totalEarnings: userParent.totalEarnings + parentEarnings * percent,
+        },
+      );
+      botSendMessage(userParent, `You have earned ${parentEarnings * percent} TON from deposit of ${userName}`);
+    } else if (level <= p.getRewardLevelsUnlocked(userParent)) {
       remaining -= 5; // percent
-      console.log({ remaining });
       await writeBook(
         { userName: userParent.userName },
         { balance: userParent.balance + 5 * percent, totalEarnings: userParent.totalEarnings + 5 * percent },
       );
       botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
+    } else {
+      botSendMessage(userParent, `${userName} deposited ${depositedFunds} TON, Upgrade your pack to earn commissions.`);
     }
 
     console.log({ parent: userParent.userName, remaining });
@@ -1600,4 +1599,3 @@ seedDB().then(async () => {
     if (user) botSendMessage(user, 'bot deployed ');
   }
 });
-
