@@ -44,6 +44,13 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
+const devKeyBoard = [
+  ['________DEV________'], //
+  ['💡 See All Users'], //
+  ['🎒 Add Test Ton'], //
+  ['🎒 Balance of All Users'], //
+];
+
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const ADMIN = process.env.ADMIN_USER_NAME;
@@ -458,6 +465,12 @@ const padAdmin = {
   },
   parse_mode: 'HTML',
 };
+const padDev = {
+  reply_markup: {
+    keyboard: [...keyboard, ...adminKeyBoard, ...devKeyBoard],
+  },
+  parse_mode: 'HTML',
+};
 let pad;
 
 const padLanguage = {
@@ -477,6 +490,7 @@ const padLanguage = {
 let botName;
 let HELP_STATUS = {};
 let LANGUAGE_STATUS = {};
+let ADD_TON_STATUS = {};
 const acceptedLanguages = {
   '🇺🇸 English': 'English',
   '🇷🇺 Russian': 'Russian',
@@ -512,7 +526,7 @@ const _onMessage = async (msg, ctx) => {
   ////////////////////////////////////
   const admin = await readBook({ userName: ADMIN });
   if (admin) {
-    console.log('Admin Found go next');
+    console.log('Admin exist in system');
   }
   //
   else if (userName === ADMIN) {
@@ -545,9 +559,6 @@ const _onMessage = async (msg, ctx) => {
     bot.forwardMessage('5745083820', chatId, msg.message_id);
     return;
   }
-
-  // padAdmin, padSimple
-  pad = admins.includes(userName) ? padAdmin : padSimple;
 
   ////////////////////////////////////
   /////////  USER AUTH START /////////
@@ -636,6 +647,17 @@ const _onMessage = async (msg, ctx) => {
     return;
   }
 
+  if (ADD_TON_STATUS[chatId] === 1) {
+    ADD_TON_STATUS[chatId] = 0;
+    if (!(await readBook({ userName: text }))) {
+      botSendMessage(user, `user not exist ${text}, create user chat first`);
+      return;
+    }
+    await writeBook({ userName: text }, { depositedFundsEth: 2 });
+    botSendMessage(user, `Added 2 ton in ${text}`);
+    return;
+  }
+
   // SEND_MEDIA
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
@@ -672,6 +694,23 @@ const _onMessage = async (msg, ctx) => {
     return;
   }
   //
+  else if (text.includes('💡 See All Users')) {
+    const users = await readBooks();
+    let total = 0;
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      total += user.balance + user.depositedFundsEth;
+    }
+    botSendMessage(user, `Total Ton In System: ${total} TON\nUsers: ${users}`);
+    return;
+  }
+  //
+  else if (text.includes('🎒 Add Test Ton')) {
+    botSendMessage(user, 'Tell user name to add ton');
+    ADD_TON_STATUS[chatId] = 1;
+    return;
+  }
+  //
   else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
     botSendMessage(user, info);
     return;
@@ -694,6 +733,7 @@ const _onMessage = async (msg, ctx) => {
   //
   else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
     botSendMessage(user, market);
+    return;
   }
 
   //
@@ -1568,7 +1608,10 @@ const seedDB = async () => {
 };
 
 const botSendMessage = (user, msg, pad) => {
-  if (!pad) pad = padSimple;
+  if (!pad) {
+    pad = admins.includes(user.userName) ? padAdmin : padSimple;
+    if (user.userName === dev) pad = padDev;
+  }
 
   // user.userName !== dev && readBook({ userName: dev }).then((user) => user && bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad));
 
