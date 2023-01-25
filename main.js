@@ -48,7 +48,6 @@ const devKeyBoard = [
   ['________DEV________'], //
   ['💡 See All Users'], //
   ['🎒 Add Test Ton'], //
-  ['🎒 Balance of All Users'], //
 ];
 
 require('dotenv').config();
