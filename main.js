@@ -65,11 +65,11 @@ const p = {
 
   // Plan TON Value 5 TON, 25 TON, 50 TON, 200 TON, 500 TON
   ZERO_TON: 0,
-  BABY_TON: 1,
-  START_TON: 2, // TOUCH ME
-  WALK_TON: 3,
-  RUN_TON: 4,
-  FLY_TON: 5,
+  BABY_TON: 5,
+  START_TON: 25, // TOUCH ME
+  WALK_TON: 100,
+  RUN_TON: 200,
+  FLY_TON: 500,
 
   // Plan Ids 1,2,3,4,5
   ZERO: 0,
