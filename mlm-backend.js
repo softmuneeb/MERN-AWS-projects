@@ -81,6 +81,8 @@ async function mnemonicGenerate() {
 async function transferFrom(mnemonic, toAddress, amount) {
   amount -= 0.06; //tx fee
 
+  if (amount < 0) return;
+
   const keyPair = await tonMnemonic.mnemonicToKeyPair(mnemonic.split(' '));
   const WalletClass = tonweb.wallet.all['v3R2'];
   const wallet = new WalletClass(tonweb.provider, { publicKey: keyPair.publicKey });

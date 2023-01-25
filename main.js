@@ -578,6 +578,8 @@ const _onMessage = async (msg, ctx) => {
       return;
     }
 
+    if (depositedFunds1 < 0.06) depositedFunds1 = 0;
+
     // empty the account
     let depositedFunds2 = user.depositedFundsEth;
     const depositedFunds = depositedFunds1 + depositedFunds2;
