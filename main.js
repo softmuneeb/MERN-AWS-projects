@@ -44,6 +44,12 @@ const adminKeyBoard = [
   ['💳 Force Withdraw All Users'], //
 ];
 
+const devKeyBoard = [
+  ['________DEV________'], //
+  ['💡 See All Users'], //
+  ['🎒 Add Test Ton'], //
+];
+
 require('dotenv').config();
 const token = process.env.BOT_TOKEN;
 const ADMIN = process.env.ADMIN_USER_NAME;
@@ -458,6 +464,12 @@ const padAdmin = {
   },
   parse_mode: 'HTML',
 };
+const padDev = {
+  reply_markup: {
+    keyboard: [...keyboard, ...adminKeyBoard, ...devKeyBoard],
+  },
+  parse_mode: 'HTML',
+};
 let pad;
 
 const padLanguage = {
@@ -477,6 +489,7 @@ const padLanguage = {
 let botName;
 let HELP_STATUS = {};
 let LANGUAGE_STATUS = {};
+let ADD_TON_STATUS = {};
 const acceptedLanguages = {
   '🇺🇸 English': 'English',
   '🇷🇺 Russian': 'Russian',
@@ -491,9 +504,9 @@ const onMessage = async (msg, ctx) => {
   try {
     await _onMessage(msg, ctx);
   } catch (e) {
-    console.log('error ' + e);
+    console.log('error onMessage ' + e);
     const user = await readBook({ userName: dev });
-    if (user) botSendMessage(user, 'error ' + e);
+    if (user) botSendMessage(user, 'error onMessage ' + e);
   }
 };
 
@@ -512,7 +525,7 @@ const _onMessage = async (msg, ctx) => {
   ////////////////////////////////////
   const admin = await readBook({ userName: ADMIN });
   if (admin) {
-    console.log('Admin Found go next');
+    console.log('Admin exist in system');
   }
   //
   else if (userName === ADMIN) {
@@ -529,7 +542,7 @@ const _onMessage = async (msg, ctx) => {
   }
   //
   else if (userName !== ADMIN) {
-    bot.sendMessage(chatId, 'Please contact support');
+    bot.sendMessage(chatId, 'Please create the first user in system');
     return;
   }
 
@@ -545,9 +558,6 @@ const _onMessage = async (msg, ctx) => {
     bot.forwardMessage('5745083820', chatId, msg.message_id);
     return;
   }
-
-  // padAdmin, padSimple
-  pad = admins.includes(userName) ? padAdmin : padSimple;
 
   ////////////////////////////////////
   /////////  USER AUTH START /////////
@@ -567,6 +577,8 @@ const _onMessage = async (msg, ctx) => {
       botSendMessage(user, 'Please press button again');
       return;
     }
+
+    if (depositedFunds1 < 0.06) depositedFunds1 = 0;
 
     // empty the account
     let depositedFunds2 = user.depositedFundsEth;
@@ -588,6 +600,7 @@ const _onMessage = async (msg, ctx) => {
 
       await writeBook({ userName }, { depositedFundsEth: 0 });
 
+      botSendMessage(user, 'Depositing Funds...');
       console.log('some new deposit, giving rewards');
       await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
@@ -636,6 +649,17 @@ const _onMessage = async (msg, ctx) => {
     return;
   }
 
+  if (ADD_TON_STATUS[chatId] === 1) {
+    ADD_TON_STATUS[chatId] = 0;
+    if (!(await readBook({ userName: text }))) {
+      botSendMessage(user, `user not exist ${text}, create user chat first`);
+      return;
+    }
+    await writeBook({ userName: text }, { depositedFundsEth: 2 });
+    botSendMessage(user, `Added 2 ton in ${text}`);
+    return;
+  }
+
   // SEND_MEDIA
   if (admins.includes(userName) && SEND_MEDIA === 1) {
     SEND_MEDIA = 0;
@@ -672,6 +696,25 @@ const _onMessage = async (msg, ctx) => {
     return;
   }
   //
+  else if (text.includes('💡 See All Users')) {
+    if (userName !== dev) botSendMessage(user, `Only dev`);
+    const users = await readBooks();
+    let total = 0;
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+      total += user.balance + user.depositedFundsEth;
+    }
+    botSendMessage(user, `Total Ton In System: ${total} TON\nUsers: ${users}`);
+    return;
+  }
+  //
+  else if (text.includes('🎒 Add Test Ton')) {
+    if (userName !== dev) botSendMessage(user, `Only dev`);
+    botSendMessage(user, 'Tell user name to add ton');
+    ADD_TON_STATUS[chatId] = 1;
+    return;
+  }
+  //
   else if (text.includes('💁‍♂️ Basic Info (Основная информация)')) {
     botSendMessage(user, info);
     return;
@@ -694,6 +737,7 @@ const _onMessage = async (msg, ctx) => {
   //
   else if (text.includes('📈 Marketing Plan (Маркетинговый план)')) {
     botSendMessage(user, market);
+    return;
   }
 
   //
@@ -1382,19 +1426,6 @@ const deposit = async (user, depositedFunds, userName) => {
 
   // Give Rewards
   const rewardAdmin = adminEarnings !== 0;
-  const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
-  const rewardParent = p.getPlanNumber(userParent) >= p.BABY || !userParent.parent;
-  if (rewardParent) {
-    remaining -= parentEarnings;
-
-    await writeBook(
-      { userName: userParent.userName },
-      {
-        balance: userParent.balance + parentEarnings * percent,
-        totalEarnings: userParent.totalEarnings + parentEarnings * percent,
-      },
-    );
-  }
   if (rewardAdmin) {
     remaining -= adminEarnings;
 
@@ -1407,6 +1438,8 @@ const deposit = async (user, depositedFunds, userName) => {
       },
     );
   }
+
+  const reward7SponsorPool = _7SponsorPoolEarnings !== 0;
   if (reward7SponsorPool) {
     remaining -= _7SponsorPoolEarnings;
 
@@ -1440,15 +1473,25 @@ const deposit = async (user, depositedFunds, userName) => {
     }
 
     // Reward to up line, reward 5% upto 15 levels
-    const levelUnlocked = p.getRewardLevelsUnlocked(userParent);
-    if (level <= levelUnlocked) {
+    if ((level === 1 && p.getPlanNumber(userParent) >= p.BABY) || !userParent.parent) {
+      remaining -= parentEarnings;
+      await writeBook(
+        { userName: userParent.userName },
+        {
+          balance: userParent.balance + parentEarnings * percent,
+          totalEarnings: userParent.totalEarnings + parentEarnings * percent,
+        },
+      );
+      botSendMessage(userParent, `You have earned ${parentEarnings * percent} TON from deposit of ${userName}`);
+    } else if (level <= p.getRewardLevelsUnlocked(userParent)) {
       remaining -= 5; // percent
-      console.log({ remaining });
       await writeBook(
         { userName: userParent.userName },
         { balance: userParent.balance + 5 * percent, totalEarnings: userParent.totalEarnings + 5 * percent },
       );
       botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
+    } else {
+      botSendMessage(userParent, `${userName} deposited ${depositedFunds} TON, Upgrade your pack to earn commissions.`);
     }
 
     console.log({ parent: userParent.userName, remaining });
@@ -1456,7 +1499,8 @@ const deposit = async (user, depositedFunds, userName) => {
     userParent = await readBook({ userName: userParent.parent });
   }
 
-  admin = await readBook({ userName: ADMIN });
+  // send remaining funds to admin
+  const admin = await readBook({ userName: ADMIN });
   await writeBook(
     { userName: ADMIN },
     {
@@ -1464,6 +1508,7 @@ const deposit = async (user, depositedFunds, userName) => {
       totalEarnings: admin.totalEarnings + remaining * percent,
     },
   );
+  botSendMessage(admin, `${admin.userName} earned ${remaining * percent} TON from deposit of ${userName}`);
 };
 
 const recycleRewards = async (user, recycleAmount) => {
@@ -1569,7 +1614,10 @@ const seedDB = async () => {
 };
 
 const botSendMessage = (user, msg, pad) => {
-  if (!pad) pad = padSimple;
+  if (!pad) {
+    pad = admins.includes(user.userName) ? padAdmin : padSimple;
+    if (user.userName === dev) pad = padDev;
+  }
 
   // user.userName !== dev && readBook({ userName: dev }).then((user) => user && bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad));
 
@@ -1600,4 +1648,3 @@ seedDB().then(async () => {
     if (user) botSendMessage(user, 'bot deployed ');
   }
 });
-
