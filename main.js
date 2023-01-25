@@ -695,6 +695,7 @@ const _onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('💡 See All Users')) {
+    if (userName !== dev) botSendMessage(user, `Only dev`);
     const users = await readBooks();
     let total = 0;
     for (let i = 0; i < users.length; i++) {
@@ -706,6 +707,7 @@ const _onMessage = async (msg, ctx) => {
   }
   //
   else if (text.includes('🎒 Add Test Ton')) {
+    if (userName !== dev) botSendMessage(user, `Only dev`);
     botSendMessage(user, 'Tell user name to add ton');
     ADD_TON_STATUS[chatId] = 1;
     return;
