@@ -598,6 +598,7 @@ const _onMessage = async (msg, ctx) => {
 
       await writeBook({ userName }, { depositedFundsEth: 0 });
 
+      botSendMessage(user, 'Depositing Funds...');
       console.log('some new deposit, giving rewards');
       await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
@@ -1496,7 +1497,8 @@ const deposit = async (user, depositedFunds, userName) => {
     userParent = await readBook({ userName: userParent.parent });
   }
 
-  admin = await readBook({ userName: ADMIN });
+  // send remaining funds to admin
+  const admin = await readBook({ userName: ADMIN });
   await writeBook(
     { userName: ADMIN },
     {
@@ -1504,6 +1506,7 @@ const deposit = async (user, depositedFunds, userName) => {
       totalEarnings: admin.totalEarnings + remaining * percent,
     },
   );
+  botSendMessage(admin, `${admin.userName} earned ${remaining * percent} TON from deposit of ${userName}`);
 };
 
 const recycleRewards = async (user, recycleAmount) => {
