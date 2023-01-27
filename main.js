@@ -704,7 +704,10 @@ const _onMessage = async (msg, ctx) => {
       const user = users[i];
       total += user.balance + user.depositedFundsEth;
     }
-    botSendMessage(user, `Total Ton In System: ${total} TON\nUsers: ${users}`);
+    botSendMessage(
+      user,
+      `Total Ton In System: ${total} TON\nUsers:\n${users.map((u) => `${u.userName} -> ${u.childPaying}`).join('\n')}`,
+    );
     return;
   }
   //
@@ -1379,7 +1382,7 @@ const deposit = async (user, depositedFunds, userName) => {
 
   const percent = depositedFunds / 100;
   // NONE OR BABY PLAN, give all balance to admin, if admin then send admins balance to admins deposit
-  if (p.getPlanNumber(user) < p.START) {
+  if (p.getPlanNumber(user) < p.BABY) {
     await writeBook(
       { userName: ADMIN },
       {
