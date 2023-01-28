@@ -25,6 +25,7 @@ const keyboard = [
   ['🔗 Invitation link (Пригласительная ссылка)'], //
   ['🎒 My Package (Mой пакет)'], //
   ['💵 My Wallet (Мой бумажник)'], //
+  ['TON Crosschain Address (Адрес кроссчейна TON)'], //
   ['💰 Withdraw (Отзывать)', '🕹 Upgrade (Обновление)'], //
   ['🖇 Referrals list (Прямое направление)'], //
   ['🚀 Super Star Club (Суперзвездный клуб)'], //
@@ -851,6 +852,32 @@ Deposit Address:\n<code>${user.publicKey}</code>
 <a href="https://aiproton.io/?userName=${user.userName}&balance=${user.depositedFunds}">
 Click here Deposit TONcoin from Smart Chain Or Ether Chain
 </a>`,
+      pad,
+    );
+  }
+  //
+  else if (text.includes('TON Crosschain Address (Адрес кроссчейна TON)')) {
+    botSendMessage(
+      user,
+      `Copy The Below Address To 
+Add Assets (TONcoin) in Your Metamask Wallet. 
+Kindly Use Correct Address
+As Chain ( Smartchain Or ETHchain )
+
+Copy TONcoin 
+Ethchain Ethereum ( ERC-20) Address
+
+<code>0x582d872A1B094FC48F5DE31D3B73F2D9bE47def1</code>
+
+Copy TONcoin 
+BNB Smartchain (BEP-20) Address
+
+<code>0x76A797A59Ba2C17726896976B7B3747BfD1d220f</code>
+
+<a href="https://ton.org/bridge/?fromNetwork=ton&toNetwork=bsc">
+(Swap TONcoin From BNB or ETH)
+</a>
+`,
       pad,
     );
   }
