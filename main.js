@@ -164,7 +164,7 @@ const p = {
     else if (d >= p.RUN_TON) ans = 12;
     else if (d >= p.WALK_TON) ans = 9;
     else if (d >= p.START_TON) ans = 6;
-    else if (d >= p.BABY_TON) ans = 0;
+    else if (d >= p.BABY_TON) ans = 6;
     else ans = 0;
     return ans;
   },
@@ -1475,6 +1475,7 @@ const deposit = async (user, depositedFunds, userName) => {
       newLevel > userParent.level && (await writeBook({ userName: userParent.userName }, { level: newLevel }));
     }
 
+    const unlockedLevels = p.getRewardLevelsUnlocked(userParent);
     // Reward to up line, reward 5% upto 15 levels
     if ((level === 1 && p.getPlanNumber(userParent) >= p.BABY) || !userParent.parent) {
       remaining -= parentEarnings;
@@ -1486,7 +1487,7 @@ const deposit = async (user, depositedFunds, userName) => {
         },
       );
       botSendMessage(userParent, `You have earned ${parentEarnings * percent} TON from deposit of ${userName}`);
-    } else if (level <= p.getRewardLevelsUnlocked(userParent)) {
+    } else if (level <= p.getRewardLevelsUnlocked(userParent) || !userParent.parent) {
       remaining -= 5; // percent
       await writeBook(
         { userName: userParent.userName },
@@ -1494,7 +1495,10 @@ const deposit = async (user, depositedFunds, userName) => {
       );
       botSendMessage(userParent, `You have earned ${5 * percent} TON from deposit of ${userName}`);
     } else {
-      botSendMessage(userParent, `${userName} deposited ${depositedFunds} TON, Upgrade your pack to earn commissions.`);
+      botSendMessage(
+        userParent,
+        `${userName} deposited ${depositedFunds} TON, ${level} level below you, You get commissions ${unlockedLevels} levels below you. Upgrade your pack to earn more commissions.`,
+      );
     }
 
     console.log({ parent: userParent.userName, remaining });
