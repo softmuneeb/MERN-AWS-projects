@@ -433,6 +433,7 @@ const translate = require('translate-google');
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { getBalanceOfTonOnEth, getBalanceOfTonOnBnb } = require('./eth-get-balance');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
@@ -1318,7 +1319,8 @@ upto 300% Value Of Their Pack.`,
     const usersL6 = usersLevel6.length;
 
     const [, tonDepositOnTon] = await getBalance(adminAddress);
-    const tonDepositOnEth = '';
+    const balanceOfTonOnEth = await getBalanceOfTonOnEth(adminAddressEth);
+    const balanceOfTonOnBnb = await getBalanceOfTonOnBnb(adminAddressEth);
 
     botSendMessage(
       user,
@@ -1326,7 +1328,7 @@ upto 300% Value Of Their Pack.`,
 
 2. Balance In TONChain Wallet - ${tonDepositOnTon} TON
 
-3. Balance In Metamask Wallet - ${tonDepositOnEth} TON
+3. Balance In Metamask Wallet - BSC: ${balanceOfTonOnBnb} TON, ETH: ${balanceOfTonOnEth} TON
 
 4. Total Instant Payout Distributed - ${admin.totalEarnings}
 
