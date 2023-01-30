@@ -433,6 +433,7 @@ const translate = require('translate-google');
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const { getBalanceOfTonOnEth, getBalanceOfTonOnBnb } = require('./eth-get-balance');
 app.use(cors());
 app.set('json spaces', 2);
 app.get('/', (req, res) => res.json({ message: 'hi ' + Date() }));
@@ -865,7 +866,7 @@ Kindly Use Correct Address
 As Chain ( Smartchain Or ETHchain )
 
 Copy TONcoin 
-Ethchain Ethereum ( ERC-20) Address
+Ethchain Ethereum (ERC-20) Address
 
 <code>0x582d872A1B094FC48F5DE31D3B73F2D9bE47def1</code>
 
@@ -1322,25 +1323,26 @@ upto 300% Value Of Their Pack.`,
     const usersL6 = usersLevel6.length;
 
     const [, tonDepositOnTon] = await getBalance(adminAddress);
-    const tonDepositOnEth = '';
+    const balanceOfTonOnEth = await getBalanceOfTonOnEth(adminAddressEth);
+    const balanceOfTonOnBnb = await getBalanceOfTonOnBnb(adminAddressEth);
 
     botSendMessage(
       user,
       `1. Total Users in System - ${totalUsers}
 
-2. Total Deposit In TONChain Wallet - ${tonDepositOnTon} TON
+2. Balance In TONChain Wallet - ${tonDepositOnTon} TON
 
-3. Total Deposit In Metamask Wallet - ${tonDepositOnEth} TON
+3. Balance In Metamask Wallet - BSC: ${balanceOfTonOnBnb} TON, ETH: ${balanceOfTonOnEth} TON
 
-4. Total Instant Payout Distributed - 
+4. Total Instant Payout Distributed - ${admin.totalEarnings}
 
-5. Fund Value For 7 Sponsor Club - ${__7_SPONSOR_POOL.balance}
+5. Fund Value Current For 7 Sponsor Club - ${__7_SPONSOR_POOL.balance}
 
-6. Fund Value For Reward Club - ${_SUPER_STAR_POOL.balance}
+6. Fund Value Current For Reward Club - ${_SUPER_STAR_POOL.balance}
 
-7. Fund Distributed in 7 Sponsor Club - ( when monthly distribute )
+7. Fund Value History For 7 Sponsor Club - ${__7_SPONSOR_POOL.totalEarnings}
 
-8. Fund Distributed in Reward Club -  (when monthly distribute)
+8. Fund Value History For Reward Club - ${_SUPER_STAR_POOL.totalEarnings}
 
 9. User Level Count in System -
     Users Level 1 - ${usersL1} TON
@@ -1348,7 +1350,7 @@ upto 300% Value Of Their Pack.`,
     Users Level 3 - ${usersL3} TON
     Users Level 4 - ${usersL4} TON
     Users Level 5 - ${usersL5} TON
-    Users Level 6 - ${usersL6} TON
+    Users Level 6-15 - ${usersL6} TON
       `,
       pad,
     );
