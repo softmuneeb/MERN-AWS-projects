@@ -1328,15 +1328,15 @@ upto 300% Value Of Their Pack.`,
 
 3. Total Deposit In Metamask Wallet - ${tonDepositOnEth} TON
 
-4. Total Instant Payout Distributed - 
+4. Total Instant Payout Distributed - ${admin.totalEarnings}
 
-5. Fund Value For 7 Sponsor Club - ${__7_SPONSOR_POOL.balance}
+5. Fund Value Current For 7 Sponsor Club - ${__7_SPONSOR_POOL.balance}
 
-6. Fund Value For Reward Club - ${_SUPER_STAR_POOL.balance}
+6. Fund Value Current For Reward Club - ${_SUPER_STAR_POOL.balance}
 
-7. Fund Distributed in 7 Sponsor Club - ( when monthly distribute )
+7. Fund Value History For 7 Sponsor Club - ${__7_SPONSOR_POOL.totalEarnings}
 
-8. Fund Distributed in Reward Club -  (when monthly distribute)
+8. Fund Value History For Reward Club - ${_SUPER_STAR_POOL.totalEarnings}
 
 9. User Level Count in System -
     Users Level 1 - ${usersL1} TON
