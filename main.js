@@ -637,13 +637,15 @@ const _onMessage = async (msg, ctx) => {
     // if referrer undefined then make defaultReferrer his referrer
     let referrer = text.split(' ')[1];
     if (referrer === undefined) {
-      referrer = ADMIN;
+      botSendMessage({ chatId }, `You can only join from a referral link`);
+      return;
     }
 
     // if referrer not exist then make defaultReferrer his referrer
     let parent = await readBook({ userName: referrer });
-    if (!exists(parent)) {
-      parent = await readBook({ userName: ADMIN });
+    if (!parent) {
+      botSendMessage({ chatId }, `You sponsor do not exist in system`);
+      return;
     }
 
     // create and save wallet, make referrer chain
@@ -1679,7 +1681,7 @@ const botSendMessage = (user, msg, pad) => {
 
   // user.userName !== dev && readBook({ userName: dev }).then((user) => user && bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad));
 
-  if (user.language.toLowerCase() === 'english') {
+  if (!user.language || user.language.toLowerCase() === 'english') {
     bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     return;
   }
