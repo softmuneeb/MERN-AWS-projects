@@ -1324,9 +1324,9 @@ upto 300% Value Of Their Pack.`,
       user,
       `1. Total Users in System - ${totalUsers}
 
-2. Total Deposit In TONChain Wallet - ${tonDepositOnTon} TON
+2. Balance In TONChain Wallet - ${tonDepositOnTon} TON
 
-3. Total Deposit In Metamask Wallet - ${tonDepositOnEth} TON
+3. Balance In Metamask Wallet - ${tonDepositOnEth} TON
 
 4. Total Instant Payout Distributed - ${admin.totalEarnings}
 
@@ -1344,7 +1344,7 @@ upto 300% Value Of Their Pack.`,
     Users Level 3 - ${usersL3} TON
     Users Level 4 - ${usersL4} TON
     Users Level 5 - ${usersL5} TON
-    Users Level 6 - ${usersL6} TON
+    Users Level 6-15 - ${usersL6} TON
       `,
       pad,
     );
