@@ -1018,10 +1018,12 @@ To Get Latest Updates , Follow The Official Telegram Channel
     botSendMessage(
       user,
       `
-When You Sponsor 7th Direct , You Eligible For 
+When You Sponsor Total 7 Direct ( Start or Above Pack , and Self Also Start & Above Pack ) 
+You Eligible For 
 7 Sponsor Club Reward .
 
 In This Club You Get 300% Value Reward 
+
 Of Your Self Package Amount
 At The Time Of Qualification Of 7th Sponsoring Club.
 
@@ -1030,6 +1032,8 @@ From Every Global 1-3rd sponsoring - 10%
 This Revenue Comes In 7 Sponsor Club , And
 Distribute Into Qualified Achievers of Club .
 This Means If Any User Sponsor 7 Direct In His Tree,
+( Start or Above Pack) 
+
 Than He can eligible To Earn From Global Sponsoring 
 upto 300% Value Of Their Pack.`,
     );
