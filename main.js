@@ -608,6 +608,28 @@ const _onMessage = async (msg, ctx) => {
       await deposit(user, depositedFunds, userName);
       user = await readBook({ userName });
     }
+
+    // add person to status7SponsorPool
+    if (user.status7SponsorPool === NOT_IN_POOL) {
+      let users = await getUserChild(user);
+      let userPlanLevels = users.map((user) => (p.getPlanNumber(user) >= p.START ? 1 : 0));
+      let childAboveOrEqualStart = userPlanLevels.reduce((a, b) => a + b, 0);
+
+      // 7 -> 7 Sponsor Pool
+      if (childAboveOrEqualStart >= 7) {
+        if (p.getPlanNumber(user) >= p.START) {
+          await writeBook({ userName: user.userName }, { status7SponsorPool: IN_POOL });
+          botSendMessage(user, `Congrats You are added to 7 sponsor pool`);
+        } else {
+          botSendMessage(user, `You have invited 7+ people, Upgrade to ⭐️ START plan to get into 7 sponsor pool`);
+        }
+      } else {
+        botSendMessage(
+          user,
+          `You have invited ${childAboveOrEqualStart} people who have ⭐️ START plan or bigger, invite more people to get into 7 sponsor pool`,
+        );
+      }
+    }
   }
   // New User
   else {
@@ -658,8 +680,8 @@ const _onMessage = async (msg, ctx) => {
       botSendMessage(user, `user not exist ${text}, create user chat first`);
       return;
     }
-    await writeBook({ userName: text }, { depositedFundsEth: 2 });
-    botSendMessage(user, `Added 2 ton in ${text}`);
+    await writeBook({ userName: text }, { depositedFundsEth: 25 });
+    botSendMessage(user, `Balance set to 25 ton in ${text}`);
     return;
   }
 
@@ -1454,11 +1476,6 @@ const deposit = async (user, depositedFunds, userName) => {
     parentEarnings = 20;
     adminEarnings = 0;
     _7SponsorPoolEarnings = 0;
-
-    // add person to status7SponsorPool
-    if (user.status7SponsorPool === NOT_IN_POOL) {
-      await writeBook({ userName: userParent.userName }, { status7SponsorPool: IN_POOL });
-    }
   }
 
   // Give Rewards
@@ -1674,6 +1691,15 @@ const botSendMessage = (user, msg, pad) => {
     .catch((err) => {
       bot.sendMessage(user.chatId, `<b>${msg}</b>`, pad);
     });
+};
+
+const getUserChild = async (user) => {
+  let children = [];
+  for (let i = 0; i < user.child.length; i++) {
+    const child = user.child[i];
+    children.push(await readBook({ userName: child }));
+  }
+  return children;
 };
 
 seedDB().then(async () => {
