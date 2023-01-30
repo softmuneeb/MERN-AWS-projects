@@ -866,7 +866,7 @@ Kindly Use Correct Address
 As Chain ( Smartchain Or ETHchain )
 
 Copy TONcoin 
-Ethchain Ethereum ( ERC-20) Address
+Ethchain Ethereum (ERC-20) Address
 
 <code>0x582d872A1B094FC48F5DE31D3B73F2D9bE47def1</code>
 
