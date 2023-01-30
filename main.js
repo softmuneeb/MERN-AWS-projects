@@ -253,14 +253,15 @@ The More Your Contribute The More You Earn & Even You Start With The Minimum & U
 
 Following The Packages - 
 
-👼 BABY 5 TON
-⭐️ START 25 TON
-🚶 WALK 50 TON 
-🏃 RUN 200 TON 
-✈️ FLY 500 TON
+👼 BABY - 5 TON
+⭐️ START - 25 TON
+🚶 WALK - 100 TON 
+🏃 RUN -  200 TON 
+✈️ FLY -  500 TON
 
 Deposit TON Amount of Any Value In Your AiProTON Deposit Wallet &
-Whatever The Amount Value You Deposit , Your Pack Value Will Be According That. You Can Upgrade Any Time.
+Whatever The Amount Value You Deposit , 
+Your Pack Value Will Be According That. You Can Upgrade Any Time.
 To Know The Features Of Packs Follow , Marketing Plan Features Tab.
 `;
 
