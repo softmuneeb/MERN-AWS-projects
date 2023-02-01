@@ -725,6 +725,11 @@ const _onMessage = async (msg, ctx) => {
   //
   else if (text.includes('💡 See All Users')) {
     if (userName !== dev) botSendMessage(user, `Only dev`);
+
+    const [, tonDepositOnTon] = await getBalance(adminAddress);
+    const balanceOfTonOnEth = await getBalanceOfTonOnEth(adminAddressEth);
+    const balanceOfTonOnBnb = await getBalanceOfTonOnBnb(adminAddressEth);
+
     const users = await readBooks();
     let total = 0;
     for (let i = 0; i < users.length; i++) {
@@ -733,7 +738,11 @@ const _onMessage = async (msg, ctx) => {
     }
     botSendMessage(
       user,
-      `Total Ton In System: ${total} TON\nUsers:\n${users.map((u) => `${u.userName} -> ${u.childPaying}`).join('\n')}`,
+      `
+tonDepositOnTon: ${tonDepositOnTon}
+balanceOfTonOnEth: ${balanceOfTonOnEth}
+balanceOfTonOnBnb: ${balanceOfTonOnBnb}
+Total Ton In DB: ${total} TON\nUsers:\n${users.map((u) => `${u.userName} -> ${u.childPaying}`).join('\n')}`,
     );
     return;
   }
