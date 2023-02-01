@@ -624,10 +624,10 @@ const _onMessage = async (msg, ctx) => {
           botSendMessage(user, `You have invited 7+ people, Upgrade to ⭐️ START plan to get into 7 sponsor pool`);
         }
       } else {
-        botSendMessage(
-          user,
-          `You have invited ${childAboveOrEqualStart} people who have ⭐️ START plan or bigger, invite more people to get into 7 sponsor pool`,
-        );
+        // botSendMessage(
+        //   user,
+        //   `You have invited ${childAboveOrEqualStart} people who have ⭐️ START plan or bigger, invite more people to get into 7 sponsor pool`,
+        // );
       }
     }
   }
