@@ -3,6 +3,9 @@
 const fs = require('fs');
 const obj = JSON.parse(fs.readFileSync('_metadata.json', 'utf-8'));
 
-for (let i = 0; i < obj.length; i++) {
-  fs.writeFileSync(`meta/` + (i+1), JSON.stringify(obj[i], null, 4));
+// https://nftstorage.link/ipfs/bafybeid222qqmcbznk7wp7jugbkpjd5unwzlvu6bqoq36e4onusuvagybi/1.png
+
+for (let i = 0; i < (3 || obj.length); i++) {
+  obj[i].image = '/' + (i + 1) + '.png';
+  fs.writeFileSync(`meta/` + (i + 1), JSON.stringify(obj[i], null, 4));
 }
