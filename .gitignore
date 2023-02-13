@@ -6,3 +6,5 @@ secret.txt
 output
 images
 backup
+yarn.lock
+package-lock.json
