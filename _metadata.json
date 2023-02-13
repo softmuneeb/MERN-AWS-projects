@@ -1,0 +1,47 @@
+[
+  {
+    "description": "postman panda",
+    "name": "postman panda#1",
+    "ïmage": "",
+    "attributes": [
+      { "trait_type": "Bg", "value": "13" },
+      { "trait_type": "Base", "value": "12" },
+      { "trait_type": "dress", "value": "c 9" },
+      { "trait_type": "shoe", "value": "shoe 6" },
+      { "trait_type": "Mouth", "value": "4" },
+      { "trait_type": "glasses", "value": "10" },
+      { "trait_type": "hand", "value": "flower" },
+      { "trait_type": "caps", "value": "cap6 b" }
+    ]
+  },
+  {
+    "description": "postman panda",
+    "name": "postman panda#2",
+    "ïmage": "",
+    "attributes": [
+      { "trait_type": "Bg", "value": "13" },
+      { "trait_type": "Base", "value": "panda base 1" },
+      { "trait_type": "dress", "value": "c 7" },
+      { "trait_type": "shoe", "value": "shoe 7" },
+      { "trait_type": "Mouth", "value": "m 6" },
+      { "trait_type": "glasses", "value": "b" },
+      { "trait_type": "hand", "value": "bag" },
+      { "trait_type": "caps", "value": "6" }
+    ]
+  },
+  {
+    "description": "postman panda",
+    "name": "postman panda#3",
+    "ïmage": "",
+    "attributes": [
+      { "trait_type": "Bg", "value": "17" },
+      { "trait_type": "Base", "value": "7" },
+      { "trait_type": "dress", "value": "c 7" },
+      { "trait_type": "shoe", "value": "16" },
+      { "trait_type": "Mouth", "value": "3" },
+      { "trait_type": "glasses", "value": "b" },
+      { "trait_type": "hand", "value": "skate board 2" },
+      { "trait_type": "caps", "value": "2" }
+    ]
+  }
+]
