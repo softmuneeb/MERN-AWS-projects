@@ -4,6 +4,7 @@ const express = require('express')
 const router = express.Router()
 
 const { getContractNft } = require('./smart-contracts-config')
+const { addTextWatermark } = require('./watermark')
 
 router.get('/', async (req, res) => {
   res.send({ message: 'Assalamo Alaikum' })
@@ -27,8 +28,14 @@ router.get('/metadata/:tokenId', async (req, res) => {
 })
 
 router.get('/images/:domainName', async (req, res) => {
-  req.params.domainName
-  res.sendFile(imagePath)
+  const dstPath = 'watermark.jpg'
+  const options = {
+    text: req.params.domainName,
+    dstPath,
+  }
+  await addTextWatermark('lazi.jpeg', options, () => {
+    res.sendFile(__dirname + '/' + dstPath)
+  })
 })
 
 module.exports = router
