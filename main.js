@@ -1,6 +1,6 @@
 const { addTextWatermark } = require('./watermark')
 
-var options = {
+const options = {
     text: '@what-we-should-put-max-len-please.lazi',
     dstPath: 'watermark.jpg',
 }
