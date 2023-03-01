@@ -10,22 +10,20 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/metadata/:tokenId', async (req, res) => {
-  const tokenId = Number(req.params.tokenId)
-  let domainName
   try {
-    domainName = await getContractNft()
+    const tokenId = Number(req.params.tokenId)
+    const domainName = await getContractNft()
       .methods.domainNameOf(tokenId - 1)
       .call()
-  } catch (e) {
+    const metadata = {
+      name: domainName,
+      image: `https://localhost:4000/api/images/${domainName}`,
+    }
+    res.send(metadata)
+  } catch (error) {
     res.send({})
     return
   }
-
-  const metadata = {
-    name: domainName,
-    image: `https://localhost:4000/api/images/${domainName}`,
-  }
-  res.send(metadata)
 })
 
 router.get('/images/:tokenId', async (req, res) => {
