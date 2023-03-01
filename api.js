@@ -18,7 +18,7 @@ router.get('/metadata/:tokenId', async (req, res) => {
       .call()
     const metadata = {
       name: domainName,
-      image: `https://localhost:4000/api/images/${domainName}`,
+      image: `https://js-code-lab-1-production.up.railway.app/api/images/${domainName}`,
     }
     res.send(metadata)
   } catch (error) {
