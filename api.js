@@ -26,16 +26,9 @@ router.get('/metadata/:tokenId', async (req, res) => {
   }
 })
 
-router.get('/images/:tokenId', async (req, res) => {
-  const totalSupply = await getContractNft().methods.totalSupply().call()
-
-  if (Number(req.params.tokenId) < Number(totalSupply)) {
-    const imagePath = __dirname + '/images/' + req.params.tokenId + '.jpg'
-    res.sendFile(imagePath)
-  } else {
-    const imagePath = __dirname + '/images/pre_reveal.jpeg'
-    res.sendFile(imagePath)
-  }
+router.get('/images/:domainName', async (req, res) => {
+  req.params.domainName
+  res.sendFile(imagePath)
 })
 
 module.exports = router
