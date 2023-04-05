@@ -14,7 +14,7 @@ router.get('/metadata/:tokenId', async (req, res) => {
   try {
     const tokenId = Number(req.params.tokenId)
     const domainName = await getContractNft()
-      .methods.domainNameOf(tokenId - 1)
+      .methods.domainNameOf(tokenId)
       .call()
     const metadata = {
       name: domainName,
