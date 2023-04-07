@@ -1,13 +1,12 @@
 const Web3 = require("web3");
-const ethNode = "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
-const nftAddress = '0x3E19DD4110848Dfc48fB75B96a828780E13D7568'
 
+// Testnet Goerli
+// const ethNode = "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+// const nftAddress = '0x3E19DD4110848Dfc48fB75B96a828780E13D7568'
 
-//  const requiredChainId = "0x1";
-//  const requiredNetwork = "Mainnet";
-//  const gasFactor = 1;
-//  const os = 'https://opensea.io/assets';
-//  const nftAddress = "0xcFE45d57E16bF2A70a963a4FDD361C06e379e0CA";
+// BSC Mainnet
+const ethNode = "https://bsc-dataseed.binance.org/";
+const nftAddress = '0x9c2c4ae02c9e3005f5e36eaf9096983af502307e'
 
 const getContractNft = (web3 = new Web3(ethNode), address = nftAddress) => new web3.eth.Contract(nftAbi, address);
 const nftAbi = JSON.parse(
