@@ -10,7 +10,7 @@ const ethNode = "https://data-seed-prebsc-1-s1.binance.org:8545/";
 const nftAddress = '0xCBAE00C693ff481b231dec99dc5Ab6e3B4887f69'
 
 const getContractNft = (web3 = new Web3(ethNode), address = nftAddress) => new web3.eth.Contract(nftAbi, address);
-const nftAbi = JSON.parse(
+const nftAbi = 
   [
     {
       inputs: [
@@ -956,5 +956,5 @@ const nftAbi = JSON.parse(
       stateMutability: "pure",
       type: "function",
     },
-  ])
+  ]
 module.exports = { getContractNft };
