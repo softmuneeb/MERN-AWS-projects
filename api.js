@@ -33,7 +33,7 @@ router.get('/images/:domainName', async (req, res) => {
     text: req.params.domainName,
     dstPath,
   }
-  await addTextWatermark('lazi.jpeg', options, () => {
+  await addTextWatermark('lazi-logo6.png', options, () => {
     res.sendFile(__dirname + '/' + dstPath)
   })
 })
