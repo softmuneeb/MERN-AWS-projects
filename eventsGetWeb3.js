@@ -25,7 +25,7 @@ while (fromBlockNumber <= toBlockNumber) {
     },
   });
 
-  console.log({ events: events.length });
+  // console.log({ events: events.length });
   for (let i = 0; i < events.length; i++) {
     const e = events[i];
     console.log(e.returnValues.to);
@@ -33,3 +33,5 @@ while (fromBlockNumber <= toBlockNumber) {
 
   fromBlockNumber += batchSize;
 }
+
+console.log('End');
