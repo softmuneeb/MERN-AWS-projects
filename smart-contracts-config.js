@@ -4,9 +4,13 @@ const Web3 = require("web3");
 // const ethNode = "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
 // const nftAddress = '0x3E19DD4110848Dfc48fB75B96a828780E13D7568'
 
-// BSC Mainnet
-const ethNode = "https://bsc-dataseed.binance.org/";
-const nftAddress = '0x9c2c4ae02c9e3005f5e36eaf9096983af502307e'
+// // BSC Mainnet
+// const ethNode = "https://bsc-dataseed.binance.org/";
+// const nftAddress = '0x9c2c4ae02c9e3005f5e36eaf9096983af502307e'
+// Polygon Mainnet
+const ethNode = "https://rpc-mainnet.matic.network/";
+const nftAddress = '0x427C689E1d2eB7df41a14e0199609DA49e610A75';
+
 
 const getContractNft = (web3 = new Web3(ethNode), address = nftAddress) => new web3.eth.Contract(nftAbi, address);
 const nftAbi = JSON.parse(
