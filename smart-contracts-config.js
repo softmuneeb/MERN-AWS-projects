@@ -8,7 +8,7 @@ const Web3 = require("web3");
 // const ethNode = "https://bsc-dataseed.binance.org/";
 // const nftAddress = '0x9c2c4ae02c9e3005f5e36eaf9096983af502307e'
 // Polygon Mainnet
-const ethNode = "https://rpc-mainnet.matic.network/";
+const ethNode = "https://polygon-rpc.com";
 const nftAddress = '0x427C689E1d2eB7df41a14e0199609DA49e610A75';
 
 
