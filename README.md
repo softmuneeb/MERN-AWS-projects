@@ -41,10 +41,10 @@ This project aims to implement an MLM structure with functionalities such as dep
 
 ## Roadmap
 
-- [ ] User withdrawal method.
-- [ ] Implement Pool 1 and Pool 2.
-- [ ] Super Heroes logic.
-- [ ] Full documentation for end-users.
+- [x] User withdrawal method.
+- [x] Implement Pool 1 and Pool 2.
+- [x] Super Heroes logic.
+- [x] Full documentation for end-users.
 
 ## MLM Logic
 
