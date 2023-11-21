@@ -9,7 +9,7 @@ const Web3 = require("web3");
 // const nftAddress = '0x9c2c4ae02c9e3005f5e36eaf9096983af502307e'
 // Polygon Mainnet
 const ethNode = "https://polygon-rpc.com";
-const nftAddress = '0x427C689E1d2eB7df41a14e0199609DA49e610A75';
+const nftAddress = '0xA362c197e3e30c281a7cB2f851465429514cd4A8';
 
 
 const getContractNft = (web3 = new Web3(ethNode), address = nftAddress) => new web3.eth.Contract(nftAbi, address);
